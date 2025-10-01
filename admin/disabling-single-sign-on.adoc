@@ -1,0 +1,35 @@
+---
+permalink: admin/disabling-single-sign-on.html 
+sidebar: sidebar 
+keywords: disable sso, disable single sign on 
+summary: 如果您不再想使用此功能，可以禁用单点登录（SSO）。您必须先禁用单点登录，然后才能禁用身份联合。 
+---
+= 禁用单点登录
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果您不再想使用此功能，可以禁用单点登录 (SSO)。您必须先禁用单点登录，然后才能禁用身份联合。
+
+.开始之前
+* 您已使用link:../admin/web-browser-requirements.html["支持的网络浏览器"]。
+* 你有link:admin-group-permissions.html["特定访问权限"]。
+
+
+.步骤
+. 选择*配置* > *访问控制* > *单点登录*。
++
+出现“单点登录”页面。
+
+. 选择“*已禁用*”选项。
+. 选择*保存*。
++
+出现一条警告消息，表明本地用户现在可以登录。
+
+. 选择“确定”。
++
+下次登录StorageGRID时，将出现StorageGRIDSign in页面，您必须输入本地或联合StorageGRID用户的用户名和密码。
+
+

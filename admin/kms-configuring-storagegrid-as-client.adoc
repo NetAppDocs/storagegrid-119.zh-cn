@@ -1,0 +1,61 @@
+---
+permalink: admin/kms-configuring-storagegrid-as-client.html 
+sidebar: sidebar 
+keywords: configure kms, key management server 
+summary: 您必须先将StorageGRID配置为每个外部密钥管理服务器或 KMS 集群的客户端，然后才能将 KMS 添加到StorageGRID。 
+---
+= 在 KMS 中将StorageGRID配置为客户端
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您必须先将StorageGRID配置为每个外部密钥管理服务器或 KMS 集群的客户端，然后才能将 KMS 添加到StorageGRID。
+
+
+NOTE: 这些说明适用于 Thales CipherTrust Manager 和 Hashicorp Vault。要获取受支持的产品和版本的列表，请使用 https://imt.netapp.com/matrix/#welcome["NetApp互操作性矩阵工具 (IMT)"^]。
+
+.步骤
+. 从 KMS 软件中，为您计划使用的每个 KMS 或 KMS 集群创建一个StorageGRID客户端。
++
+每个 KMS 管理单个站点或一组站点的StorageGRID设备节点的单个加密密钥。
+
+. [[create-key-with-kms-product]]使用以下两种方法之一创建密钥：
++
+** 使用您的 KMS 产品的密钥管理页面。为每个 KMS 或 KMS 集群创建一个 AES 加密密钥。
++
+加密密钥必须为 2,048 位或更多，并且必须可导出。
+
+** 让StorageGRID创建密钥。测试并保存后会提示你link:kms-adding.html#sg-create-key["上传客户端证书"]。
+
+
+. 记录每个 KMS 或 KMS 群集的以下信息。
++
+将 KMS 添加到StorageGRID时需要此信息：
+
++
+** 每个服务器的主机名或 IP 地址。
+** KMS 使用的 KMIP 端口。
+** KMS 中加密密钥的密钥别名。
+
+
+. 对于每个 KMS 或 KMS 集群，获取由证书颁发机构 (CA) 签名的服务器证书或包含每个 PEM 编码的 CA 证书文件的证书包，按证书链顺序连接。
++
+服务器证书允许外部 KMS 向StorageGRID进行身份验证。
+
++
+** 证书必须使用隐私增强邮件 (PEM) Base-64 编码的 X.509 格式。
+** 每个服务器证书中的主题备用名称 (SAN) 字段必须包含StorageGRID将连接到的完全限定域名 (FQDN) 或 IP 地址。
++
+
+NOTE: 在StorageGRID中配置 KMS 时，必须在 *Hostname* 字段中输入相同的 FQDN 或 IP 地址。
+
+** 服务器证书必须与 KMS 的 KMIP 接口使用的证书匹配，后者通常使用端口 5696。
+
+
+. 获取外部 KMS 颁发给StorageGRID 的公共客户端证书以及客户端证书的私钥。
++
+客户端证书允许StorageGRID向 KMS 验证自身身份。
+
+

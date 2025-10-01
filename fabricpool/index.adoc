@@ -1,0 +1,92 @@
+---
+permalink: fabricpool/index.html 
+sidebar: sidebar 
+keywords: how to configure storagegrid for fabricpool, using fabricpool with storagegrid, 
+summary: 如果您使用NetApp ONTAP软件，则可以使用NetApp FabricPool将非活动数据分层到NetApp StorageGRID对象存储系统。 
+---
+= 为FabricPool配置StorageGRID
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果您使用NetApp ONTAP软件，则可以使用NetApp FabricPool将非活动数据分层到NetApp StorageGRID对象存储系统。
+
+使用这些说明来：
+
+* 了解为FabricPool工作负载配置StorageGRID 的注意事项和最佳实践。
+* 了解如何配置StorageGRID对象存储系统以与FabricPool一起使用。
+* 了解如何在将StorageGRID连接为FabricPool云层时向ONTAP提供所需的值。
+
+
+
+
+== 为FabricPool配置StorageGRID 的快速入门
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["一个"]规划您的配置
+[role="quick-margin-list"]
+* 确定将使用哪种FabricPool卷分层策略将非活动ONTAP数据分层到StorageGRID。
+* 规划并安装StorageGRID系统以满足您的存储容量和性能需求。
+* 熟悉StorageGRID系统软件，包括link:../primer/exploring-grid-manager.html["网格管理器"]以及link:../primer/exploring-tenant-manager.html["租户经理"]。
+* 查看FabricPool最佳实践link:best-practices-for-high-availability-groups.html["HA 组"]，link:best-practices-for-load-balancing.html["负载平衡"] ，link:best-practices-ilm.html["ILM"] ， 和link:other-best-practices-for-storagegrid-and-fabricpool.html["更多"]。
+* 查看以下其他资源，其中提供了有关使用和配置ONTAP和FabricPool 的详细信息：
++
+https://www.netapp.com/pdf.html?item=/media/17239-tr4598pdf.pdf["TR-4598： ONTAP中的FabricPool最佳实践"^]
+
++
+https://docs.netapp.com/us-en/ontap/fabricpool/index.html["FabricPool的ONTAP文档"^]
+
+
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["两个"]执行先决条件任务
+[role="quick-margin-para"]
+获取link:information-needed-to-attach-storagegrid-as-cloud-tier.html["将StorageGRID附加为云层所需的信息"]， 包括：
+
+[role="quick-margin-list"]
+* IP 地址
+* 域名
+* SSL 证书
+
+
+[role="quick-margin-para"]
+可选地，配置link:../admin/using-identity-federation.html["身份联合"]和link:../admin/configuring-sso.html["单点登录"]。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["三"]配置StorageGRID设置
+[role="quick-margin-para"]
+使用StorageGRID获取ONTAP连接到网格所需的值。
+
+[role="quick-margin-para"]
+使用link:use-fabricpool-setup-wizard.html["FabricPool设置向导"]是配置所有项目的推荐和最快方法，但如果需要，您也可以手动配置每个实体。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["四个"]配置ONTAP和 DNS
+[role="quick-margin-para"]
+使用ONTAPlink:configure-ontap.html["添加云层"]使用StorageGRID值。然后，link:configure-dns-server.html["配置 DNS 条目"]将 IP 地址与您计划使用的任何域名关联。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png["五"]监视和管理
+[role="quick-margin-para"]
+当您的系统启动并运行时，在ONTAP和StorageGRID中执行持续任务以管理和监控FabricPool数据分层。
+
+
+
+== 什么是FabricPool？
+
+FabricPool是一种ONTAP混合存储解决方案，它使用高性能闪存聚合作为性能层，使用对象存储作为云层。使用支持FabricPool 的聚合可以帮助您降低存储成本，而不会影响性能、效率或保护。
+
+FabricPool将云层（外部对象存储，例如StorageGRID）与本地层（ ONTAP存储聚合）关联以创建复合磁盘集合。然后， FabricPool内的卷可以利用分层功能，将活动（热）数据保存在高性能存储（本地层）上，并将非活动（冷）数据分层到外部对象存储（云层）。
+
+无需进行任何架构更改，您可以继续从中央ONTAP存储系统管理您的数据和应用程序环境。
+
+
+
+== 什么是StorageGRID？
+
+NetApp StorageGRID是一种将数据作为对象进行管理的存储架构，与文件或块存储等其他存储架构不同。对象保存在单个容器（例如存储桶）内，并且不会作为文件嵌套在其他目录内的目录中。虽然对象存储通常提供的性能低于文件或块存储，但它的可扩展性明显更强。  StorageGRID桶可以容纳数 PB 的数据和数十亿个对象。
+
+
+
+== 为什么使用StorageGRID作为FabricPool云层？
+
+FabricPool可以将ONTAP数据分层到多个对象存储提供商，包括StorageGRID。与可能在存储桶或容器级别设置每秒支持的最大输入/输出操作数 (IOPS) 的公共云不同， StorageGRID性能会随着系统中的节点数量而扩展。使用StorageGRID作为FabricPool云层，您可以将冷数据保存在自己的私有云中，以实现最高性能并完全控制您的数据。
+
+此外，当您使用StorageGRID作为云层时，不需要FabricPool许可证。

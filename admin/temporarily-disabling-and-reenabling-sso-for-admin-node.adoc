@@ -1,0 +1,86 @@
+---
+permalink: admin/temporarily-disabling-and-reenabling-sso-for-admin-node.html 
+sidebar: sidebar 
+keywords: signing in when sso is down, single sign on failure 
+summary: 如果单点登录（SSO）系统出现故障，您可能无法登录网格管理器。在这种情况下，您可以暂时禁用并重新启用一个管理节点的 SSO。要禁用然后重新启用 SSO，您必须访问节点的命令 shell。 
+---
+= 暂时禁用并重新启用一个管理节点的单点登录
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果单点登录 (SSO) 系统出现故障，您可能无法登录网格管理器。在这种情况下，您可以暂时禁用并重新启用一个管理节点的 SSO。要禁用然后重新启用 SSO，您必须访问节点的命令 shell。
+
+.开始之前
+* 你有link:admin-group-permissions.html["特定访问权限"]。
+* 你有 `Passwords.txt`文件。
+* 您知道本地 root 用户的密码。
+
+
+.关于此任务
+为一个管理节点禁用 SSO 后，您可以以本地 root 用户身份登录到网格管理器。为了保护您的StorageGRID系统，您必须在注销后立即使用节点的命令 shell 在管理节点上重新启用 SSO。
+
+
+TIP: 禁用一个管理节点的 SSO 不会影响网格中任何其他管理节点的 SSO 设置。网格管理器中单点登录页面上的“启用 SSO”复选框保持选中状态，并且所有现有的 SSO 设置都将保留，除非您更新它们。
+
+.步骤
+. 登录管理节点：
++
+.. 输入以下命令： `ssh admin@Admin_Node_IP`
+.. 输入 `Passwords.txt`文件。
+.. 输入以下命令切换到root： `su -`
+.. 输入 `Passwords.txt`文件。
++
+当您以 root 身份登录时，提示符将从 `$`到 `#`。
+
+
+
+. 运行以下命令：``disable-saml``
++
+一条消息表明该命令仅适用于此管理节点。
+
+. 确认您要禁用 SSO。
++
+一条消息表明该节点上的单点登录已被禁用。
+
+. 从 Web 浏览器访问同一管理节点上的网格管理器。
++
+由于 SSO 已被禁用，因此现在显示 Grid Manager 登录页面。
+
+. 使用用户名 root 和本地 root 用户的密码Sign in。
+. 如果您因为需要更正 SSO 配置而暂时禁用 SSO：
++
+.. 选择*配置* > *访问控制* > *单点登录*。
+.. 更改不正确或过时的 SSO 设置。
+.. 选择*保存*。
++
+从单点登录页面选择“*保存*”会自动为整个网格重新启用 SSO。
+
+
+
+. 如果您由于其他原因需要访问网格管理器而暂时禁用了 SSO：
++
+.. 执行您需要执行的任何任务。
+.. 选择*退出*，然后关闭网格管理器。
+.. 在管理节点上重新启用 SSO。您可以执行以下任一步骤：
++
+*** 运行以下命令： `enable-saml`
++
+一条消息表明该命令仅适用于此管理节点。
+
++
+确认您要启用 SSO。
+
++
+一条消息表明该节点上已启用单点登录。
+
+*** 重新启动网格节点： `reboot`
+
+
+
+
+. 通过 Web 浏览器，从同一个管理节点访问网格管理器。
+. 确认出现StorageGRIDSign in页面，并且您必须输入 SSO 凭据才能访问网格管理器。
+

@@ -1,0 +1,33 @@
+---
+permalink: maintain/index.html 
+sidebar: sidebar 
+keywords: maintain overview, maintenance overview, about maintain, about maintenance 
+summary: 电网维护任务包括退役节点或站点、重命名电网、节点或站点以及维护网络。您还可以执行主机和中间件程序以及网格节点程序。 
+---
+= 电网维护
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+电网维护任务包括退役节点或站点、重命名电网、节点或站点以及维护网络。您还可以执行主机和中间件程序以及网格节点程序。
+
+
+NOTE: 在这些说明中，“Linux”指的是 Red Hat® Enterprise Linux®、Ubuntu® 或 Debian® 部署。有关受支持版本的列表，请参阅 https://imt.netapp.com/matrix/#welcome["NetApp 互操作性表工具"^]。
+
+
+
+== 开始之前
+
+* 您对StorageGRID系统有广泛的了解。
+* 您已经查看了StorageGRID系统的拓扑并了解网格配置。
+* 您明白您必须严格遵守所有指示并留意所有警告。
+* 您了解未描述的维护程序不受支持或需要服务参与。
+
+
+
+
+== 家电维护程序
+
+有关硬件步骤，请参阅 https://docs.netapp.com/us-en/storagegrid-appliances/commonhardware/index.html["StorageGRID设备的维护说明"^]。

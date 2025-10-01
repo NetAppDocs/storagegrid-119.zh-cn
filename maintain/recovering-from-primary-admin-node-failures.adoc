@@ -1,0 +1,30 @@
+---
+permalink: maintain/recovering-from-primary-admin-node-failures.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, primary admin node failure 
+summary: '您必须完成一组特定的任务才能从主管理节点故障中恢复。主管理节点承载网格的配置管理节点 (CMN) 服务。' 
+---
+= 从主管理节点故障中恢复
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您必须完成一组特定的任务才能从主管理节点故障中恢复。主管理节点承载网格的配置管理节点 (CMN) 服务。
+
+
+CAUTION: 您必须及时修复或更换发生故障的主管理节点，否则网格可能会失去接收新对象的能力。确切的时间段取决于您的对象摄取率：如果您需要更准确地评估电网的时间范围，请联系技术支持。
+
+主管理节点上的配置管理节点 (CMN) 服务负责为网格发布对象标识符块。这些标识符在对象被摄取时被分配给它们。除非有可用的标识符，否则无法摄取新对象。当 CMN 不可用时，对象摄取仍可继续，因为网格中缓存了大约一个月的标识符供应量。但是，缓存的标识符用尽后，就无法添加新的对象。
+
+按照以下高级步骤恢复主管理节点：
+
+. link:copying-audit-logs-from-failed-primary-admin-node.html["从发生故障的主管理节点复制审计日志"]
+. link:replacing-primary-admin-node.html["更换主管理节点"]
+. link:configuring-replacement-primary-admin-node.html["配置替换主管理节点"]
+. link:assess-hotfix-requirement-during-primary-admin-node-recovery.html["确定已恢复的主管理节点是否需要修补程序"]
+. link:restoring-audit-log-on-recovered-primary-admin-node.html["在已恢复的主管理节点上恢复审计日志"]
+. link:restoring-admin-node-database-primary-admin-node.html["恢复主管理节点时还原管理节点数据库"]
+. link:restoring-prometheus-metrics-primary-admin-node.html["恢复主管理节点时恢复 Prometheus 指标"]
+

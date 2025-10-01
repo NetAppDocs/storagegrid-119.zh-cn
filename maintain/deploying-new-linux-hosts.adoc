@@ -1,0 +1,44 @@
+---
+permalink: maintain/deploying-new-linux-hosts.html 
+sidebar: sidebar 
+keywords: storagegrid, deploy linux host, new host, new linux host 
+summary: 除了少数例外情况，您可以像在初始安装过程中一样准备新主机。 
+---
+= 部署新的 Linux 主机
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+除了少数例外情况，您可以像在初始安装过程中一样准备新主机。
+
+要部署新的或重新安装的物理或虚拟 Linux 主机，请按照适用于您的 Linux 操作系统的StorageGRID安装说明中准备主机的步骤进行操作：
+
+* link:../rhel/installing-linux.html["安装 Linux（Red Hat Enterprise Linux）"]
+* link:../ubuntu/installing-linux.html["安装 Linux（Ubuntu 或 Debian）"]
+
+
+此过程包括完成以下任务的步骤：
+
+. 安装 Linux。
+. 配置主机网络。
+. 配置主机存储。
+. 安装容器引擎。
+. 安装StorageGRID主机服务。
++
+
+CAUTION: 完成安装说明中的“安装StorageGRID主机服务”任务后停止。不要启动“部署网格节点”任务。
+
+
+
+执行这些步骤时，请注意以下重要准则：
+
+* 确保使用与原始主机上相同的主机接口名称。
+* 如果您使用共享存储来支持您的StorageGRID节点，或者您已将部分或全部驱动器或 SSD 从故障节点移动到替换节点，则必须重新建立原始主机上存在的相同存储映射。例如，如果您在 `/etc/multipath.conf`按照安装说明中的建议，确保使用相同的别名/WWID 对 `/etc/multipath.conf`在替换主机上。
+* 如果StorageGRID节点使用从NetApp ONTAP系统分配的存储，请确认该卷未启用FabricPool分层策略。禁用与StorageGRID节点一起使用的卷的FabricPool分层可简化故障排除和存储操作。
++
+
+CAUTION: 切勿使用FabricPool将与StorageGRID相关的任何数据分层回StorageGRID本身。将StorageGRID数据分层回StorageGRID会增加故障排除和操作的复杂性。
+
+

@@ -1,0 +1,31 @@
+---
+permalink: ubuntu/troubleshooting-installation-issues.html 
+sidebar: sidebar 
+keywords: how to troubleshoot ubuntu or debian installation 
+summary: 如果在安装StorageGRID系统时出现任何问题，您可以访问安装日志文件。技术支持可能还需要使用安装日志文件来解决问题。 
+---
+= 解决安装问题
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果在安装StorageGRID系统时出现任何问题，您可以访问安装日志文件。技术支持可能还需要使用安装日志文件来解决问题。
+
+运行每个节点的容器中提供了以下安装日志文件：
+
+* `/var/local/log/install.log`（在所有网格节点上找到）
+* `/var/local/log/gdu-server.log`（位于主管理节点上）
+
+
+可以从主机获取以下安装日志文件：
+
+* `/var/log/storagegrid/daemon.log`
+* `/var/log/storagegrid/nodes/<node-name>.log`
+
+
+要了解如何访问日志文件，请参阅link:../monitor/collecting-log-files-and-system-data.html["收集日志文件和系统数据"]。
+
+.相关信息
+link:../troubleshoot/index.html["对StorageGRID系统进行故障排除"]

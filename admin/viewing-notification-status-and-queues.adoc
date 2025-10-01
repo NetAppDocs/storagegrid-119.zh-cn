@@ -1,0 +1,20 @@
+---
+permalink: admin/viewing-notification-status-and-queues.html 
+sidebar: sidebar 
+keywords: NMS service, network management system, interface engine 
+summary: '管理节点上的网络管理系统 (NMS) 服务向邮件服务器发送通知。您可以在接口引擎页面查看NMS服务的当前状态及其通知队列的大小。' 
+---
+= 查看通知状态和队列
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+管理节点上的网络管理系统 (NMS) 服务向邮件服务器发送通知。您可以在接口引擎页面查看NMS服务的当前状态及其通知队列的大小。
+
+要访问接口引擎页面，请选择*支持* > *工具* > *网格拓扑*。然后选择 *_site_* > *_Admin Node_* > *NMS* > *Interface Engine*。
+
+image::../media/email_notification_status_and_queues.gif[接口引擎页面]
+
+通知通过电子邮件通知队列进行处理，并按照触发的顺序逐一发送到邮件服务器。如果在尝试发送通知时出现问题（例如，网络连接错误）并且邮件服务器不可用，则会尽力尝试在 60 秒内重新向邮件服务器发送通知。如果 60 秒后通知仍未发送到邮件服务器，则该通知将从通知队列中删除，并尝试发送队列中的下一个通知。

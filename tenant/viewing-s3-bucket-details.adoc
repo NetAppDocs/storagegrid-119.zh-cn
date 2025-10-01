@@ -1,0 +1,108 @@
+---
+permalink: tenant/viewing-s3-bucket-details.html 
+sidebar: sidebar 
+keywords: how to view bucket details 
+summary: 您可以在您的租户帐户中查看存储桶。 
+---
+= 查看存储桶详细信息
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以在您的租户帐户中查看存储桶。
+
+.开始之前
+* 您已使用link:../admin/web-browser-requirements.html["支持的网络浏览器"]。
+* 您属于具有link:tenant-management-permissions.html["Root 访问权限、管理所有存储桶或查看所有存储桶权限"]。这些权限会覆盖组或存储桶策略中的权限设置。
+
+
+.步骤
+. 从仪表板中选择 *查看存储桶*，或选择 *存储（S3）* > *存储桶*。
++
+出现“存储桶”页面。
+
+. 查看每个存储桶的摘要表。
++
+根据需要，您可以按任意列对信息进行排序，也可以在列表中向前或向后翻页。
+
++
+
+NOTE: 显示的对象计数、已用空间和使用值都是估计值。这些估计受到摄取时间、网络连接和节点状态的影响。如果存储桶启用了版本控制，则已删除的对象版本将包含在对象计数中。
+
++
+名称:: 存储桶的唯一名称，无法更改。
+启用的功能:: 为存储桶启用的功能列表。
+S3 对象锁:: 是否为存储桶启用了 S3 对象锁定。
++
+--
+仅当为网格启用了 S3 对象锁定时才会出现此列。此列还显示任何旧版兼容存储桶的信息。
+
+--
+地区:: bucket 的区域，不可更改。默认情况下，此列是隐藏的。
+对象计数:: 此存储桶中的对象数量。如果存储桶启用了版本控制，则非当前对象版本将包含在此值中。
++
+--
+当添加或删除对象时，该值可能不会立即更新。
+
+--
+已用空间:: 存储桶中所有对象的逻辑大小。逻辑大小不包括复制或擦除编码副本或对象元数据所需的实际空间。
++
+--
+此值最多可能需要 10 分钟才能更新。
+
+--
+用途:: 如果已设置，则为存储桶容量限制的使用百分比。
++
+--
+使用价值基于内部估计，在某些情况下可能会超出。例如，当租户开始上传对象时， StorageGRID会检查容量限制（如果设置），如果租户已超出容量限制，则拒绝向此存储桶进行新的摄取。但是， StorageGRID在确定是否超出容量限制时不会考虑当前上传的大小。如果对象被删除，租户可能会暂时无法将新对象上传到此存储桶，直到重新计算容量限制使用情况。计算可能需要 10 分钟或更长时间。
+
+该值表示逻辑大小，而不是存储对象及其元数据所需的物理大小。
+
+--
+容量:: 如果设置，则为存储桶的容量限制。
+创建日期:: 存储桶的创建日期和时间。默认情况下，此列是隐藏的。
+
+
+. 要查看特定存储桶的详细信息，请从表中选择存储桶名称。
++
+.. 查看网页顶部的摘要信息以确认存储桶的详细信息，例如区域和对象数量。
+.. 查看容量限制使用情况栏。如果使用率达到或接近 100%，请考虑增加限制或删除一些对象。
+.. 根据需要选择*删除存储桶中的对象*和*删除存储桶*。
++
+[CAUTION]
+====
+选择每个选项时，请密切注意出现的警告。有关详细信息，请参阅：
+
+*** link:deleting-s3-bucket-objects.html["删除存储桶中的所有对象"]
+*** link:deleting-s3-bucket.html["删除存储桶"]（存储桶必须为空）
+
+
+====
+.. 根据需要查看或更改每个选项卡中存储桶的设置。
++
+*** *S3 控制台*：查看存储桶的对象。有关详细信息，请参阅link:use-s3-console.html["使用 S3 控制台"] 。
+*** *存储桶选项*：查看或更改选项设置。某些设置（例如 S3 对象锁定）在存储桶创建后无法更改。
++
+**** link:manage-bucket-consistency.html["管理存储桶一致性"]
+**** link:enabling-or-disabling-last-access-time-updates.html["最后访问时间更新"]
+**** link:../tenant/creating-s3-bucket.html#capacity-limit["容量限制"]
+**** link:changing-bucket-versioning.html["对象版本控制"]
+**** link:using-s3-object-lock.html["S3 对象锁"]
+**** link:update-default-retention-settings.html["默认存储桶保留"]
+**** link:grid-federation-manage-cross-grid-replication.html["管理跨网格复制"]（如果租户允许）
+
+
+*** *平台服务*：link:considerations-for-platform-services.html["管理平台服务"] （如果租户允许）
+*** *存储桶访问*：查看或更改选项设置。您必须具有特定的访问权限。
++
+**** 配置link:configuring-cross-origin-resource-sharing-cors.html["跨域资源共享（CORS）"]因此其他域中的 Web 应用程序可以访问该存储桶和存储桶中的对象。
+**** link:../tenant/manage-bucket-policy.html["控制用户访问"]针对 S3 存储桶及其中的对象。
+
+
+
+
+
+
+

@@ -1,0 +1,53 @@
+---
+permalink: vmware/where-to-go-next.html 
+sidebar: sidebar 
+keywords: after installation 
+summary: 完成安装后，执行所需的集成和配置任务。您可以根据需要执行可选任务。 
+---
+= 下一步
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+完成安装后，执行所需的集成和配置任务。您可以根据需要执行可选任务。
+
+
+
+== 必需任务
+
+* 配置 VMware vSphere Hypervisor 以实现自动重启。
++
+您必须配置虚拟机管理程序以在服务器重新启动时重新启动虚拟机。如果没有自动重启，虚拟机和网格节点在服务器重启后仍保持关闭状态。有关详细信息，请参阅 VMware vSphere Hypervisor 文档。
+
+
+
+* link:../admin/managing-tenants.html["创建租户帐户"]用于在StorageGRID系统上存储对象的 S3 客户端协议。
+* link:../admin/controlling-storagegrid-access.html["控制系统访问"]通过配置组和用户帐户。或者，您可以link:../admin/using-identity-federation.html["配置联合身份源"]（例如 Active Directory 或 OpenLDAP），因此您可以导入管理组和用户。或者，你可以link:../admin/managing-users.html#create-a-local-user["创建本地组和用户"]。
+* 集成并测试link:../s3/configuring-tenant-accounts-and-connections.html["S3 API"]您将使用客户端应用程序将对象上传到StorageGRID系统。
+* link:../ilm/index.html["配置信息生命周期管理 (ILM) 规则和 ILM 策略"]您想要用来保护对象数据。
+* 如果您的安装包括设备存储节点，请使用SANtricity OS 完成以下任务：
++
+** 连接到每个StorageGRID设备。
+** 验证是否收到AutoSupport数据。
++
+看 https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/configuring-hardware.html["设置硬件"^]。
+
+
+
+* 查看并遵循link:../harden/index.html["StorageGRID系统强化指南"]消除安全隐患。
+* link:../monitor/email-alert-notifications.html["配置系统警报的电子邮件通知"] 。
+
+
+
+
+== 可选任务
+
+* link:../maintain/changing-ip-addresses-and-mtu-values-for-all-nodes-in-grid.html["更新网格节点 IP 地址"]如果自您计划部署并生成恢复包以来它们已经发生了变化。
+* link:../admin/changing-network-options-object-encryption.html["配置存储加密"]，如果需要的话。
+* link:../admin/configuring-stored-object-compression.html["配置存储压缩"]如果需要的话，减少存储对象的大小。
+* link:../admin/configure-vlan-interfaces.html["配置VLAN接口"]如果需要，隔离和划分网络流量。
+* link:../admin/configure-high-availability-group.html["配置高可用性组"]如果需要，提高网格管理器、租户管理器和 S3 客户端的连接可用性。
+* link:../admin/configuring-load-balancer-endpoints.html["配置负载均衡器端点"]如果需要，用于 S3 客户端连接。
+

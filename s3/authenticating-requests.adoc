@@ -1,0 +1,32 @@
+---
+permalink: s3/authenticating-requests.html 
+sidebar: sidebar 
+keywords: authenticate requests, authenticating, requests 
+summary: StorageGRID系统支持使用 S3 API 对对象进行经过身份验证和匿名访问。 
+---
+= 验证请求
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+StorageGRID系统支持使用 S3 API 对对象进行经过身份验证和匿名访问。
+
+S3 API 支持签名版本 2 和签名版本 4 用于验证 S3 API 请求。
+
+必须使用您的访问密钥 ID 和秘密访问密钥对经过身份验证的请求进行签名。
+
+StorageGRID系统支持两种身份验证方法：HTTP `Authorization`标题并使用查询参数。
+
+
+
+== 使用 HTTP 授权标头
+
+HTTP `Authorization`除存储桶策略允许的匿名请求外，所有 S3 API 操作都使用标头。这 `Authorization`标头包含验证请求所需的所有签名信息。
+
+
+
+== 使用查询参数
+
+您可以使用查询参数向 URL 添加身份验证信息。这被称为预签名 URL，可用于授予对特定资源的临时访问权限。具有预签名 URL 的用户不需要知道秘密访问密钥即可访问资源，这使您能够提供对资源的第三方受限访问。

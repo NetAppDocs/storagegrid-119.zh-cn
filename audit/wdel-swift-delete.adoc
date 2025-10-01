@@ -1,0 +1,149 @@
+---
+permalink: audit/wdel-swift-delete.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, message, WDEL, Swift DELETE 
+summary: 当 Swift 客户端发出 DELETE 事务时，会发出删除指定对象或容器的请求。如果交易成功，服务器将发出此消息。 
+---
+= WDEL：快速删除
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+当 Swift 客户端发出 DELETE 事务时，会发出删除指定对象或容器的请求。如果交易成功，服务器将发出此消息。
+
+[cols="1a,1a,4a"]
+|===
+| 代码 | 字段 | 描述 
+
+
+ a| 
+中央商务区
+ a| 
+内容块标识符
+ a| 
+所请求内容块的唯一标识符。如果 CBID 未知，则该字段设置为 0。对容器的操作不包含此字段。
+
+
+
+ a| 
+CSIZ
+ a| 
+内容大小
+ a| 
+已删除对象的大小（以字节为单位）。对容器的操作不包含此字段。
+
+
+
+ a| 
+HTRH
+ a| 
+HTTP 请求标头
+ a| 
+配置期间选择的已记录 HTTP 请求标头名称和值的列表。
+
+ `X-Forwarded-For`如果请求中存在，则会自动包含在内，并且 `X-Forwarded-For`值与请求发送者IP地址（SAIP审计字段）不同。
+
+
+
+ a| 
+移动式微电子
+ a| 
+上次修改时间
+ a| 
+Unix 时间戳（以微秒为单位），指示对象最后修改的时间。
+
+
+
+ a| 
+放射学研究实验室
+ a| 
+结果代码
+ a| 
+DELETE 事务的结果。结果总是：
+
+SUCS：成功
+
+
+
+ a| 
+萨伊普
+ a| 
+请求客户端的 IP 地址
+ a| 
+发出请求的客户端应用程序的 IP 地址。
+
+
+
+ a| 
+SGRP
+ a| 
+站点（组）
+ a| 
+如果存在，则表示该对象已在指定站点被删除，但该站点不是该对象被摄取的站点。
+
+
+
+ a| 
+时间
+ a| 
+时间
+ a| 
+请求的总处理时间（以微秒为单位）。
+
+
+
+ a| 
+TLIP
+ a| 
+受信任的负载均衡器 IP 地址
+ a| 
+如果请求由受信任的第 7 层负载均衡器路由，则为负载均衡器的 IP 地址。
+
+
+
+ a| 
+UUID
+ a| 
+通用唯一标识符
+ a| 
+StorageGRID系统内对象的标识符。
+
+
+
+ a| 
+加权平均资本成本
+ a| 
+Swift 账户 ID
+ a| 
+StorageGRID系统指定的唯一帐户 ID。
+
+
+
+ a| 
+WCON
+ a| 
+Swift 容器
+ a| 
+Swift 容器名称。
+
+
+
+ a| 
+沃本杰明
+ a| 
+Swift 对象
+ a| 
+Swift 对象标识符。对容器的操作不包含此字段。
+
+
+
+ a| 
+乌苏拉
+ a| 
+Swift 账户用户
+ a| 
+唯一标识执行交易的客户的 Swift 帐户用户名。
+
+|===

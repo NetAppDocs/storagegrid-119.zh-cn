@@ -1,0 +1,102 @@
+---
+permalink: admin/configuring-s3-api-endpoint-domain-names.html 
+sidebar: sidebar 
+keywords: s3 endpoint domain names, virtual-hosted-style requests 
+summary: 要支持 S3 虚拟托管式请求，您必须使用网格管理器来配置 S3 客户端连接到的 S3 端点域名列表。 
+---
+= 配置 S3 端点域名
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+要支持 S3 虚拟托管式请求，您必须使用网格管理器来配置 S3 客户端连接到的 S3 端点域名列表。
+
+
+CAUTION: 不支持使用 IP 地址作为端点域名。未来版本将阻止这种配置。
+
+.开始之前
+* 您已使用link:../admin/web-browser-requirements.html["支持的网络浏览器"]。
+* 你有link:../admin/admin-group-permissions.html["特定访问权限"]。
+* 您已确认电网升级未正在进行中。
++
+
+CAUTION: 在电网升级过程中，请勿对域名配置进行任何更改。
+
+
+
+.关于此任务
+要使客户端能够使用 S3 端点域名，您必须执行以下所有操作：
+
+* 使用网格管理器将 S3 端点域名添加到StorageGRID系统。
+* 确保link:../admin/configuring-administrator-client-certificates.html["客户端用于与StorageGRID进行 HTTPS 连接的证书"]已为客户端所需的所有域名签名。
++
+例如，如果端点是 `s3.company.com`，您必须确保用于 HTTPS 连接的证书包含 `s3.company.com`端点和端点的通配符主题备用名称 (SAN)： `*.s3.company.com` 。
+
+* 配置客户端使用的DNS服务器。包括客户端用于建立连接的 IP 地址的 DNS 记录，并确保记录引用所有必需的 S3 端点域名，包括任何通配符名称。
++
+
+NOTE: 客户端可以使用网关节点、管理节点或存储节点的 IP 地址连接到StorageGRID ，或者通过连接到高可用性组的虚拟 IP 地址连接到 StorageGRID。您应该了解客户端应用程序如何连接到电网，以便在 DNS 记录中包含正确的 IP 地址。
+
+
+
+使用 HTTPS 连接（推荐）到电网的客户端可以使用以下任一证书：
+
+* 连接到负载均衡器端点的客户端可以使用该端点的自定义证书。每个负载均衡器端点可以配置为识别不同的 S3 端点域名。
+* 连接到负载均衡器端点或直接连接到存储节点的客户端可以自定义全局 S3 API 证书以包含所有必需的 S3 端点域名。
+
+
+
+NOTE: 如果您不添加 S3 端点域名并且列表为空，则对 S3 虚拟托管式请求的支持将被禁用。
+
+
+
+== 添加 S3 端点域名
+
+.步骤
+. 选择 *配置* > *网络* > *S3 端点域名*。
+. 在*域名 1* 字段中输入域名。选择*添加其他域名*以添加更多域名。
+. 选择*保存*。
+. 确保客户端使用的服务器证书与所需的 S3 端点域名匹配。
++
+** 如果客户端连接到使用其自己的证书的负载均衡器端点，link:../admin/configuring-load-balancer-endpoints.html["更新与端点关联的证书"] 。
+** 如果客户端连接到使用全局 S3 API 证书的负载均衡器端点或直接连接到存储节点，link:../admin/use-s3-setup-wizard-steps.html["更新全局 S3 API 证书"] 。
+
+
+. 添加所需的DNS记录，确保终端域名请求能够被解析。
+
+
+.结果
+现在，当客户端使用端点时 `_bucket.s3.company.com_`，DNS 服务器解析到正确的端点，并且证书按预期对端点进行身份验证。
+
+
+
+== 重命名 S3 端点域名
+
+如果您更改 S3 应用程序使用的名称，虚拟托管样式的请求将会失败。
+
+.步骤
+. 选择 *配置* > *网络* > *S3 端点域名*。
+. 选择您要编辑的域名字段并进行必要的更改。
+. 选择*保存*。
+. 选择“是”确认您的更改。
+
+
+
+
+== 删除 S3 终端节点域名
+
+如果删除 S3 应用程序使用的名称，虚拟托管样式请求将会失败。
+
+.步骤
+. 选择 *配置* > *网络* > *S3 端点域名*。
+. 选择删除图标image:../media/icon-x-to-remove.png["删除图标"]域名旁边。
+. 选择“是”确认删除。
+
+
+.相关信息
+* link:../s3/index.html["使用 S3 REST API"]
+* link:viewing-ip-addresses.html["查看 IP 地址"]
+* link:configure-high-availability-group.html["配置高可用性组"]
+

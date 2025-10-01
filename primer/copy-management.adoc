@@ -1,0 +1,69 @@
+---
+permalink: primer/copy-management.html 
+sidebar: sidebar 
+keywords: object data, ilm policy, ilm rules, replicated copy, replication, erasure-coded copy, ec, cloud storage pool 
+summary: 对象数据由活动的 ILM 策略及其 ILM 规则管理。  ILM 规则制作复制或擦除编码的副本，以保护对象数据免于丢失。 
+---
+= 复制管理
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+对象数据由活动的 ILM 策略和相关的 ILM 规则管理。  ILM 规则制作复制或擦除编码的副本，以防止对象数据丢失。
+
+在对象生命周期的不同时间可能需要不同类型或位置的对象副本。定期评估 ILM 规则以确保对象按要求放置。
+
+对象数据由 LDR 服务管理。
+
+
+
+== 内容保护：复制
+
+如果 ILM 规则的内容放置指令需要复制对象数据的副本，则由组成配置的存储池的存储节点制作副本并将其存储到磁盘。
+
+LDR 服务中的 ILM 引擎控制复制并确保在正确的位置存储正确数量的副本并存储正确的时间。
+
+image::../media/replication_data_flow.png[图表显示了周围文本中描述的过程]
+
+. ILM 引擎查询 ADC 服务以确定 ILM 规则指定的存储池内的最佳目标 LDR 服务。然后它向 LDR 服务发送命令以启动复制。
+. 目标 LDR 服务向 ADC 服务查询最佳源位置。然后，它向源 LDR 服务发送复制请求。
+. 源 LDR 服务将副本发送至目标 LDR 服务。
+. 目标 LDR 服务通知 ILM 引擎对象数据已存储。
+. ILM 引擎使用对象位置元数据更新元数据存储。
+
+
+
+
+== 内容保护：擦除编码
+
+如果 ILM 规则包含制作对象数据的擦除编码副本的指令，则适用的擦除编码方案会将对象数据分解为数据和奇偶校验片段，并将这些片段分布在擦除编码配置文件中配置的存储节点上。
+
+ILM 引擎是 LDR 服务的一个组件，它控制擦除编码并确保将擦除编码配置文件应用于对象数据。
+
+image::../media/erasure_coding_data_flow.png[擦除编码数据流]
+
+. ILM 引擎查询 ADC 服务以确定哪个 DDS 服务能够最佳地执行擦除编码操作。确定后，ILM 引擎向该服务发送“启动”请求。
+. DDS 服务指示 LDR 对对象数据进行擦除编码。
+. 源 LDR 服务将副本发送给选定用于擦除编码的 LDR 服务。
+. 在创建适当数量的奇偶校验和数据片段后，LDR 服务会将这些片段分布到构成擦除编码配置文件存储池的存储节点（块服务）上。
+. LDR服务通知ILM引擎，确认对象数据已成功分发。
+. ILM 引擎使用对象位置元数据更新元数据存储。
+
+
+
+
+== 内容保护：云存储池
+
+如果 ILM 规则的内容放置指令要求将对象数据的副本存储在云存储池中，则对象数据将复制到为云存储池指定的外部 S3 存储桶或 Azure Blob 存储容器中。
+
+ILM 引擎是 LDR 服务的组件，它和 Data Mover 服务控制对象到云存储池的移动。
+
+image::../media/cloud_storage_pool_data_flow.png[云存储池数据流]
+
+. ILM 引擎选择一个 Data Mover 服务复制到云存储池。
+. Data Mover 服务将对象数据发送到云存储池。
+. Data Mover 服务通知 ILM 引擎对象数据已存储。
+. ILM 引擎使用对象位置元数据更新元数据存储。
+

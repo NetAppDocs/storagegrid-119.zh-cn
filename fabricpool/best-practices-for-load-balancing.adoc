@@ -1,0 +1,61 @@
+---
+permalink: fabricpool/best-practices-for-load-balancing.html 
+sidebar: sidebar 
+keywords: fabricPool, load balancer endpoint, load balancing, Layer 7, best practices, certificate, CA, certificate authority, tls, ssl 
+summary: 在将StorageGRID附加为FabricPool云层之前，请查看将负载均衡器与FabricPool结合使用的最佳实践。 
+---
+= FabricPool负载平衡的最佳实践
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在将StorageGRID附加为FabricPool云层之前，请查看将负载均衡器与FabricPool结合使用的最佳实践。
+
+要了解有关StorageGRID负载均衡器和负载均衡器证书的一般信息，请参阅link:../admin/managing-load-balancing.html["负载平衡的注意事项"]。
+
+
+
+== 租户访问用于FabricPool的负载均衡器端点的最佳实践
+
+您可以控制哪些租户可以使用特定的负载均衡器端点来访问他们的存储桶。您可以允许所有租户、允许部分租户或阻止部分租户。创建供FabricPool使用的负载平衡端点时，选择“允许所有租户”。  ONTAP对放置在StorageGRID桶中的数据进行加密，因此这个额外的安全层几乎无法提供额外的安全性。
+
+
+
+== 安全证书的最佳实践
+
+当您创建用于FabricPool 的StorageGRID负载均衡器端点时，您需要提供允许ONTAP使用StorageGRID进行身份验证的安全证书。
+
+大多数情况下， ONTAP和StorageGRID之间的连接应使用传输层安全性 (TLS) 加密。支持使用不带 TLS 加密的FabricPool ，但不建议使用。当您为StorageGRID负载均衡器端点选择网络协议时，请选择 *HTTPS*。然后提供允许ONTAP与StorageGRID进行身份验证的安全证书。
+
+要了解有关负载平衡端点的服务器证书的更多信息：
+
+* link:../admin/using-storagegrid-security-certificates.html["管理安全证书"]
+* link:../admin/managing-load-balancing.html["负载平衡的注意事项"]
+* link:../harden/hardening-guideline-for-server-certificates.html["服务器证书强化指南"]
+
+
+
+
+=== 将证书添加到ONTAP
+
+将StorageGRID添加为FabricPool云层时，必须在ONTAP集群上安装相同的证书，包括根证书和任何从属证书颁发机构 (CA) 证书。
+
+
+
+=== 管理证书到期
+
+
+CAUTION: 如果用于保护ONTAP和StorageGRID之间连接的证书过期， FabricPool将暂时停止工作，并且ONTAP将暂时失去对分层到StorageGRID 的数据的访问权限。
+
+为避免证书过期问题，请遵循以下最佳做法：
+
+* 仔细监控任何警告证书即将到期的警报，例如*负载均衡器端点证书到期*和*S3 API 的全局服务器证书到期*警报。
+* 始终保持证书的StorageGRID和ONTAP版本同步。如果您替换或续订用于负载均衡器端点的证书，则必须替换或续订ONTAP用于云层的等效证书。
+* 使用公开签名的 CA 证书。如果您使用由 CA 签名的证书，则可以使用网格管理 API 来自动执行证书轮换。这使您可以无中断地替换即将过期的证书。
+* 如果您已生成自签名StorageGRID证书并且该证书即将过期，则必须在现有证书过期之前手动替换StorageGRID和ONTAP中的证书。如果自签名证书已过期，请关闭ONTAP中的证书验证以防止访问丢失。
++
+看 https://kb.netapp.com/Advice_and_Troubleshooting/Hybrid_Cloud_Infrastructure/StorageGRID/How_to_configure_a_new_StorageGRID_self-signed_server_certificate_on_an_existing_ONTAP_FabricPool_deployment["NetApp知识库：如何在现有ONTAP FabricPool部署上配置新的StorageGRID自签名服务器证书"^]以获取说明。
+
+

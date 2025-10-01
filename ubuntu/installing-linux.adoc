@@ -1,0 +1,102 @@
+---
+permalink: ubuntu/installing-linux.html 
+sidebar: sidebar 
+keywords: how to install Linux 
+summary: 您必须在所有 Ubuntu 或 Debian 网格主机上安装StorageGRID 。要获取受支持版本的列表，请使用NetApp互操作性表工具。 
+---
+= 安装 Linux
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您必须在所有 Ubuntu 或 Debian 网格主机上安装StorageGRID 。要获取受支持版本的列表，请使用NetApp互操作性表工具。
+
+.开始之前
+确保您的操作系统满足 StorageGRID 的最低内核版本要求，如下所示。使用命令 `uname -r`获取您的操作系统的内核版本，或咨询您的操作系统供应商。
+
+*注意：*对 Ubuntu 版本 18.04 和 20.04 的支持已被弃用，并将在未来的版本中删除。
+
+[cols="1a,2a,3a"]
+|===
+| Ubuntu 版本 | 最低内核版本 | 内核包名称 
+
+
+ a| 
+18.04.6（已弃用）
+ a| 
+5.4.0-150-通用
+ a| 
+linux-image-5.4.0-150-generic/bionic-updates，bionic-security，现为 5.4.0-150.167~18.04.1
+
+
+
+ a| 
+20.04.5（已弃用）
+ a| 
+5.4.0-131-通用
+ a| 
+linux-image-5.4.0-131-generic/focal-updates，现为 5.4.0-131.147
+
+
+
+ a| 
+22.04.1
+ a| 
+5.15.0-47-通用
+ a| 
+linux-image-5.15.0-47-generic/jammy-updates，jammy-security，现在 5.15.0-47.51
+
+
+
+ a| 
+24.04
+ a| 
+6.8.0-31-通用
+ a| 
+linux-image-6.8.0-31-generic/noble，现为 6.8.0-31.31
+
+|===
+*注意：*对 Debian 版本 11 的支持已被弃用，并将在未来的版本中删除。
+
+[cols="1a,2a,2a"]
+|===
+| Debian 版本 | 最低内核版本 | 内核包名称 
+
+
+ a| 
+11（已弃用）
+ a| 
+5.10.0-18-amd64
+ a| 
+linux-image-5.10.0-18-amd64/stable，现为 5.10.150-1
+
+
+
+ a| 
+12
+ a| 
+6.1.0-9-amd64
+ a| 
+linux-image-6.1.0-9-amd64/stable，现为 6.1.27-1
+
+|===
+.步骤
+. 根据分销商的说明或您的标准程序在所有物理或虚拟网格主机上安装 Linux。
++
+
+NOTE: 不要安装任何图形桌面环境。安装 Ubuntu 时，您必须选择*标准系统实用程序*。建议选择 *OpenSSH 服务器* 以启用对 Ubuntu 主机的 ssh 访问。所有其他选项可以保持清除状态。
+
+. 确保所有主机都可以访问 Ubuntu 或 Debian 软件包存储库。
+. 如果启用了交换：
++
+.. 运行以下命令： `$ sudo swapoff --all`
+.. 删除所有交换条目 `/etc/fstab`保留设置。
++
+
+NOTE: 如果无法完全禁用交换，可能会严重降低性能。
+
+
+
+

@@ -1,0 +1,44 @@
+---
+permalink: admin/networking-and-ports-for-platform-services.html 
+sidebar: sidebar 
+keywords: platform services, ports for platform services, 443, 80 
+summary: 如果您允许 S3 租户使用平台服务，则必须为网格配置网络以确保平台服务消息能够传递到其目的地。 
+---
+= 平台服务的网络和端口
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果您允许 S3 租户使用平台服务，则必须为网格配置网络以确保平台服务消息能够传递到其目的地。
+
+您可以在创建或更新租户帐户时为 S3 租户帐户启用平台服务。如果启用了平台服务，租户可以创建端点作为 CloudMirror 复制、事件通知或从其 S3 存储桶搜索集成消息的目标。这些平台服务消息从运行 ADC 服务的存储节点发送到目标端点。
+
+例如，租户可能会配置以下类型的目标端点：
+
+* 本地托管的 Elasticsearch 集群
+* 支持接收 Amazon Simple Notification Service 消息的本地应用程序
+* 本地托管的 Kafka 集群
+* 位于同一或另一个StorageGRID实例上的本地托管的 S3 存储桶
+* 外部端点，例如 Amazon Web Services 上的端点。
+
+
+为了确保平台服务消息能够传递，您必须配置包含 ADC 存储节点的网络。您必须确保以下端口可用于将平台服务消息发送到目标端点。
+
+默认情况下，平台服务消息在以下端口发送：
+
+* *80*：适用于以 http 开头的端点 URI（大多数端点）
+* *443*：适用于以 https 开头的端点 URI（大多数端点）
+* *9092*：对于以 http 或 https 开头的端点 URI（仅限 Kafka 端点）
+
+
+租户在创建或编辑端点时可以指定不同的端口。
+
+
+NOTE: 如果使用StorageGRID部署作为 CloudMirror 复制的目标，则可能会在 80 或 443 以外的端口上收到复制消息。确保在端点中指定目标StorageGRID部署用于 S3 的端口。
+
+如果您使用非透明代理服务器，您还必须link:configuring-storage-proxy-settings.html["配置存储代理设置"]允许将消息发送到外部端点，例如互联网上的端点。
+
+.相关信息
+link:../tenant/index.html["使用租户帐户"]

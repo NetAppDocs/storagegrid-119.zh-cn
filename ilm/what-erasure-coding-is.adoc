@@ -1,0 +1,38 @@
+---
+permalink: ilm/what-erasure-coding-is.html 
+sidebar: sidebar 
+keywords: what is erasure coding, what is ec 
+summary: 擦除编码是StorageGRID用于存储对象数据的两种方法之一。当对象与使用擦除编码的 ILM 规则匹配时，这些对象会被切成数据片段，计算额外的奇偶校验片段，并将每个片段存储在不同的存储节点上。 
+---
+= 什么是擦除编码？
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+擦除编码是StorageGRID用于存储对象数据的两种方法之一（复制是另一种方法）。当对象与使用擦除编码的 ILM 规则匹配时，这些对象会被切成数据片段，计算额外的奇偶校验片段，并将每个片段存储在不同的存储节点上。
+
+当访问一个对象时，它会使用存储的片段重新组装。如果数据或奇偶校验片段损坏或丢失，则擦除编码算法可以使用剩余数据和奇偶校验片段的子集重新创建该片段。
+
+当您创建 ILM 规则时， StorageGRID会创建支持这些规则的擦除编码配置文件。您可以查看擦除编码配置文件列表，link:manage-erasure-coding-profiles.html#rename-an-erasure-coding-profile["重命名擦除编码配置文件"] ， 或者link:manage-erasure-coding-profiles.html#deactivate-an-erasure-coding-profile["如果擦除编码配置文件当前未在任何 ILM 规则中使用，则停用该配置文件"]。
+
+以下示例说明了如何在对象数据上使用擦除编码算法。在此示例中，ILM 规则使用 4+2 擦除编码方案。每个对象被切成四个相等的数据片段，并根据对象数据计算出两个奇偶校验片段。六个片段分别存储在三个数据中心站点的不同节点上，以便在节点故障或站点丢失时提供数据保护。
+
+image::../media/ec_three_sites_4_plus_2.png[擦除编码三站点 4 加 2]
+
+4+2 擦除编码方案可以以多种方式配置。例如，您可以配置包含六个存储节点的单站点存储池。为了link:using-multiple-storage-pools-for-cross-site-replication.html["场地损失保护"]，您可以使用包含三个站点的存储池，每个站点有三个存储节点。只要六个片段（数据或奇偶校验）中的任意四个仍然可用，就可以检索对象。最多可以丢失两个片段而不会丢失对象数据。如果整个站点丢失，只要所有其他片段仍然可访问，仍然可以检索或修复该对象。
+
+image::../media/ec_recoverable_4_plus_2.png[擦除编码可恢复 4 加 2]
+
+如果丢失两个以上的存储节点，则无法检索对象。
+
+image::../media/ec_unrecoverable_4_plus_2.png[擦除编码不可恢复 4 加 2]
+
+.相关信息
+* link:what-replication-is.html["什么是复制"]
+* link:what-storage-pool-is.html["什么是存储池"]
+* link:what-erasure-coding-schemes-are.html["什么是擦除编码方案"]
+* link:manage-erasure-coding-profiles.html#rename-an-erasure-coding-profile["重命名擦除编码配置文件"]
+* link:manage-erasure-coding-profiles.html#deactivate-an-erasure-coding-profile["停用擦除编码配置文件"]
+

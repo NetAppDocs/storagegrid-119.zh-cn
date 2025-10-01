@@ -1,0 +1,214 @@
+---
+permalink: monitor/using-charts-and-reports.html 
+sidebar: sidebar 
+keywords: how to use charts, how to use reports 
+summary: 您可以使用图表和报告来监控StorageGRID系统的状态并解决问题。 
+---
+= 使用图表和图形
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以使用图表和报告来监控StorageGRID系统的状态并解决问题。
+
+
+NOTE: 网格管理器会随着每个版本的发布而更新，并且可能与本页上的示例屏幕截图不匹配。
+
+
+
+== 图表类型
+
+图表和图形总结了特定StorageGRID指标和属性的值。
+
+网格管理器仪表板包括汇总网格和每个站点可用存储的卡片。
+
+image::../media/dashboard_data_and_metadata_space_usage_breakdown.png[仪表板数据和元数据空间使用情况明细]
+
+租户管理器仪表板上的存储使用情况面板显示以下内容：
+
+* 租户的最大存储桶（S3）或容器（Swift）的列表
+* 表示最大桶或容器相对大小的条形图
+* 已用空间总量，以及（如果设置了配额）剩余空间量和百分比
+
+
+image::../media/tenant_dashboard_with_buckets.png[租户仪表板]
+
+此外，可以从“节点”页面和“*支持*”>“工具*”>“网格拓扑*”页面获取显示StorageGRID指标和属性如何随时间变化的图表。
+
+图表有四种类型：
+
+* *Grafana 图表*：显示在节点页面上，Grafana 图表用于绘制 Prometheus 指标随时间变化的值。例如，存储节点的 *NODES* > *Network* 选项卡包含网络流量的 Grafana 图表。
++
+image::../media/nodes_page_network_tab.png[节点页面网络选项卡]
+
++
+
+NOTE: Grafana 图表也包含在预先构建的仪表板中，可从 *SUPPORT* > *Tools* > *Metrics* 页面获取。
+
+* *折线图*：可从“节点”页面和“支持”>“工具”>“网格拓扑”页面获取（选择图表图标image:../media/icon_chart_new_for_11_5.png["图标图表（新）"]在数据值之后），折线图用于绘制具有单位值（例如 NTP 频率偏移，以 ppm 为单位）的StorageGRID属性的值。值的变化随时间以规则的数据间隔（箱）绘制。
++
+image::../media/line_graph.gif[线图]
+
+* *区域图*：可从“节点”页面和“支持”>“工具”>“网格拓扑”页面获取（选择图表图标image:../media/icon_chart_new_for_11_5.png["图标图表（新）"]在数据值之后），面积图用于绘制体积属性数量，例如对象计数或服务负载值。面积图与折线图类似，但线下方有浅棕色阴影。值的变化随时间以规则的数据间隔（箱）绘制。
++
+image::../media/area_graph.gif[面积图]
+
+* 一些图表用不同类型的图表图标表示image:../media/icon_chart_new_for_11_5.png["图表图标"]并具有不同的格式：
++
+image::../media/charts_lost_object_detected.png[图表检测到丢失的物体]
+
+* *状态图*：可从 *支持* > *工具* > *网格拓扑* 页面获取（选择图表图标image:../media/icon_chart_new_for_11_5.png["图标图表（新）"]在数据值之后，状态图用于绘制表示不同状态的属性值，例如可以处于在线、待机或离线的服务状态。状态图与线图类似，但转换是不连续的；也就是说，值从一个状态值跳转到另一个状态值。
++
+image::../media/state_graph.gif[状态图]
+
+
+
+.相关信息
+* link:viewing-nodes-page.html["查看节点页面"]
+* link:viewing-grid-topology-tree.html["查看网格拓扑树"]
+* link:reviewing-support-metrics.html["审查支持指标"]
+
+
+
+
+== 图表图例
+
+用于绘制图表的线条和颜色具有特定的含义。
+
+[cols="1a,3a"]
+|===
+| 示例 | 含义 
+
+
+ a| 
+image:../media/dark_green_chart_line.gif["屏幕截图显示深绿色线条"]
+ a| 
+报告的属性值使用深绿色线条绘制。
+
+
+
+ a| 
+image:../media/light_green_chart_line.gif["屏幕截图显示了表示数据分箱的阴影"]
+ a| 
+深绿色线条周围的浅绿色阴影表示该时间范围内的实际值有所不同，并且已被“分箱”以便更快地绘图。深色线代表加权平均值。浅绿色范围表示箱内的最大值和最小值。面积图使用浅棕色阴影来表示体积数据。
+
+
+
+ a| 
+image:../media/no_data_plotted_chart.gif["屏幕截图显示情节线上的空白区域"]
+ a| 
+空白区域（没有绘制数据）表示属性值不可用。背景可以是蓝色、灰色或灰色和蓝色的混合色，具体取决于报告属性的服务的状态。
+
+
+
+ a| 
+image:../media/light_blue_chart_shading.gif["屏幕截图中淡蓝色阴影表示不确定的值"]
+ a| 
+浅蓝色阴影表示当时部分或全部属性值不确定；由于服务处于未知状态，因此属性未报告值。
+
+
+
+ a| 
+image:../media/gray_chart_shading.gif["屏幕截图显示由于未知值而出现的灰色阴影"]
+ a| 
+灰色阴影表示当时部分或全部属性值未知，因为报告属性的服务在管理上已关闭。
+
+
+
+ a| 
+image:../media/gray_blue_chart_shading.gif["屏幕截图显示了不确定值和未知值的混合"]
+ a| 
+灰色和蓝色阴影的混合表示当时某些属性值不确定（因为服务处于未知状态），而其他属性值未知，因为报告属性的服务在管理上已关闭。
+
+|===
+
+
+== 显示图表和图形
+
+节点页面包含您应该定期访问的图表和图形，以监控存储容量和吞吐量等属性。在某些情况下，尤其是在与技术支持合作时，您可以使用*支持* > *工具* > *网格拓扑*页面来访问其他图表。
+
+.开始之前
+您必须使用link:../admin/web-browser-requirements.html["支持的网络浏览器"]。
+
+.步骤
+. 选择*NODES*。然后，选择一个节点、一个站点或整个网格。
+. 选择您想要查看信息的选项卡。
++
+一些选项卡包含一个或多个 Grafana 图表，用于绘制 Prometheus 指标随时间变化的值。例如，节点的 *NODES* > *Hardware* 选项卡包含两个 Grafana 图表。
+
++
+image::../media/nodes_page_hardware_tab_graphs.png[节点页面硬件选项卡图表]
+
+. 或者，将光标放在图表上以查看特定时间点的更详细值。
++
+image::../media/nodes_page_memory_usage_details.png[节点页面内存使用情况详情]
+
+. 根据需要，您通常可以显示特定属性或指标的图表。从“节点”页面上的表中，选择图表图标image:../media/icon_chart_new_for_11_5.png["图表图标"]位于属性名称的右侧。
++
+
+NOTE: 并非所有指标和属性都提供图表。
+
++
+*示例 1*：从存储节点的对象选项卡中，您可以选择图表图标image:../media/icon_chart_new_for_11_5.png["图表图标"]查看存储节点成功的元数据存储查询总数。
+
++
+image::../media/nodes_page_objects_successful_metadata_queries.png[成功的元数据查询]
+
++
+image::../media/nodes_page-objects_chart_successful_metadata_queries.png[图表成功的元数据查询]
+
++
+*示例 2*：从存储节点的对象选项卡中，您可以选择图表图标image:../media/icon_chart_new_for_11_5.png["图表图标"]查看 Grafana 随时间检测到的丢失对象的数量图表。
+
++
+image::../media/object_count_table.png[对象计数表]
+
++
+image::../media/charts_lost_object_detected.png[图表检测到丢失的物体]
+
+. 要显示节点页面上未显示的属性的图表，请选择 *支持* > *工具* > *网格拓扑*。
+. 选择 *_grid node_* > *_component 或 service_* > *Overview* > *Main*。
++
+image::../media/nms_chart.gif[屏幕截图由周围文字描述]
+
+. 选择图表图标image:../media/icon_chart_new_for_11_5.png["图表图标"]属性旁边。
++
+显示自动变为*报告* > *图表*页面。该图表显示过去一天的属性数据。
+
+
+
+
+
+== 生成图表
+
+图表以图形方式显示属性数据值。您可以报告数据中心站点、网格节点、组件或服务。
+
+.开始之前
+* 您必须使用link:../admin/web-browser-requirements.html["支持的网络浏览器"]。
+* 你有link:../admin/admin-group-permissions.html["特定访问权限"]。
+
+
+.步骤
+. 选择*支持* > *工具* > *网格拓扑*。
+. 选择 *_grid node_* > *_component or service_* > *Reports* > *Charts*。
+. 从*属性*下拉列表中选择要报告的属性。
+. 要强制 Y 轴从零开始，请清除 *垂直缩放* 复选框。
+. 要以全精度显示值，请选中“*原始数据*”复选框，或者要将值四舍五入到最多三位小数（例如，对于以百分比报告的属性），请清除“*原始数据*”复选框。
+. 从*快速查询*下拉列表中选择要报告的时间段。
++
+选择自定义查询选项来选择特定的时间范围。
+
++
+片刻之后图表就会出现。留出几分钟的时间来统计长时间范围的表格。
+
+. 如果您选择了自定义查询，请通过输入*开始日期*和*结束日期*来自定义图表的时间段。
++
+使用格式 `_YYYY/MM/DDHH:MM:SS_`当地时间。需要前导零来匹配格式。例如2017/4/6 7:30:00验证失败。正确的格式是：2017/04/06 07:30:00。
+
+. 选择*更新*。
++
+几秒钟后就会生成图表。留出几分钟的时间来统计长时间范围的表格。根据查询设置的时间长度，将显示原始文本报告或汇总文本报告。
+
+

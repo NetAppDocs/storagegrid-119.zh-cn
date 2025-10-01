@@ -1,0 +1,174 @@
+---
+permalink: upgrade/whats-new.html 
+sidebar: sidebar 
+keywords: what is new in StorageGRID 11.9 
+summary: 此版本的StorageGRID引入了以下功能。 
+---
+= StorageGRID 11.9 中的新功能
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+此版本的StorageGRID引入了以下特性和功能变化。
+
+
+
+== 可扩展性
+
+
+
+=== 仅数据存储节点
+
+为了实现更精细的扩展，您现在可以安装link:../primer/what-storage-node-is.html#types-of-storage-nodes["仅数据存储节点"]。当元数据处理并不重要时，您可以经济高效地优化基础设施。这种灵活性有助于适应不同的工作负载和增长模式。
+
+
+
+== 云存储池增强功能
+
+
+
+=== 随时随地使用 IAM 角色
+
+StorageGRID现在支持使用link:../ilm/creating-cloud-storage-pool.html["Amazon S3 中适用于云存储池的 IAM 角色"]。
+
+如果这些凭证被泄露，使用长期凭证访问 S3 存储桶会带来安全风险。短期凭证的有效期有限，从而降低了未经授权访问的风险。
+
+
+
+=== S3 对象锁定存储桶
+
+您现在可以link:../ilm/creating-cloud-storage-pool.html["使用 Amazon S3 端点配置云存储池"]。 S3 对象锁有助于防止意外或恶意删除对象。如果将数据从StorageGRID分层到 Amazon S3，则在两个系统上启用对象锁可以增强整个数据生命周期的数据保护。
+
+
+
+== 多租户
+
+
+
+=== 存储桶限制
+
+经过link:../tenant/creating-s3-bucket.html["设置 S3 存储桶的限制"]，可以防止租户垄断容量。此外，不受控制的增长可能会导致意外的成本。通过定义限制，您可以更好地估算租户存储费用。
+
+
+
+=== 每个租户 5,000 个 bucket
+
+为了增强可扩展性， StorageGRID现在最多支持link:../s3/operations-on-buckets.html["每个租户 5,000 个 S3 存储桶"]。每个网格最多可以有 100,000 个桶。
+
+为了支持 5,000 个存储桶，网格中的每个存储节点必须至少具有 64 GB 的 RAM。
+
+
+
+== S3 对象锁定改进
+
+每个租户的配置功能提供了灵活性和数据安全性的适当平衡。您现在可以配置每个租户的保留设置以：
+
+* 允许或禁止合规模式
+* 设置最长保留期
+
+
+参考：
+
+* link:../ilm/managing-objects-with-s3-object-lock.html["使用 S3 对象锁管理对象"]
+* link:../ilm/how-object-retention-is-determined.html#how-grid-administrators-control-object-retention["网格管理员如何控制对象保留"]
+* link:../admin/creating-tenant-account.html["创建租户帐户"]
+
+
+
+
+== S3 兼容性
+
+
+
+=== x-amz-checksum-sha256 校验和
+
+* S3 REST API 现在提供对链接的支持：../s3/operations-on-objects.html[`x-amz-checksum-sha256`校验和]。
+* StorageGRID现在为 PUT、GET 和 HEAD 操作提供 SHA-256 校验和支持。这些校验和增强了数据完整性。
+
+
+
+
+=== S3 协议支持的变化
+
+* 增加了对 Amazon S3 Mountpoint 的支持，允许应用程序直接连接到 S3 存储桶，就像它们是本地文件系统一样。您现在可以将StorageGRID与更多应用程序和更多用例一起使用。
+* 作为添加对 Mountpoint 支持的一部分， StorageGRID 11.9 包含link:../s3/index.html#updates-to-rest-api-support["对 S3 协议支持的其他更改"]。
+
+
+
+
+== 维护和可支持性
+
+
+
+=== AutoSupport
+
+link:../admin/what-is-autosupport.html["AutoSupport"]现在可自动为传统设备创建硬件故障案例。
+
+
+
+=== 扩展节点克隆操作
+
+节点克隆可用性已得到扩展，以支持更大的存储节点。
+
+
+
+=== 改进了 ILM 对过期删除标记的处理
+
+ILM 摄取时间规则的时间段为几天，现在还可以删除过期的对象删除标记。仅当经过几天的时间段并且当前删除标记已过期（没有非当前版本）时，才会删除删除标记。
+
+参考link:../ilm/how-objects-are-deleted.html#delete-s3-versioned-objects["如何删除 S3 版本控制对象"]和link:../ilm/example-8-priorities-for-s3-bucket-lifecycle-and-ilm-policy.html#example-of-bucket-lifecycle-taking-priority-over-ilm-policy["存储桶生命周期优先于 ILM 策略的示例"]。
+
+
+
+=== 改进节点退役
+
+为了顺利高效地过渡到StorageGRID下一代硬件，link:../maintain/grid-node-decommissioning.html["节点退役"]已得到改善。
+
+
+
+=== 负载均衡器端点的系统日志
+
+负载均衡器端点访问日志包含故障排除信息，例如 HTTP 状态代码。 StorageGRID现在支持link:../monitor/configure-audit-messages.html["将这些日志导出到外部系统日志服务器"]。此增强功能可实现更高效的日志管理以及与现有监控和警报系统的集成。
+
+
+
+=== 维护和可支持性的额外增强
+
+* 指标 UI 更新
+* 新的操作系统资格
+* 支持新的第三方组件
+
+
+
+
+== 安全性
+
+
+
+=== SSH 访问密钥轮换
+
+电网管理员现在可以link:../admin/change-ssh-access-passwords.html["更新和轮换 SSH 密钥"]。轮换 SSH 密钥的能力是一种安全最佳实践和主动防御机制。
+
+
+
+=== 根登录警报
+
+当未知实体以 root 身份登录网格管理器时，link:../monitor/alerts-reference.html["触发警报"] 。监控根 SSH 登录是保护基础设施的主动步骤。
+
+
+
+== 网格管理器增强功能
+
+
+
+=== 擦除编码配置文件页面已移动
+
+擦除编码配置文件页面现在位于 *配置* > *系统* > *擦除编码*。它曾经位于 ILM 菜单中。
+
+
+
+=== 搜索增强功能
+
+这link:../primer/exploring-grid-manager.html#search-field["网格管理器中的搜索字段"]现在包括更好的匹配逻辑，允许您通过搜索常用缩写和页面内某些设置的名称来查找页面。您还可以搜索更多类型的项目，例如节点、用户和租户帐户。

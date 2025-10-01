@@ -1,0 +1,82 @@
+---
+permalink: maintain/monitoring-services-appliance-installation.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, appliance 
+summary: StorageGRID Appliance Installer 提供状态直至安装完成。软件安装完成后，设备将重新启动。 
+---
+= 监控服务设备安装
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+StorageGRID Appliance Installer 提供状态直至安装完成。软件安装完成后，设备将重新启动。
+
+.步骤
+. 要监控安装进度，请单击菜单栏中的“监控安装”*。
++
+监控安装页面显示安装进度。
+
++
+image::../media/monitor_installation_services_appl.png[监控安装 - 服务应用]
+
++
+蓝色状态栏指示当前正在进行的任务。绿色状态条表示任务已成功完成。
+
++
+
+NOTE: 安装程序确保不会重新运行以前安装中完成的任务。如果您重新运行安装，任何不需要重新运行的任务都会显示绿色状态栏和“已跳过”状态。
+
+. 回顾前两个安装阶段的进度。
++
+** *1.配置存储*
++
+在此阶段，安装程序将清除驱动器中的所有现有配置，并配置主机设置。
+
+** *2.安装操作系统*
++
+在此阶段，安装程序将StorageGRID的基本操作系统映像从主管理节点复制到设备，或从主管理节点的安装包安装基本操作系统。
+
+
+
+. 继续监视安装进度，直到出现以下情况之一：
++
+** 对于设备网关节点或非主设备管理节点，*安装StorageGRID* 阶段会暂停，并且嵌入式控制台上会出现一条消息，提示您使用网格管理器在管理节点上批准此节点。
++
+image::../media/monitor_installation_install_sgws.gif[图像由周围的文字描述]
+
+** 对于设备主管理节点，出现第五阶段（加载StorageGRID安装程序）。如果第五阶段持续超过10分钟，请手动刷新页面。
++
+image::../media/monitor_reinstallation_primary_admin.png[主管理节点重新安装第五阶段的屏幕截图]
+
+
+
+. 针对您正在恢复的设备网格节点类型，转到恢复过程的下一步。
++
+[cols="1a,2a"]
+|===
+| 恢复类型 | 参考 
+
+
+ a| 
+网关节点
+ a| 
+link:selecting-start-recovery-to-configure-gateway-node.html["选择“开始恢复”以配置网关节点"]
+
+
+
+ a| 
+非主管理节点
+ a| 
+link:selecting-start-recovery-to-configure-non-primary-admin-node.html["选择“开始恢复”以配置非主管理节点"]
+
+
+
+ a| 
+主管理节点
+ a| 
+link:configuring-replacement-primary-admin-node.html["配置替换主管理节点"]
+
+|===
+

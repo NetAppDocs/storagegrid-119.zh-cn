@@ -1,0 +1,96 @@
+---
+permalink: maintain/monitor-repairs.html 
+sidebar: sidebar 
+keywords: restore replicated data, restore erasure-coded data, recover appliance storage node, recover storage volume 
+summary: '您可以使用以下方式监控修复作业的状态 `repair-data`命令行中的脚本。' 
+---
+= 监控修复数据作业
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以使用以下方式监控修复作业的状态 `repair-data`命令行中的脚本。
+
+这些包括您手动启动的作业，或StorageGRID作为退役程序的一部分自动启动的作业。
+
+
+NOTE: 如果您正在运行卷恢复作业，link:../maintain/restoring-volume.html["在网格管理器中监控进度并查看这些作业的历史记录"]反而。
+
+监控状态 `repair-data`根据您是否使用*复制数据*、*擦除编码 (EC) 数据*或两者来分配作业。
+
+[role="tabbed-block"]
+====
+.复制数据
+--
+* 要获取重复修复的估计完成百分比，请添加 `show-replicated-repair-status`修复数据命令的选项。
++
+`repair-data show-replicated-repair-status`
+
+* 要确定修复是否完成：
++
+.. 选择 *NODES* > *_正在修复的存储节点_* > *ILM*。
+.. 查看评估部分中的属性。修复完成后，*Awaiting - All* 属性指示 0 个对象。
+
+
+* 要更详细地监控修复情况：
++
+.. 选择*支持* > *工具* > *网格拓扑*。
+.. 选择 *_grid_* > *_Storage Node being repaired_* > *LDR* > *Data Store*。
+.. 尽可能结合使用以下属性来确定复制修复是否完整。
++
+
+NOTE: Cassandra 可能存在不一致，并且无法跟踪失败的修复。
+
++
+*** *尝试修复 (XRPA)*：使用此属性来跟踪重复修复的进度。每次存储节点尝试修复高风险对象时，此属性都会增加。当此属性在比当前扫描周期（由*扫描周期-估计*属性提供）更长的时间内没有增加时，表示 ILM 扫描未在任何节点上发现需要修复的高风险对象。
++
+
+NOTE: 高风险物体是指有完全丢失风险的物体。这不包括不满足其 ILM 配置的对象。
+
+*** *扫描周期——估计（XSCM）*：使用此属性来估计何时将策略更改应用于先前摄取的对象。如果“*尝试修复*”属性在比当前扫描周期更长的时间内没有增加，则很可能进行了重复修复。请注意，扫描周期可能会发生变化。 *扫描周期——估计 (XSCM)* 属性适用于整个网格，并且是所有节点扫描周期的最大值。您可以查询网格的*扫描周期——估计*属性历史记录来确定适当的时间范围。
+
+
+
+
+
+
+--
+.擦除编码 (EC) 数据
+--
+要监控擦除编码数据的修复并重试任何可能失败的请求：
+
+. 确定擦除编码数据修复的状态：
++
+** 选择 *SUPPORT* > *Tools* > *Metrics* 来查看当前作业的预计完成时间和完成百分比。然后，在 Grafana 部分中选择 *EC Overview*。查看*Grid EC 作业预计完成时间*和*Grid EC 作业完成百分比*仪表板。
+** 使用此命令查看特定 `repair-data`手术：
++
+`repair-data show-ec-repair-status --repair-id repair ID`
+
+** 使用此命令列出所有修复：
++
+`repair-data show-ec-repair-status`
+
++
+输出列出信息，包括 `repair ID`，适用于所有之前和当前正在进行的维修。
+
+
+
+. 如果输出显示修复操作失败，请使用 `--repair-id`选项来重试修复。
++
+此命令使用修复 ID 6949309319275667690 重试失败的节点修复：
+
++
+`repair-data start-ec-node-repair --repair-id 6949309319275667690`
+
++
+此命令使用修复 ID 6949309319275667690 重试失败的卷修复：
+
++
+`repair-data start-ec-volume-repair --repair-id 6949309319275667690`
+
+
+
+--
+====

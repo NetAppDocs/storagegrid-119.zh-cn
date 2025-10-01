@@ -1,0 +1,36 @@
+---
+permalink: maintain/downloading-recovery-package.html 
+sidebar: sidebar 
+keywords: storagegrid, recovery package 
+summary: 如果发生故障，恢复包文件允许您恢复StorageGRID系统。 
+---
+= 下载恢复包
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果发生故障，恢复包文件允许您恢复StorageGRID系统。
+
+.开始之前
+* 从主管理节点，您可以使用link:../admin/web-browser-requirements.html["支持的网络浏览器"]。
+* 您有配置密码。
+* 你有link:../admin/admin-group-permissions.html["特定访问权限"]。
+
+
+在对StorageGRID系统进行网格拓扑更改或升级软件之前，请下载当前的恢复包文件。然后，在更改电网拓扑或升级软件后下载恢复包的新副本。
+
+.步骤
+. 选择*维护* > *系统* > *恢复包*。
+. 输入配置密码，然后选择*开始下载*。
++
+下载立即开始。
+
+. 下载完成后，打开 `.zip`文件并确认您可以访问其内容，包括 `Passwords.txt`文件。
+. 复制下载的恢复包文件(`.zip`）到两个安全、可靠且独立的位置。
++
+
+CAUTION: 恢复包文件必须是安全的，因为它包含可用于从StorageGRID系统获取数据的加密密钥和密码。
+
+

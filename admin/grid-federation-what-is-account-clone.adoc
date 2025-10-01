@@ -1,0 +1,116 @@
+---
+permalink: admin/grid-federation-what-is-account-clone.html 
+sidebar: sidebar 
+keywords: account clone, tenant replication, disaster recovery, grid federation 
+summary: 帐户克隆是网格联合连接中StorageGRID系统之间的租户帐户、租户组、租户用户以及可选的 S3 访问密钥的自动复制。 
+---
+= 什么是账户克隆？
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+帐户克隆是租户帐户、租户组、租户用户以及可选的 S3 访问密钥在StorageGRID系统之间的自动复制。link:grid-federation-overview.html["电网联合连接"] 。
+
+需要克隆帐户link:grid-federation-what-is-cross-grid-replication.html["跨网格复制"]。将帐户信息从源StorageGRID系统克隆到目标StorageGRID系统可确保租户用户和组可以访问任一网格上的相应存储桶和对象。
+
+
+
+== 帐户克隆工作流程
+
+工作流程图显示了网格管理员和允许的租户将执行的设置帐户克隆的步骤。这些步骤在link:grid-federation-create-connection.html["电网联合连接已配置"]。
+
+image::../media/grid-federation-account-clone-workflow.png[帐户克隆的工作流程]
+
+
+
+== 网格管理工作流程
+
+网格管理员执行的步骤取决于StorageGRID系统是否link:grid-federation-overview.html["电网联合连接"]使用单点登录（SSO）或身份联合。
+
+
+
+=== [[account-clone-sso]]配置帐户克隆的 SSO（可选）
+
+如果网格联合连接中的任一StorageGRID系统使用 SSO，则两个网格都必须使用 SSO。在创建网格联合的租户帐户之前，租户的源网格和目标网格的网格管理员必须执行以下步骤。
+
+.步骤
+. 为两个网格配置相同的身份源。看link:using-identity-federation.html["使用身份联合"] 。
+. 为两个网格配置相同的 SSO 身份提供者 (IdP)。看link:configuring-sso.html["配置单点登录"] 。
+. link:managing-admin-groups.html["创建相同的管理员组"]通过导入相同的联合组在两个网格上。
++
+当您创建租户时，您将选择此组以拥有源和目标租户帐户的初始 Root 访问权限。
+
++
+
+NOTE: 如果在创建租户之前两个网格上都不存在此管理组，则该租户不会被复制到目标。
+
+
+
+
+
+=== [[account-clone-identity-federation]]为帐户克隆配置网格级别身份联合（可选）
+
+如果任一StorageGRID系统使用不带 SSO 的身份联合，则两个网格都必须使用身份联合。在创建网格联合的租户帐户之前，租户的源网格和目标网格的网格管理员必须执行以下步骤。
+
+.步骤
+. 为两个网格配置相同的身份源。看link:using-identity-federation.html["使用身份联合"] 。
+. 或者，如果联合组对源租户帐户和目标租户帐户都具有初始 Root 访问权限，link:managing-admin-groups.html["创建相同的管理组"]通过导入相同的联合组在两个网格上。
++
+
+NOTE: 如果您将 Root 访问权限分配给两个网格上均不存在的联合组，则租户不会被复制到目标网格。
+
+. 如果您不希望联合组对两个帐户都具有初始 Root 访问权限，请为本地 root 用户指定密码。
+
+
+
+
+=== 创建允许的 S3 租户帐户
+
+在选择性地配置 SSO 或身份联合后，网格管理员执行以下步骤来确定哪些租户可以将存储桶对象复制到其他StorageGRID系统。
+
+.步骤
+. 确定您希望哪个网格作为租户帐户克隆操作的源网格。
++
+最初创建租户的网格称为租户的_源网格_。复制租户的网格称为租户的_目标网格_。
+
+. 在该网格上，创建一个新的 S3 租户帐户或编辑现有帐户。
+. 分配*使用电网联合连接*权限。
+. 如果租户帐户将管理其自己的联合用户，请分配*使用自己的身份源*权限。
++
+如果分配了此权限，则在创建联合组之前，源租户帐户和目标租户帐户都必须配置相同的身份源。除非两个网格使用相同的身份源，否则添加到源租户的联合组无法克隆到目标租户。
+
+. 选择特定的电网联合连接。
+. 保存新的或修改后的租户。
++
+当保存具有“使用网格联合连接”权限的新租户时， StorageGRID会自动在另一个网格上创建该租户的副本，如下所示：
+
++
+** 两个租户帐户具有相同的帐户 ID、名称、存储配额和分配的权限。
+** 如果您选择联合组来为租户提供 Root 访问权限，则该组将被克隆到目标租户。
+** 如果您选择本地用户拥有租户的 Root 访问权限，则该用户将被克隆到目标租户。但是，该用户的密码未被克隆。
+
+
+
+
+有关详细信息，请参阅link:grid-federation-manage-tenants.html["管理电网联合的允许租户"] 。
+
+
+
+== 允许的租户帐户工作流程
+
+将具有 *使用网格联合连接* 权限的租户复制到目标网格后，允许的租户帐户可以执行以下步骤来克隆租户组、用户和 S3 访问密钥。
+
+.步骤
+. Sign in租户源网格上的租户帐户。
+. 如果允许，请在源租户帐户和目标租户帐户上配置身份联合。
+. 在源租户上创建组和用户。
++
+在源租户上创建新组或用户时， StorageGRID会自动将其克隆到目标租户，但不会从目标克隆回源。
+
+. 创建 S3 访问密钥。
+. 或者，将 S3 访问密钥从源租户克隆到目标租户。
+
+
+有关允许租户帐户工作流程的详细信息以及如何克隆组、用户和 S3 访问密钥，请参阅link:../tenant/grid-federation-account-clone.html["克隆租户组和用户"]和link:../tenant/grid-federation-clone-keys-with-api.html["使用 API 克隆 S3 访问密钥"]。

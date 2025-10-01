@@ -1,0 +1,84 @@
+---
+permalink: troubleshoot/troubleshooting-low-object-data-storage-alert.html 
+sidebar: sidebar 
+keywords: how to troubleshoot the Low object data storage alert 
+summary: *低对象数据存储*警报监控每个存储节点上可用于存储对象数据的空间量。 
+---
+= 排查对象数据存储不足警报问题
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+*低对象数据存储*警报监控每个存储节点上可用于存储对象数据的空间量。
+
+.开始之前
+* 您已使用link:../admin/web-browser-requirements.html["支持的网络浏览器"]。
+* 你有link:../admin/admin-group-permissions.html["特定访问权限"]。
+
+
+.关于此任务
+当存储节点上复制和擦除编码对象数据的总量满足警报规则中配置的条件之一时，将触发“低对象数据存储”警报。
+
+默认情况下，当此条件评估为真时，会触发主要警报：
+
+[listing]
+----
+(storagegrid_storage_utilization_data_bytes/
+(storagegrid_storage_utilization_data_bytes + storagegrid_storage_utilization_usable_space_bytes)) >=0.90
+----
+在这种情况下：
+
+* `storagegrid_storage_utilization_data_bytes`是对存储节点的复制和擦除编码对象数据的总大小的估计。
+* `storagegrid_storage_utilization_usable_space_bytes`是存储节点剩余的对象存储空间总量。
+
+
+如果触发主要或次要的*低对象数据存储*警报，您应该尽快执行扩展程序。
+
+.步骤
+. 选择*警报* > *当前*。
++
+出现“警报”页面。
+
+. 从警报表中，展开“*低对象数据存储*”警报组（如果需要），然后选择要查看的警报。
++
+
+NOTE: 选择警报，而不是警报组的标题。
+
+. 查看对话框中的详细信息，并注意以下事项：
++
+** 时间触发
+** 站点和节点的名称
+** 此警报的指标的当前值
+
+
+. 选择 *NODES* > *_Storage Node 或 Site_* > *Storage*。
+. 将光标放在“已用存储 - 对象数据”图表上。
++
+显示以下值：
+
++
+** *已使用（％）*：已用于对象数据的总可用空间的百分比。
+** *已使用*：已用于对象数据的总可用空间量。
+** *复制数据*：此节点、站点或网格上复制的对象数据量的估计值。
+** *擦除编码数据*：此节点、站点或网格上擦除编码对象数据量的估计值。
+** *总计*：此节点、站点或网格上可用空间的总量。使用值是 `storagegrid_storage_utilization_data_bytes`公制。
+
+
++
+image::../media/nodes_page_storage_used_object_data.png[节点页面存储使用对象数据]
+
+. 选择图表上方的时间控件来查看不同时间段的存储使用情况。
++
+查看一段时间内的存储使用情况可以帮助您了解触发警报之前和之后使用了多少存储空间，并可以帮助您估计节点的剩余空间需要多长时间才能填满。
+
+. 尽快地，link:../expand/guidelines-for-adding-object-capacity.html["添加存储容量"]到你的电网。
++
+您可以将存储卷（LUN）添加到现有的存储节点，也可以添加新的存储节点。
+
++
+
+NOTE: 有关更多信息，请参阅link:../admin/managing-full-storage-nodes.html["管理完整的存储节点"] 。
+
+

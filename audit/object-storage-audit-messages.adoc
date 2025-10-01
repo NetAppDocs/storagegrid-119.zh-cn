@@ -1,0 +1,94 @@
+---
+permalink: audit/object-storage-audit-messages.html 
+sidebar: sidebar 
+keywords: audit, object storage, object management, object retrieval, node transfer, verification, BROR, CBSE, CBRE, CGRR, EBDL, EBKR, SCMT, SREM 
+summary: 您应该熟悉属于对象存储审计类别的审计消息。这些事件与StorageGRID系统内的对象的存储和管理有关。这些包括对象存储和检索、网格节点到网格节点的传输和验证。 
+---
+= 对象存储审计消息
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+属于对象存储审计类别的审计消息用于与StorageGRID系统内对象的存储和管理相关的事件。这些包括对象存储和检索、网格节点到网格节点的传输和验证。
+
+
+NOTE: 由于功能已被弃用，审计代码已从产品和文档中删除。如果您遇到此处未列出的审计代码，请检查此主题的先前版本以了解较旧的 SG 版本。例如，  https://docs.netapp.com/us-en/storagegrid-118/audit/object-storage-audit-messages.html["StorageGRID 11.8 对象存储审计消息"^] 。
+
+[cols="1a,2a,1a"]
+|===
+| 代码 | 描述 | 请参见 
+
+
+ a| 
+布罗尔
+ a| 
+存储桶只读请求：存储桶进入或退出只读模式。
+ a| 
+link:bror-bucket-read-only-request.html["BROR：存储桶只读请求"]
+
+
+
+ a| 
+CBSE
+ a| 
+对象发送结束：源实体完成网格节点到网格节点的数据传输操作。
+ a| 
+link:cbse-object-send-end.html["CBSE：对象发送结束"]
+
+
+
+ a| 
+世邦魏理仕
+ a| 
+对象接收端：目标实体完成了网格节点到网格节点的数据传输操作。
+ a| 
+link:cbre-object-receive-end.html["CBRE：对象接收端"]
+
+
+
+ a| 
+CGRR
+ a| 
+跨网格复制请求： StorageGRID尝试进行跨网格复制操作，以在网格联合连接中的存储桶之间复制对象。
+ a| 
+link:cgrr-cross-grid-replication-request.html["CGRR：跨网格复制请求"]
+
+
+
+ a| 
+EBDL
+ a| 
+空存储桶删除：ILM 扫描器删除了正在删除所有对象的存储桶中的一个对象（执行空存储桶操作）。
+ a| 
+link:ebdl-empty-bucket-delete.html["EBDL：空桶删除"]
+
+
+
+ a| 
+EBKR
+ a| 
+空存储桶请求：用户发送打开或关闭空存储桶的请求（即删除存储桶对象或停止删除对象）。
+ a| 
+link:ebkr-empty-bucket-request.html["EBKR：空桶请求"]
+
+
+
+ a| 
+SCMT
+ a| 
+对象存储提交：内容块已完全存储并验证，现在可以请求。
+ a| 
+link:scmt-object-store-commit.html["SCMT：对象存储提交请求"]
+
+
+
+ a| 
+速动眼动睡眠
+ a| 
+对象存储删除：内容块已从网格节点中删除，并且无法再直接请求。
+ a| 
+link:srem-object-store-remove.html["SREM：对象存储删除"]
+
+|===

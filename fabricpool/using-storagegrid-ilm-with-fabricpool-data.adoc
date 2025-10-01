@@ -1,0 +1,154 @@
+---
+permalink: fabricpool/using-storagegrid-ilm-with-fabricpool-data.html 
+sidebar: sidebar 
+keywords: FabricPool, requirements, ILM, information lifecycle management, ILM rule, ILM rules, ILM policy, erasure coding, replication, cloud storage pool, glacier 
+summary: 您可以使用这个简单的示例策略作为您自己的 ILM 规则和策略的起点。 
+---
+= 为FabricPool数据配置 ILM
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以使用这个简单的示例策略作为您自己的 ILM 规则和策略的起点。
+
+本示例假设您正在为位于科罗拉多州丹佛市的单个数据中心具有四个存储节点的StorageGRID系统设计 ILM 规则和 ILM 策略。本例中的FabricPool数据使用名为 `fabricpool-bucket`。
+
+
+CAUTION: 以下 ILM 规则和策略仅作为示例。配置 ILM 规则的方法有很多种。在激活新策略之前，请先进行模拟以确认它能够按预期工作以保护内容免遭丢失。要了解更多信息，请参阅link:../ilm/index.html["使用 ILM 管理对象"]。
+
+
+CAUTION: 为避免数据丢失，请勿使用将过期或删除FabricPool云层数据的 ILM 规则。将保留期设置为*永久*，以确保FabricPool对象不会被StorageGRID ILM 删除。
+
+.开始之前
+* 您已审阅link:best-practices-ilm.html["将 ILM 与FabricPool数据结合使用的最佳实践"]。
+* 您已使用link:../admin/web-browser-requirements.html["支持的网络浏览器"]。
+* 你有link:../admin/admin-group-permissions.html["ILM 或 Root 访问权限"]。
+* 如果您从以前的StorageGRID版本升级到StorageGRID 11.9，则您已经配置了将使用的存储池。一般来说，您应该为用于存储数据的每个StorageGRID站点创建一个存储池。
++
+
+NOTE: 如果您最初安装的是StorageGRID 11.7 或 11.8，则此先决条件不适用。当您最初安装这两个版本中的任何一个时，都会自动为每个站点创建存储池。
+
+
+
+.步骤
+. 创建仅适用于以下数据的 ILM 规则 `fabricpool-bucket`。此示例规则创建擦除编码副本。
++
+[cols="1a,2a"]
+|===
+| 规则定义 | 示例值 
+
+
+ a| 
+规则名称
+ a| 
+FabricPool数据采用 2 + 1 擦除编码
+
+
+
+ a| 
+存储桶名称
+ a| 
+`fabricpool-bucket`
+
+您还可以根据FabricPool租户帐户进行过滤。
+
+
+
+ a| 
+高级过滤器
+ a| 
+对象大小大于 0.2 MB。
+
+*注意：* FabricPool仅写入 4 MB 对象，但您必须添加对象大小过滤器，因为此规则使用擦除编码。
+
+
+
+ a| 
+参考时间
+ a| 
+摄取时间
+
+
+
+ a| 
+时间段和展示位置
+ a| 
+从第 0 天开始永久存储
+
+在 Denver 使用 2+1 EC 方案通过擦除编码存储对象，并将这些对象永久保留在StorageGRID中。
+
+
+CAUTION: 为避免数据丢失，请勿使用将过期或删除FabricPool云层数据的 ILM 规则。
+
+
+
+ a| 
+摄取行为
+ a| 
+平衡
+
+|===
+. 创建一个默认的 ILM 规则，该规则将为第一条规则不匹配的任何对象创建两个副本。不要选择基本过滤器（租户帐户或存储桶名称）或任何高级过滤器。
++
+[cols="1a,2a"]
+|===
+| 规则定义 | 示例值 
+
+
+ a| 
+规则名称
+ a| 
+两份复印件
+
+
+
+ a| 
+存储桶名称
+ a| 
+_没有任何_
+
+
+
+ a| 
+高级过滤器
+ a| 
+_没有任何_
+
+
+
+ a| 
+参考时间
+ a| 
+摄取时间
+
+
+
+ a| 
+时间段和展示位置
+ a| 
+从第 0 天开始永久存储
+
+通过在丹佛复制 2 个副本来存储对象。
+
+
+
+ a| 
+摄取行为
+ a| 
+平衡
+
+|===
+. 创建 ILM 策略并选择两个规则。由于复制规则不使用任何过滤器，因此它可以作为策略的默认（最后）规则。
+. 将测试对象纳入电网。
+. 使用测试对象模拟策略来验证行为。
+. 激活该策略。
+
+
+激活此策略后， StorageGRID将按如下方式放置对象数据：
+
+* FabricPool中的分层数据 `fabricpool-bucket`将使用 2+1 擦除编码方案进行擦除编码。两个数据片段和一个奇偶校验片段将放置在三个不同的存储节点上。
+* 所有其他存储桶中的所有对象都将被复制。将创建两个副本并放置在两个不同的存储节点上。
+* 这些副本将永远保存在StorageGRID中。  StorageGRID ILM 不会删除这些对象。
+

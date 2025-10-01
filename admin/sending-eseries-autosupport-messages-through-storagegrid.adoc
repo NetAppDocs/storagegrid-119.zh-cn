@@ -1,0 +1,88 @@
+---
+permalink: admin/sending-eseries-autosupport-messages-through-storagegrid.html 
+sidebar: sidebar 
+keywords: eseries, santricity, system manager, asup, autosupport, technical support, appliance 
+summary: 您可以通过StorageGRID管理节点而不是存储设备管理端口将 E 系列SANtricity System Manager AutoSupport包发送给技术支持。 
+---
+= 通过StorageGRID发送 E 系列AutoSupport包
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以通过StorageGRID管理节点而不是存储设备管理端口将 E 系列SANtricity System Manager AutoSupport包发送给技术支持。
+
+看 https://docs.netapp.com/us-en/e-series-santricity/sm-support/autosupport-feature-overview.html["E系列硬件AutoSupport"^]有关将AutoSupport与 E 系列设备结合使用的更多信息。
+
+.开始之前
+* 您已使用link:../admin/web-browser-requirements.html["支持的网络浏览器"]。
+* 你有link:admin-group-permissions.html["存储设备管理员或 Root 访问权限"]。
+* 您已配置SANtricity AutoSupport：
++
+** 对于 SG6000 和 SG5700 设备， https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/accessing-and-configuring-santricity-system-manager.html["在SANtricity System Manager 中配置AutoSupport"^]
+
+
+
+
+
+NOTE: 您必须拥有SANtricity固件 8.70 或更高版本才能使用网格管理器访问SANtricity System Manager。
+
+.关于此任务
+E 系列AutoSupport包包含存储硬件的详细信息，并且比StorageGRID系统发送的其他AutoSupport包更具体。
+
+您可以在SANtricity System Manager 中配置一个特殊的代理服务器地址，以便通过StorageGRID管理节点传输AutoSupport包，而无需使用设备的管理端口。以这种方式传输的AutoSupport包由link:../primer/what-admin-node-is.html["首选发送者管理节点"]，他们使用任何link:../admin/configuring-admin-proxy-settings.html["管理员代理设置"]已在网格管理器中配置。
+
+
+NOTE: 此过程仅适用于为 E 系列AutoSupport包配置StorageGRID代理服务器。有关 E 系列AutoSupport配置的更多详细信息，请参阅 https://docs.netapp.com/us-en/e-series-family/index.html["NetApp E 系列和SANtricity文档"^]。
+
+.步骤
+. 在网格管理器中，选择*NODES*。
+. 从左侧的节点列表中，选择要配置的存储设备节点。
+. 选择* SANtricity System Manager*。
++
+出现SANtricity System Manager 主页。
+
++
+image::../media/autosupport_santricity_home_page.png[AutoSupport SANtricity主页]
+
+. 选择 *支持* > *支持中心* > *AutoSupport*。
++
+出现AutoSupport操作页面。
+
++
+image::../media/autosupport_santricity_operations.png[AutoSupport SANtricity AutoSupport操作]
+
+. 选择*配置AutoSupport交付方法*。
++
+出现“配置AutoSupport交付方法”页面。
+
++
+image::../media/autosupport_configure_delivery_santricity.png[AutoSupport配置AutoSupport交付方法SANtricity]
+
+. 选择 *HTTPS* 作为传送方式。
++
+
+NOTE: 已预先安装启用 HTTPS 的证书。
+
+. 选择*通过代理服务器*。
+. 进入 `tunnel-host`用于*主机地址*。
++
+`tunnel-host`是使用管理节点发送 E 系列AutoSupport包的特殊地址。
+
+. 进入 `10225`用于*端口号*。
++
+`10225`是从设备中的 E 系列控制器接收AutoSupport包的StorageGRID代理服务器上的端口号。
+
+. 选择“*测试配置*”来测试AutoSupport代理服务器的路由和配置。
++
+如果正确，则会出现一条绿色横幅消息：“您的AutoSupport配置已经验证。”
+
++
+如果测试失败，则会在红色横幅中显示错误消息。检查您的StorageGRID DNS 设置和网络，确保link:../primer/what-admin-node-is.html["首选发送者管理节点"]可以连接到NetApp支持站点，然后再次尝试测试。
+
+. 选择*保存*。
++
+配置已保存，并出现确认消息：“AutoSupport交付方法已配置。”
+
+

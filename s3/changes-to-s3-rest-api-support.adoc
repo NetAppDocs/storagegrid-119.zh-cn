@@ -1,0 +1,142 @@
+---
+permalink: s3/changes-to-s3-rest-api-support.html 
+sidebar: sidebar 
+keywords: s3 rest api support changes 
+summary: 您应该了解StorageGRID系统对 S3 REST API 的支持的变化。 
+---
+= 对 S3 REST API 支持的更改
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您应该了解StorageGRID系统对 S3 REST API 的支持的变化。
+
+[cols="1a,4a"]
+|===
+| 版本 | 注释 
+
+
+ a| 
+11.8
+ a| 
+* 增加了对 `ExpiredObjectDeleteMarker`在 PutBucketLifecycleConfiguration 操作中，删除过期的对象删除标记。
+* 增加了对 `s3:ExistingObjectTag/<tag-key>`策略条件键，要求现有对象具有特定的标签键和值。
+* 增加了对 `s3:RequestObjectTag/<tag-key>`策略条件键，当对象请求包含标记时，需要特定的标签和键值。
+
+
+
+
+ a| 
+11.7
+ a| 
+* 增加了对使用 GOVERNANCE 模式和 S3 对象锁的支持。
+* 增加了对StorageGRID特定的支持 `x-ntap-sg-cgr-replication-status`GetObject 和 HeadObject 请求的响应头。此标头提供跨网格复制的对象复制状态。
+* SelectObjectContent 请求现在支持 Parquet 对象。
+
+
+
+
+ a| 
+11.6
+ a| 
+* 增加了对使用 `partNumber`GetObject 和 HeadObject 请求中的请求参数。
+* 增加了对 S3 对象锁的存储桶级别的默认保留模式和默认保留期的支持。
+* 增加了对 `s3:object-lock-remaining-retention-days`策略条件键来设置对象允许的保留期范围。
+* 将单个 PutObject 操作的最大_建议_大小更改为 5 GiB（5,368,709,120 字节）。如果您的对象大于 5 GiB，请改用分段上传。
+
+
+
+
+ a| 
+11.5
+ a| 
+* 增加了对管理存储桶加密的支持。
+* 增加了对 S3 对象锁定的支持并弃用了旧版合规性请求。
+* 增加了对在版本化存储桶上使用 DeleteObjects 的支持。
+* 这 `Content-MD5`请求标头现在已得到正确支持。
+
+
+
+
+ a| 
+11.4
+ a| 
+* 增加了对 DeleteBucketTagging、GetBucketTagging 和 PutBucketTagging 的支持。不支持成本分配标签。
+* 对于在StorageGRID 11.4 中创建的存储桶，不再需要限制对象键名称以满足性能最佳实践。
+* 增加了对 bucket 通知的支持 `s3:ObjectRestore:Post`事件类型。
+* AWS 现已强制执行多部分部件的大小限制。分段上传中的每个部分必须介于 5 MiB 和 5 GiB 之间。最后一部分可以小于 5 MiB。
+* 增加了对 TLS 1.3 的支持
+
+
+
+
+ a| 
+11.3
+ a| 
+* 增加了使用客户提供的密钥（SSE-C）对对象数据进行服务器端加密的支持。
+* 增加了对 DeleteBucketLifecycle、GetBucketLifecycleConfiguration 和 PutBucketLifecycleConfiguration 操作（仅限到期操作）的支持，以及 `x-amz-expiration`响应头。
+* 更新了 PutObject、CopyObject 和 MultipartUpload，以描述在摄取时使用同步放置的 ILM 规则的影响。
+* TLS 1.1 密码不再受支持。
+
+
+
+
+ a| 
+11.2
+ a| 
+增加了对 RestoreObject 与云存储池一起使用的支持。增加了对在组和存储桶策略中使用 ARN、策略条件键和策略变量的 AWS 语法的支持。使用StorageGRID语法的现有组和存储桶策略将继续受到支持。
+
+*注意：*其他配置 JSON/XML 中 ARN/URN 的使用（包括自定义StorageGRID功能中使用的 ARN/URN 的使用）没有改变。
+
+
+
+ a| 
+11.1
+ a| 
+增加了对跨域资源共享 (CORS)、S3 客户端连接到网格节点的 HTTP 以及存储桶上的合规性设置的支持。
+
+
+
+ a| 
+11.0
+ a| 
+增加了对存储桶配置平台服务（CloudMirror 复制、通知和 Elasticsearch 搜索集成）的支持。还增加了对存储桶的对象标记位置约束以及可用一致性的支持。
+
+
+
+ a| 
+10.4
+ a| 
+增加了对 ILM 扫描版本控制更改、端点域名页面更新、策略中的条件和变量、策略示例以及 PutOverwriteObject 权限的支持。
+
+
+
+ a| 
+10.3
+ a| 
+增加了对版本控制的支持。
+
+
+
+ a| 
+10.2
+ a| 
+增加了对组和存储桶访问策略以及分段复制（UploadPartCopy）的支持。
+
+
+
+ a| 
+10.1
+ a| 
+增加了对分段上传、虚拟托管式请求和 v4 身份验证的支持。
+
+
+
+ a| 
+10.0
+ a| 
+StorageGRID系统初步支持 S3 REST API。当前支持的《简单存储服务 API 参考》版本是 2006-03-01。
+
+|===

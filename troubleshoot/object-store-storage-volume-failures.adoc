@@ -1,0 +1,28 @@
+---
+permalink: troubleshoot/object-store-storage-volume-failures.html 
+sidebar: sidebar 
+keywords: how to confirm object location, object metadata lookup 
+summary: 存储节点上的底层存储分为对象存储。对象存储也称为存储卷。 
+---
+= 对象存储（存储卷）故障
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+存储节点上的底层存储分为对象存储。对象存储也称为存储卷。
+
+您可以查看每个存储节点的对象存储信息。对象存储显示在 *NODES* > *_Storage Node_* > *Storage* 页面的底部。
+
+image::../media/nodes_page_storage_nodes_storage_tables.png[节点页面存储节点存储表]
+
+查看更多link:../monitor/viewing-grid-topology-tree.html["有关每个存储节点的详细信息"]，请按照下列步骤操作：
+
+. 选择*支持* > *工具* > *网格拓扑*。
+. 选择 *_site_* > *_Storage Node_* > *LDR* > *Storage* > *Overview* > *Main*。
+
+
+image::../media/storage_node_object_stores.png[存储节点对象存储]
+
+根据故障的性质，存储卷的故障可能反映在link:../monitor/alerts-reference.html["存储量警报"]。如果存储卷发生故障，您应该修复故障的存储卷，以尽快恢复存储节点的全部功能。如果需要，您可以转到*配置*选项卡并link:../maintain/checking-storage-state-after-recovering-storage-volumes.html["将存储节点置于只读状态"]以便StorageGRID系统可以在您准备完全恢复服务器时使用它进行数据检索。

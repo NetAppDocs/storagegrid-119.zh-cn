@@ -1,0 +1,80 @@
+---
+permalink: monitor/view-alert-rules.html 
+sidebar: sidebar 
+keywords: how to manage alert rules 
+summary: 警报规则定义触发特定警报的条件。  StorageGRID包含一组默认警报规则，您可以按原样使用或修改，也可以创建自定义警报规则。 
+---
+= 查看警报规则
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+警报规则定义触发的条件link:alerts-reference.html["具体警报"]。  StorageGRID包含一组默认警报规则，您可以按原样使用或修改，也可以创建自定义警报规则。
+
+您可以查看所有默认和自定义警报规则的列表，以了解哪些条件将触发每个警报，并查看是否有任何警报被禁用。
+
+.开始之前
+* 您已使用link:../admin/web-browser-requirements.html["支持的网络浏览器"]。
+* 你有link:../admin/admin-group-permissions.html["管理警报或 Root 访问权限"]。
+* 或者，您已经观看了视频： https://netapp.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=2eea81c5-8323-417f-b0a0-b1ff008506c1["视频：警报概述"^]
++
+[link=https://netapp.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=2eea81c5-8323-417f-b0a0-b1ff008506c1]
+image::../media/video-screenshot-alert-overview-118.png[视频：警报概述]
+
+
+
+.步骤
+. 选择*警报* > *规则*。
++
+出现“警报规则”页面。
+
++
+image::../media/alert_rules_page.png[警报规则页面]
+
+. 查看警报规则表中的信息：
++
+[cols="1a,3a"]
+|===
+| 列标题 | 描述 
+
+
+ a| 
+名称
+ a| 
+警报规则的唯一名称和描述。首先列出自定义警报规则，然后列出默认警报规则。警报规则名称是电子邮件通知的主题。
+
+
+
+ a| 
+条件
+ a| 
+确定何时触发此警报的 Prometheus 表达式。可以在以下一个或多个严重性级别触发警报，但不需要每个严重性都有条件。
+
+** *批判的*image:../media/icon_alert_red_critical.png["图标警报红色严重"] ：存在异常情况，导致StorageGRID节点或服务的正常运行停止。您必须立即解决根本问题。如果问题得不到解决，可能会导致服务中断和数据丢失。
+** *主要的*image:../media/icon_alert_orange_major.png["图标警报橙色主要"] ：存在异常情况，该情况正在影响当前操作或接近严重警报的阈值。您应该调查主要警报并解决任何潜在问题，以确保异常情况不会停止StorageGRID节点或服务的正常运行。
+** *次要的*image:../media/icon_alert_yellow_minor.png["图标警报黄色轻微"] ：系统运行正常，但存在异常情况，如果持续下去，可能会影响系统的运行能力。您应该监控并解决那些无法自行消除的小警报，以确保它们不会导致更严重的问题。
+
+
+
+
+ a| 
+类型
+ a| 
+警报规则的类型：
+
+** *默认*：系统自带的报警规则。您可以禁用默认警报规则或编辑默认警报规则的条件和持续时间。您无法删除默认警报规则。
+** *默认**：包含已编辑条件或持续时间的默认警报规则。根据需要，您可以轻松地将修改后的条件恢复为原始默认值。
+** *自定义*：您创建的警报规则。您可以禁用、编辑和删除自定义警报规则。
+
+
+
+
+ a| 
+状态
+ a| 
+此警报规则当前是启用还是禁用。不会评估禁用警报规则的条件，因此不会触发任何警报。
+
+|===
+

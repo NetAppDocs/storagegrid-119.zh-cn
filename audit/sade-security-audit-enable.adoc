@@ -1,0 +1,47 @@
+---
+permalink: audit/sade-security-audit-enable.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, message, SADE, Security Audit Enable 
+summary: 此消息表明原始服务\（节点 ID\）已恢复审计消息记录；审计消息再次被收集和传递。 
+---
+= SADE：安全审计启用
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+此消息表明原始服务（节点 ID）已恢复审计消息记录；审计消息再次被收集和传递。
+
+[cols="1a,1a,4a"]
+|===
+| 代码 | 字段 | 描述 
+
+
+ a| 
+AETM
+ a| 
+启用方法
+ a| 
+用于启用审计的方法。
+
+
+
+ a| 
+AEUN
+ a| 
+用户名
+ a| 
+执行启用审计日志记录命令的用户名。
+
+
+
+ a| 
+放射学研究实验室
+ a| 
+结果
+ a| 
+该字段的值为 NONE。 RSLT 是必填消息字段，但与此消息无关。使用 NONE 而不是 SUCS，以便不过滤该消息。
+
+|===
+该消息暗示日志记录之前已被禁用（SADD），但现在已恢复。这通常仅在批量摄取期间使用，以提高系统性能。批量活动结束后，审计功能将恢复，禁用审计的功能将被永久阻止。

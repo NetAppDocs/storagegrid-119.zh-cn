@@ -1,0 +1,67 @@
+---
+permalink: ubuntu/node-container-migration-requirements.html 
+sidebar: sidebar 
+keywords: node container migration requirements 
+summary: 节点迁移功能允许您手动将节点从一个主机移动到另一个主机。通常，两个主机位于同一个物理数据中心。 
+---
+= 节点容器迁移要求
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+节点迁移功能允许您手动将节点从一个主机移动到另一个主机。通常，两个主机位于同一个物理数据中心。
+
+节点迁移允许您执行物理主机维护，而无需中断网格操作。在使物理主机脱机之前，将所有StorageGRID节点逐个移动到另一个主机。迁移节点只需要每个节点短暂停机，并且不会影响网格服务的运行或可用性。
+
+如果您想使用StorageGRID节点迁移功能，您的部署必须满足其他要求：
+
+* 单个物理数据中心内跨主机的网络接口名称一致
+* StorageGRID元数据和对象存储库卷的共享存储，可供单个物理数据中心内的所有主机访问。例如，您可能使用NetApp E 系列存储阵列。
+
+
+如果您正在使用虚拟主机并且底层虚拟机管理程序层支持虚拟机迁移，则您可能希望使用此功能而不是StorageGRID中的节点迁移功能。在这种情况下，您可以忽略这些额外的要求。
+
+在执行迁移或虚拟机管理程序维护之前，请正常关闭节点。请参阅说明link:../maintain/shutting-down-grid-node.html["关闭网格节点"]。
+
+
+
+== 不支持 VMware Live Migration
+
+在 VMware VM 上执行裸机安装时，OpenStack Live Migration 和 VMware live vMotion 会导致虚拟机时钟时间跳跃，并且不支持任何类型的网格节点。虽然很少见，但不正确的时钟时间可能会导致数据丢失或配置更新。
+
+支持冷迁移。在冷迁移中，您需要在主机之间迁移StorageGRID节点之前关闭它们。请参阅说明link:../maintain/shutting-down-grid-node.html["关闭网格节点"]。
+
+
+
+== 一致的网络接口名称
+
+要将节点从一个主机移动到另一个主机， StorageGRID主机服务需要确信该节点在当前位置的外部网络连接可以在新位置复制。它通过在主机中使用一致的网络接口名称来获得这种信心。
+
+例如，假设在 Host1 上运行的StorageGRID NodeA 已配置以下接口映射：
+
+image::../media/eth0_bond.gif[本图四周的文字提供了相关说明。]
+
+箭头的左侧对应于从StorageGRID容器内部查看的传统接口（即分别为 Grid、Admin 和 Client Network 接口）。箭头的右侧对应于提供这些网络的实际主机接口，它们是从属于同一物理接口绑定的三个 VLAN 接口。
+
+现在，假设您想将 NodeA 迁移到 Host2。如果 Host2 也有名为 bond0.1001、bond0.1002 和 bond0.1003 的接口，系统将允许移动，假设同名接口在 Host2 上提供与 Host1 上相同的连接。如果 Host2 没有同名接口，则不允许移动。
+
+有很多方法可以实现跨多个主机的一致网络接口命名；请参阅link:configuring-host-network.html["配置主机网络"]举一些例子。
+
+
+
+== 共享存储
+
+为了实现快速、低开销的节点迁移， StorageGRID节点迁移功能不会物理移动节点数据。相反，节点迁移作为一对导出和导入操作来执行，如下所示：
+
+.步骤
+. 在“节点导出”操作期间，从 HostA 上运行的节点容器中提取少量持久状态数据，并将其缓存在该节点的系统数据卷上。然后，HostA 上的节点容器被取消实例化。
+. 在“节点导入”操作期间，将实例化 HostB 上使用与 HostA 上相同的网络接口和块存储映射的节点容器。然后，将缓存的持久状态数据插入到新实例中。
+
+
+在这种操作模式下，节点的所有系统数据和对象存储卷都必须能够从 HostA 和 HostB 访问，才能允许迁移并使其正常工作。此外，它们必须使用保证引用 HostA 和 HostB 上相同 LUN 的名称映射到节点中。
+
+以下示例显示了StorageGRID存储节点的块设备映射的一个解决方案，其中主机上使用 DM 多路径，并且已在 `/etc/multipath.conf`提供所有主机上可用的一致、友好的块设备名称。
+
+image::../media/block_device_mapping_rhel.gif[本图四周的文字提供了相关说明。]

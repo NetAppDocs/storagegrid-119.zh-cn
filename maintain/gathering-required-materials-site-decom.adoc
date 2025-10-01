@@ -1,0 +1,51 @@
+---
+permalink: maintain/gathering-required-materials-site-decom.html 
+sidebar: sidebar 
+keywords: storagegrid, decommission 
+summary: 在退役站点之前，您必须获取以下材料。 
+---
+= 收集必要材料
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在退役站点之前，您必须获取以下材料。
+
+[cols="1a,2a"]
+|===
+| 物品 | 笔记 
+
+
+ a| 
+恢复包 `.zip`文件
+ a| 
+您必须下载最新的恢复包 `.zip`文件(`sgws-recovery-package-id-revision.zip`）。如果发生故障，您可以使用恢复包文件来恢复系统。
+
+link:downloading-recovery-package.html["下载恢复包"]
+
+
+
+ a| 
+`Passwords.txt`文件
+ a| 
+该文件包含在命令行上访问网格节点所需的密码，并包含在恢复包中。
+
+
+
+ a| 
+配置密码
+ a| 
+首次安装StorageGRID系统时会创建并记录密码。配置密码不在 `Passwords.txt`文件。
+
+
+
+ a| 
+退役前StorageGRID系统拓扑的描述
+ a| 
+如果可用，请获取描述系统当前拓扑的任何文档。
+
+|===
+.相关信息
+link:../admin/web-browser-requirements.html["Web 浏览器要求"]

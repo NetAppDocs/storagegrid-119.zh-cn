@@ -1,0 +1,53 @@
+---
+permalink: harden/hardening-guideline-for-server-certificates.html 
+sidebar: sidebar 
+keywords: Hardening guidelines, certificates 
+summary: 您应该替换安装期间创建的默认证书，并为 TLS 和 SSH 连接选择适当的安全策略。 
+---
+= TLS 和 SSH 强化指南
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您应该替换安装期间创建的默认证书，并为 TLS 和 SSH 连接选择适当的安全策略。
+
+
+
+== 证书强化指南
+
+您应该用自己的自定义证书替换安装期间创建的默认证书。
+
+对于许多组织来说， StorageGRID网络访问的自签名数字证书不符合其信息安全政策。在生产系统上，您应该安装 CA 签名的数字证书以用于验证StorageGRID。
+
+具体来说，您应该使用自定义服务器证书而不是这些默认证书：
+
+* *管理接口证书*：用于安全访问网格管理器、租户管理器、网格管理 API 和租户管理 API。
+* *S3 API 证书*：用于保护对存储节点和网关节点的访问，S3 客户端应用程序使用这些证书来上传和下载对象数据。
+
+
+看link:../admin/using-storagegrid-security-certificates.html["管理安全证书"]了解详细信息和说明。
+
+
+NOTE: StorageGRID单独管理用于负载均衡器端点的证书。要配置负载均衡器证书，请参阅link:../admin/configuring-load-balancer-endpoints.html["配置负载均衡器端点"]。
+
+使用自定义服务器证书时，请遵循以下准则：
+
+* 证书应该有 `_subjectAltName_`与StorageGRID 的DNS 条目匹配。有关详细信息，请参阅第 4.2.1.6 节“主题备用名称” https://tools.ietf.org/html/rfc5280#section-4.2.1.6["RFC 5280：PKIX 证书和 CRL 配置文件"^] 。
+* 尽可能避免使用通配符证书。此指南的一个例外是 S3 虚拟托管样式端点的证书，如果事先不知道存储桶名称，则需要使用通配符。
+* 当您必须在证书中使用通配符时，您应该采取额外措施来降低风险。使用通配符模式，例如 `*.s3.example.com`，并且不要使用 `s3.example.com`其他应用程序的后缀。此模式也适用于路径式 S3 访问，例如 `dc1-s1.s3.example.com/mybucket`。
+* 将证书到期时间设置为较短（例如 2 个月），并使用网格管理 API 自动进行证书轮换。这对于通配符证书尤其重要。
+
+
+此外，客户端在与StorageGRID通信时应使用严格的主机名检查。
+
+
+
+== TLS 和 SSH 策略强化指南
+
+您可以选择安全策略来确定使用哪些协议和密码与客户端应用程序建立安全的 TLS 连接以及与内部StorageGRID服务建立安全的 SSH 连接。
+
+安全策略控制 TLS 和 SSH 如何加密传输中的数据。作为最佳实践，您应该禁用应用程序兼容性不需要的加密选项。使用默认的现代策略，除非您的系统需要符合通用标准或您需要使用其他密码。
+
+看link:../admin/manage-tls-ssh-policy.html["管理 TLS 和 SSH 策略"]了解详细信息和说明。

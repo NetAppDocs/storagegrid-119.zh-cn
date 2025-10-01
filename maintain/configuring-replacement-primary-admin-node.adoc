@@ -1,0 +1,60 @@
+---
+permalink: maintain/configuring-replacement-primary-admin-node.html 
+sidebar: sidebar 
+keywords: storagegrid, primary admin node, replace primary admin node, replacing primary admin node 
+summary: 必须将替换节点配置为StorageGRID系统的主管理节点。 
+---
+= 配置替换主管理节点
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+必须将替换节点配置为StorageGRID系统的主管理节点。
+
+.开始之前
+* 对于托管在虚拟机上的主要管理节点，虚拟机已部署、启动并初始化。
+* 对于服务设备上托管的主要管理节点，您已更换设备并安装了软件。查看 https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/index.html["您的设备的安装说明"^]。
+* 您拥有恢复包文件的最新备份(`sgws-recovery-package-_id-revision_.zip`）。
+* 您有配置密码。
+
+
+.步骤
+. 打开您的网络浏览器并导航至 `\https://primary_admin_node_ip`。
+. 根据需要管理临时安装程序密码：
++
+** 如果已经使用其中一种方法设置了密码，请输入密码以继续。
++
+*** 用户之前在访问安装程序时设置了密码
+*** 对于裸机系统，密码会自动从节点配置文件导入 `/etc/storagegrid/nodes/_<node_name>_.conf`
+*** 对于虚拟机，SSH/控制台密码已从 OVF 属性自动导入
+
+
+** 如果尚未设置密码，则可以选择设置密码以保护StorageGRID安装程序。
+
+
+. 单击*恢复失败的主管理节点*。
++
+image::../media/install_or_recover_primary_admin_node.png[安装或恢复主管理节点]
+
+. 上传恢复包的最新备份：
++
+.. 单击“浏览”。
+.. 找到StorageGRID系统的最新恢复包文件，然后单击“打开”。
+
+
+. 输入配置密码。
+. 单击“开始恢复”。
++
+恢复过程开始。当所需服务启动时，网格管理器可能会在几分钟内变得不可用。恢复完成后，将显示登录页面。
+
+. 如果您的StorageGRID系统启用了单点登录 (SSO)，并且您恢复的管理节点的信赖方信任配置为使用默认管理接口证书，请在 Active Directory 联合身份验证服务 (AD FS) 中更新（或删除并重新创建）该节点的信赖方信任。使用管理节点恢复过程中生成的新的默认服务器证书。
++
+
+NOTE: 要配置信赖方信任，请参阅link:../admin/configuring-sso.html["配置单点登录"]。要访问默认服务器证书，请登录管理节点的命令 shell。前往 `/var/local/mgmt-api`目录，然后选择 `server.crt`文件。
+
+
+
+
+CAUTION: 恢复主管理节点后，link:assess-hotfix-requirement-during-primary-admin-node-recovery.html["确定是否需要应用修补程序"] 。

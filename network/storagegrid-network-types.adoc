@@ -1,0 +1,217 @@
+---
+permalink: network/storagegrid-network-types.html 
+sidebar: sidebar 
+keywords: network types, grid traffic, admin traffic, client traffic, grid network, admin network, client network 
+summary: StorageGRID系统中的网格节点处理网格流量、管理流量和客户端流量。您必须适当配置网络来管理这三种类型的流量并提供控制和安全性。 
+---
+= StorageGRID网络类型
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+StorageGRID系统中的网格节点处理_网格流量_、_管理流量_和_客户端流量_。您必须适当配置网络来管理这三种类型的流量并提供控制和安全性。
+
+
+
+== 流量类型
+
+[cols="1a,4a,2a"]
+|===
+| 流量类型 | 描述 | 网络类型 
+
+
+ a| 
+电网交通
+ a| 
+在网格中所有节点之间传输的内部StorageGRID流量。所有网格节点必须能够通过该网络与所有其他网格节点进行通信。
+ a| 
+网格网络（必填）
+
+
+
+ a| 
+管理流量
+ a| 
+用于系统管理和维护的流量。
+ a| 
+管理网络（可选），<<可选 VLAN 网络,VLAN网络（可选）>>
+
+
+
+ a| 
+客户端流量
+ a| 
+外部客户端应用程序和网格之间传输的流量，包括来自 S3 客户端的所有对象存储请求。
+ a| 
+客户端网络（可选），<<可选 VLAN 网络,VLAN网络（可选）>>
+
+|===
+您可以通过以下方式配置网络：
+
+* 仅限网格网络
+* 网格和管理网络
+* 网格和客户端网络
+* 网格、管理和客户端网络
+
+
+电网网络是强制性的，可以管理所有电网流量。管理员网络和客户端网络可以在安装时包含，也可以稍后添加以适应需求的变化。虽然管理网络和客户端网络是可选的，但是当您使用这些网络来处理管理和客户端流量时，网格网络可以变得隔离且安全。
+
+内部端口只能通过电网网络访问。所有网络类型均可访问外部端口。这种灵活性为设计StorageGRID部署以及在交换机和防火墙中设置外部 IP 和端口过滤提供了多种选择。看link:../network/internal-grid-node-communications.html["内部网格节点通信"]和link:../network/external-communications.html["外部沟通"]。
+
+
+
+== 网络接口
+
+StorageGRID节点使用以下特定接口连接到每个网络：
+
+[cols="1a,1a"]
+|===
+| 网络 | 接口名称 
+
+
+ a| 
+网格网络（必填）
+ a| 
+eth0
+
+
+
+ a| 
+管理网络（可选）
+ a| 
+eth1
+
+
+
+ a| 
+客户端网络（可选）
+ a| 
+eth2
+
+|===
+有关将虚拟或物理端口映射到节点网络接口的详细信息，请参阅安装说明：
+
+.基于软件的节点
+* link:../rhel/index.html["在 Red Hat Enterprise Linux 上安装StorageGRID"]
+* link:../ubuntu/index.html["在 Ubuntu 或 Debian 上安装StorageGRID"]
+* link:../vmware/index.html["在 VMware 上安装StorageGRID"]
+
+
+.设备节点
+* https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/hardware-description-sg6100.html["SG6160存储设备"^]
+* https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/hardware-description-sg6100.html["SGF6112存储设备"^]
+* https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/hardware-description-sg6000.html["SG6000存储设备"^]
+* https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/hardware-description-sg5800.html["SG5800存储设备"^]
+* https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/hardware-description-sg5700.html["SG5700存储设备"^]
+* https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/hardware-description-sg110-and-1100.html["SG110 和 SG1100 服务设备"^]
+* https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/hardware-description-sg100-and-1000.html["SG100 和 SG1000 服务设备"^]
+
+
+
+
+=== 每个节点的网络信息
+
+您必须为节点上启用的每个网络配置以下内容：
+
+* IP 地址
+* 子网掩码
+* 网关 IP 地址
+
+
+您只能为每个网格节点上的三个网络分别配置一个 IP 地址/掩码/网关组合。如果您不想为网络配置网关，则应该使用IP地址作为网关地址。
+
+
+
+=== 高可用性组
+
+高可用性 (HA) 组提供向网格或客户端网络接口添加虚拟 IP (VIP) 地址的能力。有关更多信息，请参阅link:../admin/managing-high-availability-groups.html["管理高可用性组"] 。
+
+
+
+== 网格网络
+
+需要网格网络。它用于所有内部StorageGRID流量。网格网络为网格中所有节点、所有站点和子网提供连接。网格网络上的所有节点必须能够与所有其他节点通信。网格网络可以由多个子网组成。包含关键网格服务（例如 NTP）的网络也可以添加为网格子网。
+
+
+NOTE: StorageGRID不支持节点之间的网络地址转换 (NAT)。
+
+即使配置了管理网络和客户端网络，网格网络也可以用于所有管理流量和所有客户端流量。除非节点配置了客户端网络，否则网格网络网关是节点默认网关。
+
+
+CAUTION: 配置网格网络时，必须确保网络免受不受信任的客户端（例如开放互联网上的客户端）的攻击。
+
+请注意电网网关的以下要求和详细信息：
+
+* 如果有多个网格子网，则必须配置网格网络网关。
+* 在网格配置完成之前，网格网络网关是节点默认网关。
+* 自动为所有节点生成到全局网格网络子网列表中配置的所有子网的静态路由。
+* 如果添加了客户端网络，则网格配置完成后，默认网关将从网格网络网关切换到客户端网络网关。
+
+
+
+
+== 管理网络
+
+管理网络是可选的。配置后，它可用于系统管理和维护流量。管理网络通常是私有网络，不需要在节点之间路由。
+
+您可以选择哪些网格节点应该启用管理网络。
+
+当您使用管理网络时，管理和维护流量不需要通过网格网络。管理网络的典型用途包括：
+
+* 访问网格管理器和租户管理器用户界面。
+* 访问关键服务，例如 NTP 服务器、DNS 服务器、外部密钥管理服务器 (KMS) 和轻量级目录访问协议 (LDAP) 服务器。
+* 访问管理节点上的审计日志。
+* 用于维护和支持的安全外壳协议 (SSH) 访问。
+
+
+管理网络从不用于内部网格流量。提供管理网络网关，允许管理网络与多个外部子网通信。但是，管理网络网关从未被用作节点默认网关。
+
+请注意管理网络网关的以下要求和详细信息：
+
+* 如果要从管理网络子网外部建立连接或配置多个管理网络子网，则需要管理网络网关。
+* 为节点的管理网络子网列表中配置的每个子网创建静态路由。
+
+
+
+
+== 客户端网络
+
+客户端网络是可选的。配置后，它用于为客户端应用程序（如 S3）提供对网格服务的访问。如果您计划让外部资源（例如，云存储池或StorageGRID CloudMirror 复制服务）可以访问StorageGRID数据，则外部资源也可以使用客户端网络。网格节点可以与通过客户端网络网关可达的任何子网进行通信。
+
+您可以选择哪些网格节点应该启用客户端网络。所有节点不必位于同一个客户端网络上，并且节点永远不会通过客户端网络相互通信。直到电网安装完成后，客户端网络才能运行。
+
+为了增加安全性，您可以指定节点的客户端网络接口不受信任，以便客户端网络对允许的连接进行更严格的限制。如果节点的客户端网络接口不受信任，则该接口接受出站连接（例如 CloudMirror 复制使用的连接），但仅接受明确配置为负载均衡器端点的端口上的入站连接。看link:../admin/manage-firewall-controls.html["管理防火墙控制"]和link:../admin/configuring-load-balancer-endpoints.html["配置负载均衡器端点"]。
+
+当您使用客户端网络时，客户端流量不需要通过网格网络传输。网格网络流量可以分离到安全的、不可路由的网络上。以下节点类型通常配置有客户端网络：
+
+* 网关节点，因为这些节点提供对StorageGRID负载均衡器服务的访问以及对网格的 S3 客户端访问。
+* 存储节点，因为这些节点提供对 S3 协议、云存储池和 CloudMirror 复制服务的访问。
+* 管理节点，确保租户用户无需使用管理网络即可连接到租户管理器。
+
+
+对于客户端网络网关，请注意以下事项：
+
+* 如果配置了客户端网络，则需要客户端网络网关。
+* 当网格配置完成后，客户端网络网关成为网格节点的默认路由。
+
+
+
+
+== 可选 VLAN 网络
+
+根据需要，您可以选择使用虚拟 LAN (VLAN) 网络来传输客户端流量和某些类型的管理流量。然而，网格流量不能使用 VLAN 接口。节点之间的内部StorageGRID流量必须始终使用 eth0 上的网格网络。
+
+为了支持使用 VLAN，必须将节点上的一个或多个接口配置为交换机上的中继接口。您可以将网格网络接口（eth0）或客户端网络接口（eth2）配置为中继，也可以将中继接口添加到节点。
+
+如果 eth0 配置为中继，则网格网络流量将通过中继本机接口流动，如交换机上配置的那样。类似地，如果 eth2 配置为中继，并且客户端网络也配置在同一节点上，则客户端网络使用交换机上配置的中继端口的本机 VLAN。
+
+VLAN 网络仅支持入站管理流量，例如用于 SSH、网格管理器或租户管理器流量。  VLAN 网络不支持出站流量（例如用于 NTP、DNS、LDAP、KMS 和云存储池的流量）。
+
+
+NOTE: VLAN 接口只能添加到管理节点和网关节点。您不能使用 VLAN 接口来让客户端或管理员访问存储节点。
+
+看link:../admin/configure-vlan-interfaces.html["配置VLAN接口"]以获取说明和指南。
+
+VLAN 接口仅在 HA 组中使用，并在活动节点上分配 VIP 地址。看link:../admin/managing-high-availability-groups.html["管理高可用性组"]以获取说明和指南。

@@ -1,0 +1,14 @@
+---
+permalink: harden/system-hardening-guidelines.html 
+sidebar: sidebar 
+keywords: security,system hardening 
+summary: 在安装和配置StorageGRID时，您可以使用这些指南来帮助您满足信息系统机密性、完整性和可用性的任何规定的安全目标。 
+---
+= 系统强化指南
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在安装和配置StorageGRID时，您可以使用这些指南来帮助您满足信息系统机密性、完整性和可用性的任何规定的安全目标。

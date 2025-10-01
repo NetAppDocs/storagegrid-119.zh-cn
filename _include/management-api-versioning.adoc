@@ -1,0 +1,90 @@
+= 确定当前版本支持哪些 API 版本
+:allow-uri-read: 
+
+
+例如，此请求 URL 指定 API 的版本 4。
+
+`https://_hostname_or_ip_address_/api/v4/authorize`
+
+当做出与旧版本不兼容的更改时，API 的主要版本就会被提升。当进行与旧版本兼容的更改时，API 的次要版本就会增加。兼容的变化包括添加新的端点或新的属性。
+
+以下示例说明了如何根据所做更改的类型来升级 API 版本。
+
+[cols="1a,1a,1a"]
+|===
+| API 变更类型 | 旧版 | 新版本 
+
+
+ a| 
+与旧版本兼容
+ a| 
+2.1
+ a| 
+2.2
+
+
+
+ a| 
+与旧版本不兼容
+ a| 
+2.1
+ a| 
+3.0
+
+
+
+ a| 
+3.0
+ a| 
+4.0
+
+|===
+首次安装StorageGRID软件时，仅启用最新版本的 API。但是，当您升级到StorageGRID的新功能版本时，您仍然可以访问至少一个StorageGRID功能版本的旧 API 版本。
+
+
+NOTE: 您可以配置支持的版本。请参阅 Swagger API 文档的 *config* 部分以了解link:../admin/using-grid-management-api.html["电网管理API"]了解更多信息。更新所有 API 客户端以使用新版本后，您应该停用对旧版本的支持。
+
+过时的请求通过以下方式标记为已弃用：
+
+* 响应头为“Deprecated: true”
+* JSON 响应主体包含“deprecated”：true
+* 已弃用的警告已添加到 nms.log。例如：
++
+[listing]
+----
+Received call to deprecated v2 API at POST "/api/v2/authorize"
+----
+
+
+
+
+== 确定当前版本支持哪些 API 版本
+
+使用 `GET /versions`API 请求返回支持的 API 主要版本列表。此请求位于 Swagger API 文档的 *config* 部分。
+
+[listing]
+----
+GET https://{{IP-Address}}/api/versions
+{
+  "responseTime": "2023-06-27T22:13:50.750Z",
+  "status": "success",
+  "apiVersion": "4.0",
+  "data": [
+    2,
+    3,
+    4
+  ]
+}
+----
+
+
+== 为请求指定 API 版本
+
+您可以使用路径参数指定 API 版本(`/api/v4`）或标题(`Api-Version: 4`）。如果您提供这两个值，则标头值将覆盖路径值。
+
+[listing]
+----
+curl https://[IP-Address]/api/v4/grid/accounts
+
+curl -H "Api-Version: 4" https://[IP-Address]/api/grid/accounts
+----

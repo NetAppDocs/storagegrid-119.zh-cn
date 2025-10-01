@@ -1,0 +1,46 @@
+---
+permalink: expand/adding-new-site.html 
+sidebar: sidebar 
+keywords: expand, expansion, new site, add site, guidelines 
+summary: 您可以通过添加新站点来扩展您的StorageGRID系统。 
+---
+= 添加新站点
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以通过添加新站点来扩展您的StorageGRID系统。
+
+
+
+== 添加站点的指南
+
+添加站点之前，请查看以下要求和限制：
+
+* 每次扩展操作只能添加一个站点。
+* 您不能将网格节点作为同一扩展的一部分添加到现有站点。
+* 所有站点必须至少包含三个存储节点。
+* 添加新站点并不会自动增加您可以存储的对象数量。网格的总对象容量取决于可用存储量、ILM 策略和每个站点的元数据容量。
+* 在确定新站点的规模时，您必须确保它包含足够的元数据容量。
++
+StorageGRID在每个站点保留所有对象元数据的副本。添加新站点时，必须确保它包含足够的元数据容量来存储现有对象元数据，以及足够的元数据容量来满足增长需求。
+
++
+有关详细信息，请参阅以下内容：
+
++
+** link:../admin/managing-object-metadata-storage.html["管理对象元数据存储"]
+** link:../monitor/monitoring-storage-capacity.html#monitor-object-metadata-capacity-for-each-storage-node["监控每个存储节点的对象元数据容量"]
+
+
+* 您必须考虑站点之间的可用网络带宽以及网络延迟级别。即使所有对象仅存储在其被摄取的站点，元数据更新也会在站点之间不断复制。
+* 由于您的StorageGRID系统在扩展期间仍保持运行，因此您必须在开始扩展过程之前查看 ILM 规则。您必须确保在扩展过程完成之前，对象副本不会存储到新站点。
++
+例如，在开始扩展之前，确定是否有任何规则使用默认存储池（所有存储节点）。如果确实如此，您必须创建一个包含现有存储节点的新存储池，并更新 ILM 规则以使用新的存储池。否则，一旦该站点的第一个节点变为活动状态，对象就会被复制到新站点。
+
++
+有关在添加新站点时更改 ILM 的详细信息，请参阅link:../ilm/example-6-changing-ilm-policy.html["更改 ILM 策略的示例"]。
+
+

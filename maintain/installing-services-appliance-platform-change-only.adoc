@@ -1,0 +1,29 @@
+---
+permalink: maintain/installing-services-appliance-platform-change-only.html 
+sidebar: sidebar 
+keywords: storagegrid, recover services appliance, recover appliance, recovering appliance, recovering services appliance, install services appliance, installing services appliance, services appliance 
+summary: 当您恢复托管在 VMware 或 Linux 主机上的故障网格节点并使用服务设备作为替换节点时，必须首先使用与故障节点相同的节点名称（系统名称）安装新的设备硬件。 
+---
+= 安装服务设备（仅限平台变更）
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+当您恢复托管在 VMware 或 Linux 主机上的故障网格节点并使用服务设备作为替换节点时，必须首先使用与故障节点相同的节点名称（系统名称）安装新的设备硬件。
+
+.开始之前
+您有关于故障节点的以下信息：
+
+* *节点名称*：您必须使用与故障节点相同的节点名称来安装服务设备。节点名称是主机名（系统名称）。
+* *IP 地址*：您可以为服务设备分配与故障节点相同的 IP 地址，这是首选选项，或者您可以在每个网络上选择一个新的未使用的 IP 地址。
+
+
+.关于此任务
+仅当您要恢复 VMware 或 Linux 上托管的故障节点并将其替换为服务设备上托管的节点时才执行此过程。
+
+.步骤
+. 按照说明安装新的服务设备。看 https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/index.html["硬件安装快速启动"^]。
+. 当提示输入节点名称时，请使用故障节点的节点名称。
+

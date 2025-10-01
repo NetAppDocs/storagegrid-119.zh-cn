@@ -1,0 +1,49 @@
+---
+permalink: audit/audit-log-file-format.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, log file formats, log formats, log file format, log format 
+summary: 每个管理节点上都有审计日志文件，其中包含单独的审计消息集合。 
+---
+= 审计日志文件格式
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+每个管理节点上都有审计日志文件，其中包含单独的审计消息集合。
+
+每条审计消息包含以下内容：
+
+* 触发审计消息 (ATIM) 的事件的协调世界时 (UTC)，采用 ISO 8601 格式，后跟一个空格：
++
+`_YYYY-MM-DDTHH:MM:SS.UUUUUU_`， 在哪里 `_UUUUUU_`是微秒。
+
+* 审计消息本身，括在方括号内，以 `AUDT`。
+
+
+以下示例显示了审计日志文件中的三条审计消息（为便于阅读添加了换行符）。当租户创建 S3 存储桶并向该存储桶添加两个对象时，会生成这些消息。
+
+[listing]
+----
+2019-08-07T18:43:30.247711
+[AUDT:[RSLT(FC32):SUCS][CNID(UI64):1565149504991681][TIME(UI64):73520][SAIP(IPAD):"10.224.2.255"][S3AI(CSTR):"17530064241597054718"]
+[SACC(CSTR):"s3tenant"][S3AK(CSTR):"SGKH9100SCkNB8M3MTWNt-PhoTDwB9JOk7PtyLkQmA=="][SUSR(CSTR):"urn:sgws:identity::17530064241597054718:root"]
+[SBAI(CSTR):"17530064241597054718"][SBAC(CSTR):"s3tenant"][S3BK(CSTR):"bucket1"][AVER(UI32):10][ATIM(UI64):1565203410247711]
+[ATYP(FC32):SPUT][ANID(UI32):12454421][AMID(FC32):S3RQ][ATID(UI64):7074142142472611085]]
+
+2019-08-07T18:43:30.783597
+[AUDT:[RSLT(FC32):SUCS][CNID(UI64):1565149504991696][TIME(UI64):120713][SAIP(IPAD):"10.224.2.255"][S3AI(CSTR):"17530064241597054718"]
+[SACC(CSTR):"s3tenant"][S3AK(CSTR):"SGKH9100SCkNB8M3MTWNt-PhoTDwB9JOk7PtyLkQmA=="][SUSR(CSTR):"urn:sgws:identity::17530064241597054718:root"]
+[SBAI(CSTR):"17530064241597054718"][SBAC(CSTR):"s3tenant"][S3BK(CSTR):"bucket1"][S3KY(CSTR):"fh-small-0"]
+[CBID(UI64):0x779557A069B2C037][UUID(CSTR):"94BA6949-38E1-4B0C-BC80-EB44FB4FCC7F"][CSIZ(UI64):1024][AVER(UI32):10]
+[ATIM(UI64):1565203410783597][ATYP(FC32):SPUT][ANID(UI32):12454421][AMID(FC32):S3RQ][ATID(UI64):8439606722108456022]]
+
+2019-08-07T18:43:30.784558
+[AUDT:[RSLT(FC32):SUCS][CNID(UI64):1565149504991693][TIME(UI64):121666][SAIP(IPAD):"10.224.2.255"][S3AI(CSTR):"17530064241597054718"]
+[SACC(CSTR):"s3tenant"][S3AK(CSTR):"SGKH9100SCkNB8M3MTWNt-PhoTDwB9JOk7PtyLkQmA=="][SUSR(CSTR):"urn:sgws:identity::17530064241597054718:root"]
+[SBAI(CSTR):"17530064241597054718"][SBAC(CSTR):"s3tenant"][S3BK(CSTR):"bucket1"][S3KY(CSTR):"fh-small-2000"]
+[CBID(UI64):0x180CBD8E678EED17][UUID(CSTR):"19CE06D0-D2CF-4B03-9C38-E578D66F7ADD"][CSIZ(UI64):1024][AVER(UI32):10]
+[ATIM(UI64):1565203410784558][ATYP(FC32):SPUT][ANID(UI32):12454421][AMID(FC32):S3RQ][ATID(UI64):13489590586043706682]]
+----
+在默认格式下，审计日志文件中的审计消息不易阅读或解释。您可以使用link:using-audit-explain-tool.html["审计解释工具"]获取审计日志中审计消息的简化摘要。您可以使用link:using-audit-sum-tool.html["审计总和工具"]总结记录了多少写入、读取和删除操作以及这些操作花费了多长时间。

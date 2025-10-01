@@ -1,0 +1,139 @@
+---
+permalink: troubleshoot/investigating-lost-objects.html 
+sidebar: sidebar 
+keywords: lost objects, investigating, objects 
+summary: 当触发“物体丢失”警报时，您必须立即进行调查。收集受影响对象的信息并联系技术支持。 
+---
+= 调查丢失的物品
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+当触发“物体丢失”警报时，您必须立即进行调查。收集受影响对象的信息并联系技术支持。
+
+.开始之前
+* 您必须使用link:../admin/web-browser-requirements.html["支持的网络浏览器"]。
+* 你有link:../admin/admin-group-permissions.html["特定访问权限"]。
+* 你必须拥有 `Passwords.txt`文件。
+
+
+.关于此任务
+*对象丢失*警报表明StorageGRID认为网格中没有对象的副本。数据可能已永久丢失。
+
+立即调查丢失物品警报。您可能需要采取措施来防止进一步的数据丢失。在某些情况下，如果您及时采取行动，也许能够恢复丢失的物品。
+
+.步骤
+. 选择*NODES*。
+. 选择*_Storage Node_* > *Objects*。
+. 查看对象计数表中显示的丢失对象的数量。
++
+此数字表示该网格节点检测到的整个StorageGRID系统中缺失的对象总数。该值是 LDR 和 DDS 服务中的数据存储组件的丢失对象计数器的总和。
+
++
+image::../media/nodes_storage_nodes_objects_page_lost_object.png[节点存储节点对象页面丢失对象]
+
+. 从管理节点，link:../audit/accessing-audit-log-file.html["访问审计日志"]确定触发*对象丢失*警报的对象的唯一标识符（UUID）：
++
+.. 登录网格节点：
++
+... 输入以下命令： `ssh admin@grid_node_IP`
+... 输入 `Passwords.txt`文件。
+... 输入以下命令切换到root： `su -`
+... 输入 `Passwords.txt`文件。当您以 root 身份登录时，提示符将从 `$`到 `#`。
+
+
+.. 更改为审计日志所在的目录。
++
+--
+审计日志目录和适用节点取决于您的审计目标设置。
+
+[cols="1a,2a"]
+|===
+| 选项 | 目标 
+
+
+ a| 
+本地节点（默认）
+ a| 
+`/var/local/log/localaudit.log`
+
+
+
+ a| 
+管理节点/本地节点
+ a| 
+*** 管理节点（主节点和非主节点）： `/var/local/audit/export/audit.log`
+*** 所有节点： `/var/local/log/localaudit.log`在此模式下，文件通常为空或缺失。
+
+
+
+
+ a| 
+外部系统日志服务器
+ a| 
+`/var/local/log/localaudit.log`
+
+|===
+根据您的审计目标设置，输入： `cd /var/local/log`或者 `/var/local/audit/export/`
+
+要了解更多信息，请参阅link:../monitor/configure-audit-messages.html#select-audit-information-destinations["选择审计信息目的地"]。
+
+--
+.. 使用 grep 提取对象丢失 (OLST) 审计消息。进入： `grep OLST audit_file_name`
+.. 请注意消息中包含的 UUID 值。
++
+[listing]
+----
+Admin: # grep OLST audit.log
+2020-02-12T19:18:54.780426 [AUDT:[CBID(UI64):0x38186FE53E3C49A5][UUID(CSTR):"926026C4-00A4-449B-AC72-BCCA72DD1311"]
+[PATH(CSTR):"source/cats"][NOID(UI32):12288733][VOLI(UI64):3222345986][RSLT(FC32):NONE][AVER(UI32):10]
+[ATIM(UI64):1581535134780426][ATYP(FC32):OLST][ANID(UI32):12448208][AMID(FC32):ILMX][ATID(UI64):7729403978647354233]]
+----
+
+
+. 使用 UUID 查找丢失对象的元数据：
++
+.. 选择 *ILM* > *对象元数据查找*。
+.. 输入 UUID，然后选择*查找*。
+.. 查看元数据中的位置，并采取适当的措施：
++
+[cols="2a,4a"]
+|===
+| 元数据 | 结束语 
+
+
+ a| 
+未找到对象 <object_identifier>
+ a| 
+如果未找到该对象，则返回消息“ERROR”：“”。
+
+如果未找到该对象，您可以重置*丢失的对象*的数量以清除警报。缺少某个对象表明该对象被故意删除。
+
+
+
+ a| 
+位置 > 0
+ a| 
+如果输出中列出了位置，则“*对象丢失*”警报可能是误报。
+
+确认对象存在。使用输出中列出的节点 ID 和文件路径来确认目标文件位于列出的位置。
+
+（程序link:searching-for-and-restoring-potentially-lost-objects.html["寻找可能丢失的物品"]解释如何使用节点 ID 来查找正确的存储节点。
+
+如果对象存在，您可以重置*丢失的对象*的数量以清除警报。
+
+
+
+ a| 
+位置 = 0
+ a| 
+如果输出中没有列出位置，则该对象可能丢失。您可以尝试link:searching-for-and-restoring-potentially-lost-objects.html["搜索并恢复对象"]您也可以自行解决，或者联系技术支持。
+
+技术支持可能会要求您确定是否正在进行存储恢复过程。查看有关link:../maintain/restoring-volume.html["使用网格管理器恢复对象数据"]和link:../maintain/restoring-object-data-to-storage-volume.html["将对象数据恢复到存储卷"]。
+
+|===
+
+
+

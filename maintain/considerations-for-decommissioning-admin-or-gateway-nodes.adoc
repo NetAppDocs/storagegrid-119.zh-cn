@@ -1,0 +1,36 @@
+---
+permalink: maintain/considerations-for-decommissioning-admin-or-gateway-nodes.html 
+sidebar: sidebar 
+keywords: storagegrid, decommission admin node, decommission gateway node 
+summary: 查看停用管理节点或网关节点的注意事项。 
+---
+= 停用管理节点或网关节点的注意事项
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+查看停用管理节点或网关节点的注意事项。
+
+
+
+== 管理节点注意事项
+
+* 您不能停用主管理节点。
+* 如果管理节点的某个网络接口属于高可用性 (HA) 组的一部分，则您无法停用该管理节点。您必须首先从 HA 组中删除网络接口。请参阅说明link:../admin/managing-high-availability-groups.html["管理 HA 组"]。
+* 根据需要，您可以在停用管理节点时安全地更改 ILM 策略。
+* 如果您停用管理节点并且为StorageGRID系统启用了单点登录 (SSO)，则必须记住从 Active Directory 联合身份验证服务 (AD FS) 中删除该节点的信赖方信任。
+* 如果你使用link:../admin/grid-federation-overview.html["网格联盟"]，请确保您要退役的节点的 IP 地址未指定用于电网联合连接。
+* 当您停用断开连接的管理节点时，您将丢失来自该节点的审计日志；但是，这些日志也应该存在于主管理节点上。
+
+
+
+
+== 网关节点的注意事项
+
+* 如果网关节点的某个网络接口属于高可用性 (HA) 组的一部分，则您无法停用该网关节点。您必须首先从 HA 组中删除网络接口。请参阅说明link:../admin/managing-high-availability-groups.html["管理 HA 组"]。
+* 根据需要，您可以在退役网关节点时安全地更改 ILM 策略。
+* 如果你使用link:../admin/grid-federation-overview.html["网格联盟"]，请确保您要退役的节点的 IP 地址未指定用于电网联合连接。
+* 当网关节点断开连接时，您可以安全地将其停用。
+

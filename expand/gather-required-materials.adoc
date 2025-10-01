@@ -1,0 +1,438 @@
+---
+permalink: expand/gather-required-materials.html 
+sidebar: sidebar 
+keywords: expand, expansion, planning, storagrid files 
+summary: 在执行扩展操作之前，请收集材料并安装和配置任何新硬件和网络。 
+---
+= 收集必要材料
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在执行扩展操作之前，请收集材料并安装和配置任何新硬件和网络。
+
+[cols="1a,2a"]
+|===
+| 物品 | 笔记 
+
+
+ a| 
+StorageGRID安装存档
+ a| 
+如果要添加新的网格节点或新站点，则必须下载并解压StorageGRID安装档案。您必须使用当前在网格上运行的相同版本。
+
+有关详细信息，请参阅<<download-and-extract-install-files,下载并解压StorageGRID安装文件>>。
+
+*注意：*如果您要向现有存储节点添加新的存储卷或安装新的StorageGRID设备，则无需下载文件。
+
+
+
+ a| 
+维修笔记本电脑
+ a| 
+服务笔记本电脑具有以下功能：
+
+* 网络端口
+* SSH 客户端（例如，PuTTY）
+* link:../admin/web-browser-requirements.html["支持的网络浏览器"]
+
+
+
+
+ a| 
+`Passwords.txt`文件
+ a| 
+包含在命令行上访问网格节点所需的密码。包含在恢复包中。
+
+
+
+ a| 
+配置密码
+ a| 
+首次安装StorageGRID系统时会创建并记录密码。配置密码不在 `Passwords.txt`文件。
+
+
+
+ a| 
+StorageGRID文档
+ a| 
+* link:../admin/index.html["管理StorageGRID"]
+* link:../release-notes/index.html["发行说明"]
+* 适用于您的平台的安装说明
++
+** link:../rhel/index.html["在 Red Hat Enterprise Linux 上安装StorageGRID"]
+** link:../ubuntu/index.html["在 Ubuntu 或 Debian 上安装StorageGRID"]
+** link:../vmware/index.html["在 VMware 上安装StorageGRID"]
+
+
+
+
+
+
+ a| 
+您的平台的当前文档
+ a| 
+有关支持的版本，请参阅 https://imt.netapp.com/matrix/#welcome["互操作性表工具 (IMT)"^]。
+
+|===
+
+
+== 下载并解压StorageGRID安装文件
+
+.下载并提取安装文件
+在添加新的网格节点或新站点之前，您必须下载适当的StorageGRID安装存档并提取文件。
+
+.关于此任务
+您必须使用当前在网格上运行的StorageGRID版本执行扩展操作。
+
+.步骤
+. 前往 https://mysupport.netapp.com/site/products/all/details/storagegrid/downloads-tab["NetApp下载： StorageGRID"^]。
+. 选择当前在网格上运行的StorageGRID版本。
+. 使用您的NetApp帐户的用户名和密码Sign in。
+. 阅读最终用户许可协议，选中复选框，然后选择*接受并继续*。
+. 在下载页面的“安装StorageGRID”列中，选择 `.tgz`或者 `.zip`适用于您的平台的文件。
++
+安装存档文件中显示的版本必须与当前安装的软件版本相匹配。
+
++
+使用 `.zip`如果您在服务笔记本电脑上运行 Windows，则该文件。
+
++
+[cols="1a,2a"]
+|===
+| 平台 | 安装档案 
+
+
+ a| 
+Red Hat Enterprise Linux
+| `StorageGRID-Webscale-_version_-RPM-_uniqueID_.zip` 
+`StorageGRID-Webscale-_version_-RPM-_uniqueID_.tgz` 
+
+
+ a| 
+Ubuntu、Debian 或 Appliances
+| `StorageGRID-Webscale-_version_-DEB-_uniqueID_.zip` 
+`StorageGRID-Webscale-_version_-DEB-_uniqueID_.tgz` 
+
+
+ a| 
+VMware
+| `StorageGRID-Webscale-_version_-VMware-_uniqueID_.zip` 
+`StorageGRID-Webscale-_version_-VMware-_uniqueID_.tgz` 
+
+
+ a| 
+OpenStack/其他虚拟机管理程序
+ a| 
+要扩展 OpenStack 上的现有部署，您必须部署运行上面列出的受支持的 Linux 发行版之一的虚拟机，并遵循适用于 Linux 的相应说明。
+
+|===
+. 下载并解压存档文件。
+. 根据您的平台、计划的网格拓扑以及您将如何扩展StorageGRID系统，按照适合您平台的步骤选择所需的文件。
++
+每个平台的步骤中列出的路径都是相对于存档文件安装的顶级目录的。
+
+. 如果您正在扩展 Red Hat Enterprise Linux 系统，请选择适当的文件。
+
+
+[cols="1a,1a"]
+|===
+| 路径和文件名 | 描述 
+
+
+| ./rpms/自述文件  a| 
+描述StorageGRID下载文件中包含的所有文件的文本文件。
+
+
+
+| ./rpms/NLF000000.txt  a| 
+免费许可证不提供任何产品支持权利。
+
+
+
+| StorageGRID  a| 
+用于在 RHEL 主机上安装StorageGRID节点映像的 RPM 包。
+
+
+
+| StorageGRID  a| 
+用于在 RHEL 主机上安装StorageGRID主机服务的 RPM 包。
+
+
+
+| 部署脚本工具 | 描述 
+
+
+| ./rpms/configure-storagegrid.py  a| 
+用于自动配置StorageGRID系统的 Python 脚本。
+
+
+
+| ./rpms/configure-sga.py  a| 
+用于自动配置StorageGRID设备的 Python 脚本。
+
+
+
+| ./rpms/configure-storagegrid.sample.json  a| 
+与以下文件一起使用的示例配置文件 `configure-storagegrid.py`脚本。
+
+
+
+| ./rpms/storagegrid-ssoauth.py  a| 
+启用单点登录后，您可以使用示例 Python 脚本登录网格管理 API。您还可以使用此脚本进行 Ping Federate 集成。
+
+
+
+| ./rpms/configure-storagegrid.blank.json  a| 
+用于 `configure-storagegrid.py`脚本。
+
+
+
+| ./rpms/extras/ansible  a| 
+用于配置 RHEL 主机以进行StorageGRID容器部署的示例 Ansible 角色和剧本。您可以根据需要自定义角色或剧本。
+
+
+
+| ./rpms/storagegrid-ssoauth-azure.py  a| 
+当使用 Active Directory 或 Ping Federate 启用单点登录 (SSO) 时，您可以使用该示例 Python 脚本登录到网格管理 API。
+
+
+
+| ./rpms/storagegrid-ssoauth-azure.js  a| 
+同伴调用的辅助脚本 `storagegrid-ssoauth-azure.py`用于与 Azure 执行 SSO 交互的 Python 脚本。
+
+
+
+| ./rpms/extras/api-schemas  a| 
+StorageGRID的 API 模式。
+
+*注意*：在执行升级之前，如果您没有非生产StorageGRID环境进行升级兼容性测试，则可以使用这些模式来确认您编写的任何使用StorageGRID管理 API 的代码是否与新的StorageGRID版本兼容。
+
+|===
+. 如果您正在扩展 Ubuntu 或 Debian 系统，请选择适当的文件。
+
+
+[cols="1a,1a"]
+|===
+| 路径和文件名 | 描述 
+
+
+| ./debs/README  a| 
+描述StorageGRID下载文件中包含的所有文件的文本文件。
+
+
+
+| ./debs/NLF000000.txt  a| 
+非生产NetApp许可证文件，可用于测试和概念验证部署。
+
+
+
+| ./debs/storagegrid-webscale-images-version-SHA.deb  a| 
+用于在 Ubuntu 或 Debian 主机上安装StorageGRID节点映像的 DEB 包。
+
+
+
+| ./debs/storagegrid-webscale-images-version-SHA.deb.md5  a| 
+文件的 MD5 校验和 `/debs/storagegrid-webscale-images-version-SHA.deb`。
+
+
+
+| ./debs/storagegrid-webscale-service-version-SHA.deb  a| 
+用于在 Ubuntu 或 Debian 主机上安装StorageGRID主机服务的 DEB 包。
+
+
+
+| 部署脚本工具 | 描述 
+
+
+| ./debs/configure-storagegrid.py  a| 
+用于自动配置StorageGRID系统的 Python 脚本。
+
+
+
+| ./debs/configure-sga.py  a| 
+用于自动配置StorageGRID设备的 Python 脚本。
+
+
+
+| ./debs/storagegrid-ssoauth.py  a| 
+启用单点登录后，您可以使用示例 Python 脚本登录网格管理 API。您还可以使用此脚本进行 Ping Federate 集成。
+
+
+
+| ./debs/configure-storagegrid.sample.json  a| 
+与以下文件一起使用的示例配置文件 `configure-storagegrid.py`脚本。
+
+
+
+| ./debs/configure-storagegrid.blank.json  a| 
+用于 `configure-storagegrid.py`脚本。
+
+
+
+| ./debs/extras/ansible  a| 
+用于配置 Ubuntu 或 Debian 主机以进行StorageGRID容器部署的示例 Ansible 角色和剧本。您可以根据需要自定义角色或剧本。
+
+
+
+| ./debs/storagegrid-ssoauth-azure.py  a| 
+当使用 Active Directory 或 Ping Federate 启用单点登录 (SSO) 时，您可以使用该示例 Python 脚本登录到网格管理 API。
+
+
+
+| ./debs/storagegrid-ssoauth-azure.js  a| 
+同伴调用的辅助脚本 `storagegrid-ssoauth-azure.py`用于与 Azure 执行 SSO 交互的 Python 脚本。
+
+
+
+| ./debs/extras/api-schemas  a| 
+StorageGRID的 API 模式。
+
+*注意*：在执行升级之前，如果您没有非生产StorageGRID环境进行升级兼容性测试，则可以使用这些模式来确认您编写的任何使用StorageGRID管理 API 的代码是否与新的StorageGRID版本兼容。
+
+|===
+. 如果您正在扩展 VMware 系统，请选择适当的文件。
+
+
+[cols="1a,1a"]
+|===
+| 路径和文件名 | 描述 
+
+
+| ./vsphere/README  a| 
+描述StorageGRID下载文件中包含的所有文件的文本文件。
+
+
+
+| ./vsphere/NLF000000.txt  a| 
+免费许可证不提供任何产品支持权利。
+
+
+
+| NetApp版本-SHA.vmdk  a| 
+用作创建网格节点虚拟机的模板的虚拟机磁盘文件。
+
+
+
+| ./vsphere/vsphere-primary-admin.ovf ./vsphere/vsphere-primary-admin.mf  a| 
+开放虚拟化格式模板文件(`.ovf`) 和清单文件(`.mf`) 用于部署主管理节点。
+
+
+
+| ./vsphere/vsphere-non-primary-admin.ovf ./vsphere/vsphere-non-primary-admin.mf  a| 
+模板文件(`.ovf`) 和清单文件(`.mf`) 用于部署非主管理节点。
+
+
+
+| ./vsphere/vsphere-gateway.ovf ./vsphere/vsphere-gateway.mf  a| 
+模板文件(`.ovf`) 和清单文件(`.mf`) 用于部署网关节点。
+
+
+
+| ./vsphere/vsphere-storage.ovf ./vsphere/vsphere-storage.mf  a| 
+模板文件(`.ovf`) 和清单文件(`.mf`) 用于部署基于虚拟机的存储节点。
+
+
+
+| 部署脚本工具 | 描述 
+
+
+| ./vsphere/deploy-vsphere-ovftool.sh  a| 
+用于自动部署虚拟网格节点的 Bash shell 脚本。
+
+
+
+| ./vsphere/deploy-vsphere-ovftool-sample.ini  a| 
+与以下文件一起使用的示例配置文件 `deploy-vsphere-ovftool.sh`脚本。
+
+
+
+| ./vsphere/configure-storagegrid.py  a| 
+用于自动配置StorageGRID系统的 Python 脚本。
+
+
+
+| ./vsphere/configure-sga.py  a| 
+用于自动配置StorageGRID设备的 Python 脚本。
+
+
+
+| ./vsphere/storagegrid-ssoauth.py  a| 
+启用单点登录 (SSO) 后，您可以使用该示例 Python 脚本登录到网格管理 API。您还可以使用此脚本进行 Ping Federate 集成。
+
+
+
+| ./vsphere/configure-storagegrid.sample.json  a| 
+与以下文件一起使用的示例配置文件 `configure-storagegrid.py`脚本。
+
+
+
+| ./vsphere/configure-storagegrid.blank.json  a| 
+用于 `configure-storagegrid.py`脚本。
+
+
+
+| ./vsphere/storagegrid-ssoauth-azure.py  a| 
+当使用 Active Directory 或 Ping Federate 启用单点登录 (SSO) 时，您可以使用该示例 Python 脚本登录到网格管理 API。
+
+
+
+| ./vsphere/storagegrid-ssoauth-azure.js  a| 
+同伴调用的辅助脚本 `storagegrid-ssoauth-azure.py`用于与 Azure 执行 SSO 交互的 Python 脚本。
+
+
+
+| ./vsphere/extras/api-schemas  a| 
+StorageGRID的 API 模式。
+
+*注意*：在执行升级之前，如果您没有非生产StorageGRID环境进行升级兼容性测试，则可以使用这些模式来确认您编写的任何使用StorageGRID管理 API 的代码是否与新的StorageGRID版本兼容。
+
+|===
+. 如果您正在扩展基于StorageGRID设备的系统，请选择适当的文件。
+
+
+[cols="1a,1a"]
+|===
+| 路径和文件名 | 描述 
+
+
+| ./debs/storagegrid-webscale-images-version-SHA.deb  a| 
+用于在您的设备上安装StorageGRID节点映像的 DEB 包。
+
+
+
+| ./debs/storagegrid-webscale-images-version-SHA.deb.md5  a| 
+文件的 MD5 校验和 `/debs/storagegridwebscale-
+images-version-SHA.deb`。
+
+|===
+
+NOTE: 对于设备安装，仅当您需要避免网络流量时才需要这些文件。设备可以从主管理节点下载所需的文件。
+
+
+
+== 验证硬件和网络
+
+在开始扩展StorageGRID系统之前，请确保以下事项：
+
+* 支持新网格节点或新站点所需的硬件已安装并配置完毕。
+* 所有新节点都与所有现有节点和新节点具有双向通信路径（网格网络的要求）。特别是，确认在扩展中添加的新节点和主管理节点之间打开了以下 TCP 端口：
++
+** 1055
+** 7443
+** 8011
+** 10342
+
+
++
+看link:../network/internal-grid-node-communications.html["内部网格节点通信"] 。
+
+* 主管理节点可以与所有用于托管StorageGRID系统的扩展服务器进行通信。
+* 如果任何新节点在以前未使用的子网上具有网格网络 IP 地址，则您已经link:updating-subnets-for-grid-network.html["添加了新的子网"]到网格网络子网列表。否则，您将必须取消扩展，添加新的子网，然后重新开始该过程。
+* 您没有在网格节点之间或StorageGRID站点之间的网格网络上使用网络地址转换 (NAT)。当您为网格网络使用私有 IPv4 地址时，这些地址必须能够从每个站点的每个网格节点直接路由。仅当您使用对网格中所有节点透明的隧道应用程序时，才支持使用 NAT 在公共网络段上桥接网格网络，这意味着网格节点不需要了解公共 IP 地址。
++
+此 NAT 限制特定于网格节点和网格网络。根据需要，您可以在外部客户端和网格节点之间使用 NAT，例如为网关节点提供公共 IP 地址。
+
+

@@ -1,0 +1,1007 @@
+---
+permalink: s3/quick-reference-support-for-aws-apis.html 
+sidebar: sidebar 
+keywords: Amazon s3, API, request headers, s3 support, request syntax, supported, aws s3 
+summary: '本页总结了StorageGRID如何支持 Amazon Simple Storage Service (S3) API。' 
+---
+= 快速参考：支持的 S3 API 请求
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+本页总结了StorageGRID如何支持 Amazon Simple Storage Service (S3) API。
+
+此页面仅包含StorageGRID支持的 S3 操作。
+
+
+NOTE: 要查看每个操作的 AWS 文档，请选择标题中的链接。
+
+
+
+== 通用 URI 查询参数和请求标头
+
+除非另有说明，否则支持以下常见 URI 查询参数：
+
+* `versionId`（根据对象操作的需要）
+
+
+除非另有说明，否则支持以下常见请求标头：
+
+* `Authorization`
+* `Connection`
+* `Content-Length`
+* `Content-MD5`
+* `Content-Type`
+* `Date`
+* `Expect`
+* `Host`
+* `x-amz-date`
+
+
+.相关信息
+* link:../s3/s3-rest-api-supported-operations-and-limitations.html["S3 REST API 实现细节"]
+* https://docs.aws.amazon.com/AmazonS3/latest/API/RESTCommonRequestHeaders.html["Amazon Simple Storage Service API 参考：常见请求标头"^]
+
+
+
+
+== https://docs.aws.amazon.com/AmazonS3/latest/API/API_AbortMultipartUpload.html["中止分段上传"^]
+
+.URI 查询参数和请求标头
+StorageGRID支持所有<<common-params,通用参数和标头>>对于此请求，加上这个额外的 URI 查询参数：
+
+* `uploadId`
+
+
+.请求正文
+无
+
+.StorageGRID文档
+link:operations-for-multipart-uploads.html["分段上传的操作"]
+
+
+
+== https://docs.aws.amazon.com/AmazonS3/latest/API/API_CompleteMultipartUpload.html["完成多部分上传"^]
+
+.URI 查询参数和请求标头
+StorageGRID支持所有<<common-params,通用参数和标头>>对于此请求，加上这个额外的 URI 查询参数：
+
+* `uploadId`
+* `x-amz-checksum-sha256`
+
+
+.请求主体 XML 标签
+StorageGRID支持以下请求正文 XML 标签：
+
+* `ChecksumSHA256`
+* `CompleteMultipartUpload`
+* `ETag`
+* `Part`
+* `PartNumber`
+
+
+.StorageGRID文档
+link:complete-multipart-upload.html["完成多部分上传"]
+
+
+
+== https://docs.aws.amazon.com/AmazonS3/latest/API/API_CopyObject.html["复制对象"^]
+
+.URI 查询参数和请求标头
+StorageGRID支持所有<<common-params,通用参数和标头>>对于此请求，加上以下附加标头：
+
+* `x-amz-copy-source`
+* `x-amz-copy-source-if-match`
+* `x-amz-copy-source-if-modified-since`
+* `x-amz-copy-source-if-none-match`
+* `x-amz-copy-source-if-unmodified-since`
+* `x-amz-copy-source-server-side-encryption-customer-algorithm`
+* `x-amz-copy-source-server-side-encryption-customer-key`
+* `x-amz-copy-source-server-side-encryption-customer-key-MD5`
+* `x-amz-metadata-directive`
+* `x-amz-object-lock-legal-hold`
+* `x-amz-object-lock-mode`
+* `x-amz-object-lock-retain-until-date`
+* `x-amz-server-side-encryption`
+* `x-amz-server-side-encryption-customer-algorithm`
+* `x-amz-server-side-encryption-customer-key`
+* `x-amz-server-side-encryption-customer-key-MD5`
+* `x-amz-storage-class`
+* `x-amz-tagging`
+* `x-amz-tagging-directive`
+* `x-amz-meta-<metadata-name>`
+
+
+.请求正文
+无
+
+.StorageGRID文档
+link:put-object-copy.html["复制对象"]
+
+
+
+== https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateBucket.html["创建桶"^]
+
+.URI 查询参数和请求标头
+StorageGRID支持所有<<common-params,通用参数和标头>>对于此请求，加上以下附加标头：
+
+* `x-amz-bucket-object-lock-enabled`
+
+
+.请求正文
+StorageGRID支持实施时由 Amazon S3 REST API 定义的所有请求正文参数。
+
+.StorageGRID文档
+link:operations-on-buckets.html["对 bucket 的操作"]
+
+
+
+== https://docs.aws.amazon.com/AmazonS3/latest/API/API_CreateMultipartUpload.html["创建多部分上传"^]
+
+.URI 查询参数和请求标头
+StorageGRID支持所有<<common-params,通用参数和标头>>对于此请求，加上以下附加标头：
+
+* `Cache-Control`
+* `Content-Disposition`
+* `Content-Encoding`
+* `Content-Language`
+* `Expires`
+* `x-amz-checksum-algorithm`
+* `x-amz-server-side-encryption`
+* `x-amz-storage-class`
+* `x-amz-server-side-encryption-customer-algorithm`
+* `x-amz-server-side-encryption-customer-key`
+* `x-amz-server-side-encryption-customer-key-MD5`
+* `x-amz-tagging`
+* `x-amz-object-lock-mode`
+* `x-amz-object-lock-retain-until-date`
+* `x-amz-object-lock-legal-hold`
+* `x-amz-meta-<metadata-name>`
+
+
+.请求正文
+无
+
+.StorageGRID文档
+link:initiate-multipart-upload.html["创建多部分上传"]
+
+
+
+== https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucket.html["删除桶"^]
+
+.URI 查询参数和请求标头
+StorageGRID支持所有<<common-params,通用参数和标头>>对于此请求。
+
+.StorageGRID文档
+link:operations-on-buckets.html["对 bucket 的操作"]
+
+
+
+== https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucketCors.html["删除BucketCors"^]
+
+.URI 查询参数和请求标头
+StorageGRID支持所有<<common-params,通用参数和标头>>对于此请求。
+
+.请求正文
+无
+
+.StorageGRID文档
+link:operations-on-buckets.html["对 bucket 的操作"]
+
+
+
+== https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucketEncryption.html["删除桶加密"^]
+
+.URI 查询参数和请求标头
+StorageGRID支持所有<<common-params,通用参数和标头>>对于此请求。
+
+.请求正文
+无
+
+.StorageGRID文档
+link:operations-on-buckets.html["对 bucket 的操作"]
+
+
+
+== https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucketLifecycle.html["DeleteBucket生命周期"^]
+
+.URI 查询参数和请求标头
+StorageGRID支持所有<<common-params,通用参数和标头>>对于此请求。
+
+.请求正文
+无
+
+.StorageGRID文档
+* link:operations-on-buckets.html["对 bucket 的操作"]
+* link:create-s3-lifecycle-configuration.html["创建 S3 生命周期配置"]
+
+
+
+
+== https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucketPolicy.html["删除桶策略"^]
+
+.URI 查询参数和请求标头
+StorageGRID支持所有<<common-params,通用参数和标头>>对于此请求。
+
+.请求正文
+无
+
+.StorageGRID文档
+link:operations-on-buckets.html["对 bucket 的操作"]
+
+
+
+== https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucketReplication.html["删除桶复制"^]
+
+.URI 查询参数和请求标头
+StorageGRID支持所有<<common-params,通用参数和标头>>对于此请求。
+
+.请求正文
+无
+
+.StorageGRID文档
+link:operations-on-buckets.html["对 bucket 的操作"]
+
+
+
+== https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucketTagging.html["删除桶标记"^]
+
+.URI 查询参数和请求标头
+StorageGRID支持所有<<common-params,通用参数和标头>>对于此请求。
+
+.请求正文
+无
+
+.StorageGRID文档
+link:operations-on-buckets.html["对 bucket 的操作"]
+
+
+
+== https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteObject.html["删除对象"^]
+
+.URI 查询参数和请求标头
+StorageGRID支持所有<<common-params,通用参数和标头>>对于此请求，加上以下附加请求标头：
+
+* `x-amz-bypass-governance-retention`
+
+
+.请求正文
+无
+
+.StorageGRID文档
+link:operations-on-objects.html["对对象的操作"]
+
+
+
+== https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteObjects.html["删除对象"^]
+
+.URI 查询参数和请求标头
+StorageGRID支持所有<<common-params,通用参数和标头>>对于此请求，加上以下附加请求标头：
+
+* `x-amz-bypass-governance-retention`
+
+
+.请求正文
+StorageGRID支持实施时由 Amazon S3 REST API 定义的所有请求正文参数。
+
+.StorageGRID文档
+link:operations-on-objects.html["对对象的操作"]
+
+
+
+== https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteObjectTagging.html["删除对象标记"^]
+
+StorageGRID支持所有<<common-params,通用参数和标头>>对于此请求。
+
+.请求正文
+无
+
+.StorageGRID文档
+link:operations-on-objects.html["对对象的操作"]
+
+
+
+== https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketAcl.html["获取BucketAcl"^]
+
+.URI 查询参数和请求标头
+StorageGRID支持所有<<common-params,通用参数和标头>>对于此请求。
+
+.请求正文
+无
+
+.StorageGRID文档
+link:operations-on-buckets.html["对 bucket 的操作"]
+
+
+
+== https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketCors.html["获取BucketCors"^]
+
+.URI 查询参数和请求标头
+StorageGRID支持所有<<common-params,通用参数和标头>>对于此请求。
+
+.请求正文
+无
+
+.StorageGRID文档
+link:operations-on-buckets.html["对 bucket 的操作"]
+
+
+
+== https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketEncryption.html["获取桶加密"^]
+
+.URI 查询参数和请求标头
+StorageGRID支持所有<<common-params,通用参数和标头>>对于此请求。
+
+.请求正文
+无
+
+.StorageGRID文档
+link:operations-on-buckets.html["对 bucket 的操作"]
+
+
+
+== https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketLifecycleConfiguration.html["获取BucketLifecycleConfiguration"^]
+
+.URI 查询参数和请求标头
+StorageGRID支持所有<<common-params,通用参数和标头>>对于此请求。
+
+.请求正文
+无
+
+.StorageGRID文档
+* link:operations-on-buckets.html["对 bucket 的操作"]
+* link:create-s3-lifecycle-configuration.html["创建 S3 生命周期配置"]
+
+
+
+
+== https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketLocation.html["获取存储桶位置"^]
+
+.URI 查询参数和请求标头
+StorageGRID支持所有<<common-params,通用参数和标头>>对于此请求。
+
+.请求正文
+无
+
+.StorageGRID文档
+link:operations-on-buckets.html["对 bucket 的操作"]
+
+
+
+== https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketNotificationConfiguration.html["获取存储桶通知配置"^]
+
+.URI 查询参数和请求标头
+StorageGRID支持所有<<common-params,通用参数和标头>>对于此请求。
+
+.请求正文
+无
+
+.StorageGRID文档
+link:operations-on-buckets.html["对 bucket 的操作"]
+
+
+
+== https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketPolicy.html["获取BucketPolicy"^]
+
+.URI 查询参数和请求标头
+StorageGRID支持所有<<common-params,通用参数和标头>>对于此请求。
+
+.请求正文
+无
+
+.StorageGRID文档
+link:operations-on-buckets.html["对 bucket 的操作"]
+
+
+
+== https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketReplication.html["获取Bucket复制"^]
+
+.URI 查询参数和请求标头
+StorageGRID支持所有<<common-params,通用参数和标头>>对于此请求。
+
+.请求正文
+无
+
+.StorageGRID文档
+link:operations-on-buckets.html["对 bucket 的操作"]
+
+
+
+== https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketTagging.html["获取桶标记"^]
+
+.URI 查询参数和请求标头
+StorageGRID支持所有<<common-params,通用参数和标头>>对于此请求。
+
+.请求正文
+无
+
+.StorageGRID文档
+link:operations-on-buckets.html["对 bucket 的操作"]
+
+
+
+== https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketVersioning.html["获取Bucket版本"^]
+
+.URI 查询参数和请求标头
+StorageGRID支持所有<<common-params,通用参数和标头>>对于此请求。
+
+.请求正文
+无
+
+.StorageGRID文档
+link:operations-on-buckets.html["对 bucket 的操作"]
+
+
+
+== https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObject.html["获取对象"^]
+
+.URI 查询参数和请求标头
+StorageGRID支持所有<<common-params,通用参数和标头>>对于此请求，加上以下附加 URI 查询参数：
+
+* `x-amz-checksum-mode`
+* `partNumber`
+* `response-cache-control`
+* `response-content-disposition`
+* `response-content-encoding`
+* `response-content-language`
+* `response-content-type`
+* `response-expires`
+
+
+以及这些额外的请求标头：
+
+* `Range`
+* `x-amz-server-side-encryption-customer-algorithm`
+* `x-amz-server-side-encryption-customer-key`
+* `x-amz-server-side-encryption-customer-key-MD5`
+* `If-Match`
+* `If-Modified-Since`
+* `If-None-Match`
+* `If-Unmodified-Since`
+
+
+.请求正文
+无
+
+.StorageGRID文档
+link:get-object.html["获取对象"]
+
+
+
+== https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObjectAcl.html["获取对象Acl"^]
+
+.URI 查询参数和请求标头
+StorageGRID支持所有<<common-params,通用参数和标头>>对于此请求。
+
+.请求正文
+无
+
+.StorageGRID文档
+link:operations-on-objects.html["对对象的操作"]
+
+
+
+== https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObjectLegalHold.html["获取对象合法持有"^]
+
+.URI 查询参数和请求标头
+StorageGRID支持所有<<common-params,通用参数和标头>>对于此请求。
+
+.请求正文
+无
+
+.StorageGRID文档
+link:../s3/use-s3-api-for-s3-object-lock.html["使用 S3 REST API 配置 S3 对象锁"]
+
+
+
+== https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObjectLockConfiguration.html["获取对象锁配置"^]
+
+.URI 查询参数和请求标头
+StorageGRID支持所有<<common-params,通用参数和标头>>对于此请求。
+
+.请求正文
+无
+
+.StorageGRID文档
+link:../s3/use-s3-api-for-s3-object-lock.html["使用 S3 REST API 配置 S3 对象锁"]
+
+
+
+== https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObjectRetention.html["获取对象保留"^]
+
+.URI 查询参数和请求标头
+StorageGRID支持所有<<common-params,通用参数和标头>>对于此请求。
+
+.请求正文
+无
+
+.StorageGRID文档
+link:../s3/use-s3-api-for-s3-object-lock.html["使用 S3 REST API 配置 S3 对象锁"]
+
+
+
+== https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObjectTagging.html["获取对象标记"^]
+
+.URI 查询参数和请求标头
+StorageGRID支持所有<<common-params,通用参数和标头>>对于此请求。
+
+.请求正文
+无
+
+.StorageGRID文档
+link:operations-on-objects.html["对对象的操作"]
+
+
+
+== https://docs.aws.amazon.com/AmazonS3/latest/API/API_HeadBucket.html["头桶"^]
+
+.URI 查询参数和请求标头
+StorageGRID支持所有<<common-params,通用参数和标头>>对于此请求。
+
+.请求正文
+无
+
+.StorageGRID文档
+link:operations-on-buckets.html["对 bucket 的操作"]
+
+
+
+== https://docs.aws.amazon.com/AmazonS3/latest/API/API_HeadObject.html["头部对象"^]
+
+.URI 查询参数和请求标头
+StorageGRID支持所有<<common-params,通用参数和标头>>对于此请求，加上以下附加标头：
+
+* `x-amz-checksum-mode`
+* `x-amz-server-side-encryption-customer-algorithm`
+* `x-amz-server-side-encryption-customer-key`
+* `x-amz-server-side-encryption-customer-key-MD5`
+* `If-Match`
+* `If-Modified-Since`
+* `If-None-Match`
+* `If-Unmodified-Since`
+* `Range`
+
+
+.请求正文
+无
+
+.StorageGRID文档
+link:head-object.html["头部对象"]
+
+
+
+== https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListBuckets.html["列表桶"^]
+
+.URI 查询参数和请求标头
+StorageGRID支持所有<<common-params,通用参数和标头>>对于此请求。
+
+.请求正文
+无
+
+.StorageGRID文档
+link:operations-on-the-service.html["服务上的操作 > ListBuckets"]
+
+
+
+== https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListMultipartUploads.html["列出多部分上传"^]
+
+.URI 查询参数和请求标头
+StorageGRID支持所有<<common-params,通用参数和标头>>对于此请求，加上以下附加参数：
+
+* `encoding-type`
+* `key-marker`
+* `max-uploads`
+* `prefix`
+* `upload-id-marker`
+
+
+.请求正文
+无
+
+.StorageGRID文档
+link:list-multipart-uploads.html["列出多部分上传"]
+
+
+
+== https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListObjects.html["列表对象"^]
+
+.URI 查询参数和请求标头
+StorageGRID支持所有<<common-params,通用参数和标头>>对于此请求，加上以下附加参数：
+
+* `delimiter`
+* `encoding-type`
+* `marker`
+* `max-keys`
+* `prefix`
+
+
+.请求正文
+无
+
+.StorageGRID文档
+link:operations-on-buckets.html["对 bucket 的操作"]
+
+
+
+== https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListObjectsV2.html["ListObjectsV2"^]
+
+.URI 查询参数和请求标头
+StorageGRID支持所有<<common-params,通用参数和标头>>对于此请求，加上以下附加参数：
+
+* `continuation-token`
+* `delimiter`
+* `encoding-type`
+* `fetch-owner`
+* `max-keys`
+* `prefix`
+* `start-after`
+
+
+.请求正文
+无
+
+.StorageGRID文档
+link:operations-on-buckets.html["对 bucket 的操作"]
+
+
+
+== https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListObjectVersions.html["列出对象版本"^]
+
+.URI 查询参数和请求标头
+StorageGRID支持所有<<common-params,通用参数和标头>>对于此请求，加上以下附加参数：
+
+* `delimiter`
+* `encoding-type`
+* `key-marker`
+* `max-keys`
+* `prefix`
+* `version-id-marker`
+
+
+.请求正文
+无
+
+.StorageGRID文档
+link:operations-on-buckets.html["对 bucket 的操作"]
+
+
+
+== https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListParts.html["列出零件"^]
+
+.URI 查询参数和请求标头
+StorageGRID支持所有<<common-params,通用参数和标头>>对于此请求，加上以下附加参数：
+
+* `max-parts`
+* `part-number-marker`
+* `uploadId`
+
+
+.请求正文
+无
+
+.StorageGRID文档
+link:list-multipart-uploads.html["列出多部分上传"]
+
+
+
+== https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketCors.html["PutBucketCors"^]
+
+.URI 查询参数和请求标头
+StorageGRID支持所有<<common-params,通用参数和标头>>对于此请求。
+
+.请求正文
+StorageGRID支持实施时由 Amazon S3 REST API 定义的所有请求正文参数。
+
+.StorageGRID文档
+link:operations-on-buckets.html["对 bucket 的操作"]
+
+
+
+== https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketEncryption.html["PutBucket加密"^]
+
+.URI 查询参数和请求标头
+StorageGRID支持所有<<common-params,通用参数和标头>>对于此请求。
+
+.请求主体 XML 标签
+StorageGRID支持以下请求正文 XML 标签：
+
+* `ApplyServerSideEncryptionByDefault`
+* `Rule`
+* `ServerSideEncryptionConfiguration`
+* `SSEAlgorithm`
+
+
+.StorageGRID文档
+link:operations-on-buckets.html["对 bucket 的操作"]
+
+
+
+== https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketLifecycleConfiguration.html["PutBucket生命周期配置"^]
+
+.URI 查询参数和请求标头
+StorageGRID支持所有<<common-params,通用参数和标头>>对于此请求。
+
+.请求主体 XML 标签
+StorageGRID支持以下请求正文 XML 标签：
+
+* `And`
+* `Days`
+* `Expiration`
+* `ExpiredObjectDeleteMarker`
+* `Filter`
+* `ID`
+* `Key`
+* `LifecycleConfiguration`
+* `NewerNoncurrentVersions`
+* `NoncurrentDays`
+* `NoncurrentVersionExpiration`
+* `Prefix`
+* `Rule`
+* `Status`
+* `Tag`
+* `Value`
+
+
+.StorageGRID文档
+* link:operations-on-buckets.html["对 bucket 的操作"]
+* link:create-s3-lifecycle-configuration.html["创建 S3 生命周期配置"]
+
+
+
+
+== https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketNotificationConfiguration.html["PutBucketNotification配置"^]
+
+.URI 查询参数和请求标头
+StorageGRID支持所有<<common-params,通用参数和标头>>对于此请求。
+
+.请求主体 XML 标签
+StorageGRID支持以下请求正文 XML 标签：
+
+* `Event`
+* `Filter`
+* `FilterRule`
+* `Id`
+* `Name`
+* `NotificationConfiguration`
+* `Prefix`
+* `S3Key`
+* `Suffix`
+* `Topic`
+* `TopicConfiguration`
+* `Value`
+
+
+.StorageGRID文档
+link:operations-on-buckets.html["对 bucket 的操作"]
+
+
+
+== https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketPolicy.html["PutBucketPolicy"^]
+
+.URI 查询参数和请求标头
+StorageGRID支持所有<<common-params,通用参数和标头>>对于此请求。
+
+.请求正文
+有关支持的 JSON 主体字段的详细信息，请参阅link:bucket-and-group-access-policies.html["使用存储桶和组访问策略"]。
+
+
+
+== https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketReplication.html["PutBucket复制"^]
+
+.URI 查询参数和请求标头
+StorageGRID支持所有<<common-params,通用参数和标头>>对于此请求。
+
+.请求主体 XML 标签
+* `Bucket`
+* `Destination`
+* `Prefix`
+* `ReplicationConfiguration`
+* `Rule`
+* `Status`
+* `StorageClass`
+
+
+.StorageGRID文档
+link:operations-on-buckets.html["对 bucket 的操作"]
+
+
+
+== https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketTagging.html["PutBucketTagging"^]
+
+.URI 查询参数和请求标头
+StorageGRID支持所有<<common-params,通用参数和标头>>对于此请求。
+
+.请求正文
+StorageGRID支持实施时由 Amazon S3 REST API 定义的所有请求正文参数。
+
+.StorageGRID文档
+link:operations-on-buckets.html["对 bucket 的操作"]
+
+
+
+== https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketVersioning.html["PutBucket版本控制"^]
+
+.URI 查询参数和请求标头
+StorageGRID支持所有<<common-params,通用参数和标头>>对于此请求。
+
+.请求主体参数
+StorageGRID支持以下请求正文参数：
+
+* `VersioningConfiguration`
+* `Status`
+
+
+.StorageGRID文档
+link:operations-on-buckets.html["对 bucket 的操作"]
+
+
+
+== https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObject.html["放置对象"^]
+
+.URI 查询参数和请求标头
+StorageGRID支持所有<<common-params,通用参数和标头>>对于此请求，加上以下附加标头：
+
+* `Cache-Control`
+* `Content-Disposition`
+* `Content-Encoding`
+* `Content-Language`
+* `Expires`
+* `x-amz-checksum-sha256`
+* `x-amz-server-side-encryption`
+* `x-amz-storage-class`
+* `x-amz-server-side-encryption-customer-algorithm`
+* `x-amz-server-side-encryption-customer-key`
+* `x-amz-server-side-encryption-customer-key-MD5`
+* `x-amz-tagging`
+* `x-amz-object-lock-mode`
+* `x-amz-object-lock-retain-until-date`
+* `x-amz-object-lock-legal-hold`
+* `x-amz-meta-<metadata-name>`
+
+
+.请求正文
+* 对象的二进制数据
+
+
+.StorageGRID文档
+link:put-object.html["放置对象"]
+
+
+
+== https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObjectLegalHold.html["放置对象合法保留"^]
+
+.URI 查询参数和请求标头
+StorageGRID支持所有<<common-params,通用参数和标头>>对于此请求。
+
+.请求正文
+StorageGRID支持实施时由 Amazon S3 REST API 定义的所有请求正文参数。
+
+.StorageGRID文档
+link:use-s3-api-for-s3-object-lock.html["使用 S3 REST API 配置 S3 对象锁"]
+
+
+
+== https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObjectLockConfiguration.html["PutObjectLock配置"^]
+
+.URI 查询参数和请求标头
+StorageGRID支持所有<<common-params,通用参数和标头>>对于此请求。
+
+.请求正文
+StorageGRID支持实施时由 Amazon S3 REST API 定义的所有请求正文参数。
+
+.StorageGRID文档
+link:use-s3-api-for-s3-object-lock.html["使用 S3 REST API 配置 S3 对象锁"]
+
+
+
+== https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObjectRetention.html["PutObjectRetention"^]
+
+.URI 查询参数和请求标头
+StorageGRID支持所有<<common-params,通用参数和标头>>对于此请求，加上以下附加标头：
+
+* `x-amz-bypass-governance-retention`
+
+
+.请求正文
+StorageGRID支持实施时由 Amazon S3 REST API 定义的所有请求正文参数。
+
+.StorageGRID文档
+link:use-s3-api-for-s3-object-lock.html["使用 S3 REST API 配置 S3 对象锁"]
+
+
+
+== https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutObjectTagging.html["PutObjectTagging"^]
+
+.URI 查询参数和请求标头
+StorageGRID支持所有<<common-params,通用参数和标头>>对于此请求。
+
+.请求正文
+StorageGRID支持实施时由 Amazon S3 REST API 定义的所有请求正文参数。
+
+.StorageGRID文档
+link:operations-on-objects.html["对对象的操作"]
+
+
+
+== https://docs.aws.amazon.com/AmazonS3/latest/API/API_RestoreObject.html["恢复对象"^]
+
+.URI 查询参数和请求标头
+StorageGRID支持所有<<common-params,通用参数和标头>>对于此请求。
+
+.请求正文
+有关支持的主体字段的详细信息，请参阅link:post-object-restore.html["恢复对象"]。
+
+
+
+== https://docs.aws.amazon.com/AmazonS3/latest/API/API_SelectObjectContent.html["选择对象内容"^]
+
+.URI 查询参数和请求标头
+StorageGRID支持所有<<common-params,通用参数和标头>>对于此请求。
+
+.请求正文
+有关支持的主体字段的详细信息，请参阅以下内容：
+
+* link:use-s3-select.html["使用 S3 Select"]
+* link:select-object-content.html["选择对象内容"]
+
+
+
+
+== https://docs.aws.amazon.com/AmazonS3/latest/API/API_UploadPart.html["上传部分"^]
+
+.URI 查询参数和请求标头
+StorageGRID支持所有<<common-params,通用参数和标头>>对于此请求，加上以下附加 URI 查询参数：
+
+* `partNumber`
+* `uploadId`
+
+
+以及这些额外的请求标头：
+
+* `x-amz-checksum-sha256`
+* `x-amz-server-side-encryption-customer-algorithm`
+* `x-amz-server-side-encryption-customer-key`
+* `x-amz-server-side-encryption-customer-key-MD5`
+
+
+.请求正文
+* 该部分的二进制数据
+
+
+.StorageGRID文档
+link:upload-part.html["上传部分"]
+
+
+
+== https://docs.aws.amazon.com/AmazonS3/latest/API/API_UploadPartCopy.html["上传部分复制"^]
+
+.URI 查询参数和请求标头
+StorageGRID支持所有<<common-params,通用参数和标头>>对于此请求，加上以下附加 URI 查询参数：
+
+* `partNumber`
+* `uploadId`
+
+
+以及这些额外的请求标头：
+
+* `x-amz-copy-source`
+* `x-amz-copy-source-if-match`
+* `x-amz-copy-source-if-modified-since`
+* `x-amz-copy-source-if-none-match`
+* `x-amz-copy-source-if-unmodified-since`
+* `x-amz-copy-source-range`
+* `x-amz-server-side-encryption-customer-algorithm`
+* `x-amz-server-side-encryption-customer-key`
+* `x-amz-server-side-encryption-customer-key-MD5`
+* `x-amz-copy-source-server-side-encryption-customer-algorithm`
+* `x-amz-copy-source-server-side-encryption-customer-key`
+* `x-amz-copy-source-server-side-encryption-customer-key-MD5`
+
+
+.请求正文
+无
+
+.StorageGRID文档
+link:upload-part-copy.html["上传部分复制"]

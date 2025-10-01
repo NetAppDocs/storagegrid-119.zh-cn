@@ -1,0 +1,129 @@
+---
+permalink: harden/hardening-guidelines-for-storagegrid-nodes.html 
+sidebar: sidebar 
+keywords: hardening guidelines, nodes, security 
+summary: StorageGRID节点可以部署在 VMware 虚拟机上、Linux 主机上的容器引擎内或作为专用硬件设备。每种类型的平台和每种类型的节点都有自己的一套强化最佳实践。 
+---
+= StorageGRID节点的强化指南
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+StorageGRID节点可以部署在 VMware 虚拟机上、Linux 主机上的容器引擎内或作为专用硬件设备。每种类型的平台和每种类型的节点都有自己的一套强化最佳实践。
+
+
+
+== 控制远程 IPMI 对BMC的访问
+
+您可以为所有包含BMC 的设备启用或禁用远程 IPMI 访问。远程 IPMI 接口允许任何拥有BMC帐户和密码的人对您的StorageGRID设备进行低级硬件访问。如果您不需要远程 IPMI 访问BMC，请禁用此选项。
+
+* 要控制 Grid Manager 中对BMC 的远程 IPMI 访问，请转到 *配置* > *安全* > *安全设置* > *设备*：
++
+** 清除“启用远程 IPMI 访问”复选框以禁用 IPMI 对BMC的访问。
+** 选中“启用远程 IPMI 访问”复选框以启用对BMC 的IPMI 访问。
+
+
+
+
+
+
+== 防火墙配置
+
+作为系统强化过程的一部分，您必须检查外部防火墙配置并进行修改，以便仅接受来自严格需要的 IP 地址和端口的流量。
+
+StorageGRID在每个节点上都包含一个内部防火墙，通过使您能够控制对节点的网络访问来增强网格的安全性。你应该link:../admin/manage-firewall-controls.html["管理内部防火墙控制"]阻止除特定网格部署所需端口之外的所有端口的网络访问。您在防火墙控制页面上所做的配置更改将部署到每个节点。
+
+具体来说，您可以管理以下领域：
+
+* *特权地址*：您可以允许选定的 IP 地址或子网访问“管理外部访问”选项卡上的设置关闭的端口。
+* *管理外部访问*：您可以关闭默认打开的端口，或者重新打开以前关闭的端口。
+* *不受信任的客户端网络*：您可以指定节点是否信任来自客户端网络的入站流量，以及在配置不受信任的客户端网络时要打开的其他端口。
+
+
+虽然此内部防火墙针对一些常见威胁提供了额外的保护层，但它并不能消除对外部防火墙的需求。
+
+有关StorageGRID使用的所有内部和外部端口的列表，请参阅link:../network/network-port-reference.html["网络端口参考"]。
+
+
+
+== 禁用未使用的服务
+
+对于所有StorageGRID节点，您应该禁用或阻止对未使用的服务的访问。例如，如果您不打算使用 DHCP，请使用网格管理器关闭端口 68。选择*配置* > *防火墙控制* > *管理外部访问*。然后将端口 68 的状态切换从 *打开* 更改为 *关闭*。
+
+
+
+== 虚拟化、容器和共享硬件
+
+对于所有StorageGRID节点，避免在与不受信任的软件相同的物理硬件上运行StorageGRID 。如果StorageGRID和恶意软件都存在于同一个物理硬件上，请不要假设虚拟机管理程序保护将阻止恶意软件访问受StorageGRID保护的数据。例如，Meltdown 和 Spectre 攻击利用现代处理器中的关键漏洞，并允许程序窃取同一台计算机内存中的数据。
+
+
+
+== 在安装期间保护节点
+
+安装节点时，不允许不受信任的用户通过网络访问StorageGRID节点。节点只有在加入电网后才会完全安全。
+
+
+
+== 管理节点指南
+
+管理节点提供系统配置、监控和日志记录等管理服务。当您登录到网格管理器或租户管理器时，您正在连接到管理节点。
+
+请遵循以下准则来保护StorageGRID系统中的管理节点：
+
+* 保护所有管理节点免受不受信任的客户端（例如开放互联网上的客户端）的攻击。确保不受信任的客户端无法访问网格网络、管理网络或客户端网络上的任何管理节点。
+* StorageGRID组控制对网格管理器和租户管理器功能的访问。授予每个用户组其角色所需的最低权限，并使用只读访问模式来防止用户更改配置。
+* 使用StorageGRID负载均衡器端点时，对于不受信任的客户端流量，请使用网关节点而不是管理节点。
+* 如果您有不受信任的租户，请不要允许他们直接访问租户管理器或租户管理 API。相反，让任何不受信任的租户使用租户门户或外部租户管理系统，与租户管理 API 进行交互。
+* 或者，使用管理代理来更好地控制从管理节点到NetApp支持的AutoSupport通信。请参阅link:../admin/configuring-admin-proxy-settings.html["创建管理代理"]。
+* 或者，使用受限的 8443 和 9443 端口来分离网格管理器和租户管理器通信。阻止共享端口 443 并将租户请求限制到端口 9443 以获得额外保护。
+* 或者，为网格管理员和租户用户使用单独的管理节点。
+
+
+欲了解更多信息，请参阅link:../admin/index.html["管理StorageGRID"]。
+
+
+
+== 存储节点指南
+
+存储节点管理和存储对象数据和元数据。遵循这些准则来保护StorageGRID系统中的存储节点。
+
+* 不允许不受信任的客户端直接连接到存储节点。使用由网关节点或第三方负载均衡器提供服务的负载均衡器端点。
+* 不要为不受信任的租户启用出站服务。例如，为不受信任的租户创建账户时，不允许租户使用自己的身份源，也不允许使用平台服务。请参阅link:../admin/creating-tenant-account.html["创建租户帐户"]。
+* 对于不受信任的客户端流量，请使用第三方负载均衡器。第三方负载平衡提供了更多的控制和额外的防御攻击层。
+* 或者，使用存储代理来更好地控制云存储池和从存储节点到外部服务的平台服务通信。请参阅link:../admin/configuring-storage-proxy-settings.html["创建存储代理"]。
+* 或者，使用客户端网络连接到外部服务。然后，选择 *CONFIGURATION* > *Security* > *Firewall control* > *Untrusted Client Networks* 并指示存储节点上的客户端网络不受信任。存储节点不再接受客户端网络上的任何传入流量，但它继续允许平台服务的出站请求。
+
+
+
+
+== 网关节点指南
+
+网关节点提供可选的负载平衡接口，客户端应用程序可以使用它来连接到StorageGRID。请遵循以下准则来保护StorageGRID系统中的任何网关节点：
+
+* 配置和使用负载均衡器端点。看link:../admin/managing-load-balancing.html["负载平衡的注意事项"] 。
+* 对于不受信任的客户端流量，在客户端和网关节点或存储节点之间使用第三方负载平衡器。第三方负载平衡提供了更多的控制和额外的防御攻击层。如果您确实使用第三方负载均衡器，仍然可以选择将网络流量配置为通过内部负载均衡器端点或直接发送到存储节点。
+* 如果您使用负载均衡器端点，则可以选择让客户端通过客户端网络连接。然后，选择 *CONFIGURATION* > *Security* > *Firewall control* > *Untrusted Client Networks* 并指示网关节点上的客户端网络不受信任。网关节点仅接受明确配置为负载均衡器端点的端口上的入站流量。
+
+
+
+
+== 硬件设备节点指南
+
+StorageGRID硬件设备专为在StorageGRID系统中使用而设计。一些设备可以用作存储节点。其他设备可用作管理节点或网关节点。您可以将设备节点与基于软件的节点结合起来，或者部署完全工程化的全设备网格。
+
+请遵循以下准则来保护StorageGRID系统中的任何硬件设备节点：
+
+* 如果设备使用SANtricity System Manager 进行存储控制器管理，则应防止不受信任的客户端通过网络访问SANtricity System Manager。
+* 如果设备具有基板管理控制器 (BMC)，请注意BMC管理端口允许低级硬件访问。仅将BMC管理端口连接到安全、可信的内部管理网络。如果没有可用的网络，请将BMC管理端口保持未连接或阻塞状态，除非技术支持请求BMC连接。
+* 如果设备支持使用智能平台管理接口 (IPMI) 标准通过以太网远程管理控制器硬件，请阻止端口 623 上不受信任的流量。
+
+
+
+NOTE: 您可以为所有包含BMC 的设备启用或禁用远程 IPMI 访问。远程 IPMI 接口允许任何拥有BMC帐户和密码的人对您的StorageGRID设备进行低级硬件访问。如果您不需要远程 IPMI 访问BMC，请使用以下方法之一禁用此选项：+ 在 Grid Manager 中，转到 *配置* > *安全* > *安全设置* > *设备*，然后清除 *启用远程 IPMI 访问*复选框。+ 在网格管理 API 中，使用私有端点： `PUT /private/bmc` 。
+
+* 对于包含使用SANtricity System Manager 管理的 SED、FDE 或 FIPS NL-SAS 驱动器的设备型号， https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/accessing-and-configuring-santricity-system-manager.html["启用并配置SANtricity Drive Security"^] 。
+* 对于包含使用StorageGRID Appliance Installer 和 Grid Manager 管理的 SED 或 FIPS NVMe SSD 的设备型号， https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/optional-enabling-node-encryption.html["启用并配置StorageGRID驱动器加密"^] 。
+* 对于没有 SED、FDE 或 FIPS 驱动器的设备，启用并配置StorageGRID软件节点加密 https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/optional-enabling-node-encryption.html#enable-node-encryption["使用密钥管理服务器（KMS）"^]。
+

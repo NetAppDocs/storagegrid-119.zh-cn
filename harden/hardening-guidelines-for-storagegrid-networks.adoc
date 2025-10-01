@@ -1,0 +1,54 @@
+---
+permalink: harden/hardening-guidelines-for-storagegrid-networks.html 
+sidebar: sidebar 
+keywords: hardening guidelines, networks, networking, security 
+summary: StorageGRID系统每个网格节点最多支持三个网络接口，允许您为每个单独的网格节点配置网络以满足您的安全性和访问要求。 
+---
+= StorageGRID网络强化指南
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+StorageGRID系统每个网格节点最多支持三个网络接口，允许您为每个单独的网格节点配置网络以满足您的安全性和访问要求。
+
+有关StorageGRID网络的详细信息，请参阅link:../network/storagegrid-network-types.html["StorageGRID网络类型"]。
+
+
+
+== 网格网络指南
+
+您必须为所有内部StorageGRID流量配置一个网格网络。所有网格节点都在网格网络上，并且它们必须能够与所有其他节点通信。
+
+配置网格网络时，请遵循以下准则：
+
+* 确保网络安全，免受不受信任的客户端（例如开放互联网上的客户端）的攻击。
+* 如果可能的话，请将网格网络专门用于内部流量。管理网络和客户端网络都有额外的防火墙限制，可以阻止外部流量流向内部服务。支持使用网格网络进行外部客户端流量，但这种使用方式提供的保护层较少。
+* 如果StorageGRID部署跨越多个数据中心，请在网格网络上使用虚拟专用网络 (VPN) 或等效网络为内部流量提供额外保护。
+* 某些维护程序需要在主管理节点和所有其他网格节点之间的端口 22 上进行安全外壳 (SSH) 访问。使用外部防火墙限制对受信任客户端的 SSH 访问。
+
+
+
+
+== 管理网络指南
+
+管理网络通常用于管理任务（使用网格管理器或 SSH 的受信任员工）以及与其他受信任服务（如 LDAP、DNS、NTP 或 KMS（或 KMIP 服务器））进行通信。但是， StorageGRID内部并不强制执行这种用法。
+
+如果您使用管理网络，请遵循以下准则：
+
+* 阻止管理网络上的所有内部流量端口。查看link:../network/internal-grid-node-communications.html["内部端口列表"]。
+* 如果不受信任的客户端可以访问管理网络，请使用外部防火墙阻止对管理网络上的StorageGRID的访问。
+
+
+
+
+== 客户网络指南
+
+客户端网络通常用于租户和与外部服务（例如 CloudMirror 复制服务或其他平台服务）进行通信。但是， StorageGRID内部并不强制执行这种用法。
+
+如果您使用客户端网络，请遵循以下准则：
+
+* 阻止客户端网络上的所有内部流量端口。查看link:../network/internal-grid-node-communications.html["内部端口列表"]。
+* 仅在明确配置的端点上接受入站客户端流量。查看有关link:../admin/manage-firewall-controls.html["管理防火墙控制"]。
+

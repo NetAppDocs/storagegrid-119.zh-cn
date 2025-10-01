@@ -1,0 +1,52 @@
+---
+permalink: upgrade/upgrade-workflow.html 
+sidebar: sidebar 
+keywords: upgrade workflow 
+summary: 在开始升级之前，请查看常规工作流程。  StorageGRID升级页面将指导您完成升级步骤。 
+---
+= 升级快速入门
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在开始升级之前，请查看常规工作流程。  StorageGRID升级页面将指导您完成每个升级步骤。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["一个"]准备 Linux 主机
+[role="quick-margin-para"]
+如果在 Linux 主机上部署了任何StorageGRID节点，link:linux-installing-rpm-or-deb-package-on-all-hosts.html["在每个主机上安装 RPM 或 DEB 包"]在开始升级之前。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["两个"]上传升级和修补程序文件
+[role="quick-margin-para"]
+从主管理节点访问StorageGRID升级页面并上传升级文件和修补程序文件（如果需要）。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["三"]下载恢复包
+[role="quick-margin-para"]
+在开始升级之前下载当前的恢复包。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["四个"]运行升级预检查
+[role="quick-margin-para"]
+升级预检查可帮助您检测问题，以便您在开始实际升级之前解决这些问题。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png["五"]开始升级
+[role="quick-margin-para"]
+当您开始升级时，将再次运行预检查并自动升级主管理节点。在主管理节点升级期间，您无法访问网格管理器。审计日志也将不可用。此升级最多可能需要 30 分钟。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-6.png["六"]下载恢复包
+[role="quick-margin-para"]
+主管理节点升级后，下载新的恢复包。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-7.png["七"]批准节点
+[role="quick-margin-para"]
+您可以批准单个网格节点、网格节点组或所有网格节点。
+
+
+CAUTION: 除非您确定该节点已准备好停止并重新启动，否则不要批准网格节点的升级。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-8.png["八个"]恢复运营
+[role="quick-margin-para"]
+当所有网格节点都升级完成后，新功能将启用，您可以恢复操作。您必须等到后台*升级数据库*任务和*最终升级步骤*任务完成后才能执行退役或扩展程序。
+
+.相关信息
+link:estimating-time-to-complete-upgrade.html["估计完成升级的时间"]

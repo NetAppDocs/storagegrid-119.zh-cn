@@ -1,0 +1,87 @@
+---
+permalink: s3/complete-multipart-upload.html 
+sidebar: sidebar 
+keywords: multipart upload, object, object size 
+summary: CompleteMultipartUpload 操作通过组装先前上传的部分来完成对象的分段上传。 
+---
+= 完成多部分上传
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+CompleteMultipartUpload 操作通过组装先前上传的部分来完成对象的分段上传。
+
+
+NOTE: StorageGRID支持按升序排列非连续值 `partNumber`请求参数与CompleteMultipartUpload一致。该参数可以以任意值开头。
+
+
+
+== 解决冲突
+
+冲突的客户端请求（例如两个客户端写入同一个密钥）将根据“最新胜利”的原则解决。  “最新胜利”评估的时间取决于StorageGRID系统完成给定请求的时间，而不是 S3 客户端开始操作的时间。
+
+
+
+== 支持的请求标头
+
+支持以下请求标头：
+
+* `x-amz-checksum-sha256`
+* `x-amz-storage-class`
++
+这 `x-amz-storage-class`StorageGRID匹配的 ILM 规则指定了link:../ilm/data-protection-options-for-ingest.html["双重提交或平衡摄取选项"]。
+
+* `STANDARD`
++
+（默认）当 ILM 规则使用双重提交选项时，或者当平衡选项回退到创建临时副本时，指定双重提交接收操作。
+
+* `REDUCED_REDUNDANCY`
++
+当 ILM 规则使用双重提交选项时，或者当平衡选项回退到创建临时副本时，指定单次提交摄取操作。
+
++
+
+NOTE: 如果您将对象提取到启用了 S3 对象锁定的存储桶中，则 `REDUCED_REDUNDANCY`选项被忽略。如果您将对象提取到旧版兼容存储桶中， `REDUCED_REDUNDANCY`选项返回错误。  StorageGRID将始终执行双重提交摄取以确保满足合规性要求。
+
+
+
+
+CAUTION: 如果分段上传未在 15 天内完成，则该操作将被标记为非活动状态，并且所有相关数据将从系统中删除。
+
+
+NOTE: 这 `ETag`返回的值不是数据的 MD5 和，而是遵循 Amazon S3 API 实现的 `ETag`多部分对象的值。
+
+
+
+== 不支持的请求标头
+
+不支持以下请求标头：
+
+* `x-amz-sdk-checksum-algorithm`
+* `x-amz-trailer`
+
+
+
+
+== 版本控制
+
+此操作完成分段上传。如果存储桶启用了版本控制，则在分段上传完成后会创建对象版本。
+
+如果为存储桶启用了版本控制，则唯一的 `versionId`针对所存储对象的版本自动生成。这 `versionId`也会在响应中返回 `x-amz-version-id`响应头。
+
+如果版本控制暂停，则对象版本将以空值存储 `versionId`如果空版本已经存在，它将被覆盖。
+
+
+NOTE: 当为存储桶启用版本控制时，完成分段上传总是会创建一个新版本，即使在同一个对象键上完成了并发分段上传。当存储桶未启用版本控制时，可以启动分段上传，然后让另一个分段上传首先在同一个对象键上启动并完成。在非版本化存储桶上，最后完成的分段上传具有优先权。
+
+
+
+== 复制、通知或元数据通知失败
+
+如果发生分段上传的存储桶配置了平台服务，则即使相关的复制或通知操作失败，分段上传也会成功。
+
+租户可以通过更新对象的元数据或标签来触发失败的复制或通知。租户可以重新提交现有值以避免做出不必要的更改。
+
+请参阅link:../admin/troubleshooting-platform-services.html["平台服务故障排除"] 。

@@ -1,0 +1,378 @@
+---
+permalink: s3/error-responses.html 
+sidebar: sidebar 
+keywords: error, error responses 
+summary: StorageGRID系统支持所有适用的标准 S3 REST API 错误响应。此外， StorageGRID实现还添加了几个自定义响应。 
+---
+= 错误响应
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+StorageGRID系统支持所有适用的标准 S3 REST API 错误响应。此外， StorageGRID实现还添加了几个自定义响应。
+
+
+
+== 支持的 S3 API 错误代码
+
+[cols="1a,1a"]
+|===
+| 名称 | HTTP 状态 
+
+
+ a| 
+拒绝访问
+ a| 
+403 禁止
+
+
+
+ a| 
+坏文摘
+ a| 
+400 错误请求
+
+
+
+ a| 
+BucketAlreadyExists
+ a| 
+409冲突
+
+
+
+ a| 
+BucketNotEmpty
+ a| 
+409冲突
+
+
+
+ a| 
+不完整的身体
+ a| 
+400 错误请求
+
+
+
+ a| 
+内部错误
+ a| 
+500 内部服务器错误
+
+
+
+ a| 
+无效访问密钥
+ a| 
+403 禁止
+
+
+
+ a| 
+无效参数
+ a| 
+400 错误请求
+
+
+
+ a| 
+无效的存储桶名称
+ a| 
+400 错误请求
+
+
+
+ a| 
+无效的BucketState
+ a| 
+409冲突
+
+
+
+ a| 
+无效摘要
+ a| 
+400 错误请求
+
+
+
+ a| 
+无效加密算法错误
+ a| 
+400 错误请求
+
+
+
+ a| 
+无效部分
+ a| 
+400 错误请求
+
+
+
+ a| 
+无效零件订单
+ a| 
+400 错误请求
+
+
+
+ a| 
+无效范围
+ a| 
+416 请求范围不满足
+
+
+
+ a| 
+无效请求
+ a| 
+400 错误请求
+
+
+
+ a| 
+无效的存储类
+ a| 
+400 错误请求
+
+
+
+ a| 
+无效标签
+ a| 
+400 错误请求
+
+
+
+ a| 
+无效URI
+ a| 
+400 错误请求
+
+
+
+ a| 
+键太长
+ a| 
+400 错误请求
+
+
+
+ a| 
+格式错误的XML
+ a| 
+400 错误请求
+
+
+
+ a| 
+元数据太大
+ a| 
+400 错误请求
+
+
+
+ a| 
+方法不允许
+ a| 
+405 方法不允许
+
+
+
+ a| 
+缺失内容长度
+ a| 
+411 长度要求
+
+
+
+ a| 
+MissingRequestBody错误
+ a| 
+400 错误请求
+
+
+
+ a| 
+缺少安全标头
+ a| 
+400 错误请求
+
+
+
+ a| 
+没有这样的桶
+ a| 
+404 未找到
+
+
+
+ a| 
+NoSuchKey
+ a| 
+404 未找到
+
+
+
+ a| 
+NoSuchUpload
+ a| 
+404 未找到
+
+
+
+ a| 
+未实施
+ a| 
+501 未实现
+
+
+
+ a| 
+NoSuchBucketPolicy
+ a| 
+404 未找到
+
+
+
+ a| 
+ObjectLockConfigurationNotFoundError
+ a| 
+404 未找到
+
+
+
+ a| 
+前提条件不成立
+ a| 
+412 先决条件失败
+
+
+
+ a| 
+请求时间偏差过大
+ a| 
+403 禁止
+
+
+
+ a| 
+暂停服务
+ a| 
+503 服务不可用
+
+
+
+ a| 
+签名不匹配
+ a| 
+403 禁止
+
+
+
+ a| 
+桶太多
+ a| 
+400 错误请求
+
+
+
+ a| 
+必须指定用户密钥
+ a| 
+400 错误请求
+
+|===
+
+
+== StorageGRID自定义错误代码
+
+[cols="2a,2a,1a"]
+|===
+| 名称 | 描述 | HTTP 状态 
+
+
+ a| 
+XBucketLifecycleNotAllowed
+ a| 
+旧版兼容存储桶中不允许配置存储桶生命周期
+ a| 
+400 错误请求
+
+
+
+ a| 
+XBucketPolicyParseException
+ a| 
+无法解析收到的存储桶策略 JSON。
+ a| 
+400 错误请求
+
+
+
+ a| 
+XComplianceConflict
+ a| 
+由于旧版合规性设置，操作被拒绝。
+ a| 
+403 禁止
+
+
+
+ a| 
+XComplianceReducedRedundancyForbidden
+ a| 
+旧版兼容存储桶中不允许减少冗余
+ a| 
+400 错误请求
+
+
+
+ a| 
+XMaxBucketPolicyLengthExceeded
+ a| 
+您的策略超出了允许的最大存储桶策略长度。
+ a| 
+400 错误请求
+
+
+
+ a| 
+XMissingInternalRequestHeader
+ a| 
+缺少内部请求的标头。
+ a| 
+400 错误请求
+
+
+
+ a| 
+XNoSuchBucketCompliance
+ a| 
+指定的存储桶未启用旧版合规性。
+ a| 
+404 未找到
+
+
+
+ a| 
+X不可接受
+ a| 
+该请求包含一个或多个无法满足的接受标头。
+ a| 
+406 不可接受
+
+
+
+ a| 
+XNotImplemented
+ a| 
+您提供的请求暗示了尚未实现的功能。
+ a| 
+501 未实现
+
+|===

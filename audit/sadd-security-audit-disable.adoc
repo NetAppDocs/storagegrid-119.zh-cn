@@ -1,0 +1,47 @@
+---
+permalink: audit/sadd-security-audit-disable.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, message, SADD, Security Audit Disable 
+summary: 此消息表明原始服务\（节点 ID\）已关闭审计消息日志记录；审计消息不再被收集或传递。 
+---
+= SADD：安全审计禁用
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+此消息表明原始服务（节点 ID）已关闭审计消息日志记录；不再收集或传递审计消息。
+
+[cols="1a,1a,4a"]
+|===
+| 代码 | 字段 | 描述 
+
+
+ a| 
+AETM
+ a| 
+启用方法
+ a| 
+用于禁用审计的方法。
+
+
+
+ a| 
+AEUN
+ a| 
+用户名
+ a| 
+执行禁用审计日志记录命令的用户名。
+
+
+
+ a| 
+放射学研究实验室
+ a| 
+结果
+ a| 
+该字段的值为 NONE。 RSLT 是必填消息字段，但与此消息无关。使用 NONE 而不是 SUCS，以便不过滤该消息。
+
+|===
+该消息意味着日志记录之前已启用，但现在已被禁用。这通常仅在批量摄取期间使用，以提高系统性能。批量活动结束后，审计功能将恢复（SADE），禁用审计的功能将被永久阻止。

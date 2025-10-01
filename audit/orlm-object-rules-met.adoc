@@ -1,0 +1,158 @@
+---
+permalink: audit/orlm-object-rules-met.html 
+sidebar: sidebar 
+keywords: audit message, ORLM, Object Rules Met, ilm rule 
+summary: 当对象按照 ILM 规则成功存储和复制时，会生成此消息。 
+---
+= ORLM：满足对象规则
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+当对象按照 ILM 规则成功存储和复制时，会生成此消息。
+
+
+NOTE: 如果策略中的另一个规则使用对象大小高级过滤器，则当默认的 Make 2 Copies 规则成功存储对象时，不会生成 ORLM 消息。
+
+[cols="1a,1a,4a"]
+|===
+| 代码 | 字段 | 描述 
+
+
+ a| 
+建造
+ a| 
+桶头
+ a| 
+存储桶 ID 字段。用于内部操作。仅当 STAT 为 PRGD 时才出现。
+
+
+
+ a| 
+中央商务区
+ a| 
+内容块标识符
+ a| 
+对象的 CBID。
+
+
+
+ a| 
+CSIZ
+ a| 
+内容大小
+ a| 
+对象的大小（以字节为单位）。
+
+
+
+ a| 
+本地控制
+ a| 
+位置
+ a| 
+StorageGRID系统内对象数据的存储位置。如果对象没有位置（例如，已被删除），则 LOCS 的值为“”。
+
+CLEC：对于擦除编码对象，应用于对象数据的擦除编码配置文件 ID 和擦除编码组 ID。
+
+CLDI：对于复制的对象，LDR 节点 ID 和对象位置的卷 ID。
+
+CLNL：如果对象数据已存档，则为对象位置的 ARC 节点 ID。
+
+
+
+ a| 
+路径
+ a| 
+S3 存储桶/密钥
+ a| 
+S3 存储桶名称和 S3 密钥名称。
+
+
+
+ a| 
+放射学研究实验室
+ a| 
+结果
+ a| 
+ILM 操作的结果。
+
+SUCS：ILM 操作成功。
+
+
+
+ a| 
+规则
+ a| 
+规则标签
+ a| 
+赋予应用于此对象的 ILM 规则的人类可读标签。
+
+
+
+ a| 
+新加坡电气公司
+ a| 
+容器 UUID
+ a| 
+分段对象的容器的 UUID。仅当对象被分割时，此值才可用。
+
+
+
+ a| 
+SGCB
+ a| 
+集装箱CBID
+ a| 
+分割对象的容器的 CBID。此值仅适用于分段对象和多部分对象。
+
+
+
+ a| 
+STAT
+ a| 
+状态
+ a| 
+ILM 操作的状态。
+
+完成：针对对象的 ILM 操作已完成。
+
+DFER：该对象已被标记为未来 ILM 重新评估。
+
+PRGD：该对象已从StorageGRID系统中删除。
+
+NLOC：在StorageGRID系统中无法再找到对象数据。此状态可能表明对象数据的所有副本均已丢失或损坏。
+
+
+
+ a| 
+UUID
+ a| 
+通用唯一标识符
+ a| 
+StorageGRID系统内对象的标识符。
+
+
+
+ a| 
+垂直集成式
+ a| 
+版本 ID
+ a| 
+在版本控制存储桶中创建的新对象的版本 ID。对存储桶和未版本控制的存储桶中的对象的操作不包含此字段。
+
+|===
+对于单个对象，可以多次发出 ORLM 审计消息。例如，只要发生以下事件之一，就会发出该警报：
+
+* 对象的 ILM 规则永远得到满足。
+* 对象的 ILM 规则在此时期得到满足。
+* ILM 规则已删除该对象。
+* 后台验证过程检测到复制对象数据的副本已损坏。  StorageGRID系统执行 ILM 评估以替换损坏的对象。
+
+
+.相关信息
+* link:object-ingest-transactions.html["对象摄取交易"]
+* link:object-delete-transactions.html["对象删除事务"]
+

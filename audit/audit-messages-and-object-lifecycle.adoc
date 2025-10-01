@@ -1,0 +1,47 @@
+---
+permalink: audit/audit-messages-and-object-lifecycle.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, message, log, object lifecycle, ingest, retrieve, delete, s3, timing, ILM, Information lifecycle management 
+summary: 每次提取、检索或删除对象时都会生成审计消息。您可以通过查找 S3 API 特定的审计消息来在审计日志中识别这些事务。 
+---
+= 审计消息何时生成？
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+每次提取、检索或删除对象时都会生成审计消息。您可以通过查找 S3 API 特定的审计消息来在审计日志中识别这些事务。
+
+审计消息通过特定于每个协议的标识符进行链接。
+
+[cols="1a,1a"]
+|===
+| 协议 | 代码 
+
+
+ a| 
+链接 S3 操作
+ a| 
+S3BK（存储桶）、S3KY（密钥）或两者
+
+
+
+ a| 
+链接 Swift 操作
+ a| 
+WCON（容器）、WOBJ（对象）或两者
+
+
+
+ a| 
+链接内部运营
+ a| 
+CBID（对象的内部标识符）
+
+|===
+
+
+== 审计消息的时间
+
+由于网格节点之间的时间差异、对象大小和网络延迟等因素，不同服务生成的审计消息的顺序可能与本节示例中显示的顺序不同。

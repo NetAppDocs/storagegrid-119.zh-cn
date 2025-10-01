@@ -1,0 +1,126 @@
+---
+permalink: maintain/starting-software-installation-on-services-appliance-recovery.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, services appliance, start software installation 
+summary: 要在服务设备上安装网关节点或管理节点，请使用设备中包含的StorageGRID设备安装程序。 
+---
+= 在服务设备上开始软件安装
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+要在服务设备上安装网关节点或管理节点，请使用设备中包含的StorageGRID设备安装程序。
+
+.开始之前
+* 该设备安装在机架中，连接到您的网络并打开电源。
+* 使用StorageGRID设备安装程序为设备配置网络链接和 IP 地址。
+* 如果您正在安装网关节点或非主管理节点，则您知道StorageGRID网格的主管理节点的 IP 地址。
+* StorageGRID设备安装程序的 IP 配置页面上列出的所有网格网络子网均在主管理节点上的网格网络子网列表中定义。
++
+看 https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/index.html["硬件安装快速启动"^]。
+
+* 您正在使用link:../admin/web-browser-requirements.html["支持的网络浏览器"]。
+* 您已将其中一个 IP 地址分配给该设备。您可以使用管理网络、网格网络或客户端网络的 IP 地址。
+* 如果您正在安装主管理节点，则可以使用此版本StorageGRID的 Ubuntu 或 Debian 安装文件。
++
+
+NOTE: 在制造过程中，最新版本的StorageGRID软件已预装到服务设备上。如果预装的软件版本与StorageGRID部署中使用的版本相匹配，则不需要安装文件。
+
+
+
+.关于此任务
+要在服务设备上安装StorageGRID软件：
+
+* 对于主管理节点，您可以指定节点的名称，然后上传适当的软件包（如果需要）。
+* 对于非主管理节点或网关节点，您可以指定或确认主管理节点的 IP 地址和节点名称。
+* 您开始安装并等待卷配置和软件安装。
+* 安装过程进行到一半时暂停。要恢复安装，您必须登录网格管理器并将待处理节点配置为故障节点的替代节点。
+* 配置节点后，设备安装过程完成，并且设备重新启动。
+
+
+.步骤
+. 打开浏览器并输入服务设备的其中一个 IP 地址。
++
+`https://_Controller_IP_:8443`
+
++
+出现StorageGRID Appliance Installer 主页。
+
++
+image::../media/services_appliance_installer_gateway_node.png[家电安装程序主页]
+
+. 要安装主管理节点：
++
+.. 在此节点部分中，对于*节点类型*，选择*主管理员*。
+.. 在“*节点名称*”字段中，输入与要恢复的节点相同的名称，然后单击“*保存*”。
+.. 在“安装”部分中，检查“当前状态”下列出的软件版本
++
+如果准备安装的软件版本正确，请跳至<<installation_section_step,安装步骤>>。
+
+.. 如果您需要上传不同版本的软件，请在*高级*菜单下选择*上传StorageGRID软件*。
++
+出现“上传StorageGRID软件”页面。
+
++
+image::../media/upload_sw_for_pa_on_sga1000.png[屏幕截图周围有文字描述]
+
+.. 单击“浏览”上传StorageGRID软件的“软件包”和“校验和文件”。
++
+选择文件后，它们会自动上传。
+
+.. 单击“*主页*”返回StorageGRID Appliance Installer 主页。
+
+
+. 要安装网关节点或非主管理节点：
++
+.. 在“此节点”部分中，对于“*节点类型*”，选择“*网关*”或“*非主管理员*”，具体取决于您要恢复的节点类型。
+.. 在“*节点名称*”字段中，输入与要恢复的节点相同的名称，然后单击“*保存*”。
+.. 在主管理节点连接部分，确定是否需要指定主管理节点的 IP 地址。
++
+假设主管理节点或至少一个配置了 ADMIN_IP 的其他网格节点位于同一子网上， StorageGRID设备安装程序可以自动发现此 IP 地址。
+
+.. 如果未显示此 IP 地址或者您需要更改它，请指定地址：
+
+
++
+[cols="1a,2a"]
+|===
+| 选项 | 描述 
+
+
+ a| 
+手动 IP 输入
+ a| 
+.. 清除“启用管理节点发现”复选框。
+.. 手动输入 IP 地址。
+.. 单击“保存”。
+.. 等待新 IP 地址的连接状态变为“就绪”。
+
+
+
+
+ a| 
+自动发现所有已连接的主要管理节点
+ a| 
+.. 选中“启用管理节点发现”复选框。
+.. 从发现的 IP 地址列表中，选择将部署此服务设备的网格的主管理节点。
+.. 单击“保存”。
+.. 等待新 IP 地址的连接状态变为“就绪”。
+
+
+|===
+. [[installation_section_step]]在安装部分，确认当前状态为准备开始安装节点名称，并且*开始安装*按钮已启用。
++
+如果未启用“*开始安装*”按钮，您可能需要更改网络配置或端口设置。有关说明，请参阅设备的维护说明。
+
+. 在StorageGRID Appliance Installer 主页上，单击 *开始安装*。
++
+当前状态变为“安装正在进行中”，并显示监控安装页面。
+
++
+
+NOTE: 如果需要手动访问“监视器安装”页面，请单击菜单栏中的“*监视器安装*”。
+
+

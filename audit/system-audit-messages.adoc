@@ -1,0 +1,172 @@
+---
+permalink: audit/system-audit-messages.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, message, messages, system, ECOC, ETAF, GNRG, GNUR, GTED, GTST, GTSU, LLST, OLST, SADD, SADE, SVRF, SVRU, SYSD, SYST, SYSU, VLST 
+summary: 属于系统审计类别的审计消息用于与审计系统本身、网格节点状态、系统范围的任务活动（网格任务）和服务备份操作相关的事件。 
+---
+= 系统审计消息
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+属于系统审计类别的审计消息用于与审计系统本身、网格节点状态、系统范围的任务活动（网格任务）和服务备份操作相关的事件。
+
+[cols="1a,2a,1a"]
+|===
+| 代码 | 消息标题和描述 | 请参见 
+
+
+ a| 
+ECMC
+ a| 
+丢失的擦除编码数据片段：表示检测到丢失的擦除编码数据片段。
+ a| 
+link:ecmc-missing-erasure-coded-data-fragment.html["ECMC：缺失擦除编码数据片段"]
+
+
+
+ a| 
+欧洲合作委员会
+ a| 
+损坏的擦除编码数据片段：表示已检测到损坏的擦除编码数据片段。
+ a| 
+link:ecoc-corrupt-erasure-coded-data-fragment.html["ECOC：损坏的擦除编码数据片段"]
+
+
+
+ a| 
+ETAF
+ a| 
+安全认证失败：使用传输层安全性 (TLS) 的连接尝试失败。
+ a| 
+link:etaf-security-authentication-failed.html["ETAF：安全认证失败"]
+
+
+
+ a| 
+GNRG
+ a| 
+GNDS 注册：服务在StorageGRID系统中更新或注册有关自身的信息。
+ a| 
+link:gnrg-gnds-registration.html["GNRG：GNDS 注册"]
+
+
+
+ a| 
+GNUR
+ a| 
+GNDS 取消注册：服务已从StorageGRID系统取消注册。
+ a| 
+link:gnur-gnds-unregistration.html["GNUR：GNDS 注销"]
+
+
+
+ a| 
+绿带技术发展中心
+ a| 
+网格任务结束：CMN 服务已完成网格任务的处理。
+ a| 
+link:gted-grid-task-ended.html["GTED：网格任务结束"]
+
+
+
+ a| 
+GTST
+ a| 
+网格任务已启动：CMN 服务已开始处理网格任务。
+ a| 
+link:gtst-grid-task-started.html["GTST：网格任务已启动"]
+
+
+
+ a| 
+GTSU
+ a| 
+网格任务已提交：网格任务已提交至 CMN 服务。
+ a| 
+link:gtsu-grid-task-submitted.html["GTSU：网格任务已提交"]
+
+
+
+ a| 
+低地时间
+ a| 
+位置丢失：当位置丢失时会生成此审计消息。
+ a| 
+link:llst-location-lost.html["LLST：位置丢失"]
+
+
+
+ a| 
+OLST
+ a| 
+对象丢失：无法在StorageGRID系统内找到请求的对象。
+ a| 
+link:olst-system-detected-lost-object.html["OLST：系统检测到丢失的物体"]
+
+
+
+ a| 
+南非残疾发展局
+ a| 
+安全审计禁用：审计消息日志记录已关闭。
+ a| 
+link:sadd-security-audit-disable.html["SADD：安全审计禁用"]
+
+
+
+ a| 
+萨德
+ a| 
+安全审计启用：审计消息日志记录已恢复。
+ a| 
+link:sade-security-audit-enable.html["SADE：安全审计启用"]
+
+
+
+ a| 
+SVRF
+ a| 
+对象存储验证失败：内容块未通过验证检查。
+ a| 
+link:svrf-object-store-verify-fail.html["SVRF：对象存储验证失败"]
+
+
+
+ a| 
+SVRU
+ a| 
+对象存储验证未知：在对象存储中检测到意外的对象数据。
+ a| 
+link:svru-object-store-verify-unknown.html["SVRU：对象存储验证未知"]
+
+
+
+ a| 
+系统驱动器
+ a| 
+节点停止：已请求关闭。
+ a| 
+link:sysd-node-stop.html["SYSD：节点停止"]
+
+
+
+ a| 
+系统
+ a| 
+节点停止：服务启动正常停止。
+ a| 
+link:syst-node-stopping.html["SYST：节点停止"]
+
+
+
+ a| 
+中山大学
+ a| 
+节点启动：服务已启动；消息中指示了上次关闭的性质。
+ a| 
+link:sysu-node-start.html["SYSU：节点启动"]
+
+|===

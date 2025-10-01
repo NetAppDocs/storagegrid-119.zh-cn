@@ -1,0 +1,63 @@
+---
+permalink: tenant/understanding-cloudmirror-replication-service.html 
+sidebar: sidebar 
+keywords: cloudmirror replication 
+summary: 如果您希望StorageGRID将添加到存储桶的指定对象复制到一个或多个目标存储桶，则可以为 S3 存储桶启用 CloudMirror 复制。 
+---
+= 了解 CloudMirror 复制服务
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果您希望StorageGRID将添加到存储桶的指定对象复制到一个或多个外部目标存储桶，则可以为 S3 存储桶启用 CloudMirror 复制。
+
+例如，您可以使用 CloudMirror 复制将特定客户记录镜像到 Amazon S3，然后利用 AWS 服务对您的数据执行分析。
+
+
+NOTE: 如果源存储桶启用了 S3 对象锁，则不支持 CloudMirror 复制。
+
+
+
+== CloudMirror 和 ILM
+
+CloudMirror 复制独立于网格的活动 ILM 策略运行。 CloudMirror 服务在对象存储到源存储桶时对其进行复制，并尽快将其传送到目标存储桶。当对象摄取成功时，就会触发复制对象的传递。
+
+
+
+== CloudMirror 和跨网格复制
+
+CloudMirror 复制与跨网格复制功能具有重要的相似之处和区别。请参阅link:../admin/grid-federation-compare-cgr-to-cloudmirror.html["比较跨网格复制和 CloudMirror 复制"] 。
+
+
+
+== CloudMirror 和 S3 存储桶
+
+CloudMirror 复制通常配置为使用外部 S3 存储桶作为目标。但是，您也可以配置复制以使用另一个StorageGRID部署或任何与 S3 兼容的服务。
+
+现有存储桶:: 当您为现有存储桶启用 CloudMirror 复制时，仅复制添加到该存储桶的新对象。存储桶中任何现有的对象都不会被复制。要强制复制现有对象，您可以通过执行对象复制来更新现有对象的元数据。
++
+--
+
+NOTE: 如果您使用 CloudMirror 复制将对象复制到 Amazon S3 目标，请注意 Amazon S3 将每个 PUT 请求标头内的用户定义元数据的大小限制为 2 KB。如果某个对象的用户定义元数据大于 2 KB，则不会复制该对象。
+
+--
+多个目标存储桶:: 要将单个存储桶中的对象复制到多个目标存储桶，请在复制配置 XML 中为每个规则指定目标。您不能同时将一个对象复制到多个存储桶。
+版本控制或非版本控制的存储桶:: 您可以在版本化或非版本化存储桶上配置 CloudMirror 复制。目标存储桶可以是版本化的，也可以是非版本化的。您可以使用版本化存储桶和非版本化存储桶的任意组合。例如，您可以指定一个受版本控制的存储桶作为不受版本控制的源存储桶的目标，反之亦然。您还可以在未版本控制的存储桶之间进行复制。
+
+
+
+
+== 删除、复制循环和事件
+
+删除行为:: 与Amazon S3服务的删除行为相同，跨区域复制（CRR）。删除源存储桶中的对象并不会删除目标存储桶中的复制对象。如果源存储桶和目标存储桶都已版本化，则会复制删除标记。如果目标存储桶未进行版本控制，则删除源存储桶中的对象不会将删除标记复制到目标存储桶或删除目标对象。
+防止复制循环:: 当对象被复制到目标存储桶时， StorageGRID会将它们标记为“副本”。目标StorageGRID桶不会再次复制标记为副本的对象，从而保护您免受意外复制循环的影响。此副本标记是StorageGRID内部的，并且不会阻止您在使用 Amazon S3 存储桶作为目标时利用 AWS CRR。
++
+--
+
+NOTE: 用于标记副本的自定义标头是 `x-ntap-sg-replica`。此标记可防止镜像层叠。  StorageGRID确实支持两个网格之间的双向 CloudMirror。
+
+--
+目标存储桶中的事件:: 无法保证目标存储桶中事件的唯一性和顺序。为了保证传送成功，可能会将源对象的多个相同副本传送到目标。在极少数情况下，当从两个或多个不同的StorageGRID站点同时更新同一个对象时，目标存储桶上的操作顺序可能与源存储桶上的事件顺序不匹配。
+

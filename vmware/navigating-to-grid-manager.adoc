@@ -1,0 +1,51 @@
+---
+permalink: vmware/navigating-to-grid-manager.html 
+sidebar: sidebar 
+keywords: how to navigate to Grid Manager 
+summary: 您可以使用网格管理器来定义配置StorageGRID系统所需的所有信息。 
+---
+= 导航至网格管理器
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以使用网格管理器来定义配置StorageGRID系统所需的所有信息。
+
+.开始之前
+必须部署主管理节点并完成初始启动序列。
+
+.步骤
+. 打开您的网络浏览器并导航至：
++
+`https://_primary_admin_node_ip_`
+
++
+或者，您可以通过端口 8443 访问网格管理器：
+
++
+`https://_primary_admin_node_ip_:8443`
+
++
+您可以根据您的网络配置使用网格网络或管理网络上的主要管理节点 IP 的 IP 地址。您可能需要使用浏览器中的安全/高级选项来导航到不受信任的证书。
+
+. 根据需要管理临时安装程序密码：
++
+** 如果已经使用其中一种方法设置了密码，请输入密码以继续。
++
+*** 用户之前在访问安装程序时设置了密码
+*** SSH/控制台密码已从 OVF 属性自动导入
+
+
+** 如果尚未设置密码，则可以选择设置密码以保护StorageGRID安装程序。
+
+
+. 选择*安装StorageGRID系统*。
++
+出现用于配置StorageGRID网格的页面。
+
++
+image::../media/gmi_installer_first_screen.gif[本图四周的文字提供了相关说明。]
+
+

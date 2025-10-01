@@ -1,0 +1,33 @@
+---
+permalink: rhel/specifying-storagegrid-license-information.html 
+sidebar: sidebar 
+keywords: how to specify license 
+summary: 您必须指定StorageGRID系统的名称并上传NetApp提供的许可证文件。 
+---
+= 指定StorageGRID许可证信息
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您必须指定StorageGRID系统的名称并上传NetApp提供的许可证文件。
+
+.步骤
+. 在许可证页面上，在*网格名称*字段中输入StorageGRID系统的有意义的名称。
++
+安装后，名称显示在节点菜单的顶部。
+
+. 选择“浏览”，找到NetApp许可证文件(`NLF-_unique-id_.txt`)，然后选择*打开*。
++
+许可证文件已验证，并显示序列号。
+
++
+
+NOTE: StorageGRID安装档案包含一个免费许可证，但不提供任何产品支持权利。您可以更新到安装后提供支持的许可证。
+
++
+image::../media/2_gmi_installer_license_page.png[StorageGRID安装程序许可证页面]
+
+. 选择“下一步”。
+

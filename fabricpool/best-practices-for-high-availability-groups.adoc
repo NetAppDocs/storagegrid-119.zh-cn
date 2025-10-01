@@ -1,0 +1,36 @@
+---
+permalink: fabricpool/best-practices-for-high-availability-groups.html 
+sidebar: sidebar 
+keywords: fabricPool, high availability group, HA group, active-active, active-backup, cloud tier, best practices 
+summary: '在将StorageGRID附加为FabricPool云层之前，请了解StorageGRID高可用性 (HA) 组并查看将 HA 组与FabricPool结合使用的最佳实践。' 
+---
+= 高可用性 (HA) 组的最佳实践
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在将StorageGRID附加为FabricPool云层之前，请了解StorageGRID高可用性 (HA) 组并查看将 HA 组与FabricPool结合使用的最佳实践。
+
+
+
+== 什么是 HA 组？
+
+高可用性 (HA) 组是来自多个StorageGRID网关节点、管理节点或两者的接口的集合。 HA 组有助于保持客户端数据连接可用。如果 HA 组中的活动接口出现故障，则备用接口可以管理工作负载，而对FabricPool操作的影响很小。
+
+每个 HA 组都提供对关联节点上的共享服务的高度可用访问。例如，仅由网关节点或管理节点和网关节点上的接口组成的 HA 组可为共享负载均衡器服务提供高可用性访问。
+
+要了解有关高可用性组的更多信息，请参阅link:../admin/managing-high-availability-groups.html["管理高可用性 (HA) 组"]。
+
+
+
+== 使用 HA 组
+
+为FabricPool创建StorageGRID HA 组的最佳实践取决于工作负载。
+
+* 如果您计划将FabricPool与主工作负载数据一起使用，则必须创建一个包含至少两个负载平衡节点的 HA 组，以防止数据检索中断。
+* 如果您计划使用FabricPool仅快照卷分层策略或非主要本地性能层（例如，灾难恢复位置或NetApp SnapMirror® 目标），则可以配置仅具有一个节点的 HA 组。
+
+
+这些说明描述了如何为 Active-Backup HA 设置 HA 组（一个节点是活动的，一个节点是备份的）。但是，您可能更喜欢使用 DNS Round Robin 或 Active-Active HA。要了解这些其他 HA 配置的优势，请参阅link:../admin/configuration-options-for-ha-groups.html["HA 组的配置选项"]。

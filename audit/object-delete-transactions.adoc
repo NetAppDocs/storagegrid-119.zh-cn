@@ -1,0 +1,78 @@
+---
+permalink: audit/object-delete-transactions.html 
+sidebar: sidebar 
+keywords: object delete transaction, S3 delete, SDEL, WDEL 
+summary: 您可以通过定位 S3 API 特定的审计消息来识别审计日志中的对象删除事务。 
+---
+= 对象删除事务
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以通过定位 S3 API 特定的审计消息来识别审计日志中的对象删除事务。
+
+下表并未列出删除事务期间生成的所有审计消息。仅包含跟踪删除事务所需的消息。
+
+
+
+== S3 删除审计消息
+
+[cols="1a,1a,2a,1a,2a"]
+|===
+| 代码 | 名称 | 描述 | 痕迹 | 请参见 
+
+
+ a| 
+斯德勒
+ a| 
+S3 删除
+ a| 
+请求从存储桶中删除对象。
+ a| 
+CBID，S3KY
+ a| 
+link:sdel-s3-delete.html["SDEL：S3 删除"]
+
+|===
+
+
+== Swift 删除审核消息
+
+[cols="1a,1a,2a,1a,2a"]
+|===
+| 代码 | 名称 | 描述 | 痕迹 | 请参见 
+
+
+ a| 
+WDEL
+ a| 
+快速删除
+ a| 
+请求从容器中删除对象或容器。
+ a| 
+CBID，WOBJ
+ a| 
+link:wdel-swift-delete.html["WDEL：快速删除"]
+
+|===
+
+
+== 示例：S3 对象删除
+
+当 S3 客户端从存储节点（LDR 服务）删除对象时，会生成一条审计消息并保存到审计日志中。
+
+
+NOTE: 以下示例中并未列出删除事务期间生成的所有审计消息。仅列出与 S3 删除事务 (SDEL) 相关的那些。
+
+
+
+=== SDEL：S3 删除
+
+当客户端向 LDR 服务发送 DeleteObject 请求时，对象删除就开始了。该消息包含要从中删除对象的存储桶以及用于标识对象的对象的 S3 Key。
+
+[listing, subs="specialcharacters,quotes"]
+----
+2017-07-17T21:17:58.959669[AUDT:[RSLT(FC32):SUCS][TIME(UI64):14316][SAIP(IPAD):"10.96.112.29"][S3AI(CSTR):"70899244468554783528"][SACC(CSTR):"test"][S3AK(CSTR):"SGKHyalRU_5cLflqajtaFmxJn946lAWRJfBF33gAOg=="][SUSR(CSTR):"urn:sgws:identity::70899244468554783528:root"][SBAI(CSTR):"70899244468554783528"][SBAC(CSTR):"test"]\[S3BK\(CSTR\):"example"\]\[S3KY\(CSTR\):"testobject-0-7"\][CBID\(UI64\):0x339F21C5A6964D89][CSIZ(UI64):30720][AVER(UI32):10][ATIM(UI64):150032627859669][ATYP\(FC32\):SDEL][ANID(UI32):12086324][AMID(FC32):S3RQ][ATID(UI64):4727861330952970593]]
+----

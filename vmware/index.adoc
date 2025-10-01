@@ -1,0 +1,49 @@
+---
+permalink: vmware/index.html 
+sidebar: sidebar 
+keywords: vmware 
+summary: 按照这些高级步骤安装 VMware StorageGRID节点。 
+---
+= 在 VMware 上安装StorageGRID 的快速入门
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+按照这些高级步骤安装 VMware StorageGRID节点。
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["一个"]准备
+[role="quick-margin-list"]
+* 了解link:../primer/storagegrid-architecture-and-network-topology.html["StorageGRID架构和网络拓扑"]。
+* 了解具体情况link:../network/index.html["StorageGRID网络"]。
+* 收集并准备link:required-materials.html["所需信息和材料"]。
+* 安装和配置link:software-requirements.html["VMware vSphere Hypervisor、vCenter 和 ESX 主机"]。
+* 准备所需的link:cpu-and-ram-requirements.html["CPU和RAM"]。
+* 提供link:storage-and-performance-requirements.html["存储和性能要求"]。
+
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["两个"]部署
+[role="quick-margin-para"]
+部署网格节点。当您部署网格节点时，它们将作为StorageGRID系统的一部分创建并连接到一个或多个网络。
+
+[role="quick-margin-list"]
+* 使用 VMware vSphere Web Client、.vmdk 文件和一组 .ovf 文件模板来link:collecting-information-about-your-deployment-environment.html["将基于软件的节点部署为虚拟机（VM）"]在步骤 1 中准备的服务器上。
+* 要部署StorageGRID设备节点，请按照 https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/index.html["硬件安装快速启动"^]。
+
+
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["三"]配置
+[role="quick-margin-para"]
+当所有节点都部署完毕后，使用网格管理器link:navigating-to-grid-manager.html["配置网格并完成安装"]。
+
+
+
+== 自动化安装
+
+为了节省时间并提供一致性，您可以自动化网格节点的部署和配置以及StorageGRID系统的配置。
+
+* link:automating-grid-node-deployment-in-vmware-vsphere.html#automate-grid-node-deployment["使用 VMware vSphere 自动化网格节点部署"] 。
+* 部署网格节点后，link:automating-grid-node-deployment-in-vmware-vsphere.html#automate-the-configuration-of-storagegrid["自动化StorageGRID系统的配置"]使用安装档案中提供的 Python 配置脚本。
+* https://docs.netapp.com/us-en/storagegrid-appliances/installconfig/automating-appliance-installation-and-configuration.html["自动安装和配置设备网格节点"^]
+* 如果您是StorageGRID部署的高级开发人员，可以使用link:overview-of-installation-rest-api.html["安装 REST API"]。
+

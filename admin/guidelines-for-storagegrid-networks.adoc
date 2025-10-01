@@ -1,0 +1,99 @@
+---
+permalink: admin/guidelines-for-storagegrid-networks.html 
+sidebar: sidebar 
+keywords: admin network, client network, grid network, access interface, trunk interface 
+summary: StorageGRID每个网格节点最多支持三个网络接口，允许您为每个单独的网格节点配置网络以满足您的安全和访问要求。 
+---
+= StorageGRID网络指南
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以使用网格管理器来配置和管理StorageGRID网络和连接。
+
+看link:configuring-client-connections.html["配置 S3 客户端连接"]了解如何连接 S3 客户端。
+
+
+
+== 默认StorageGRID网络
+
+默认情况下， StorageGRID支持每个网格节点三个网络接口，允许您为每个单独的网格节点配置网络以满足您的安全和访问要求。
+
+有关网络拓扑的详细信息，请参阅link:../network/index.html["网络指南"]。
+
+
+
+=== 网格网络
+
+必需。网格网络用于所有内部StorageGRID流量。它提供网格中所有节点、所有站点和子网之间的连接。
+
+
+
+=== 管理网络
+
+可选。管理网络通常用于系统管理和维护。它还可以用于客户端协议访问。管理网络通常是私有网络，不需要在站点之间路由。
+
+
+
+=== 客户端网络
+
+可选。客户端网络是一个开放网络，通常用于提供对 S3 客户端应用程序的访问，因此网格网络可以被隔离和保护。客户端网络可以与通过本地网关可达的任何子网进行通信。
+
+
+
+== 实施准则
+
+* 每个StorageGRID节点都需要为其分配到的每个网络配备专用的网络接口、IP 地址、子网掩码和网关。
+* 网格节点在网络上不能拥有多个接口。
+* 每个网络、每个网格节点支持一个网关，并且它必须与节点位于同一子网。如果需要，您可以在网关中实现更复杂的路由。
+* 在每个节点上，每个网络都映射到特定的网络接口。
++
+[cols="1a,1a"]
+|===
+| 网络 | 接口名称 
+
+
+ a| 
+Grid
+ a| 
+eth0
+
+
+
+ a| 
+管理员（可选）
+ a| 
+eth1
+
+
+
+ a| 
+客户端（可选）
+ a| 
+eth2
+
+|===
+* 如果节点连接到StorageGRID设备，则每个网络都会使用特定的端口。有关详细信息，请参阅设备的安装说明。
+* 每个节点都会自动生成默认路由。如果启用了 eth2，则 0.0.0.0/0 使用 eth2 上的客户端网络。如果未启用 eth2，则 0.0.0.0/0 使用 eth0 上的网格网络。
+* 客户端网络在网格节点加入网格之前无法运行
+* 可以在网格节点部署期间配置管理网络，以允许在网格完全安装之前访问安装用户界面。
+
+
+
+
+== 可选接口
+
+您可以选择向节点添加额外的接口。例如，您可能想要向管理节点或网关节点添加中继接口，以便可以使用link:../admin/configure-vlan-interfaces.html["VLAN 接口"]隔离属于不同应用程序或租户的流量。或者，您可能想要添加一个访问接口以在link:../admin/configure-high-availability-group.html["高可用性 (HA) 组"]。
+
+要添加中继或访问接口，请参阅以下内容：
+
+* *VMware（安装节点后）*：link:../maintain/vmware-adding-trunk-or-access-interfaces-to-node.html["VMware：向节点添加中继或访问接口"]
++
+** *Red Hat Enterprise Linux（安装节点之前）*：link:../rhel/creating-node-configuration-files.html["创建节点配置文件"]
+** *Ubuntu 或 Debian（安装节点之前）*：link:../ubuntu/creating-node-configuration-files.html["创建节点配置文件"]
+** *RHEL、Ubuntu 或 Debian（安装节点后）*：link:../maintain/linux-adding-trunk-or-access-interfaces-to-node.html["Linux：向节点添加主干或访问接口"]
+
+
+

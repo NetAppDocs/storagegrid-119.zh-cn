@@ -1,0 +1,306 @@
+---
+permalink: tenant/configuring-search-integration-service.html 
+sidebar: sidebar 
+keywords: how to configure search integration service 
+summary: 您可以通过创建搜索集成配置 XML 并使用租户管理器将 XML 应用于存储桶来启用存储桶的搜索集成。 
+---
+= 配置搜索集成服务
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以通过创建搜索集成 XML 并使用租户管理器将 XML 应用于存储桶来启用存储桶的搜索集成。
+
+.开始之前
+* StorageGRID管理员已为您的租户帐户启用平台服务。
+* 您已经创建了一个想要索引其内容的 S3 存储桶。
+* 您打算用作搜索集成服务目标的端点已经存在，并且您有其 URN。
+* 您属于具有link:tenant-management-permissions.html["管理所有 bucket 或 Root 访问权限"]。使用租户管理器配置存储桶时，这些权限会覆盖组或存储桶策略中的权限设置。
+
+
+.关于此任务
+为源存储桶配置搜索集成服务后，创建对象或更新对象的元数据或标签会触发将对象元数据发送到目标端点。
+
+如果为已包含对象的存储桶启用搜索集成服务，则不会自动为现有对象发送元数据通知。更新这些现有对象以确保其元数据被添加到目标搜索索引。
+
+.步骤
+. 为存储桶启用搜索集成：
++
+** 使用文本编辑器创建启用搜索集成所需的元数据通知 XML。
+** 配置 XML 时，使用搜索集成端点的 URN 作为目标。
++
+可以根据对象名称的前缀来过滤对象。例如，您可以发送带有前缀的对象元数据 `images`到一个目标，以及带有前缀的对象的元数据 `videos`到另一个。具有重叠前缀的配置无效，并且在提交时会被拒绝。例如，包含一个针对具有前缀的对象规则的配置 `test`第二个规则针对的是带有前缀的对象 `test2`是不允许的。
+
++
+根据需要，参考<<example-notification-config,元数据配置 XML 的示例>>。
+
++
+[listing]
+----
+<MetadataNotificationConfiguration>
+ <Rule>
+    <Status>Enabled</Status>
+    <Prefix></Prefix>
+    <Destination>
+       <Urn>/Urn>
+       </Destination>
+ </Rule>
+</MetadataNotificationConfiguration>
+----
++
+元数据通知配置 XML 中的元素：
+
++
+[cols="1a,3a,1a"]
+|===
+| 名称 | 描述 | 必填项 
+
+
+ a| 
+元数据通知配置
+ a| 
+用于指定元数据通知的对象和目的地的规则的容器标签。
+
+包含一个或多个 Rule 元素。
+ a| 
+是
+
+
+
+ a| 
+规则
+ a| 
+规则的容器标签，用于标识应将其元数据添加到指定索引的对象。
+
+前缀重叠的规则将被拒绝。
+
+包含在 MetadataNotificationConfiguration 元素中。
+ a| 
+是
+
+
+
+ a| 
+ID
+ a| 
+规则的唯一标识符。
+
+包含在 Rule 元素中。
+ a| 
+否
+
+
+
+ a| 
+状态
+ a| 
+状态可以是“启用”或“禁用”。对于已禁用的规则，不会采取任何措施。
+
+包含在 Rule 元素中。
+ a| 
+是
+
+
+
+ a| 
+前缀
+ a| 
+与前缀匹配的对象会受到规则的影响，并且其元数据会被发送到指定的目标。
+
+要匹配所有对象，请指定一个空前缀。
+
+包含在 Rule 元素中。
+ a| 
+是
+
+
+
+ a| 
+目标
+ a| 
+规则目标的容器标签。
+
+包含在 Rule 元素中。
+ a| 
+是
+
+
+
+ a| 
+瓮
+ a| 
+发送对象元数据的目标的 URN。必须是具有以下属性的StorageGRID端点的 URN：
+
+*** `es`必须是第三个元素。
+*** URN 必须以存储元数据的索引和类型结尾，格式如下 `domain-name/myindex/mytype`。
+
+
+端点是使用租户管理器或租户管理 API 进行配置的。它们的形式如下：
+
+*** `arn:aws:es:region:account-ID:domain/mydomain/myindex/mytype`
+*** `urn:mysite:es:::mydomain/myindex/mytype`
+
+
+必须在提交配置 XML 之前配置端点，否则配置将失败并出现 404 错误。
+
+URN 包含在目标元素中。
+ a| 
+是
+
+|===
+
+
+. 在租户管理器中选择*存储（S3）* > *存储桶*。
+. 选择源存储桶的名称。
++
+出现存储桶详细信息页面。
+
+. 选择“平台服务”>“搜索集成”
+. 选中“启用搜索集成”复选框。
+. 将元数据通知配置粘贴到文本框中，然后选择*保存更改*。
++
+
+NOTE: StorageGRID管理员必须使用 Grid Manager 或 Management API 为每个租户帐户启用平台服务。如果保存配置 XML 时出现错误，请联系您的StorageGRID管理员。
+
+. 验证搜索集成服务是否配置正确：
++
+.. 将符合配置 XML 中指定的触发元数据通知要求的对象添加到源存储桶。
++
+在前面显示的示例中，添加到存储桶的所有对象都会触发元数据通知。
+
+.. 确认包含对象元数据和标签的 JSON 文档已添加到端点中指定的搜索索引。
+
+
+
+
+.完成后
+根据需要，您可以使用以下任一方法禁用存储桶的搜索集成：
+
+* 选择 *存储 (S3)* > *存储桶* 并清除 *启用搜索集成* 复选框。
+* 如果您直接使用 S3 API，请使用 DELETE Bucket 元数据通知请求。请参阅实现 S3 客户端应用程序的说明。
+
+
+
+
+== [[example-notification-config]]示例：适用于所有对象的元数据通知配置
+
+在此示例中，所有对象的对象元数据都被发送到同一个目的地。
+
+[listing]
+----
+<MetadataNotificationConfiguration>
+    <Rule>
+        <ID>Rule-1</ID>
+        <Status>Enabled</Status>
+        <Prefix></Prefix>
+        <Destination>
+           <Urn>urn:myes:es:::sgws-notifications/test1/all</Urn>
+        </Destination>
+    </Rule>
+</MetadataNotificationConfiguration>
+----
+
+
+== 示例：具有两个规则的元数据通知配置
+
+在此示例中，与前缀匹配的对象的对象元数据 `/images`发送到一个目的地，而与前缀匹配的对象的对象元数据 `/videos`被发送到第二个目的地。
+
+[listing]
+----
+
+<MetadataNotificationConfiguration>
+    <Rule>
+        <ID>Images-rule</ID>
+        <Status>Enabled</Status>
+        <Prefix>/images</Prefix>
+        <Destination>
+           <Urn>arn:aws:es:us-east-1:3333333:domain/es-domain/graphics/imagetype</Urn>
+        </Destination>
+    </Rule>
+    <Rule>
+        <ID>Videos-rule</ID>
+        <Status>Enabled</Status>
+        <Prefix>/videos</Prefix>
+        <Destination>
+           <Urn>arn:aws:es:us-west-1:22222222:domain/es-domain/graphics/videotype</Urn>
+        </Destination>
+    </Rule>
+</MetadataNotificationConfiguration>
+----
+
+
+== 元数据通知格式
+
+当您为存储桶启用搜索集成服务时，每次添加、更新或删除对象元数据或标签时都会生成一个 JSON 文档并将其发送到目标端点。
+
+此示例展示了当对象具有以下键时可以生成的 JSON 示例 `SGWS/Tagging.txt`在名为 `test`。这 `test`bucket 没有版本控制，因此 `versionId`标签为空。
+
+[listing]
+----
+{
+  "bucket": "test",
+  "key": "SGWS/Tagging.txt",
+  "versionId": "",
+  "accountId": "86928401983529626822",
+  "size": 38,
+  "md5": "3d6c7634a85436eee06d43415012855",
+  "region":"us-east-1",
+  "metadata": {
+    "age": "25"
+  },
+  "tags": {
+    "color": "yellow"
+  }
+}
+----
+
+
+=== JSON 文档中包含的字段
+
+文档名称包括存储桶名称、对象名称和版本 ID（如果存在）。
+
+存储桶和对象信息::
++
+--
+`bucket`：存储桶的名称
+
+`key`：对象键名
+
+`versionID`：对象版本，用于版本化存储桶中的对象
+
+`region`：例如桶区域 `us-east-1`
+
+--
+系统元数据::
++
+--
+`size`：HTTP 客户端可见的对象大小（以字节为单位）
+
+`md5`：对象哈希
+
+--
+用户元数据::
++
+--
+`metadata`：对象的所有用户元数据，以键值对的形式
+
+`key:value`
+
+--
+标签::
++
+--
+`tags`：为对象定义的所有对象标签，以键值对的形式
+
+`key:value`
+
+--
+
+
+
+
+=== 如何在 Elasticsearch 中查看结果
+
+对于标签和用户元数据， StorageGRID将日期和数字作为字符串或 S3 事件通知传递给 Elasticsearch。要配置 Elasticsearch 将这些字符串解释为日期或数字，请按照 Elasticsearch 的动态字段映射和映射日期格式的说明进行操作。在配置搜索集成服务之前，请在索引上启用动态字段映射。文档被索引后，您无法在索引中编辑文档的字段类型。

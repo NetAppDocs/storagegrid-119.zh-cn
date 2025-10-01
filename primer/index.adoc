@@ -1,0 +1,69 @@
+---
+permalink: primer/index.html 
+sidebar: sidebar 
+keywords: grid primer, what is storagegrid, storagegrid basics 
+summary: NetApp StorageGRID是一款软件定义的对象存储套件，支持公共、私有和混合多云环境中的广泛用例。  StorageGRID为 Amazon S3 API 提供原生支持，并提供行业领先的创新，例如自动化生命周期管理，以便长期经济高效地存储、保护和保存非结构化数据。 
+---
+= 什么是StorageGRID？
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+NetApp® StorageGRID® 是一款软件定义的对象存储套件，支持公共、私有和混合多云环境中的广泛用例。  StorageGRID为 Amazon S3 API 提供原生支持，并提供行业领先的创新，例如自动化生命周期管理，以便长期经济高效地存储、保护和保存非结构化数据。
+
+StorageGRID为大规模非结构化数据提供安全、持久的存储。集成的、元数据驱动的生命周期管理策略可优化数据在整个生命周期中的存储位置。将内容放置在正确的位置、正确的时间以及正确的存储层以降低成本。
+
+StorageGRID由地理分布、冗余、异构的节点组成，可以与现有和下一代客户端应用程序集成。
+
+image::../media/storagegrid_system_diagram.png[具有多个客户端的图像]
+
+
+NOTE: 对存档节点的支持已被删除。通过 S3 API 将对象从存档节点移动到外部存档存储系统已被替换为link:../ilm/what-cloud-storage-pool-is.html["ILM 云存储池"]，提供更多功能。
+
+
+
+== StorageGRID优势
+
+StorageGRID系统的优势包括：
+
+* 可大规模扩展且易于使用的地理分布式非结构化数据存储库。
+* 标准对象存储协议：
++
+** 亚马逊网络服务简单存储服务（S3）
+** OpenStack Swift
++
+
+NOTE: 对 Swift 客户端应用程序的支持已被弃用，并将在未来的版本中删除。
+
+
+
+* 已启用混合云。基于策略的信息生命周期管理 (ILM) 将对象存储到公共云，包括 Amazon Web Services (AWS) 和 Microsoft Azure。  StorageGRID平台服务支持存储到公共云的对象的内容复制、事件通知和元数据搜索。
+* 灵活的数据保护，确保持久性和可用性。可以使用复制和分层擦除编码来保护数据。静态和动态数据验证可确保长期保留的完整性。
+* 动态数据生命周期管理有助于管理存储成本。您可以创建 ILM 规则来管理对象级别的数据生命周期，自定义数据位置、持久性、性能、成本和保留时间。
+* 数据存储和一些管理功能的高可用性，具有集成的负载平衡功能，可优化跨StorageGRID资源的数据负载。
+* 支持多个存储租户帐户，以便按不同实体隔离系统上存储的对象。
+* 用于监控StorageGRID系统健康状况的众多工具，包括全面的警报系统、图形仪表板以及所有节点和站点的详细状态。
+* 支持基于软件或硬件的部署。您可以在以下任意一项上部署StorageGRID ：
++
+** 在 VMware 中运行的虚拟机。
+** Linux 主机上的容器引擎。
+** StorageGRID工程设备。
++
+*** 存储设备提供对象存储。
+*** 服务设备提供电网管理和负载平衡服务。
+
+
+
+
+* 符合本法规相关储存要求：
++
+** 美国证券交易委员会 (SEC) 在 17 CFR § 240.17a-4(f) 中负责监管交易所会员、经纪人或交易商。
+** 金融业监管局 (FINRA) 规则 4511(c)，遵循 SEC 规则 17a-4(f) 的格式和媒体要求。
+** 商品期货交易委员会 (CFTC) 法规 17 CFR § 1.31(c)-(d)，对商品期货交易进行监管。
+
+
+* 无中断升级和维护操作。在升级、扩展、退役和维护过程中保持对内容的访问。
+* 联合身份管理。与 Active Directory、OpenLDAP 或 Oracle Directory Service 集成以进行用户身份验证。支持使用安全断言标记语言 2.0 (SAML 2.0) 标准的单点登录 (SSO) 在StorageGRID和 Active Directory 联合身份验证服务 (AD FS) 之间交换身份验证和授权数据。
+

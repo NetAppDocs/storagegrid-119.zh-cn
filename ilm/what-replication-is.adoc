@@ -1,0 +1,31 @@
+---
+permalink: ilm/what-replication-is.html 
+sidebar: sidebar 
+keywords: replication, object copies 
+summary: 复制是StorageGRID用于存储对象数据的两种方法之一。当对象与使用复制的 ILM 规则匹配时，系统会创建对象数据的精确副本并将副本存储在存储节点上。 
+---
+= 什么是复制？
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+复制是StorageGRID用于存储对象数据的两种方法之一（擦除编码是另一种方法）。当对象与使用复制的 ILM 规则匹配时，系统会创建对象数据的精确副本并将副本存储在存储节点上。
+
+当您配置 ILM 规则以创建复制副本时，您可以指定应创建多少个副本、应将这些副本放置在何处以及应在每个位置存储副本多长时间。
+
+在以下示例中，ILM 规则指定将每个对象的两个副本放置在包含三个存储节点的存储池中。
+
+image::../media/ilm_replication_make_2_copies.png[制定 2 份副本规则]
+
+当StorageGRID将对象与此规则匹配时，它会创建该对象的两个副本，并将每个副本放置在存储池中的不同存储节点上。这两个副本可以放置在三个可用存储节点中的任意两个上。在这种情况下，规则将对象副本放置在存储节点 2 和 3 上。由于有两个副本，因此如果存储池中的任何节点发生故障，都可以检索该对象。
+
+
+NOTE: StorageGRID在任何给定的存储节点上只能存储一个对象的一个​​副本。如果您的网格包含三个存储节点，并且您创建了 4 副本 ILM 规则，则只会制作三个副本 - 每个存储节点一个副本。触发“无法实现 ILM 放置”警报，表明无法完全应用 ILM 规则。
+
+.相关信息
+* link:what-erasure-coding-is.html["什么是擦除编码"]
+* link:what-storage-pool-is.html["什么是存储池"]
+* link:using-multiple-storage-pools-for-cross-site-replication.html["使用复制和擦除编码实现站点丢失保护"]
+

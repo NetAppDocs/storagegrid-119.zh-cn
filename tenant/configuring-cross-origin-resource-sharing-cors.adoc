@@ -1,0 +1,87 @@
+---
+permalink: tenant/configuring-cross-origin-resource-sharing-cors.html 
+sidebar: sidebar 
+keywords: how to configure cross-origin resource sharing, cors 
+summary: '如果您希望其他域中的 Web 应用程序可以访问 S3 存储桶及其中的对象，则可以为该存储桶配置跨域资源共享 (CORS)。' 
+---
+= 配置跨域资源共享 (CORS)
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果您希望其他域中的 Web 应用程序可以访问 S3 存储桶及其中的对象，则可以为该存储桶配置跨域资源共享 (CORS)。
+
+.开始之前
+* 您已使用link:../admin/web-browser-requirements.html["支持的网络浏览器"]。
+* 对于 GET CORS 配置请求，您属于具有link:tenant-management-permissions.html["管理所有存储桶或查看所有存储桶权限"]。这些权限将覆盖组或存储桶策略中的权限设置。
+* 对于 PUT CORS 配置请求，您属于具有link:tenant-management-permissions.html["管理所有 bucket 权限"]。此权限将覆盖组或存储桶策略中的权限设置。
+* 这link:tenant-management-permissions.html["Root访问权限"]提供对所有 CORS 配置请求的访问。
+
+
+.关于此任务
+跨域资源共享 (CORS) 是一种安全机制，允许一个域中的客户端 Web 应用程序访问不同域中的资源。例如，假设您使用名为 `Images`存储图形。通过为 `Images`bucket，您可以允许该 bucket 中的图像显示在网站上 `+http://www.example.com+`。
+
+
+
+== 为存储桶启用 CORS
+
+.步骤
+. 使用文本编辑器创建所需的 XML。此示例显示用于为 S3 存储桶启用 CORS 的 XML。具体来说：
++
+** 允许任何域向存储桶发送 GET 请求
+** 仅允许 `+http://www.example.com+`发送 GET、POST 和 DELETE 请求的域
+** 允许所有请求标头
++
+[listing]
+----
+<CORSConfiguration
+    xmlns="http://s3.amazonaws.com/doc/2020-10-22/">
+    <CORSRule>
+        <AllowedOrigin>*</AllowedOrigin>
+        <AllowedMethod>GET</AllowedMethod>
+        <AllowedHeader>*</AllowedHeader>
+    </CORSRule>
+    <CORSRule>
+        <AllowedOrigin>http://www.example.com</AllowedOrigin>
+        <AllowedMethod>GET</AllowedMethod>
+        <AllowedMethod>POST</AllowedMethod>
+        <AllowedMethod>DELETE</AllowedMethod>
+        <AllowedHeader>*</AllowedHeader>
+    </CORSRule>
+</CORSConfiguration>
+----
++
+有关 CORS 配置 XML 的详细信息，请参阅 http://docs.aws.amazon.com/AmazonS3/latest/dev/Welcome.html["Amazon Web Services (AWS) 文档：Amazon Simple Storage Service 用户指南"^]。
+
+
+
+. 从仪表板中选择 *查看存储桶*，或选择 *存储（S3）* > *存储桶*。
+. 从表中选择存储桶名称。
++
+出现存储桶详细信息页面。
+
+. 从“*Bucket access*”选项卡中，选择“*Cross-Origin Resource Sharing (CORS)*”手风琴。
+. 选中“启用 CORS”复选框。
+. 将 CORS 配置 XML 粘贴到文本框中。
+. 选择“保存更改”。
+
+
+
+
+== 修改 CORS 设置
+
+.步骤
+. 在文本框中更新 CORS 配置 XML，或选择 *清除* 重新开始。
+. 选择“保存更改”。
+
+
+
+
+== 禁用 CORS 设置
+
+.步骤
+. 清除“启用 CORS”复选框。
+. 选择“保存更改”。
+

@@ -1,0 +1,35 @@
+---
+permalink: maintain/checking-storage-state-after-recovering-storage-volumes.html 
+sidebar: sidebar 
+keywords: storagegrid, storage volume recovery, storage state, storage volume 
+summary: 恢复存储卷后，必须验证存储节点的所需状态是否设置为在线，并确保每次重新启动存储节点服务器时该状态都默认为在线。 
+---
+= 恢复存储卷后检查存储状态
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+恢复存储卷后，必须验证存储节点的所需状态是否设置为在线，并确保每次重新启动存储节点服务器时该状态都默认为在线。
+
+.开始之前
+* 您已使用link:../admin/web-browser-requirements.html["支持的网络浏览器"]。
+* 存储节点已恢复，数据恢复完成。
+
+
+.步骤
+. 选择*支持* > *工具* > *网格拓扑*。
+. 检查 *恢复的存储节点* > *LDR* > *存储* > *存储状态--所需* 和 *存储状态--当前* 的值。
++
+两个属性的值都应该是 Online。
+
+. 如果“存储状态-所需”设置为“只读”，请完成以下步骤：
++
+.. 单击“*配置*”选项卡。
+.. 从*存储状态-所需*下拉列表中，选择*在线*。
+.. 单击“应用更改”。
+.. 单击“*概览*”选项卡，确认“*存储状态-所需*”和“*存储状态-当前*”的值已更新为“在线”。
+
+
+

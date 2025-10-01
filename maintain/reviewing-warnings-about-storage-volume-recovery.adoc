@@ -1,0 +1,39 @@
+---
+permalink: maintain/reviewing-warnings-about-storage-volume-recovery.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, volume warning 
+summary: 在恢复存储节点的故障存储卷之前，您必须查看以下警告。 
+---
+= 存储卷恢复警告
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在恢复存储节点的故障存储卷之前，请查看以下警告。
+
+存储节点中的存储卷（或 rangedb）由十六进制数标识，称为卷 ID。例如，0000 是第一卷，000F 是第十六卷。每个存储节点上的第一个对象存储（卷 0）使用最多 4 TB 的空间用于对象元数据和 Cassandra 数据库操作；该卷上的任何剩余空间都用于对象数据。所有其他存储卷专门用于对象数据。
+
+如果卷 0 发生故障并需要恢复，则 Cassandra 数据库可能会作为卷恢复过程的一部分进行重建。在以下情况下，Cassandra 也可能需要重建：
+
+* 存储节点离线超过 15 天后将重新上线。
+* 系统驱动器和一个或多个存储卷发生故障并已恢复。
+
+
+当 Cassandra 重建时，系统使用来自其他存储节点的信息。如果太多存储节点处于离线状态，某些 Cassandra 数据可能不可用。如果 Cassandra 最近重建，Cassandra 数据可能在整个网格中尚不一致。如果在太多存储节点离线时重建 Cassandra，或者在 15 天内重建两个或多个存储节点，则可能会发生数据丢失。
+
+
+CAUTION: 如果多个存储节点出现故障（或离线），请联系技术支持。不要执行以下恢复过程。可能会发生数据丢失。
+
+
+CAUTION: 如果这是存储节点故障或恢复后 15 天内第二次发生存储节点故障，请联系技术支持。在 15 天内在两个或更多存储节点上重建 Cassandra 可能会导致数据丢失。
+
+
+NOTE: 如果站点上的多个存储节点发生故障，则可能需要站点恢复过程。看link:how-site-recovery-is-performed-by-technical-support.html["技术支持如何恢复站点"] 。
+
+
+CAUTION: 如果 ILM 规则配置为仅存储一个复制副本，并且该副本存在于发生故障的存储卷上，则您将无法恢复该对象。
+
+.相关信息
+link:warnings-and-considerations-for-grid-node-recovery.html["网格节点恢复的警告和注意事项"]

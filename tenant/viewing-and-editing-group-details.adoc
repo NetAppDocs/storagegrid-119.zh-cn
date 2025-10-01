@@ -1,0 +1,62 @@
+---
+permalink: tenant/viewing-and-editing-group-details.html 
+sidebar: sidebar 
+keywords: how to view and edit group 
+summary: 查看组的详细信息时，您可以更改该组的显示名称、权限、策略以及属于该组的用户。 
+---
+= 查看和编辑群组详细信息
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+查看组的详细信息时，您可以更改该组的显示名称、权限、策略以及属于该组的用户。
+
+.开始之前
+* 您已使用link:../admin/web-browser-requirements.html["支持的网络浏览器"]。
+* 您属于具有 Root 访问权限的用户组。
+
+
+.步骤
+. 选择*访问管理* > *组*。
+. 选择您要查看或编辑其详细信息的群组的名称。
++
+或者，您可以选择*操作* > *查看组详细信息*。
+
++
+出现群组详细信息页面。以下示例显示 S3 组详细信息页面。
+
++
+image::../media/tenant_group_details.png[查看群组详情]
+
+. 根据需要更改组设置。
++
+
+TIP: 为确保您的更改已保存，请在每个部分进行更改后选择“*保存更改*”。保存更改后，页面右上角会出现一条确认消息。
+
++
+.. 或者，选择显示名称或编辑图标image:../media/icon_edit_tm.png["编辑图标"]更新显示名称。
++
+您不能更改群组的唯一名称。您无法编辑联合组的显示名称。
+
+.. 或者，更新权限。
+.. 对于组策略，请对您的 S3 租户进行适当的更改。
++
+*** 如果您正在编辑 S3 租户的组，则可以选择不同的 S3 组策略。如果您选择自定义 S3 策略，请根据需要更新 JSON 字符串。
+*** 如果您正在编辑 Swift 租户的组，可以选择选择或清除 *Swift 管理员* 复选框。
++
+有关 Swift 管理员权限的更多信息，请参阅为 Swift 租户创建组的说明。
+
+
+
+.. （可选）添加或删除用户。
+
+
+. 确认您已为更改的每个部分选择了“保存更改”。
+
+
+.相关信息
+* link:creating-groups-for-s3-tenant.html["为 S3 租户创建组"]
+* link:creating-groups-for-swift-tenant.html["为 Swift 租户创建组"]
+

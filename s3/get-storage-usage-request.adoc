@@ -1,0 +1,75 @@
+---
+permalink: s3/get-storage-usage-request.html 
+sidebar: sidebar 
+keywords: S3 REST API, S3 operations, GET storage usage request 
+summary: GET 存储使用情况请求会告诉您帐户使用的存储总量以及与该帐户关联的每个存储桶的存储总量。 
+---
+= 获取存储使用情况请求
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+GET 存储使用情况请求会告诉您帐户使用的存储总量以及与该帐户关联的每个存储桶的存储总量。
+
+可以通过修改后的 ListBuckets 请求获取帐户及其存储桶使用的存储量，其中包含 `x-ntap-sg-usage`查询参数。存储桶存储使用情况与系统处理的 PUT 和 DELETE 请求分开跟踪。根据请求的处理，使用值与预期值匹配之前可能会有一些延迟，特别是当系统负载很重时。
+
+默认情况下， StorageGRID尝试使用强全局一致性检索使用情况信息。如果无法实现强全局一致性， StorageGRID将尝试在强站点一致性下检索使用信息。
+
+您必须拥有 s3:ListAllMyBuckets 权限，或者成为账户 root，才能完成此操作。
+
+
+
+== 请求示例
+
+[listing, subs="specialcharacters,quotes"]
+----
+GET /?x-ntap-sg-usage HTTP/1.1
+Date: _date_
+Authorization: _authorization string_
+Host: _host_
+----
+
+
+== 响应示例
+
+此示例显示一个帐户，该帐户在两个存储桶中拥有四个对象和 12 个字节的数据。每个存储桶包含两个对象和六个字节的数据。
+
+[listing]
+----
+HTTP/1.1 200 OK
+Date: Sat, 29 Nov 2015 00:49:05 GMT
+Connection: KEEP-ALIVE
+Server: StorageGRID/10.2.0
+x-amz-request-id: 727237123
+Content-Length: 427
+Content-Type: application/xml
+
+<?xml version="1.0" encoding="UTF-8"?>
+<UsageResult xmlns="http://s3.storagegrid.com/doc/2015-02-01">
+<CalculationTime>2014-11-19T05:30:11.000000Z</CalculationTime>
+<ObjectCount>4</ObjectCount>
+<DataBytes>12</DataBytes>
+<Buckets>
+<Bucket>
+<Name>bucket1</Name>
+<ObjectCount>2</ObjectCount>
+<DataBytes>6</DataBytes>
+</Bucket>
+<Bucket>
+<Name>bucket2</Name>
+<ObjectCount>2</ObjectCount>
+<DataBytes>6</DataBytes>
+</Bucket>
+</Buckets>
+</UsageResult>
+----
+
+
+== 版本控制
+
+存储的每个对象版本都将有助于 `ObjectCount`和 `DataBytes`响应中的值。删除标记不会添加到 `ObjectCount`全部的。
+
+.相关信息
+link:consistency-controls.html["一致性值"]

@@ -1,0 +1,79 @@
+---
+permalink: audit/gnrg-gnds-registration.html 
+sidebar: sidebar 
+keywords: storagegrid, audi, message, GNRG, GNDS Registration 
+summary: 当服务在StorageGRID系统中更新或注册有关自身的信息时，CMN 服务会生成此审计消息。 
+---
+= GNRG：GNDS 注册
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+当服务在StorageGRID系统中更新或注册有关自身的信息时，CMN 服务会生成此审计消息。
+
+[cols="1a,1a,4a"]
+|===
+| 代码 | 字段 | 描述 
+
+
+ a| 
+放射学研究实验室
+ a| 
+结果
+ a| 
+更新请求的结果：
+
+* SUCS：成功
+* SUNV：服务不可用
+* GERR：其他故障
+
+
+
+
+ a| 
+GNID
+ a| 
+节点ID
+ a| 
+发起更新请求的服务的节点 ID。
+
+
+
+ a| 
+GNTP
+ a| 
+设备类型
+ a| 
+网格节点的设备类型（例如，LDR 服务的 BLDR）。
+
+
+
+ a| 
+胃肠道疾病
+ a| 
+设备型号版本
+ a| 
+标识 DMDL 包中网格节点的设备模型版本的字符串。
+
+
+
+ a| 
+国家基因组计划
+ a| 
+组
+ a| 
+网格节点所属的组（在链接成本和服务查询排名的背景下）。
+
+
+
+ a| 
+GNIA
+ a| 
+IP 地址
+ a| 
+网格节点的 IP 地址。
+
+|===
+每当网格节点更新其在网格节点包中的条目时，就会生成此消息。

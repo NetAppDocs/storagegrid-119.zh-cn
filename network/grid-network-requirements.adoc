@@ -1,0 +1,23 @@
+---
+permalink: network/grid-network-requirements.html 
+sidebar: sidebar 
+keywords: grid network requirements 
+summary: 请遵循电网的这些要求和指导方针。 
+---
+= 电网要求
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+请遵循电网的这些要求和指导方针。
+
+* 在部署时，每个网格节点必须连接到网格网络，并且必须能够使用您在部署节点时指定的网络配置与主管理节点进行通信。
+* 在正常的网格运行期间，每个网格节点必须能够通过网格网络与所有其他网格节点进行通信。
++
+
+NOTE: 网格网络必须能够直接在各个节点之间路由。不支持节点之间的网络地址转换（NAT）。
+
+* 如果网格网络由多个子网组成，请将它们添加到网格网络子网列表（GNSL）中。在 GNSL 中每个子网的所有节点上创建静态路由。
+

@@ -1,0 +1,48 @@
+---
+permalink: ubuntu/installing-docker.html 
+sidebar: sidebar 
+keywords: how to install Docker 
+summary: StorageGRID系统作为 Docker 容器的集合在 Linux 上运行。在安装StorageGRID之前，您必须安装 Docker。 
+---
+= 安装 Docker
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+StorageGRID系统作为 Docker 容器的集合在 Linux 上运行。在安装StorageGRID之前，您必须安装 Docker。
+
+
+NOTE: 不再支持将 Docker 作为纯软件部署的容器引擎。Docker 将在未来的版本中被另一个容器引擎取代。
+
+.步骤
+. 按照 Linux 发行版的说明安装 Docker。
++
+
+NOTE: 如果您的 Linux 发行版中不包含 Docker，您可以从 Docker 网站下载它。
+
+. 通过运行以下两个命令确保 Docker 已启用并启动：
++
+[listing]
+----
+sudo systemctl enable docker
+----
++
+[listing]
+----
+sudo systemctl start docker
+----
+. 输入以下内容，确认您已安装预期版本的 Docker：
++
+[listing]
+----
+sudo docker version
+----
++
+客户端和服务器版本必须是 1.11.0 或更高版本。
+
+
+
+.相关信息
+link:configuring-host-storage.html["配置主机存储"]

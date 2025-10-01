@@ -1,0 +1,44 @@
+---
+permalink: admin/changing-provisioning-passphrase.html 
+sidebar: sidebar 
+keywords: provisioning passphrase, change passphrase 
+summary: 使用此过程更改StorageGRID配置密码。恢复、扩展和维护过程都需要密码。下载恢复包备份也需要密码，其中包括网格拓扑信息、网格节点控制台密码和StorageGRID系统的加密密钥。 
+---
+= 更改配置密码
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+使用此过程更改StorageGRID配置密码。恢复、扩展和维护过程都需要密码。下载恢复包备份也需要密码，其中包括网格拓扑信息、网格节点控制台密码和StorageGRID系统的加密密钥。
+
+.开始之前
+* 您已使用link:../admin/web-browser-requirements.html["支持的网络浏览器"]。
+* 您具有维护或 Root 访问权限。
+* 您拥有当前的配置密码。
+
+
+.关于此任务
+许多安装和维护过程都需要配置密码，并且link:../maintain/downloading-recovery-package.html["下载恢复包"]。配置密码未在 `Passwords.txt`文件。确保记录配置密码并将其保存在安全的地方。
+
+.步骤
+. 选择*配置* > *访问控制* > *电网密码*。
+. 在“更改配置密码”下，选择“进行更改”
+. 输入您当前的配置密码。
+. 输入新密码。密码必须至少包含 8 个字符，但不能超过 32 个字符。密码区分大小写。
+. 将新的配置密码存储在安全的位置。它是安装、扩展和维护过程所必需的。
+. 重新输入新密码，然后选择*保存*。
++
+当配置密码更改完成后，系统将显示绿色成功横幅。
+
++
+image::../media/change_provisioning_passphrase_success.png[密码配置成功消息已更改]
+
+. 选择*恢复包*。
+. 输入新的配置密码来下载新的恢复包。
++
+
+CAUTION: 更改配置密码后，您必须立即下载新的恢复包。如果发生故障，恢复包文件允许您恢复系统。
+
+

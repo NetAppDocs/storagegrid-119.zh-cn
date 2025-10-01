@@ -1,0 +1,51 @@
+---
+permalink: maintain/selecting-start-recovery-to-configure-gateway-node.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, gateway node 
+summary: 更换网关节点后，您必须在网格管理器中选择“开始恢复”以配置新节点来替代故障节点。 
+---
+= 选择“开始恢复”以配置网关节点
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+更换网关节点后，您必须在网格管理器中选择“开始恢复”以配置新节点来替代故障节点。
+
+.开始之前
+* 您已使用link:../admin/web-browser-requirements.html["支持的网络浏览器"]。
+* 你有link:../admin/admin-group-permissions.html["维护或 Root 访问权限"]。
+* 您有配置密码。
+* 您已部署并配置了替换节点。
+
+
+.步骤
+. 从网格管理器中，选择 *维护* > *任务* > *恢复*。
+. 在待处理节点列表中选择要恢复的网格节点。
++
+节点发生故障后会出现在列表中，但您无法选择该节点，直到它重新安装并准备好恢复。
+
+. 输入*配置密码*。
+. 单击“开始恢复”。
++
+image::../media/4b_select_recovery_node.png[显示“维护”>“恢复”页面的屏幕截图]
+
+. 在恢复网格节点表中监视恢复进度。
++
+
+NOTE: 在恢复过程运行时，您可以单击“*重置*”以开始新的恢复。出现一个对话框，表明如果重置该过程，该节点将处于不确定状态。
+
++
+image::../media/recovery_reset_warning.gif[显示重置恢复警告对话框的屏幕截图]
+
++
+如果要在重置过程后重试恢复，则必须将节点恢复到预安装状态，如下所示：
+
++
+** *VMware*：删除已部署的虚拟网格节点。然后，当您准备重新开始恢复时，重新部署该节点。
+** *Linux*：通过在 Linux 主机上运行以下命令重新启动节点： `storagegrid node force-recovery _node-name_`
+** *设备*：如果要在重置过程后重试恢复，则必须通过运行将设备节点恢复到预安装状态 `sgareinstall`在节点上。看link:preparing-appliance-for-reinstallation-platform-replacement-only.html["准备重新安装设备（仅限平台更换）"] 。
+
+
+

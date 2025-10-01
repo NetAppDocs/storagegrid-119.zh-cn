@@ -1,0 +1,132 @@
+---
+permalink: maintain/decommissioning-connected-grid-nodes.html 
+sidebar: sidebar 
+keywords: storagegrid, decommission, connected nodes, decommission node 
+summary: 您可以退役并永久删除连接到电网的节点。 
+---
+= 退役已连接的电网节点
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以退役并永久删除连接到电网的节点。
+
+.开始之前
+* 您了解退役的考虑因素link:considerations-for-decommissioning-admin-or-gateway-nodes.html["管理和网关节点"]以及退役考虑link:considerations-for-decommissioning-storage-nodes.html["存储节点"]。
+* 您已收集到所有必需的材料。
+* 您已确保没有处于活动状态的数据修复作业。
+* 您已确认网格中任何地方均未进行存储节点恢复。如果是，请等到作为恢复的一部分执行的任何 Cassandra 重建完成。然后您可以继续进行退役。
+* 您已确保在节点退役程序运行时不会运行其他维护程序，除非节点退役程序暂停。
+* 您有配置密码。
+* 网格节点是相互连接的。
+* 您想要退役的节点的“可能退役”列包含一个绿色复选标记。
++
+
+NOTE: 如果一个或多个卷处于脱机（未安装）状态，或者处于联机（安装）但处于错误状态，则不会启动退役操作。
+
++
+
+NOTE: 如果在退役过程中一个或多个卷脱机，则退役过程将在这些卷重新联机后完成。
+
+* 所有网格节点均具有正常（绿色）健康状态image:../media/icon_alert_green_checkmark.png["绿色复选标记图标"]。如果您在“*健康*”列中看到以下图标之一，则必须尝试解决该问题：
++
+[cols="1a,1a,3a"]
+|===
+| 图标 | 颜色 | 严重性 
+
+
+ a| 
+image:../media/icon_alarm_yellow_notice.gif["黄色方形图标"]
+ a| 
+黄色
+ a| 
+通知
+
+
+
+ a| 
+image:../media/icon_alert_yellow_minor.png["浅橙色钻石图标"]
+ a| 
+浅橙色
+ a| 
+次要
+
+
+
+ a| 
+image:../media/icon_alert_orange_major.png["深橙色菱形图标"]
+ a| 
+深橙色
+ a| 
+主要的
+
+
+
+ a| 
+image:../media/icon_alert_red_critical.png["红色 x 图标"]
+ a| 
+红色
+ a| 
+批判的
+
+|===
+* 如果您之前已停用已断开连接的存储节点，则数据修复作业已全部成功完成。看link:checking-data-repair-jobs.html["检查数据修复作业"] 。
+
+
+
+CAUTION: 在本过程中没有得到指示之前，请勿删除网格节点的虚拟机或其他资源。
+
+
+CAUTION: 在包含基于软件的纯元数据节点的网格中停用存储节点时请务必小心。如果您停用所有配置为存储对象和元数据的节点，则存储对象的能力将从网格中删除。看link:../primer/what-storage-node-is.html#types-of-storage-nodes["存储节点的类型"]有关仅元数据存储节点的更多信息。
+
+.关于此任务
+当节点退役时，其服务将被禁用并且节点将自动关闭。
+
+.步骤
+. 在“退役节点”页面中，选中要退役的每个网格节点的复选框。
+. 输入配置密码。
++
+*开始退役*按钮已启用。
+
+. 选择*开始退役*。
+. 查看确认对话框中的节点列表，然后选择*确定*。
++
+节点退役程序开始，并显示每个节点的进度。
+
++
+
+CAUTION: 退役程序开始后，请勿使存储节点脱机。改变状态可能会导致某些内容无法复制到其他位置。
+
+. 一旦新的恢复包可用，请选择横幅中的恢复包链接或选择*维护* > *系统* > *恢复包*以访问恢复包页面。然后，下载 `.zip`文件。
++
+看link:downloading-recovery-package.html["下载恢复包"] 。
+
++
+
+NOTE: 尽快下载恢复包，以确保在退役过程中出现问题时可以恢复电网。
+
+. 定期监控“退役节点”页面，以确保所有选定的节点都已成功退役。
++
+
+TIP: 存储节点可能需要几天或几周的时间才能退役。
+
++
+当所有任务完成后，节点选择列表将重新显示并显示成功消息。
+
+
+
+.完成后
+完成节点退役程序后，请完成以下步骤：
+
+. 按照适合您的平台的步骤进行操作。例如：
++
+** *Linux*：您可能想要分离卷并删除在安装期间创建的节点配置文件。看link:../rhel/index.html["在 Red Hat Enterprise Linux 上安装StorageGRID"]和link:../ubuntu/index.html["在 Ubuntu 或 Debian 上安装StorageGRID"]。
+** *VMware*：您可能想要使用 vCenter 的“从磁盘删除”选项来删除虚拟机。您可能还需要删除任何独立于虚拟机的数据磁盘。
+** * StorageGRID设备*：设备节点自动恢复到未部署状态，您可以在该状态访问StorageGRID设备安装程序。您可以关闭设备电源或将其添加到另一个StorageGRID系统。
+
+
+. 确保已退役的网格节点的驱动器已被清除。使用市售的数据擦除工具或服务永久安全地从驱动器中删除数据。
+. 如果您停用了设备节点，并且设备上的数据使用节点加密进行保护，请使用StorageGRID设备安装程序清除密钥管理服务器配置（清除 KMS）。如果要将设备添加到另一个网格，则必须清除 KMS 配置。有关说明，请参阅 https://docs.netapp.com/us-en/storagegrid-appliances/commonhardware/monitoring-node-encryption-in-maintenance-mode.html["维护模式下监控节点加密"^]。
+

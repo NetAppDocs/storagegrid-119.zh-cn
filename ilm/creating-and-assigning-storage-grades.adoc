@@ -1,0 +1,65 @@
+---
+permalink: ilm/creating-and-assigning-storage-grades.html 
+sidebar: sidebar 
+keywords: what is a storage grade, create storage grade 
+summary: 存储等级标识存储节点使用的存储类型。如果您希望 ILM 规则将某些对象放置在某些存储节点上，则可以创建存储等级。 
+---
+= 创建并分配存储等级
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+存储等级标识存储节点使用的存储类型。如果您希望 ILM 规则将某些对象放置在某些存储节点上，则可以创建存储等级。
+
+.开始之前
+* 您已使用link:../admin/web-browser-requirements.html["支持的网络浏览器"]。
+* 你有link:../admin/admin-group-permissions.html["特定访问权限"]。
+
+
+.关于此任务
+首次安装StorageGRID时，*默认*存储等级会自动分配给系统中的每个存储节点。根据需要，您可以选择定义自定义存储等级并将其分配给不同的存储节点。
+
+使用自定义存储等级允许您创建仅包含特定类型存储节点的 ILM 存储池。例如，您可能希望将某些对象存储在最快的存储节点上，例如StorageGRID全闪存存储设备。
+
+
+NOTE: 可以在安装期间配置存储节点以仅包含对象元数据而不包含对象数据。仅元数据存储节点不能分配存储等级。有关更多信息，请参阅link:../primer/what-storage-node-is.html#types-of-storage-nodes["存储节点的类型"] 。
+
+如果存储等级不是问题（例如，所有存储节点都相同），则可以跳过此过程，并在选择存储等级时使用*包括所有存储等级*选项。link:creating-storage-pool.html["创建存储池"] 。使用此选项可确保存储池包含站点中的每个存储节点，无论其存储等级如何。
+
+
+NOTE: 不要创建超过必要数量的存储等级。例如，不要为每个存储节点创建一个存储等级。相反，将每个存储等级分配给两个或更多节点。如果仅分配给一个节点的存储等级在该节点不可用时可能会导致 ILM 积压。
+
+.步骤
+. 选择 *ILM* > *存储等级*。
+. 定义自定义存储等级：
++
+.. 对于要添加的每个自定义存储等级，选择“*插入*”image:../media/icon_nms_insert.gif["插入图标"]添加一行。
+.. 输入描述性标签。
++
+image::../media/editing_storage_grades.gif[存储等级页面]
+
+.. 选择*应用更改*。
+.. 或者，如果您需要修改已保存的标签，请选择“编辑”image:../media/icon_nms_edit.gif["编辑图标"]并选择*应用更改*。
++
+
+NOTE: 您不能删除存储等级。
+
+
+
+. 为存储节点分配新的存储等级：
++
+.. 在 LDR 列表中找到存储节点，然后选择其 *编辑* 图标image:../media/icon_nms_edit.gif["编辑图标"]。
+.. 从列表中选择适当的存储等级。
++
+image::../media/assigning_storage_grades_to_storage_nodes.gif[存储等级页面]
+
++
+
+NOTE: 仅为给定的存储节点分配一次存储等级。从故障中恢复的存储节点维持先前分配的存储等级。 ILM 策略激活后请勿更改此分配。如果分配发生变化，则数据将根据新的存储等级进行存储。
+
+.. 选择*应用更改*。
+
+
+

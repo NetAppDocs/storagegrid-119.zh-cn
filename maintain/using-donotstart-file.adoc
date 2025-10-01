@@ -1,0 +1,94 @@
+---
+permalink: maintain/using-donotstart-file.html 
+sidebar: sidebar 
+keywords: storagegrid, recover, donotstart, do not start, donotstart file, do not start file 
+summary: 如果您在技术支持的指导下执行各种维护或配置过程，您可能会被要求使用 DoNotStart 文件来阻止在服务器管理器启动或重新启动时启动服务。 
+---
+= 使用 DoNotStart 文件
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果您在技术支持的指导下执行各种维护或配置过程，您可能会被要求使用 DoNotStart 文件来阻止在服务器管理器启动或重新启动时启动服务。
+
+
+CAUTION: 仅当技术支持指示您这样做时，您才应该添加或删除 DoNotStart 文件。
+
+要阻止服务启动，请将 DoNotStart 文件放在要阻止启动的服务的目录中。在启动时，服务器管理器会查找 DoNotStart 文件。如果该文件存在，则该服务（以及任何依赖于它的服务）将无法启动。删除 DoNotStart 文件后，先前停止的服务将在服务器管理器下次启动或重新启动时启动。删除 DoNotStart 文件后，服务不会自动启动。
+
+阻止所有服务重新启动的最有效方法是阻止 NTP 服务启动。所有服务都依赖于 NTP 服务，如果 NTP 服务未运行，则所有服务都无法运行。
+
+
+
+== 为服务添加 DoNotStart 文件
+
+您可以通过将 DoNotStart 文件添加到网格节点上该服务的目录来阻止单个服务启动。
+
+.开始之前
+你有 `Passwords.txt`文件。
+
+.步骤
+. 登录网格节点：
++
+.. 输入以下命令： `ssh admin@_grid_node_IP_`
+.. 输入 `Passwords.txt`文件。
+.. 输入以下命令切换到root： `su -`
+.. 输入 `Passwords.txt`文件。
+
+
++
+当您以 root 身份登录时，提示符将从 `$`到 `#`。
+
+. 添加 DoNotStart 文件： `touch /etc/sv/_service_/DoNotStart`
++
+在哪里 `service`是要阻止启动的服务的名称。例如，
+
++
+[listing]
+----
+touch /etc/sv/ldr/DoNotStart
+----
++
+创建 DoNotStart 文件。不需要文件内容。
+
++
+当服务器管理器或网格节点重新启动时，服务器管理器会重新启动，但服务不会重新启动。
+
+. 退出命令外壳： `exit`
+
+
+
+
+== 删除服务的 DoNotStart 文件
+
+当您删除阻止服务启动的 DoNotStart 文件时，您必须启动该服务。
+
+.开始之前
+你有 `Passwords.txt`文件。
+
+.步骤
+. 登录网格节点：
++
+.. 输入以下命令： `ssh admin@_grid_node_IP_`
+.. 输入 `Passwords.txt`文件。
+.. 输入以下命令切换到root： `su -`
+.. 输入 `Passwords.txt`文件。
+
+
++
+当您以 root 身份登录时，提示符将从 `$`到 `#`。
+
+. 从服务目录中删除 DoNotStart 文件： `rm /etc/sv/_service_/DoNotStart`
++
+在哪里 `service`是服务的名称。例如，
+
++
+[listing]
+----
+rm /etc/sv/ldr/DoNotStart
+----
+. 启动服务： `service _servicename_ start`
+. 退出命令外壳： `exit`
+

@@ -1,0 +1,92 @@
+---
+permalink: s3/operations-for-multipart-uploads.html 
+sidebar: sidebar 
+keywords: operations, multipart uploads, uploads, rest API 
+summary: 本节介绍StorageGRID如何支持分段上传操作。 
+---
+= 分段上传的操作
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+本节介绍StorageGRID如何支持分段上传操作。
+
+以下条件和注意事项适用于所有分段上传操作：
+
+* 单个存储桶的并发分段上传不应超过 1,000 个，因为该存储桶的 ListMultipartUploads 查询结果可能会返回不完整的结果。
+* StorageGRID对多部分部件强制实施 AWS 大小限制。  S3 客户端必须遵循以下准则：
++
+** 分段上传中的每个部分必须介于 5 MiB（5,242,880 字节）和 5 GiB（5,368,709,120 字节）之间。
+** 最后一部分可以小于 5 MiB（5,242,880 字节）。
+** 一般来说，零件尺寸应尽可能大。例如，对于 100 GiB 的对象，使用 5 GiB 的部分大小。由于每个部分都被视为一个唯一对象，因此使用较大部分大小可以减少StorageGRID元数据开销。
+** 对于小于 5 GiB 的对象，请考虑使用非分段上传。
+
+
+* 如果 ILM 规则使用“平衡”或“严格”模式，则在分段上传完成时，将对分段对象的每个部分进行 ILM 评估；如果 ILM 规则使用“平衡”或“严格”模式，则将对整个对象进行 ILM 评估。link:../ilm/data-protection-options-for-ingest.html["摄取选项"] 。您应该了解这会如何影响对象和部件的放置：
++
+** 如果在 S3 分段上传过程中 ILM 发生变化，则分段上传完成时对象的某些部分可能不符合当前的 ILM 要求。任何未正确放置的部件都会排队等待 ILM 重新评估，然后移动到正确的位置。
+** 在评估某个部件的 ILM 时， StorageGRID会根据该部件的大小进行过滤，而不是对象的大小。这意味着对象的各个部分可以存储在不满足对象整体的 ILM 要求的位置。例如，如果规则指定所有 10 GB 或更大的对象都存储在 DC1，而所有较小的对象都存储在 DC2，则 10 部分分段上传的每个 1 GB 部分在摄取时都存储在 DC2。但是，当对整个对象进行 ILM 评估时，对象的所有部分都会移动到 DC1。
+
+
+* 所有分段上传操作都支持StorageGRIDlink:consistency-controls.html["一致性值"] 。
+* 当使用分段上传提取对象时，link:../admin/what-object-segmentation-is.html["对象分割阈值（1 GiB）"]不适用。
+* 根据需要，您可以使用link:using-server-side-encryption.html["服务器端加密"]使用分段上传。要使用 SSE（使用StorageGRID管理密钥的服务器端加密），您需要包括 `x-amz-server-side-encryption`仅在 CreateMultipartUpload 请求中的请求标头。要使用 SSE-C（使用客户提供的密钥的服务器端加密），您需要在 CreateMultipartUpload 请求和每个后续 UploadPart 请求中指定相同的三个加密密钥请求标头。
+
+
+[cols="2a,3a"]
+|===
+| 操作 | 实施 
+
+
+ a| 
+中止分段上传
+ a| 
+使用所有 Amazon S3 REST API 行为实现。如有变更，恕不另行通知。
+
+
+
+ a| 
+完成多部分上传
+ a| 
+看link:complete-multipart-upload.html["完成多部分上传"]
+
+
+
+ a| 
+创建多部分上传
+
+（之前名为“启动分段上传”）
+ a| 
+看link:initiate-multipart-upload.html["创建多部分上传"]
+
+
+
+ a| 
+列出多部分上传
+ a| 
+看link:list-multipart-uploads.html["列出多部分上传"]
+
+
+
+ a| 
+列出零件
+ a| 
+使用所有 Amazon S3 REST API 行为实现。如有变更，恕不另行通知。
+
+
+
+ a| 
+上传部分
+ a| 
+看link:upload-part.html["上传部分"]
+
+
+
+ a| 
+上传部分复制
+ a| 
+看link:upload-part-copy.html["上传部分复制"]
+
+|===

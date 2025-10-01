@@ -1,0 +1,250 @@
+---
+permalink: troubleshoot/searching-for-and-restoring-potentially-lost-objects.html 
+sidebar: sidebar 
+keywords: how to search lost object, how to restore lost object, how to find lost object 
+summary: '可能可以找到并恢复已触发*对象丢失*警报和旧式丢失对象 (LOST) 警报且您已确定为可能丢失的对象。' 
+---
+= 搜索并恢复可能丢失的物品
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+可能可以找到并恢复已触发*对象丢失*警报和旧式丢失对象 (LOST) 警报且您已确定为可能丢失的对象。
+
+.开始之前
+* 您拥有任何丢失物品的 UUID，如link:../troubleshoot/investigating-lost-objects.html["调查丢失的物品"]。
+* 你有 `Passwords.txt`文件。
+
+
+.关于此任务
+您可以按照此过程在网格中的其他地方查找丢失对象的副本。大多数情况下，丢失的物品是无法找到的。但是，在某些情况下，如果您采取及时行动，您也许能够找到并恢复丢失的复制对象。
+
+
+CAUTION: 请联系技术支持以获取此过程的帮助。
+
+.步骤
+. 从管理节点，搜索审计日志以查找可能的对象位置：
++
+.. 登录网格节点：
++
+... 输入以下命令： `ssh admin@grid_node_IP`
+... 输入 `Passwords.txt`文件。
+... 输入以下命令切换到root： `su -`
+... 输入 `Passwords.txt`文件。当您以 root 身份登录时，提示符将从 `$`到 `#`。
+
+
+.. [[substep-1b]]更改为审计日志所在的目录。
++
+--
+审计日志目录和适用节点取决于您的审计目标设置。
+
+[cols="1a,2a"]
+|===
+| 选项 | 目标 
+
+
+ a| 
+本地节点（默认）
+ a| 
+`/var/local/log/localaudit.log`
+
+
+
+ a| 
+管理节点/本地节点
+ a| 
+*** 管理节点（主节点和非主节点）： `/var/local/audit/export/audit.log`
+*** 所有节点： `/var/local/log/localaudit.log`在此模式下，文件通常为空或缺失。
+
+
+
+
+ a| 
+外部系统日志服务器
+ a| 
+`/var/local/log/localaudit.log`
+
+|===
+根据您的审计目标设置，输入： `cd /var/local/log`或者 `/var/local/audit/export/`
+
+要了解更多信息，请参阅link:../monitor/configure-audit-messages.html#select-audit-information-destinations["选择审计信息目的地"]。
+
+--
+.. 使用 grep 提取link:../audit/object-ingest-transactions.html["与可能丢失的对象相关的审计消息"]并将它们发送到输出文件。进入： `grep uuid-value audit_file_name > output_file_name`
++
+例如：
+
++
+[listing]
+----
+Admin: # grep 926026C4-00A4-449B-AC72-BCCA72DD1311 audit.log > /var/local/tmp/messages_about_lost_object.txt
+----
+.. 使用 grep 从此输出文件中提取位置丢失 (LLST) 审计消息。进入： `grep LLST output_file_name`
++
+例如：
+
++
+[listing]
+----
+Admin: # grep LLST /var/local/tmp/messages_about_lost_objects.txt
+----
++
+LLST 审计消息类似于此示例消息。
+
++
+[listing]
+----
+[AUDT:[NOID(UI32):12448208][CBIL(UI64):0x38186FE53E3C49A5]
+[UUID(CSTR):"926026C4-00A4-449B-AC72-BCCA72DD1311"][LTYP(FC32):CLDI]
+[PCLD(CSTR):"/var/local/rangedb/1/p/17/11/00rH0%DkRs&LgA#3tN6"]
+[TSRC(FC32):SYST][RSLT(FC32):NONE][AVER(UI32):10][ATIM(UI64):1581535134379225]
+[ATYP(FC32):LLST][ANID(UI32):12448208][AMID(FC32):CLSM][ATID(UI64):7086871083190743409]]
+----
+.. 找到LLST消息中的PCLD字段和NOID字段。
++
+如果存在，PCLD 的值是磁盘上丢失的复制对象副本的完整路径。  NOID 的值是可能找到对象副本的 LDR 的节点 ID。
+
++
+如果您找到对象位置，您可能能够恢复该对象。
+
+.. 查找与此 LDR 节点 ID 关联的存储节点。在网格管理器中，选择 *支持* > *工具* > *网格拓扑*。然后选择*_数据中心_* > *_存储节点_* > *LDR*。
++
+LDR 服务的节点 ID 位于节点信息表中。查看每个存储节点的信息，直到找到托管此 LDR 的存储节点。
+
+
+
+. 确定审计消息中指示的存储节点上是否存在该对象：
++
+.. 登录网格节点：
++
+... 输入以下命令： `ssh admin@grid_node_IP`
+... 输入 `Passwords.txt`文件。
+... 输入以下命令切换到root： `su -`
+... 输入 `Passwords.txt`文件。
++
+当您以 root 身份登录时，提示符将从 `$`到 `#`。
+
+
+
+.. 确定对象的文件路径是否存在。
++
+对于对象的文件路径，使用来自 LLST 审计消息的 PCLD 值。
+
++
+例如，输入：
+
++
+[listing]
+----
+ls '/var/local/rangedb/1/p/17/11/00rH0%DkRs&LgA%#3tN6'
+----
++
+
+NOTE: 在命令中始终将目标文件路径括在单引号中以转义任何特殊字符。
+
++
+*** 如果找不到对象路径，则对象丢失并且无法使用此过程恢复。请联系技术支持。
+*** 如果找到对象路径，则继续下一步。您可以尝试将找到的对象恢复回StorageGRID。
+
+
+
+
+. 如果找到对象路径，则尝试将对象还原到StorageGRID：
++
+.. 从同一个存储节点，更改对象文件的所有权，以便它可以由StorageGRID管理。进入： `chown ldr-user:bycast 'file_path_of_object'`
+.. 通过 Telnet 连接到 localhost 1402 来访问 LDR 控制台。进入： `telnet 0 1402`
+.. 进入： `cd /proc/STOR`
+.. 进入： `Object_Found 'file_path_of_object'`
++
+例如，输入：
+
++
+[listing]
+----
+Object_Found '/var/local/rangedb/1/p/17/11/00rH0%DkRs&LgA%#3tN6'
+----
++
+发行 `Object_Found`命令通知网格对象的位置。它还会触发活动的 ILM 策略，这些策略会根据每个策略中指定的内容制作额外的副本。
+
++
+
+NOTE: 如果您发现该对象的存储节点处于离线状态，则可以将该对象复制到任何在线的存储节点。将对象放置在在线存储节点的任意 /var/local/rangedb 目录中。然后，发出 `Object_Found`使用该文件路径到对象的命令。
+
++
+*** 如果无法恢复该对象， `Object_Found`命令失败。请联系技术支持。
+*** 如果对象已成功恢复到StorageGRID，则会显示一条成功消息。例如：
++
+[listing]
+----
+ade 12448208: /proc/STOR > Object_Found '/var/local/rangedb/1/p/17/11/00rH0%DkRs&LgA%#3tN6'
+
+ade 12448208: /proc/STOR > Object found succeeded.
+First packet of file was valid. Extracted key: 38186FE53E3C49A5
+Renamed '/var/local/rangedb/1/p/17/11/00rH0%DkRs&LgA%#3tN6' to '/var/local/rangedb/1/p/17/11/00rH0%DkRt78Ila#3udu'
+----
++
+继续下一步。
+
+
+
+
+
+. 如果对象已成功还原到StorageGRID，请验证是否已创建新位置：
++
+.. Sign inlink:../admin/web-browser-requirements.html["支持的网络浏览器"]。
+.. 选择 *ILM* > *对象元数据查找*。
+.. 输入 UUID，然后选择*查找*。
+.. 查看元数据并验证新位置。
+
+
+. 从管理节点，搜索此对象的 ORLM 审计消息的审计日志，以确认信息生命周期管理 (ILM) 已根据需要放置副本。
++
+.. 登录网格节点：
++
+... 输入以下命令： `ssh admin@grid_node_IP`
+... 输入 `Passwords.txt`文件。
+... 输入以下命令切换到root： `su -`
+... 输入 `Passwords.txt`文件。当您以 root 身份登录时，提示符将从 `$`到 `#`。
+
+
+.. 更改为审计日志所在的目录。参考<<substep-1b,子步骤 1. b>>。
+.. 使用 grep 将与对象相关的审计消息提取到输出文件。进入： `grep uuid-value audit_file_name > output_file_name`
++
+例如：
+
++
+[listing]
+----
+Admin: # grep 926026C4-00A4-449B-AC72-BCCA72DD1311 audit.log > /var/local/tmp/messages_about_restored_object.txt
+----
+.. 使用 grep 从此输出文件中提取符合对象规则 (ORLM) 的审计消息。进入： `grep ORLM output_file_name`
++
+例如：
+
++
+[listing]
+----
+Admin: # grep ORLM /var/local/tmp/messages_about_restored_object.txt
+----
++
+ORLM 审计消息看起来像此示例消息。
+
++
+[listing]
+----
+[AUDT:[CBID(UI64):0x38186FE53E3C49A5][RULE(CSTR):"Make 2 Copies"]
+[STAT(FC32):DONE][CSIZ(UI64):0][UUID(CSTR):"926026C4-00A4-449B-AC72-BCCA72DD1311"]
+[LOCS(CSTR):"**CLDI 12828634 2148730112**, CLDI 12745543 2147552014"]
+[RSLT(FC32):SUCS][AVER(UI32):10][ATYP(FC32):ORLM][ATIM(UI64):1563398230669]
+[ATID(UI64):15494889725796157557][ANID(UI32):13100453][AMID(FC32):BCMS]]
+----
+.. 在审计消息中查找 LOCS 字段。
++
+如果存在，LOCS 中 CLDI 的值是已创建对象副本的节点 ID 和卷 ID。此消息表明已应用 ILM，并且已在网格中的两个位置创建两个对象副本。
+
+
+
+. link:resetting-lost-and-missing-object-counts.html["重置丢失和失踪的物体数量"]在网格管理器中。
+

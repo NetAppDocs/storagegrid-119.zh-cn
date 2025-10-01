@@ -1,0 +1,82 @@
+---
+permalink: ubuntu/example-etc-network-interfaces.html 
+sidebar: sidebar 
+keywords: example etc network interfaces 
+summary: /etc/network/interfaces 文件包括三个部分，分别定义物理接口、绑定接口和 VLAN 接口。您可以将三个示例部分合并为一个文件，该文件将四个 Linux 物理接口聚合到一个 LACP 绑定中，然后建立三个与该绑定对应的 VLAN 接口，以用作StorageGRID网格、管理和客户端网络接口。 
+---
+= 示例 /etc/network/interfaces
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+这 `/etc/network/interfaces`文件包括三个部分，分别定义物理接口、绑定接口和VLAN接口。您可以将三个示例部分合并为一个文件，该文件将四个 Linux 物理接口聚合到一个 LACP 绑定中，然后建立三个与该绑定对应的 VLAN 接口，以用作StorageGRID网格、管理和客户端网络接口。
+
+
+
+== 物理接口
+
+请注意，链路另一端的交换机也必须将这四个端口视为单个 LACP 中继或端口通道，并且必须传递至少三个带有标签的引用 VLAN。
+
+[listing]
+----
+# loopback interface
+auto lo
+iface lo inet loopback
+
+# ens160 interface
+auto ens160
+iface ens160 inet manual
+    bond-master bond0
+    bond-primary en160
+
+# ens192 interface
+auto ens192
+iface ens192 inet manual
+    bond-master bond0
+
+# ens224 interface
+auto ens224
+iface ens224 inet manual
+    bond-master bond0
+
+# ens256 interface
+auto ens256
+iface ens256 inet manual
+    bond-master bond0
+----
+
+
+== Bond 接口
+
+[listing]
+----
+# bond0 interface
+auto bond0
+iface bond0 inet manual
+    bond-mode 4
+    bond-miimon 100
+    bond-slaves ens160 ens192 end224 ens256
+----
+
+
+== VLAN 接口
+
+[listing]
+----
+# 1001 vlan
+auto bond0.1001
+iface bond0.1001 inet manual
+vlan-raw-device bond0
+
+# 1002 vlan
+auto bond0.1002
+iface bond0.1002 inet manual
+vlan-raw-device bond0
+
+# 1003 vlan
+auto bond0.1003
+iface bond0.1003 inet manual
+vlan-raw-device bond0
+----

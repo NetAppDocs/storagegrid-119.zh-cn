@@ -1,0 +1,41 @@
+---
+permalink: tenant/signing-out-of-tenant-manager.html 
+sidebar: sidebar 
+keywords: how to sign out of tenant manager 
+summary: 当您完成租户管理器的工作后，您必须注销以确保未经授权的用户无法访问StorageGRID系统。根据浏览器 cookie 设置，关闭浏览器可能不会使您退出系统。 
+---
+= 退出租户管理器
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+当您完成租户管理器的工作后，您必须注销以确保未经授权的用户无法访问StorageGRID系统。根据浏览器 cookie 设置，关闭浏览器可能不会使您退出系统。
+
+.步骤
+. 找到用户界面右上角的用户名下拉菜单。
++
+image::../media/tenant_user_sign_out.png[退出链接]
+
+. 选择用户名，然后选择*退出*。
++
+** 如果未使用 SSO：
++
+您已退出管理节点。显示租户管理器登录页面。
+
++
+
+NOTE: 如果您登录了多个管理节点，则必须从每个节点注销。
+
+** 如果启用了 SSO：
++
+您已退出正在访问的所有管理节点。显示StorageGRIDSign in页面。您刚刚访问的租户帐户的名称在“最近的帐户”下拉菜单中列为默认名称，并显示租户的“帐户 ID”。
+
++
+
+NOTE: 如果启用了 SSO 并且您也登录了网格管理器，则您还必须退出网格管理器才能退出 SSO。
+
+
+
+

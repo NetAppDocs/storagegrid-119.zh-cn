@@ -1,0 +1,36 @@
+---
+permalink: monitor/reviewing-audit-messages.html 
+sidebar: sidebar 
+keywords: how to review audit messages, how to view audit messages 
+summary: 审计消息可以帮助您更好地了解StorageGRID系统的详细操作。您可以使用审计日志来解决问题并评估性能。 
+---
+= 审查审计消息
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+审计消息可以帮助您更好地了解StorageGRID系统的详细操作。您可以使用审计日志来解决问题并评估性能。
+
+在系统正常运行期间，所有StorageGRID服务都会生成审计消息，如下所示：
+
+* 系统审计消息与审计系统本身、网格节点状态、系统范围的任务活动和服务备份操作有关。
+* 对象存储审计消息与StorageGRID内的对象的存储和管理有关，包括对象存储和检索、网格节点到网格节点的传输和验证。
+* 当 S3 客户端应用程序发出创建、修改或检索对象的请求时，会记录客户端读取和写入审计消息。
+* 管理审计消息将用户请求记录到管理 API。
+
+
+每个管理节点都将审计消息存储在文本文件中。审计共享包含活动文件（audit.log）以及前几天的压缩审计日志。网格中的每个节点还存储在该节点上生成的审计信息的副本。
+
+您可以直接从管理节点的命令行访问审计日志文件。
+
+StorageGRID可以默认发送审计信息，或者您可以更改目的地：
+
+* StorageGRID默认为本地节点审计目的地。
+* 网格管理器和租户管理器审计日志条目可能会被发送到存储节点。
+* 或者，您可以更改审计日志的目标并将审计信息发送到外部系统日志服务器。当配置外部系统日志服务器时，将继续生成和存储审计记录的本地日志。
+* link:../monitor/configure-audit-messages.html["了解如何配置审计消息和日志目标"] 。
+
+
+有关审计日志文件、审计消息的格式、审计消息的类型以及可用于分析审计消息的工具的详细信息，请参阅link:../audit/index.html["审查审计日志"]。

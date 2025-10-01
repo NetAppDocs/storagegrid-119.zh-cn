@@ -1,0 +1,49 @@
+---
+permalink: audit/gted-grid-task-ended.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, message, GTED, Grid Task Ended 
+summary: 此审计消息表明 CMN 服务已完成处理指定的网格任务，并已将该任务移至历史表。如果结果是SUCS、ABRT或ROLF，则会有相应的Grid Task Started审计消息。其他结果表明该网格任务的处理从未开始。 
+---
+= GTED：网格任务结束
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+此审计消息表明 CMN 服务已完成处理指定的网格任务，并已将该任务移至历史表。如果结果是SUCS、ABRT或ROLF，则会有相应的Grid Task Started审计消息。其他结果表明该网格任务的处理从未开始。
+
+[cols="1a,1a,4a"]
+|===
+| 代码 | 字段 | 描述 
+
+
+ a| 
+服务标识符
+ a| 
+任务 ID
+ a| 
+该字段唯一地标识生成的网格任务，并允许在网格任务的生命周期内对其进行管理。
+
+*注意：*任务 ID 是在生成网格任务时分配的，而不是在提交时分配的。给定的网格任务可能会被提交多次，在这种情况下，任务 ID 字段不足以唯一地链接已提交、已开始和已结束的审计消息。
+
+
+
+ a| 
+放射学研究实验室
+ a| 
+结果
+ a| 
+网格任务最终状态结果：
+
+* SUCS：网格任务成功完成。
+* ABRT：网格任务终止，没有回滚错误。
+* ROLF：网格任务已终止，无法完成回滚过程。
+* CANC：网格任务在启动前被用户取消。
+* EXPR：网格任务在启动前已过期。
+* IVLD：网格任务无效。
+* AUTH：网格任务未经授权。
+* DUPL：网格任务因重复而被拒绝。
+
+
+|===

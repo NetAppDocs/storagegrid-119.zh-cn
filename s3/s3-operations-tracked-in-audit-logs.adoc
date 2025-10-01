@@ -1,0 +1,53 @@
+---
+permalink: s3/s3-operations-tracked-in-audit-logs.html 
+sidebar: sidebar 
+keywords: audit log, auditing bucket and object operations, S3 audit messages 
+summary: 审计消息由StorageGRID服务生成并存储在文本日志文件中。您可以查看审计日志中特定于 S3 的审计消息，以获取有关存储桶和对象操作的详细信息。 
+---
+= 审计日志中跟踪的 S3 操作
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+审计消息由StorageGRID服务生成并存储在文本日志文件中。您可以查看审计日志中特定于 S3 的审计消息，以获取有关存储桶和对象操作的详细信息。
+
+
+
+== 审计日志中跟踪的存储桶操作
+
+* 创建桶
+* 删除桶
+* 删除桶标记
+* 删除对象
+* 获取桶标记
+* 头桶
+* 列表对象
+* 列出对象版本
+* PUT Bucket 合规性
+* PutBucketTagging
+* PutBucket版本控制
+
+
+
+
+== 审计日志中跟踪的对象操作
+
+* 完成多部分上传
+* 复制对象
+* 删除对象
+* 获取对象
+* 头部对象
+* 放置对象
+* 恢复对象
+* 选择对象
+* UploadPart（当 ILM 规则使用 Balanced 或 Strict 摄取时）
+* UploadPartCopy（当 ILM 规则使用平衡或严格提取时）
+
+
+.相关信息
+* link:../audit/accessing-audit-log-file.html["访问审计日志文件"]
+* link:../audit/client-write-audit-messages.html["客户端写入审计消息"]
+* link:../audit/client-read-audit-messages.html["客户端读取审计消息"]
+

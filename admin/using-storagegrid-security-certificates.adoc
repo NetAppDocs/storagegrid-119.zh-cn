@@ -1,0 +1,487 @@
+---
+permalink: admin/using-storagegrid-security-certificates.html 
+sidebar: sidebar 
+keywords: security certificates, grid CA certificate, types of certificates 
+summary: 安全证书是用于在StorageGRID组件之间以及StorageGRID组件与外部系统之间创建安全、可信连接的小型数据文件。 
+---
+= 管理安全证书
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+安全证书是用于在StorageGRID组件之间以及StorageGRID组件与外部系统之间创建安全、可信连接的小型数据文件。
+
+StorageGRID使用两种类型的安全证书：
+
+* 使用 HTTPS 连接时需要*服务器证书*。服务器证书用于在客户端和服务器之间建立安全连接，向客户端验证服务器的身份并为数据提供安全通信路径。服务器和客户端各自拥有一份证书副本。
+* *客户端证书*向服务器验证客户端或用户身份，提供比单独使用密码更安全的身份验证。客户端证书不加密数据。
+
+
+当客户端使用 HTTPS 连接到服务器时，服务器会使用包含公钥的服务器证书进行响应。客户端通过将服务器签名与其证书副本上的签名进行比较来验证此证书。如果签名匹配，客户端将使用相同的公钥与服务器开始会话。
+
+StorageGRID充当某些连接（例如负载均衡器端点）的服务器，或充当其他连接（例如 CloudMirror 复制服务）的客户端。
+
+*默认网格 CA 证书*
+
+StorageGRID包括一个内置证书颁发机构 (CA)，它在系统安装期间生成内部 Grid CA 证书。默认情况下，使用 Grid CA 证书来保护内部StorageGRID流量。外部证书颁发机构 (CA) 可以颁发完全符合您组织的信息安全策略的自定义证书。虽然您可以在非生产环境中使用 Grid CA 证书，但生产环境的最佳做法是使用由外部证书颁发机构签名的自定义证书。也支持没有证书的不安全连接，但不推荐。
+
+* 自定义 CA 证书不会删除内部证书；但是，自定义证书应该是用于验证服务器连接的证书。
+* 所有定制证书必须满足link:../harden/hardening-guideline-for-server-certificates.html["服务器证书的系统强化指南"]。
+* StorageGRID支持将来自 CA 的证书捆绑到单个文件中（称为 CA 证书包）。
+
+
+
+NOTE: StorageGRID还包括所有网格上相同的操作系统 CA 证书。在生产环境中，请确保指定由外部证书颁发机构签名的自定义证书来代替操作系统 CA 证书。
+
+服务器和客户端证书类型的变体以多种方式实现。在配置系统之前，您应该准备好特定StorageGRID配置所需的所有证书。
+
+
+
+== 访问安全证书
+
+您可以在单个位置访问有关所有StorageGRID证书的信息，以及每个证书的配置工作流程的链接。
+
+.步骤
+. 从网格管理器中，选择 *配置* > *安全* > *证书*。
++
+image::security_certificates.png[证书页面]
+
+. 选择“证书”页面上的选项卡以获取有关每个证书类别的信息并访问证书设置。如果您有link:admin-group-permissions.html["适当的许可"]。
++
+** *全局*：保护从 Web 浏览器和外部 API 客户端访问StorageGRID 的安全。
+** *Grid CA*：保护内部StorageGRID流量。
+** *客户端*：保护外部客户端和StorageGRID Prometheus 数据库之间的连接。
+** *负载均衡器端点*：保护 S3 客户端和StorageGRID负载均衡器之间的连接。
+** *租户*：保护与身份联合服务器或从平台服务端点到 S3 存储资源的连接。
+** *其他*：保护需要特定证书的StorageGRID连接。
++
+下面描述了每个选项卡，并提供了指向其他证书详细信息的链接。
+
++
+[role="tabbed-block"]
+====
+.全局
+--
+全局证书可确保从 Web 浏览器和外部 S3 API 客户端访问StorageGRID 的安全。在安装过程中， StorageGRID证书颁发机构最初会生成两个全局证书。生产环境的最佳实践是使用由外部证书颁发机构签署的自定义证书。
+
+*** <<管理接口证书>>：保护客户端 Web 浏览器与StorageGRID管理界面的连接。
+*** <<S3 API 证书>>：保护客户端 API 与存储节点、管理节点和网关节点的连接，S3 客户端应用程序使用这些连接上传和下载对象数据。
+
+
+有关已安装的全局证书的信息包括：
+
+*** *名称*：证书名称以及证书管理链接。
+*** *描述*
+*** *类型*：自定义或默认。  + 您应该始终使用自定义证书来提高电网安全性。
+*** *到期日期*：如果使用默认证书，则不显示到期日期。
+
+
+您可以轻松实现以下目标：
+
+*** 将默认证书替换为由外部证书颁发机构签名的自定义证书，以提高网格安全性：
++
+**** link:configuring-custom-server-certificate-for-grid-manager-tenant-manager.html["替换默认的StorageGRID生成的管理接口证书"]用于网格管理器和租户管理器连接。
+**** link:configuring-custom-server-certificate-for-storage-node.html["替换 S3 API 证书"]用于存储节点和负载均衡器端点（可选）连接。
+
+
+*** link:configuring-custom-server-certificate-for-grid-manager-tenant-manager.html#restore-the-default-management-interface-certificate["恢复默认管理接口证书"] 。
+*** link:configuring-custom-server-certificate-for-storage-node.html#restore-the-default-s3-api-certificate["恢复默认的 S3 API 证书"] 。
+*** link:configuring-custom-server-certificate-for-grid-manager-tenant-manager.html#use-a-script-to-generate-a-new-self-signed-management-interface-certificate["使用脚本生成新的自签名管理接口证书"] 。
+*** 复制或下载link:configuring-custom-server-certificate-for-grid-manager-tenant-manager.html#download-or-copy-the-management-interface-certificate["管理接口证书"]或者link:configuring-custom-server-certificate-for-storage-node.html#download-or-copy-the-s3-api-certificate["S3 API 证书"]。
+
+
+--
+.网格CA
+--
+这<<gridca_details,网格CA证书>>由StorageGRID证书颁发机构在StorageGRID安装期间生成，可保护所有内部StorageGRID流量。
+
+证书信息包括证书有效期、证书内容等。
+
+你可以link:copying-storagegrid-system-ca-certificate.html["复制或下载 Grid CA 证书"]，但您无法更改它。
+
+--
+.客户端
+--
+<<adminclientcert_details,客户端证书>>由外部证书颁发机构生成，确保外部监控工具与StorageGRID Prometheus 数据库之间的连接安全。
+
+证书表为每个配置的客户端证书都有一行，并指示该证书是否可用于 Prometheus 数据库访问，以及证书到期日期。
+
+您可以轻松实现以下目标：
+
+*** link:configuring-administrator-client-certificates.html#add-client-certificates["上传或生成新的客户端证书。"]
+*** 选择证书名称以显示证书详细信息，您可以在其中：
++
+**** link:configuring-administrator-client-certificates.html#edit-client-certificates["更改客户端证书名称。"]
+**** link:configuring-administrator-client-certificates.html#edit-client-certificates["设置Prometheus访问权限。"]
+**** link:configuring-administrator-client-certificates.html#edit-client-certificates["上传并替换客户端证书。"]
+**** link:configuring-administrator-client-certificates.html#download-or-copy-client-certificates["复制或下载客户端证书。"]
+**** link:configuring-administrator-client-certificates.html#remove-client-certificates["删除客户端证书。"]
+
+
+*** 选择*操作*快速link:configuring-administrator-client-certificates.html#edit-client-certificates["编辑"]，link:configuring-administrator-client-certificates.html#attach-new-client-certificate["附"] ， 或者link:configuring-administrator-client-certificates.html#remove-client-certificates["消除"]客户端证书。您最多可以选择 10 个客户端证书，并使用 *操作* > *删除* 一次性将其删除。
+
+
+--
+.负载均衡器端点
+--
+<<负载均衡器端点证书,负载均衡器端点证书>>保护 S3 客户端与网关节点和管理节点上的StorageGRID负载均衡器服务之间的连接。
+
+负载均衡器端点表为每个配置的负载均衡器端点都有一行，并指示该端点是否使用全局 S3 API 证书或自定义负载均衡器端点证书。还会显示每个证书的到期日期。
+
+
+NOTE: 对端点证书的更改最多可能需要 15 分钟才能应用到所有节点。
+
+您可以轻松实现以下目标：
+
+*** link:configuring-load-balancer-endpoints.html["查看负载均衡器端点"]，包括其证书详细信息。
+*** link:../fabricpool/creating-load-balancer-endpoint-for-fabricpool.html["为FabricPool指定负载均衡器端点证书。"]
+*** link:configuring-load-balancer-endpoints.html["使用全局 S3 API 证书"]而不是生成新的负载均衡器端点证书。
+
+
+--
+.租户
+--
+租户可以使用<<身份联合证书,身份联合服务器证书>>或者<<平台服务端点证书,平台服务端点证书>>以确保与StorageGRID 的连接安全。
+
+租户表为每个租户分配一行，并指示每个租户是否有权使用自己的身份源或平台服务。
+
+您可以轻松实现以下目标：
+
+*** link:../tenant/signing-in-to-tenant-manager.html["选择租户名称以登录租户管理器"]
+*** link:../tenant/using-identity-federation.html["选择租户名称以查看租户身份联合详细信息"]
+*** link:../tenant/editing-platform-services-endpoint.html["选择租户名称查看租户平台服务详情"]
+*** link:../tenant/creating-platform-services-endpoint.html["在端点创建期间指定平台服务端点证书"]
+
+
+--
+.其他
+--
+StorageGRID使用其他安全证书来达到特定目的。这些证书按其功能名称列出。其他安全证书包括：
+
+*** <<云存储池端点证书,云存储池证书>>
+*** <<电子邮件警报通知证书,电子邮件警报通知证书>>
+*** <<外部系统日志服务器证书,外部系统日志服务器证书>>
+*** <<grid-federation-certificate,电网联合连接证书>>
+*** <<身份联合证书,身份联合证书>>
+*** <<密钥管理服务器 (KMS) 证书,密钥管理服务器 (KMS) 证书>>
+*** <<单点登录 (SSO) 证书,单点登录证书>>
+
+
+信息指示功能使用的证书类型及其服务器和客户端证书到期日期（如适用）。选择一个函数名称将打开一个浏览器选项卡，您可以在其中查看和编辑证书详细信息。
+
+
+NOTE: 仅当您拥有link:admin-group-permissions.html["适当的许可"]。
+
+您可以轻松实现以下目标：
+
+*** link:../ilm/creating-cloud-storage-pool.html["为 S3、C2S S3 或 Azure 指定云存储池证书"]
+*** link:../monitor/email-alert-notifications.html["指定警报电子邮件通知的证书"]
+*** link:../monitor/configure-audit-messages.html#use-external-syslog-server["使用外部系统日志服务器的证书"]
+*** link:grid-federation-manage-connection.html#rotate-connection-certificates["轮换电网联合连接证书"]
+*** link:using-identity-federation.html["查看和编辑身份联合证书"]
+*** link:kms-adding.html["上传密钥管理服务器 (KMS) 服务器和客户端证书"]
+*** link:creating-relying-party-trusts-in-ad-fs.html#create-a-relying-party-trust-manually["为信赖方信任手动指定 SSO 证书"]
+
+
+--
+====
+
+
+
+
+
+
+== 安全证书详细信息
+
+下面描述了每种类型的安全证书，并附有实施说明的链接。
+
+
+
+=== 管理接口证书
+
+[cols="1a,1a,1a,1a"]
+|===
+| 证书类型 | 描述 | 导航位置 | 详细信息 
+
+
+ a| 
+服务器
+ a| 
+验证客户端 Web 浏览器与StorageGRID管理界面之间的连接，允许用户访问网格管理器和租户管理器而不会出现安全警告。
+
+此证书还验证网格管理 API 和租户管理 API 连接。
+
+您可以使用安装期间创建的默认证书或上传自定义证书。
+ a| 
+*配置* > *安全* > *证书*，选择 *全局* 选项卡，然后选择 *管理接口证书*
+ a| 
+link:configuring-custom-server-certificate-for-grid-manager-tenant-manager.html["配置管理接口证书"]
+
+|===
+
+
+=== S3 API 证书
+
+[cols="1a,1a,1a,1a"]
+|===
+| 证书类型 | 描述 | 导航位置 | 详细信息 
+
+
+ a| 
+服务器
+ a| 
+验证与存储节点和负载均衡器端点的安全 S3 客户端连接（可选）。
+ a| 
+*配置* > *安全* > *证书*，选择 *全局* 选项卡，然后选择 *S3 API 证书*
+ a| 
+link:configuring-custom-server-certificate-for-storage-node.html["配置 S3 API 证书"]
+
+|===
+
+
+=== 网格CA证书
+
+查看<<gridca_details,默认网格 CA 证书描述>>。
+
+
+
+=== 管理员客户端证书
+
+[cols="1a,1a,1a,1a"]
+|===
+| 证书类型 | 描述 | 导航位置 | 详细信息 
+
+
+ a| 
+客户端
+ a| 
+安装在每个客户端上，允许StorageGRID验证外部客户端访问。
+
+* 允许授权的外部客户端访问StorageGRID Prometheus 数据库。
+* 允许使用外部工具对StorageGRID进行安全监控。
+
+ a| 
+*配置* > *安全* > *证书*，然后选择 *客户端* 选项卡
+ a| 
+link:configuring-administrator-client-certificates.html["配置客户端证书"]
+
+|===
+
+
+=== 负载均衡器端点证书
+
+[cols="1a,1a,1a,1a"]
+|===
+| 证书类型 | 描述 | 导航位置 | 详细信息 
+
+
+ a| 
+服务器
+ a| 
+验证 S3 客户端与网关节点和管理节点上的StorageGRID负载均衡器服务之间的连接。您可以在配置负载均衡器端点时上传或生成负载均衡器证书。客户端应用程序在连接到StorageGRID以保存和检索对象数据时使用负载均衡器证书。
+
+您还可以使用全局的自定义版本<<S3 API 证书>>证书来验证与负载均衡器服务的连接。如果使用全局证书来验证负载均衡器连接，则无需为每个负载均衡器端点上传或生成单独的证书。
+
+*注意：*用于负载均衡器身份验证的证书是正常StorageGRID操作期间使用最多的证书。
+ a| 
+*配置* > *网络* > *负载均衡器端点*
+ a| 
+* link:configuring-load-balancer-endpoints.html["配置负载均衡器端点"]
+* link:../fabricpool/creating-load-balancer-endpoint-for-fabricpool.html["为FabricPool创建负载均衡器端点"]
+
+
+|===
+
+
+=== 云存储池端点证书
+
+[cols="1a,1a,1a,1a"]
+|===
+| 证书类型 | 描述 | 导航位置 | 详细信息 
+
+
+ a| 
+服务器
+ a| 
+验证从StorageGRID云存储池到外部存储位置（例如 S3 Glacier 或 Microsoft Azure Blob 存储）的连接。每种云提供商类型都需要不同的证书。
+ a| 
+*ILM* > *存储池*
+ a| 
+link:../ilm/creating-cloud-storage-pool.html["创建云存储池"]
+
+|===
+
+
+=== 电子邮件警报通知证书
+
+[cols="1a,1a,1a,1a"]
+|===
+| 证书类型 | 描述 | 导航位置 | 详细信息 
+
+
+ a| 
+服务器和客户端
+ a| 
+验证用于警报通知的 SMTP 电子邮件服务器和StorageGRID之间的连接。
+
+* 如果与 SMTP 服务器的通信需要传输层安全性 (TLS)，则必须指定电子邮件服务器 CA 证书。
+* 仅当 SMTP 电子邮件服务器需要客户端证书进行身份验证时才指定客户端证书。
+
+ a| 
+*警报* > *电子邮件设置*
+ a| 
+link:../monitor/email-alert-notifications.html["设置警报的电子邮件通知"]
+
+|===
+
+
+=== 外部系统日志服务器证书
+
+[cols="1a,1a,1a,1a"]
+|===
+| 证书类型 | 描述 | 导航位置 | 详细信息 
+
+
+ a| 
+服务器
+ a| 
+对在StorageGRID中记录事件的外部 syslog 服务器之间的 TLS 或 RELP/TLS 连接进行验证。
+
+*注意：*与外部系统日志服务器的 TCP、RELP/TCP 和 UDP 连接不需要外部系统日志服务器证书。
+ a| 
+*配置* > *监控* > *审计和系统日志服务器*
+ a| 
+link:../monitor/configure-audit-messages.html#use-external-syslog-server["使用外部系统日志服务器"]
+
+|===
+
+
+=== [[grid-federation-certificate]]电网联合连接证书
+
+[cols="1a,1a,1a,1a"]
+|===
+| 证书类型 | 描述 | 导航位置 | 详细信息 
+
+
+ a| 
+服务器和客户端
+ a| 
+对当前StorageGRID系统和网格联合连接中的另一个网格之间发送的信息进行验证和加密。
+ a| 
+*配置* > *系统* > *网格联合*
+ a| 
+* link:grid-federation-create-connection.html["创建电网联合连接"]
+* link:grid-federation-manage-connection.html#rotate_grid_fed_certificates["轮换连接证书"]
+
+
+|===
+
+
+=== 身份联合证书
+
+[cols="1a,1a,1a,1a"]
+|===
+| 证书类型 | 描述 | 导航位置 | 详细信息 
+
+
+ a| 
+服务器
+ a| 
+验证StorageGRID与外部身份提供商（例如 Active Directory、OpenLDAP 或 Oracle Directory Server）之间的连接。用于身份联合，允许管理组和用户由外部系统管理。
+ a| 
+*配置* > *访问控制* > *身份联合*
+ a| 
+link:using-identity-federation.html["使用身份联合"]
+
+|===
+
+
+=== 密钥管理服务器 (KMS) 证书
+
+[cols="1a,1a,1a,1a"]
+|===
+| 证书类型 | 描述 | 导航位置 | 详细信息 
+
+
+ a| 
+服务器和客户端
+ a| 
+验证StorageGRID与外部密钥管理服务器 (KMS) 之间的连接，该服务器为StorageGRID设备节点提供加密密钥。
+ a| 
+*配置* > *安全* > *密钥管理服务器*
+ a| 
+link:kms-adding.html["添加密钥管理服务器（KMS）"]
+
+|===
+
+
+=== 平台服务端点证书
+
+[cols="1a,1a,1a,1a"]
+|===
+| 证书类型 | 描述 | 导航位置 | 详细信息 
+
+
+ a| 
+服务器
+ a| 
+验证从StorageGRID平台服务到 S3 存储资源的连接。
+ a| 
+*租户管理器* > *存储 (S3)* > *平台服务端点*
+ a| 
+link:../tenant/creating-platform-services-endpoint.html["创建平台服务端点"]
+
+link:../tenant/editing-platform-services-endpoint.html["编辑平台服务端点"]
+
+|===
+
+
+=== 单点登录 (SSO) 证书
+
+[cols="1a,1a,1a,1a"]
+|===
+| 证书类型 | 描述 | 导航位置 | 详细信息 
+
+
+ a| 
+服务器
+ a| 
+验证用于单点登录 (SSO) 请求的身份联合服务（例如 Active Directory 联合身份验证服务 (AD FS)）和StorageGRID之间的连接。
+ a| 
+*配置* > *访问控制* > *单点登录*
+ a| 
+link:configuring-sso.html["配置单点登录"]
+
+|===
+
+
+== 证书示例
+
+
+
+=== 示例 1：负载均衡器服务
+
+在此示例中， StorageGRID充当服务器。
+
+. 您配置负载均衡器端点并在StorageGRID中上传或生成服务器证书。
+. 您配置与负载均衡器端点的 S3 客户端连接，并将相同的证书上传到客户端。
+. 当客户端想要保存或检索数据时，它使用 HTTPS 连接到负载均衡器端点。
+. StorageGRID使用包含公钥的服务器证书和基于私钥的签名进行响应。
+. 客户端通过将服务器签名与其证书副本上的签名进行比较来验证此证书。如果签名匹配，客户端将使用相同的公钥开始会话。
+. 客户端将对象数据发送到StorageGRID。
+
+
+
+
+=== 示例 2：外部密钥管理服务器 (KMS)
+
+在此示例中， StorageGRID充当客户端。
+
+. 使用外部密钥管理服务器软件，您可以将StorageGRID配置为 KMS 客户端并获取 CA 签名的服务器证书、公共客户端证书以及客户端证书的私钥。
+. 使用网格管理器，您可以配置 KMS 服务器并上传服务器和客户端证书以及客户端私钥。
+. 当StorageGRID节点需要加密密钥时，它会向 KMS 服务器发出请求，其中包含来自证书的数据和基于私钥的签名。
+. KMS 服务器验证证书签名并决定它可以信任StorageGRID。
+. KMS 服务器使用已验证的连接进行响应。
+

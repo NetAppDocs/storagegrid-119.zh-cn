@@ -1,0 +1,95 @@
+---
+permalink: s3/deprecated-get-bucket-compliance-request.html 
+sidebar: sidebar 
+keywords: S3 REST API, S3 operations, deprecated GET compliance requests 
+summary: GET Bucket 合规性请求已被弃用。但是，您可以继续使用此请求来确定现有旧版合规存储桶当前有效的合规性设置。 
+---
+= 已弃用：GET Bucket 合规性请求
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+GET Bucket 合规性请求已被弃用。但是，您可以继续使用此请求来确定现有旧版合规存储桶当前有效的合规性设置。
+
+[NOTE]
+====
+以前版本的StorageGRID中提供的StorageGRID合规性功能已被弃用，并已被 S3 对象锁取代。请参阅以下内容以了解更多详细信息：
+
+* link:../s3/use-s3-api-for-s3-object-lock.html["使用 S3 REST API 配置 S3 对象锁"]
+* https://kb.netapp.com/Advice_and_Troubleshooting/Hybrid_Cloud_Infrastructure/StorageGRID/How_to_manage_legacy_Compliant_buckets_in_StorageGRID_11.5["NetApp知识库：如何在StorageGRID 11.5 中管理旧版兼容存储桶"^]
+
+
+====
+您必须拥有 s3:GetBucketCompliance 权限，或者成为账户根，才能完成此操作。
+
+
+
+== 请求示例
+
+此示例请求允许您确定名为 `mybucket`。
+
+[listing, subs="specialcharacters,quotes"]
+----
+GET /mybucket/?x-ntap-sg-compliance HTTP/1.1
+Date: _date_
+Authorization: _authorization string_
+Host: _host_
+----
+
+
+== 响应示例
+
+在响应 XML 中， `<SGCompliance>`列出存储桶有效的合规性设置。此示例响应显示了存储桶的合规性设置，其中每个对象将从对象被引入网格时开始保留一年（525,600 分钟）。目前，此存储桶不存在任何合法保留。每个对象将在一年后自动删除。
+
+[listing, subs="specialcharacters,quotes"]
+----
+HTTP/1.1 200 OK
+Date: _date_
+Connection: _connection_
+Server: StorageGRID/11.1.0
+x-amz-request-id: _request ID_
+Content-Length: _length_
+Content-Type: application/xml
+
+<SGCompliance>
+  <RetentionPeriodMinutes>525600</RetentionPeriodMinutes>
+  <LegalHold>false</LegalHold>
+  <AutoDelete>true</AutoDelete>
+</SGCompliance>
+----
+[cols="1a,2a"]
+|===
+| 名称 | 描述 
+
+
+ a| 
+保留期分钟
+ a| 
+添加到此存储桶的对象的保留期限长度（以分钟为单位）。保留期从对象被纳入电网时开始。
+
+
+
+ a| 
+法律保留
+ a| 
+* 真：此存储桶目前处于合法保留状态。在解除合法保留之前，此存储桶中的对象无法被删除，即使其保留期已过期。
+* 错误：此存储桶当前未处于合法保留之下。当保留期到期时，可以删除此存储桶中的对象。
+
+
+
+
+ a| 
+自动删除
+ a| 
+* True：除非存储桶处于合法保留状态，否则当保留期到期时，此存储桶中的对象将被自动删除。
+* False：保留期到期后，此存储桶中的对象不会被自动删除。如果需要删除这些对象，则必须手动删除它们。
+
+
+|===
+
+
+== 错误响应
+
+如果存储桶的创建不符合要求，则响应的 HTTP 状态代码为 `404 Not Found`，S3 错误代码为 `XNoSuchBucketCompliance`。

@@ -1,0 +1,66 @@
+---
+permalink: admin/configuration-options-for-ha-groups.html 
+sidebar: sidebar 
+keywords: ha groups, best practices, high availability group options 
+summary: 下图提供了配置 HA 组的不同方法的示例。每个选项都有优点和缺点。 
+---
+= HA 组的配置选项
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+下图提供了配置 HA 组的不同方法的示例。每个选项都有优点和缺点。
+
+图中蓝色表示HA组的主接口，黄色表示HA组内的备份接口。
+
+image::../media/high_availability_examples.png[HA 示例]
+
+该表总结了图中所示的每种 HA 配置的优点。
+
+[cols="1a,2a,2a"]
+|===
+| 配置 | 优势 | 劣势 
+
+
+ a| 
+主动备份高可用性
+ a| 
+* 由StorageGRID管理，无需任何外部依赖。
+* 快速故障转移。
+
+ a| 
+* HA 组中只有一个节点处于活动状态。每个 HA 组至少有一个节点处于空闲状态。
+
+
+
+
+ a| 
+DNS 循环
+ a| 
+* 增加总吞吐量。
+* 没有闲置的主机。
+
+ a| 
+* 故障转移缓慢，这可能取决于客户端行为。
+* 需要在StorageGRID之外配置硬件。
+* 需要客户实施的健康检查。
+
+
+
+
+ a| 
+双活高可用性
+ a| 
+* 流量分布在多个 HA 组之间。
+* 高聚合吞吐量，可随 HA 组的数量扩展。
+* 快速故障转移。
+
+ a| 
+* 配置更复杂。
+* 需要在StorageGRID之外配置硬件。
+* 需要客户实施的健康检查。
+
+
+|===

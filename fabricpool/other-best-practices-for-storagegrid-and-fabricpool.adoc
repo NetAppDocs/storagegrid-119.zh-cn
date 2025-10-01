@@ -1,0 +1,51 @@
+---
+permalink: fabricpool/other-best-practices-for-storagegrid-and-fabricpool.html 
+sidebar: sidebar 
+keywords: fabricPool, best practices, audit log, encryption, compressions, tiering, ontap, consistency 
+summary: 配置StorageGRID系统以用于FabricPool时，您可能需要更改其他StorageGRID选项。在更改全局设置之前，请考虑更改将如何影响其他 S3 应用程序。 
+---
+= StorageGRID和FabricPool的其他最佳实践
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+配置StorageGRID系统以用于FabricPool时，您可能需要更改其他StorageGRID选项。在更改全局设置之前，请考虑更改将如何影响其他 S3 应用程序。
+
+
+
+== 审计消息和日志目的地
+
+FabricPool工作负载通常具有较高的读取操作率，这会生成大量审计消息。
+
+* 如果您不需要记录FabricPool或任何其他 S3 应用程序的客户端读取操作，则可以选择转到 *配置* > *监控* > *审计和系统日志服务器*。将 *客户端读取* 设置更改为 *错误* 以减少审计日志中记录的审计消息数量。看link:../monitor/configure-audit-messages.html["配置审计消息和日志目标"]了解详情。
+* 如果您拥有大型网格，使用多种类型的 S3 应用程序，或者想要保留所有审计数据，请配置外部 syslog 服务器并远程保存审计信息。使用外部服务器可以最大限度地减少审计消息记录对性能的影响，而不会降低审计数据的完整性。看link:../monitor/considerations-for-external-syslog-server.html["外部系统日志服务器的注意事项"]了解详情。
+
+
+
+
+== 对象加密
+
+配置StorageGRID时，您可以选择启用link:../admin/changing-network-options-object-encryption.html["存储对象加密的全局选项"]如果其他StorageGRID客户端需要数据加密。从FabricPool分层到StorageGRID 的数据已经加密，因此不需要启用StorageGRID设置。客户端加密密钥归ONTAP拥有。
+
+
+
+== 对象压缩
+
+配置StorageGRID时，请勿启用link:../admin/configuring-stored-object-compression.html["压缩存储对象的全局选项"]。从FabricPool分层到StorageGRID 的数据已经被压缩。使用StorageGRID选项不会进一步减小对象的大小。
+
+
+
+== 桶一致性
+
+对于FabricPool存储桶，建议的存储桶一致性为 *Read-after-new-write*，这是新存储桶的默认一致性。不要编辑FabricPool存储桶以使用 *Available* 或 *Strong-site*。
+
+
+
+== FabricPool分层
+
+如果StorageGRID节点使用从NetApp ONTAP系统分配的存储，请确认该卷未启用FabricPool分层策略。例如，如果StorageGRID节点在 VMware 主机上运行，​​请确保支持StorageGRID节点数据存储的卷未启用FabricPool分层策略。禁用与StorageGRID节点一起使用的卷的FabricPool分层可简化故障排除和存储操作。
+
+
+CAUTION: 切勿使用FabricPool将与StorageGRID相关的任何数据分层回StorageGRID本身。将StorageGRID数据分层回StorageGRID会增加故障排除和操作的复杂性。

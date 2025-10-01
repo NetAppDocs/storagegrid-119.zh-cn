@@ -1,0 +1,43 @@
+---
+permalink: s3/deprecated-bucket-requests-for-legacy-compliance.html 
+sidebar: sidebar 
+keywords: S3 REST API, S3 operations, deprecated bucket requests 
+summary: 您可能需要使用StorageGRID S3 REST API 来管理使用旧版合规性功能创建的存储桶。 
+---
+= 已弃用旧版合规性存储桶请求
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可能需要使用StorageGRID S3 REST API 来管理使用旧版合规性功能创建的存储桶。
+
+
+
+== 合规性功能已弃用
+
+以前版本的StorageGRID中提供的StorageGRID合规性功能已被弃用，并已被 S3 对象锁取代。
+
+如果您之前启用了全局合规性设置，则全局 S3 对象锁定设置在StorageGRID 11.6 中启用。您无法再创建启用了合规性的新存储桶；但是，根据需要，您可以使用StorageGRID S3 REST API 来管理任何现有的旧版合规存储桶。
+
+* link:use-s3-api-for-s3-object-lock.html["使用 S3 REST API 配置 S3 对象锁"]
+* link:../ilm/index.html["使用 ILM 管理对象"]
+* https://kb.netapp.com/Advice_and_Troubleshooting/Hybrid_Cloud_Infrastructure/StorageGRID/How_to_manage_legacy_Compliant_buckets_in_StorageGRID_11.5["NetApp知识库：如何在StorageGRID 11.5 中管理旧版兼容存储桶"^]
+
+
+已弃用的合规性请求：
+
+* link:../s3/deprecated-put-bucket-request-modifications-for-compliance.html["已弃用 - PUT Bucket 请求修改以实现合规性"]
++
+SGCompliance XML 元素已被弃用。以前，您可以在 PUT Bucket 请求的可选 XML 请求正文中包含此StorageGRID自定义元素来创建兼容存储桶。
+
+* link:../s3/deprecated-get-bucket-compliance-request.html["已弃用 - GET Bucket 合规性"]
++
+GET Bucket 合规性请求已被弃用。但是，您可以继续使用此请求来确定现有旧版合规存储桶当前有效的合规性设置。
+
+* link:../s3/deprecated-put-bucket-compliance-request.html["已弃用 - PUT Bucket 合规性"]
++
+PUT Bucket 合规性请求已被弃用。但是，您可以继续使用此请求来修改现有旧版合规存储桶的合规性设置。例如，您可以将现有存储桶置于合法保留状态或延长其保留期。
+
+

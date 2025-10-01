@@ -1,0 +1,41 @@
+---
+permalink: monitor/viewing-grid-topology-tree.html 
+sidebar: sidebar 
+keywords: how to view the Grid Topology tree 
+summary: 网格拓扑树提供有关StorageGRID系统元素的详细信息，包括站点、网格节点、服务和组件。大多数情况下，您只需在文档中指示或与技术支持合作时访问网格拓扑树。 
+---
+= 查看网格拓扑树
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+网格拓扑树提供有关StorageGRID系统元素的详细信息，包括站点、网格节点、服务和组件。大多数情况下，您只需在文档中指示或与技术支持合作时访问网格拓扑树。
+
+要访问网格拓扑树，请选择 *SUPPORT* > *Tools* > *Grid topology*。
+
+image::../media/grid_topology_tree.gif[网格拓扑树的各部分]
+
+要展开或折叠网格拓扑树，请单击image:../media/nms_tree_expand.gif["加号图标"]或者image:../media/nms_tree_collapse.gif["减号图标"]在站点、节点或服务级别。要展开或折叠整个站点或每个节点中的所有项目，请按住 *<Ctrl>* 键并单击。
+
+
+
+== StorageGRID属性
+
+属性报告StorageGRID系统的许多功能的值和状态。每个网格节点、每个站点以及整个网格都有属性值。
+
+StorageGRID属性在网格管理器中的几个地方使用：
+
+* *节点页面*：节点页面上显示的许多值都是StorageGRID属性。  （Prometheus 指标也显示在节点页面上。）
+* *网格拓扑树*：属性值显示在网格拓扑树中（*支持* > *工具* > *网格拓扑*）。
+* *事件*：当某些属性记录节点的错误或故障情况（包括网络错误等错误）时，就会发生系统事件。
+
+
+
+
+=== 属性值
+
+属性是尽力报告的，并且大致正确。在某些情况下，属性更新可能会丢失，例如服务崩溃或网格节点故障和重建。
+
+此外，传播延迟可能会减慢属性的报告速度。大多数属性的更新值会以固定的时间间隔发送到StorageGRID系统。更新可能需要几分钟才能在系统中显示出来，并且两个几乎同时变化的属性可能会在稍微不同的时间被报告。

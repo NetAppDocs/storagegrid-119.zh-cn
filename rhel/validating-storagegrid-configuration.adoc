@@ -1,0 +1,34 @@
+---
+permalink: rhel/validating-storagegrid-configuration.html 
+sidebar: sidebar 
+keywords: how to validate red hat linux configuration 
+summary: 在 /etc/storagegrid/nodes 中为每个StorageGRID节点创建配置文件后，必须验证这些文件的内容。 
+---
+= 验证StorageGRID配置
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在创建配置文件后 `/etc/storagegrid/nodes`对于每个StorageGRID节点，您必须验证这些文件的内容。
+
+要验证配置文件的内容，请在每个主机上运行以下命令：
+
+[listing]
+----
+sudo storagegrid node validate all
+----
+如果文件正确，则输出将显示每个配置文件的 *PASSED*，如示例所示。
+
+
+NOTE: 当在仅元数据节点上仅使用一个 LUN 时，您可能会收到一条可以忽略的警告消息。
+
+image::../media/rhel_node_configuration_file_output.gif[本图四周的文字提供了相关说明。]
+
+
+TIP: 对于自动安装，您可以使用 `-q`或者 `--quiet`选项 `storagegrid`命令（例如， `storagegrid --quiet...` ）。如果您抑制输出，则当检测到任何配置警告或错误时，命令将具有非零退出值。
+
+如果配置文件不正确，问题将显示为 *WARNING* 和 *ERROR*，如示例所示。如果发现任何配置错误，则必须先纠正它们，然后才能继续安装。
+
+image::../media/rhel_node_configuration_file_output_with_errors.gif[本图四周的文字提供了相关说明。]

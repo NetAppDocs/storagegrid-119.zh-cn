@@ -1,0 +1,302 @@
+---
+permalink: primer/nodes-and-services.html 
+sidebar: sidebar 
+keywords: services, grid nodes, primary admin, storage, gateway 
+summary: StorageGRID系统的基本构建块是网格节点。节点包含服务，服务是向网格节点提供一组功能的软件模块。 
+---
+= 网格节点和服务
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+StorageGRID系统的基本构建块是网格节点。节点包含服务，服务是向网格节点提供一组功能的软件模块。
+
+
+
+== 网格节点的类型
+
+StorageGRID系统使用四种类型的网格节点：
+
+管理节点:: 提供系统配置、监控、日志等管理服务。当您登录到网格管理器时，您正在连接到管理节点。每个网格必须有一个主管理节点，并且可能还有其他非主管理节点以实现冗余。您可以连接到任何管理节点，每个管理节点都会显示StorageGRID系统的类似视图。但是，必须使用主管理节点执行维护程序。
++
+--
+管理节点还可用于平衡 S3 客户端流量的负载。
+
+看link:what-admin-node-is.html["什么是管理节点？"]
+
+--
+存储节点:: 管理和存储对象数据和元数据。  StorageGRID系统中的每个站点必须至少有三个存储节点。
++
+--
+看link:what-storage-node-is.html["什么是存储节点？"]
+
+--
+网关节点（可选）:: 提供客户端应用程序可用于连接到StorageGRID 的负载平衡接口。负载均衡器无缝地将客户端引导至最佳存储节点，以便节点甚至整个站点的故障都是透明的。
++
+--
+看link:what-gateway-node-is.html["什么是网关节点？"]
+
+--
+
+
+
+
+== 硬件和软件节点
+
+StorageGRID节点可以部署为StorageGRID设备节点或基于软件的节点。
+
+
+
+=== StorageGRID设备节点
+
+StorageGRID硬件设备专为在StorageGRID系统中使用而设计。一些设备可以用作存储节点。其他设备可用作管理节点或网关节点。您可以将设备节点与基于软件的节点结合起来，或者部署完全工程化的全设备网格，这些网格不依赖于外部虚拟机管理程序、存储或计算硬件。
+
+请参阅以下内容了解可用的设备：
+
+* https://docs.netapp.com/us-en/storagegrid-appliances/["StorageGRID设备文档"^]
+* https://hwu.netapp.com["NetApp Hardware Universe"^]
+
+
+
+
+=== 基于软件的节点
+
+基于软件的网格节点可以部署为 VMware 虚拟机或 Linux 主机上的容器引擎内。
+
+* VMware vSphere 中的虚拟机 (VM)：请参阅link:../vmware/index.html["在 VMware 上安装StorageGRID"]。
+* 在 Red Hat Enterprise Linux 上的容器引擎中：请参阅link:../rhel/index.html["在 Red Hat Enterprise Linux 上安装StorageGRID"]。
+* 在 Ubuntu 或 Debian 上的容器引擎中：请参阅link:../ubuntu/index.html["在 Ubuntu 或 Debian 上安装StorageGRID"]。
+
+
+使用 https://imt.netapp.com/matrix/#welcome["NetApp互操作性矩阵工具 (IMT)"^]确定支持的版本。
+
+在初始安装新的基于软件的存储节点时，您可以指定它仅用于link:../primer/what-storage-node-is.html#types-of-storage-nodes["存储元数据"]。
+
+
+
+== StorageGRID服务
+
+以下是StorageGRID服务的完整列表。
+
+[cols="2a,3a,2a"]
+|===
+| 服务 | 描述 | 位置 
+
+
+ a| 
+账户服务转发
+ a| 
+为负载均衡器服务提供一个接口来查询远程主机上的帐户服务，并向负载均衡器服务提供负载均衡器端点配置更改的通知。
+ a| 
+管理节点和网关节点上的负载均衡器服务
+
+
+
+ a| 
+ADC（管理域控制器）
+ a| 
+维护拓扑信息，提供身份验证服务，并响应来自 LDR 和 CMN 服务的查询。
+ a| 
+每个站点至少有三个包含 ADC 服务的存储节点
+
+
+
+ a| 
+AMS（审计管理系统）
+ a| 
+监控所有审计的系统事件和事务并将其记录到文本日志文件中。
+ a| 
+管理节点
+
+
+
+ a| 
+卡桑德拉·雷珀
+ a| 
+执行对象元数据的自动修复。
+ a| 
+存储节点
+
+
+
+ a| 
+块服务
+ a| 
+管理擦除编码数据和奇偶校验片段。
+ a| 
+存储节点
+
+
+
+ a| 
+CMN（配置管理节点）
+ a| 
+管理整个系统配置和网格任务。每个网格都有一个 CMN 服务。
+ a| 
+主管理节点
+
+
+
+ a| 
+DDS（分布式数据存储）
+ a| 
+与 Cassandra 数据库接口来管理对象元数据。
+ a| 
+存储节点
+
+
+
+ a| 
+DMV（数据移动器）
+ a| 
+将数据移动到云端点。
+ a| 
+存储节点
+
+
+
+ a| 
+动态 IP（dynip）
+ a| 
+监控电网的动态 IP 变化并更新本地配置。
+ a| 
+所有节点
+
+
+
+ a| 
+格拉法纳
+ a| 
+用于网格管理器中的指标可视化。
+ a| 
+管理节点
+
+
+
+ a| 
+高可用性
+ a| 
+管理在“高可用性组”页面上配置的节点上的高可用性虚拟 IP。该服务也称为 keepalived 服务。
+ a| 
+管理和网关节点
+
+
+
+ a| 
+身份（idnt）
+ a| 
+联合 LDAP 和 Active Directory 的用户身份。
+ a| 
+使用 ADC 服务的存储节点
+
+
+
+ a| 
+Lambda仲裁器
+ a| 
+管理 S3 Select SelectObjectContent 请求。
+ a| 
+所有节点
+
+
+
+ a| 
+负载均衡器（nginx-gw）
+ a| 
+提供从客户端到存储节点的 S3 流量负载平衡。可以通过负载均衡器端点配置页面配置负载均衡器服务。该服务也称为 nginx-gw 服务。
+ a| 
+管理和网关节点
+
+
+
+ a| 
+LDR（本地分发路由器）
+ a| 
+管理网格内内容的存储和传输。
+ a| 
+存储节点
+
+
+
+ a| 
+MISCd 信息服务控制守护进程
+ a| 
+提供查询和管理其他节点上的服务以及管理节点上的环境配置（例如查询其他节点上运行的服务的状态）的接口。
+ a| 
+所有节点
+
+
+
+ a| 
+nginx
+ a| 
+充当各种网格服务（例如 Prometheus 和动态 IP）的身份验证和安全通信机制，以便能够通过 HTTPS API 与其他节点上的服务通信。
+ a| 
+所有节点
+
+
+
+ a| 
+nginx网关
+ a| 
+为负载均衡器服务提供支持。
+ a| 
+管理和网关节点
+
+
+
+ a| 
+NMS（网络管理系统）
+ a| 
+为通过网格管理器显示的监控、报告和配置选项提供支持。
+ a| 
+管理节点
+
+
+
+ a| 
+持久性
+ a| 
+管理根磁盘上需要在重启后保留的文件。
+ a| 
+所有节点
+
+
+
+ a| 
+普罗米修斯
+ a| 
+从所有节点上的服务收集时间序列指标。
+ a| 
+管理节点
+
+
+
+ a| 
+RSM（复制状态机）
+ a| 
+确保平台服务请求发送到各自的端点。
+ a| 
+使用 ADC 服务的存储节点
+
+
+
+ a| 
+SSM（服务器状态监视器）
+ a| 
+监控硬件状况并向 NMS 服务报告。
+ a| 
+每个网格节点上都有一个实例
+
+
+
+ a| 
+痕迹收集器
+ a| 
+执行跟踪收集以收集信息供技术支持使用。跟踪收集服务使用开源 Jaeger 软件。
+ a| 
+管理节点
+
+|===

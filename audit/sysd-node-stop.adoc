@@ -1,0 +1,31 @@
+---
+permalink: audit/sysd-node-stop.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, message, SYSD, Node Stop 
+summary: 当服务正常停止时，会生成此消息以表明已请求关闭。通常，此消息仅在后续重启后发送，因为审计消息队列在关机前不会被清除。如果服务尚未重新启动，请查找在关机序列开始时发送的 SYST 消息。 
+---
+= SYSD：节点停止
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+当服务正常停止时，会生成此消息以表明已请求关闭。通常，此消息仅在后续重启后发送，因为审计消息队列在关机前不会被清除。如果服务尚未重新启动，请查找在关机序列开始时发送的 SYST 消息。
+
+[cols="1a,1a,4a"]
+|===
+| 代码 | 字段 | 描述 
+
+
+ a| 
+放射学研究实验室
+ a| 
+干净关机
+ a| 
+关闭的性质：
+
+SUCS：系统已完全关闭。
+
+|===
+该消息并未表明主机服务器是否已停止，仅表明报告服务已停止。  SYSD 的 RSLT 不能指示“脏”关闭，因为该消息仅由“干净”关闭生成。

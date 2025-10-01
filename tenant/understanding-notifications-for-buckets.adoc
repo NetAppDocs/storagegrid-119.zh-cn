@@ -1,0 +1,71 @@
+---
+permalink: tenant/understanding-notifications-for-buckets.html 
+sidebar: sidebar 
+keywords: s3 bucket event notification, sequencer key 
+summary: 如果您希望StorageGRID将有关指定事件的通知发送到目标 Kafka 集群或 Amazon Simple Notification Service，则可以为 S3 存储桶启用事件通知。 
+---
+= 了解存储桶的通知
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果您希望StorageGRID将有关指定事件的通知发送到目标 Kafka 集群或 Amazon Simple Notification Service，则可以为 S3 存储桶启用事件通知。
+
+例如，您可以配置警报，以便向管理员发送有关添加到存储桶的每个对象的警报，其中对象代表与关键系统事件相关的日志文件。
+
+事件通知按照通知配置中的指定在源存储桶中创建并传递到目标。如果与对象关联的事件成功，则会创建有关该事件的通知并排队等待传递。
+
+无法保证通知的唯一性和顺序。为了保证传递成功，可能会将一个事件的多个通知传递到目的地。而且由于传递是异步的，因此不能保证目标位置的通知时间顺序与源存储桶上的事件顺序相匹配，特别是对于源自不同StorageGRID站点的操作。您可以使用 `sequencer`事件消息中的键来确定特定对象的事件顺序，如 Amazon S3 文档中所述。
+
+StorageGRID事件通知遵循 Amazon S3 API，但有一些限制。
+
+* 支持以下事件类型：
++
+** s3：对象创建：
+** s3：对象创建：放置
+** s3：对象创建：发布
+** s3：对象创建：复制
+** s3：对象创建：完成分段上传
+** s3：对象已移除：
+** s3：对象已移除：删除
+** s3：对象已移除：删除标记已创建
+** s3：对象恢复：发布
+
+
+* 从StorageGRID发送的事件通知使用标准 JSON 格式，但不包含某些键，而对其他键使用特定值，如下表所示：
+
+
+[cols="1a,2a"]
+|===
+| 键名称 | StorageGRID值 
+
+
+ a| 
+事件源
+ a| 
+`sgws:s3`
+
+
+
+ a| 
+aws区域
+ a| 
+_不包括_
+
+
+
+ a| 
+x-amz-id-2
+ a| 
+_不包括_
+
+
+
+ a| 
+阿恩
+ a| 
+`urn:sgws:s3:::bucket_name`
+
+|===

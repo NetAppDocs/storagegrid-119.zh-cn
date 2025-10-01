@@ -1,0 +1,396 @@
+---
+permalink: s3/operations-on-buckets.html 
+sidebar: sidebar 
+keywords: bucket, buckets, operations on buckets 
+summary: StorageGRID系统支持每个 S3 租户帐户最多 5,000 个存储桶。 
+---
+= 对 bucket 的操作
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+StorageGRID系统支持每个 S3 租户帐户最多 5,000 个存储桶。
+
+每个网格最多可以有 100,000 个桶。
+
+为了支持 5,000 个存储桶，网格中的每个存储节点必须至少具有 64 GB 的 RAM。
+
+存储桶名称限制遵循 AWS 美国标准区域限制，但您应该进一步将它们限制为 DNS 命名约定，以支持 S3 虚拟托管样式请求。
+
+有关详细信息，请参见以下内容：
+
+* https://docs.aws.amazon.com/AmazonS3/latest/dev/BucketRestrictions.html["Amazon Simple Storage Service 用户指南：存储桶配额、限制和局限性"^]
+* link:../admin/configuring-s3-api-endpoint-domain-names.html["配置 S3 端点域名"]
+
+
+ListObjects（获取 Bucket）和 ListObjectVersions（获取 Bucket 对象版本）操作支持StorageGRIDlink:consistency-controls.html["一致性值"] 。
+
+您可以检查是否针对各个存储桶启用或禁用了上次访问时间的更新。看link:get-bucket-last-access-time-request.html["获取 Bucket 上次访问时间"] 。
+
+下表描述了StorageGRID如何实现 S3 REST API 存储桶操作。要执行任何这些操作，必须为帐户提供必要的访问凭据。
+
+[cols="1a,3a"]
+|===
+| 操作 | 实施 
+
+
+ a| 
+创建桶
+ a| 
+创建一个新的存储桶。通过创建存储桶，您就成为存储桶的所有者。
+
+* Bucket 名称必须遵循以下规则：
++
+** 每个StorageGRID系统中必须是唯一的（不仅仅是在租户帐户内是唯一的）。
+** 必须符合 DNS 标准。
+** 必须包含至少 3 个字符且不超过 63 个字符。
+** 可以是一系列一个或多个标签，相邻的标签用句点分隔。每个标签必须以小写字母或数字开头和结尾，并且只能使用小写字母、数字和连字符。
+** 不能看起来像文本格式的 IP 地址。
+** 不应在虚拟托管样式请求中使用句点。句点将导致服务器通配符证书验证出现问题。
+
+
+* 默认情况下，存储桶在 `us-east-1`区域；但是，您可以使用 `LocationConstraint`请求主体中的请求元素来指定不同的区域。使用时 `LocationConstraint`元素，您必须指定使用网格管理器或网格管理 API 定义的区域的确切名称。如果您不知道应该使用的区域名称，请联系您的系统管理员。
++
+*注意*：如果您的 CreateBucket 请求使用StorageGRID中未定义的区域，则会发生错误。
+
+* 您可以包括 `x-amz-bucket-object-lock-enabled`请求标头来创建启用了 S3 对象锁的存储桶。看link:../s3/use-s3-api-for-s3-object-lock.html["使用 S3 REST API 配置 S3 对象锁"] 。
++
+创建存储桶时必须启用 S3 对象锁。创建存储桶后，您无法添加或禁用 S3 对象锁定。  S3 对象锁定需要存储桶版本控制，该功能在您创建存储桶时自动启用。
+
+
+
+
+
+ a| 
+删除桶
+ a| 
+删除存储桶。
+
+
+
+ a| 
+删除BucketCors
+ a| 
+删除存储桶的 CORS 配置。
+
+
+
+ a| 
+删除桶加密
+ a| 
+从存储桶中删除默认加密。现有的加密对象仍保持加密状态，但添加到存储桶的任何新对象都不会加密。
+
+
+
+ a| 
+DeleteBucket生命周期
+ a| 
+从存储桶中删除生命周期配置。看link:create-s3-lifecycle-configuration.html["创建 S3 生命周期配置"] 。
+
+
+
+ a| 
+删除桶策略
+ a| 
+删除附加到存储桶的策略。
+
+
+
+ a| 
+删除桶复制
+ a| 
+删除附加到存储桶的复制配置。
+
+
+
+ a| 
+删除桶标记
+ a| 
+使用 `tagging`子资源从存储桶中删除所有标签。
+
+*警告*：如果为此存储桶设置了非默认的 ILM 策略标签，则会出现 `NTAP-SG-ILM-BUCKET-TAG`已分配值的 bucket 标签。如果存在 `NTAP-SG-ILM-BUCKET-TAG`桶标签。相反，发出仅包含 `NTAP-SG-ILM-BUCKET-TAG`标签及其分配的值，以从存储桶中删除所有其他标签。请勿修改或删除 `NTAP-SG-ILM-BUCKET-TAG`桶标签。
+
+
+
+ a| 
+获取BucketAcl
+ a| 
+返回肯定响应以及存储桶拥有者的 ID、DisplayName 和 Permission，表明拥有者对该存储桶具有完全访问权限。
+
+
+
+ a| 
+获取BucketCors
+ a| 
+返回 `cors`存储桶的配置。
+
+
+
+ a| 
+获取桶加密
+ a| 
+返回存储桶的默认加密配置。
+
+
+
+ a| 
+获取BucketLifecycleConfiguration
+
+（以前称为 GET Bucket 生命周期）
+ a| 
+返回存储桶的生命周期配置。看link:create-s3-lifecycle-configuration.html["创建 S3 生命周期配置"] 。
+
+
+
+ a| 
+获取存储桶位置
+ a| 
+返回使用 `LocationConstraint`CreateBucket 请求中的元素。如果 bucket 的区域是 `us-east-1`，则该区域返回一个空字符串。
+
+
+
+ a| 
+获取存储桶通知配置
+
+（以前称为 GET Bucket 通知）
+ a| 
+返回附加到存储桶的通知配置。
+
+
+
+ a| 
+获取BucketPolicy
+ a| 
+返回附加到存储桶的策略。
+
+
+
+ a| 
+获取Bucket复制
+ a| 
+返回附加到存储桶的复制配置。
+
+
+
+ a| 
+获取桶标记
+ a| 
+使用 `tagging`子资源返回存储桶的所有标签。
+
+*警告*：如果为此存储桶设置了非默认的 ILM 策略标签，则会出现 `NTAP-SG-ILM-BUCKET-TAG`已分配值的 bucket 标签。请勿修改或删除此标签。
+
+
+
+ a| 
+获取Bucket版本
+ a| 
+此实现使用 `versioning`子资源返回存储桶的版本控制状态。
+
+* _blank_：从未启用版本控制（存储桶为“未版本控制”）
+* 已启用：版本控制已启用
+* 已暂停：版本控制之前已启用，现已暂停
+
+
+
+
+ a| 
+获取对象锁配置
+ a| 
+如果已配置，则返回存储桶默认保留模式和默认保留期。
+
+看link:../s3/use-s3-api-for-s3-object-lock.html["使用 S3 REST API 配置 S3 对象锁"] 。
+
+
+
+ a| 
+头桶
+ a| 
+确定存储桶是否存在以及您是否有权访问它。
+
+此操作返回：
+
+* `x-ntap-sg-bucket-id`：Bucket 的 UUID，格式为 UUID。
+* `x-ntap-sg-trace-id`：关联请求的唯一跟踪 ID。
+
+
+
+
+ a| 
+ListObjects 和 ListObjectsV2
+
+（以前称为 GET Bucket）
+ a| 
+返回存储桶中的部分或全部（最多 1,000 个）对象。对象的存储类可以有两个值，即使对象是通过 `REDUCED_REDUNDANCY`存储类别选项：
+
+* `STANDARD`，表示该对象存储在由Storage Node组成的存储池中。
+* `GLACIER`，表示该对象已移动到云存储池指定的外部存储桶中。
+
+
+如果存储桶包含大量具有相同前缀的已删除键，则响应可能包含一些 `CommonPrefixes`不包含密钥。
+
+
+
+ a| 
+列出对象版本
+
+（以前称为 GET Bucket Object 版本）
+ a| 
+拥有存储桶的读取权限，使用此操作 `versions`子资源列出了存储桶中所有版本的对象的元数据。
+
+
+
+ a| 
+PutBucketCors
+ a| 
+设置存储桶的 CORS 配置，以便存储桶可以处理跨域请求。跨域资源共享 (CORS) 是一种安全机制，允许一个域中的客户端 Web 应用程序访问不同域中的资源。例如，假设您使用名为 `images`存储图形。通过设置 CORS 配置 `images`bucket，您可以允许该 bucket 中的图像显示在网站上 `+http://www.example.com+`。
+
+
+
+ a| 
+PutBucket加密
+ a| 
+设置现有存储桶的默认加密状态。启用存储桶级加密后，添加到存储桶的任何新对象都将被加密。StorageGRID 支持使用StorageGRID管理的密钥进行服务器端加密。指定服务器端加密配置规则时，设置 `SSEAlgorithm`参数 `AES256`，并且不要使用 `KMSMasterKeyID`范围。
+
+如果对象上传请求已经指定了加密（即，如果请求包含 `x-amz-server-side-encryption-*`请求标头）。
+
+
+
+ a| 
+PutBucket生命周期配置
+
+（以前称为 PUT Bucket 生命周期）
+ a| 
+为存储桶创建新的生命周期配置或替换现有的生命周期配置。 StorageGRID在生命周期配置中支持最多 1,000 条生命周期规则。每个规则可以包含以下 XML 元素：
+
+* 到期日（天数、日期、ExpiredObjectDeleteMarker）
+* NoncurrentVersionExpiration（NewerNoncurrentVersions、NoncurrentDays）
+* 过滤器（前缀、标签）
+* 状态
+* ID
+
+
+StorageGRID不支持以下操作：
+
+* 中止未完成的分段上传
+* 过渡
+
+
+看link:create-s3-lifecycle-configuration.html["创建 S3 生命周期配置"] 。要了解存储桶生命周期中的到期操作如何与 ILM 放置指令交互，请参阅link:../ilm/how-ilm-operates-throughout-objects-life.html["ILM 如何在对象的整个生命周期中运作"]。
+
+*注意*：存储桶生命周期配置可与启用了 S3 对象锁的存储桶一起使用，但存储桶生命周期配置不支持旧版兼容存储桶。
+
+
+
+ a| 
+PutBucketNotification配置
+
+（以前称为 PUT Bucket 通知）
+ a| 
+使用请求正文中包含的通知配置 XML 为存储桶配置通知。您应该了解以下实施细节：
+
+* StorageGRID支持 Amazon Simple Notification Service (Amazon SNS) 或 Kafka 主题作为目的地。不支持简单队列服务 (SQS) 或 Amazon Lambda 终端节点。
+* 通知的目的地必须指定为StorageGRID端点的 URN。可以使用租户管理器或租户管理 API 创建端点。
++
+端点必须存在才能成功配置通知。如果端点不存在， `400 Bad Request`错误与代码一起返回 `InvalidArgument`。
+
+* 您无法为以下事件类型配置通知。这些事件类型不受支持。
++
+** `s3:ReducedRedundancyLostObject`
+** `s3:ObjectRestore:Completed`
+
+
+* 从StorageGRID发送的事件通知使用标准 JSON 格式，但它们不包含某些键，而对其他键使用特定值，如以下列表所示：
++
+** *事件源*
++
+`sgws:s3`
+
+** *aws区域*
++
+不包括
+
+** *x-amz-id-2*
++
+不包括
+
+** *阿恩*
++
+`urn:sgws:s3:::bucket_name`
+
+
+
+
+
+
+
+ a| 
+PutBucketPolicy
+ a| 
+设置附加到存储桶的策略。看link:bucket-and-group-access-policies.html["使用存储桶和组访问策略"] 。
+
+
+
+ a| 
+PutBucket复制
+ a| 
+配置link:../tenant/understanding-cloudmirror-replication-service.html["StorageGRID CloudMirror 复制"]对于存储桶，使用请求正文中提供的复制配置 XML。对于 CloudMirror 复制，您应该注意以下实施细节：
+
+* StorageGRID仅支持复制配置的 V1。这意味着StorageGRID不支持使用 `Filter`元素作为规则，并遵循 V1 约定来删除对象版本。有关详细信息，请参阅 https://docs.aws.amazon.com/AmazonS3/latest/userguide/replication-add-config.html["Amazon Simple Storage Service 用户指南：复制配置"^]。
+* 可以在版本化或非版本化的存储桶上配置存储桶复制。
+* 您可以在复制配置 XML 的每个规则中指定不同的目标存储桶。一个源存储桶可以复制到多个目标存储桶。
+* 目标存储桶必须指定为租户管理器或租户管理 API 中指定的StorageGRID端点的 URN。看link:../tenant/configuring-cloudmirror-replication.html["配置 CloudMirror 复制"] 。
++
+端点必须存在才能成功进行复制配置。如果端点不存在，请求将失败，因为 `400 Bad Request`。错误信息指出： `Unable to save the replication policy. The specified endpoint URN does not exist: _URN_.`
+
+* 您不需要指定 `Role`在配置 XML 中。  StorageGRID不使用此值，如果提交将被忽略。
+* 如果您从配置 XML 中省略存储类， StorageGRID将使用 `STANDARD`默认存储类别。
+* 如果您从源存储桶中删除对象或删除源存储桶本身，跨区域复制行为如下：
++
+** 如果您在复制之前删除对象或存储桶，则该对象/存储桶不会被复制，并且您不会收到通知。
+** 如果在复制后删除对象或存储桶， StorageGRID将遵循跨区域复制 V1 的标准 Amazon S3 删除行为。
+
+
+
+
+
+
+ a| 
+PutBucketTagging
+ a| 
+使用 `tagging`子资源来添加或更新存储桶的一组标签。添加存储桶标签时，请注意以下限制：
+
+* StorageGRID和 Amazon S3 都支持每个存储桶最多 50 个标签。
+* 与存储桶关联的标签必须具有唯一的标签键。标签键的长度最多可达 128 个 Unicode 字符。
+* 标签值的长度最多可达 256 个 Unicode 字符。
+* 键和值区分大小写。
+
+
+*警告*：如果为此存储桶设置了非默认的 ILM 策略标签，则会出现 `NTAP-SG-ILM-BUCKET-TAG`已分配值的 bucket 标签。确保 `NTAP-SG-ILM-BUCKET-TAG`所有 PutBucketTagging 请求中都包含存储桶标签和分配的值。请勿修改或删除此标签。
+
+*注意*：此操作将覆盖存储桶已有的任何当前标签。如果集合中省略了任何现有标签，则将从存储桶中删除这些标签。
+
+
+
+ a| 
+PutBucket版本控制
+ a| 
+使用 `versioning`子资源来设置现有存储桶的版本控制状态。您可以使用以下值之一设置版本控制状态：
+
+* 已启用：为存储桶中的对象启用版本控制。添加到存储桶的所有对象都会收到唯一的版本 ID。
+* 暂停：禁用存储桶中对象的版本控制。添加到存储桶的所有对象都会收到版本 ID `null` 。
+
+
+
+
+ a| 
+PutObjectLock配置
+ a| 
+配置或删除存储桶默认保留模式和默认保留期。
+
+如果修改了默认保留期，则现有对象版本的保留截止日期保持不变，并且不会使用新的默认保留期重新计算。
+
+看link:../s3/use-s3-api-for-s3-object-lock.html["使用 S3 REST API 配置 S3 对象锁"]了解详细信息。
+
+|===

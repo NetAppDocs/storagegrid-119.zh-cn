@@ -1,0 +1,83 @@
+---
+permalink: tenant/understanding-tenant-management-api.html 
+sidebar: sidebar 
+keywords: how to understand tenant management api 
+summary: 您可以使用租户管理 REST API 而不是租户管理器用户界面执行系统管理任务。例如，您可能希望使用 API 来自动化操作或更快地创建多个实体（例如用户）。 
+---
+= 了解租户管理 API
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以使用租户管理 REST API 而不是租户管理器用户界面执行系统管理任务。例如，您可能希望使用 API 来自动化操作或更快地创建多个实体（例如用户）。
+
+租户管理 API：
+
+* 使用Swagger开源API平台。  Swagger 提供了直观的用户界面，允许开发人员和非开发人员与 API 进行交互。  Swagger 用户界面为每个 API 操作提供了完整的详细信息和文档。
+* 用途link:tenant-management-api-versioning.html["版本控制以支持无中断升级"]。
+
+
+要访问租户管理 API 的 Swagger 文档：
+
+. Sign in到租户管理器。
+. 从租户管理器的顶部，选择帮助图标并选择*API 文档*。
+
+
+
+
+== API 操作
+
+租户管理 API 将可用的 API 操作组织到以下部分：
+
+* *account*：对当前租户账户的操作，包括获取存储使用信息。
+* *auth*：执行用户会话认证的操作。
++
+租户管理 API 支持 Bearer Token 身份验证方案。对于租户登录，您需要在身份验证请求的 JSON 主体中提供用户名、密码和 accountId（即 `POST /api/v3/authorize`）。如果用户身份验证成功，则会返回安全令牌。必须在后续 API 请求的标头中提供此令牌（“授权：承载令牌”）。
+
++
+有关提高身份验证安全性的信息，请参阅link:protecting-against-cross-site-request-forgery-csrf.html["防止跨站请求伪造"]。
+
++
+
+NOTE: 如果为StorageGRID系统启用了单点登录 (SSO)，则必须执行不同的步骤进行身份验证。查看link:../admin/using-grid-management-api.html["网格管理 API 使用说明"]。
+
+* *config*：与产品发布和租户管理API版本相关的操作。您可以列出产品发布版本以及该版本支持的 API 的主要版本。
+* *容器*：对 S3 存储桶或 Swift 容器的操作。
+* *deactivated-features*：查看可能已停用的功能的操作。
+* *端点*：管理端点的操作。端点允许 S3 存储桶使用外部服务进行StorageGRID CloudMirror 复制、通知或搜索集成。
+* *grid-federation-connections*：网格联合连接和跨网格复制的操作。
+* *groups*：管理本地租户组和从外部身份源检索联合租户组的操作。
+* *identity-source*：配置外部身份源并手动同步联合组和用户信息的操作。
+* *ilm*：对信息生命周期管理 (ILM) 设置的操作。
+* *regions*：确定已为StorageGRID系统配置哪些区域的操作。
+* *s3*：管理租户用户的 S3 访问密钥的操作。
+* *s3-object-lock*：对全局 S3 对象锁定设置进行操作，用于支持法规遵从性。
+* *用户*：查看和管理租户用户的操作。
+
+
+
+
+== 操作细节
+
+展开每个 API 操作时，您可以看到其 HTTP 操作、端点 URL、任何必需或可选参数的列表、请求正文的示例（需要时）以及可能的响应。
+
+image::../media/tenant_api_swagger_example.gif[Swagger API 中 GET 组操作的示例]
+
+
+
+== 发出 API 请求
+
+
+CAUTION: 您使用 API 文档网页执行的任何 API 操作都是实时操作。请注意不要错误地创建、更新或删除配置数据或其他数据。
+
+.步骤
+. 选择 HTTP 操作以查看请求详细信息。
+. 确定请求是否需要其他参数，例如组或用户 ID。然后，获取这些值。您可能需要先发出不同的 API 请求来获取所需的信息。
+. 确定是否需要修改示例请求正文。如果是，您可以选择*模型*来了解每个领域的要求。
+. 选择*试用一下*。
+. 提供任何所需的参数，或根据需要修改请求正文。
+. 选择*执行*。
+. 查看响应代码以确定请求是否成功。
+

@@ -1,0 +1,108 @@
+---
+permalink: ilm/example-2-ilm-rules-and-policy-for-ec-object-size-filtering.html 
+sidebar: sidebar 
+keywords: object size for erasure coding, example ILM rule, information lifecycle rule examples, 1 MB 
+summary: 您可以使用以下示例规则和策略作为起点来定义按对象大小过滤的 ILM 策略，以满足建议的 EC 要求。 
+---
+= 示例 2：EC 对象大小过滤的 ILM 规则和策略
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以使用以下示例规则和策略作为起点来定义按对象大小过滤的 ILM 策略，以满足建议的 EC 要求。
+
+
+CAUTION: 以下 ILM 规则和策略仅作为示例。配置 ILM 规则的方法有很多种。在激活新策略之前，请先进行模拟以确认它能够按预期工作以保护内容免遭丢失。
+
+
+
+== 示例 2 中的 ILM 规则 1：对大于 1 MB 的对象使用 EC
+
+此示例 ILM 规则对大于 1 MB 的对象进行擦除编码。
+
+
+NOTE: 擦除编码最适合大于 1 MB 的对象。不要对小于 200 KB 的对象使用擦除编码，以避免管理非常小的擦除编码片段的开销。
+
+[cols="2a,2a"]
+|===
+| 规则定义 | 示例值 
+
+
+ a| 
+规则名称
+ a| 
+仅 EC 对象 > 1 MB
+
+
+
+ a| 
+参考时间
+ a| 
+摄取时间
+
+
+
+ a| 
+对象大小的高级过滤器
+ a| 
+对象大小大于 1 MB
+
+
+
+ a| 
+展示位置
+ a| 
+使用三个站点创建 2+1 擦除编码副本
+
+|===
+image::../media/policy_2_rule_1_ec_objects_adv_filtering.png[ILM 规则 1 例如 2：对所有大于 1 MB 的对象使用 EC]
+
+
+
+== ILM 规则 2（例如 2）：两个副本
+
+此示例 ILM 规则创建两个副本，并且不按对象大小进行过滤。此规则是策略的默认规则。由于第一条规则过滤掉了所有大于 1 MB 的对象，因此该规则仅适用于 1 MB 或更小的对象。
+
+[cols="1a,2a"]
+|===
+| 规则定义 | 示例值 
+
+
+ a| 
+规则名称
+ a| 
+两份副本
+
+
+
+ a| 
+参考时间
+ a| 
+摄取时间
+
+
+
+ a| 
+对象大小的高级过滤器
+ a| 
+无
+
+
+
+ a| 
+展示位置
+ a| 
+从第 0 天到永远，在站点 1 保留一份复制副本，在站点 2 保留一份复制副本。
+
+|===
+
+
+== ILM 策略示例 2：对大于 1 MB 的对象使用 EC
+
+此示例 ILM 策略包括两个 ILM 规则：
+
+* 第一条规则对所有大于 1 MB 的对象进行擦除编码。
+* 第二条（默认）ILM 规则创建两个副本。由于大于 1 MB 的对象已被规则 1 过滤掉，因此规则 2 仅适用于 1 MB 或更小的对象。
+

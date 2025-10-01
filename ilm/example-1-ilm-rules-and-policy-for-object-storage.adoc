@@ -1,0 +1,125 @@
+---
+permalink: ilm/example-1-ilm-rules-and-policy-for-object-storage.html 
+sidebar: sidebar 
+keywords: example ILM rule, information lifecycle rule examples 
+summary: 在定义 ILM 策略以满足对象保护和保留要求时，您可以使用以下示例规则和策略作为起点。 
+---
+= 示例 1：对象存储的 ILM 规则和策略
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在定义 ILM 策略以满足对象保护和保留要求时，您可以使用以下示例规则和策略作为起点。
+
+
+CAUTION: 以下 ILM 规则和策略仅作为示例。配置 ILM 规则的方法有很多种。在激活新策略之前，请先进行模拟以确认它能够按预期工作以保护内容免遭丢失。
+
+
+
+== ILM 规则 1（例如 1）：将对象数据复制到两个站点
+
+此示例 ILM 规则将对象数据复制到两个站点的存储池。
+
+[cols="1a,2a"]
+|===
+| 规则定义 | 示例值 
+
+
+ a| 
+单站点存储池
+ a| 
+两个存储池，每个包含不同的站点，分别名为站点 1 和站点 2。
+
+
+
+ a| 
+规则名称
+ a| 
+两份副本，两个站点
+
+
+
+ a| 
+参考时间
+ a| 
+摄取时间
+
+
+
+ a| 
+展示位置
+ a| 
+从第 0 天到永远，在站点 1 保留一份复制副本，在站点 2 保留一份复制副本。
+
+|===
+保留图的规则分析部分指出：
+
+* StorageGRID站点丢失保护将在此规则有效期内适用。
+* 通过此规则处理的对象不会被 ILM 删除。
+
+
+image::../media/ilm_rule_two_copies_two_data_centers.png[ILM 规则 1（例如 1）：将对象数据复制到两个站点]
+
+
+
+== ILM 规则 2 示例 1：带有桶匹配的擦除编码配置文件
+
+此示例 ILM 规则使用擦除编码配置文件和 S3 存储桶来确定对象的存储位置和存储时间。
+
+[cols="1a,2a"]
+|===
+| 规则定义 | 示例值 
+
+
+ a| 
+具有多个站点的存储池
+ a| 
+* 跨三个站点（站点 1、2、3）的一个存储池
+* 使用 6+3 擦除编码方案
+
+
+
+
+ a| 
+规则名称
+ a| 
+S3 存储桶财务记录
+
+
+
+ a| 
+参考时间
+ a| 
+摄取时间
+
+
+
+ a| 
+展示位置
+ a| 
+对于名为 finance-records 的 S3 存储桶中的对象，在擦除编码配置文件指定的池中创建一个擦除编码副本。永久保留此副本。
+
+|===
+image::../media/ilm_rule_ec_for_s3_bucket_finance_records.png[ILM 规则 2 示例 1：带有桶匹配的擦除编码配置文件]
+
+
+
+== ILM 策略示例 1
+
+实际上，尽管StorageGRID系统允许您设计复杂的 ILM 策略，但大多数 ILM 策略都很简单。
+
+多站点网格的典型 ILM 策略可能包括如下 ILM 规则：
+
+* 在摄取时，存储属于名为 `finance-records`在包含三个站点的存储池中。使用6+3擦除编码。
+* 如果某个对象与第一个 ILM 规则不匹配，则使用策略的默认 ILM 规则“两个副本两个数据中心”将该对象的一个副本存储在站点 1 中，另一个副本存储在站点 2 中。
++
+image::../media/policy_1_configured_policy.png[ILM 策略示例 1]
+
+
+
+.相关信息
+* link:ilm-policy-overview.html["使用 ILM 策略"]
+* link:creating-ilm-policy.html["创建 ILM 策略"]
+

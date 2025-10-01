@@ -1,0 +1,101 @@
+---
+permalink: tenant/configuring-cloudmirror-replication.html 
+sidebar: sidebar 
+keywords: how to configure CloudMirror replication, replication xml 
+summary: 您可以通过创建存储桶复制配置 XML 并使用租户管理器将 XML 应用到存储桶来为存储桶启用 CloudMirror 复制。 
+---
+= 配置 CloudMirror 复制
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+要为存储桶启用 CloudMirror 复制，您需要创建并应用有效的存储桶复制配置 XML。
+
+.开始之前
+* StorageGRID管理员已为您的租户帐户启用平台服务。
+* 您已经创建了一个存储桶作为复制源。
+* 您打算用作 CloudMirror 复制目标的端点已经存在，并且您有其 URN。
+* 您属于具有link:tenant-management-permissions.html["管理所有 bucket 或 Root 访问权限"]。使用租户管理器配置存储桶时，这些权限会覆盖组或存储桶策略中的权限设置。
+
+
+.关于此任务
+CloudMirror 复制将对象从源存储桶复制到端点中指定的目标存储桶。
+
+有关存储桶复制及其配置方法的一般信息，请参阅 https://docs.aws.amazon.com/AmazonS3/latest/userguide/replication.html["Amazon Simple Storage Service (S3) 文档：复制对象"^]。有关StorageGRID如何实现 GetBucketReplication、DeleteBucketReplication 和 PutBucketReplication 的信息，请参阅link:../s3/operations-on-buckets.html["对 bucket 的操作"]。
+
+
+NOTE: CloudMirror 复制与跨网格复制功能具有重要的相似之处和区别。要了解更多信息，请参阅link:../admin/grid-federation-compare-cgr-to-cloudmirror.html["比较跨网格复制和 CloudMirror 复制"]。
+
+配置CloudMirror复制时请注意以下要求和特点：
+
+* 当您创建并应用有效的存储桶复制配置 XML 时，它必须使用每个目标的 S3 存储桶端点的 URN。
+* 启用 S3 对象锁定的源存储桶或目标存储桶不支持复制。
+* 如果在包含对象的存储桶上启用 CloudMirror 复制，则会复制添加到存储桶的新对象，但不会复制存储桶中的现有对象。您必须更新现有对象才能触发复制。
+* 如果您在复制配置 XML 中指定存储类， StorageGRID会在针对目标 S3 端点执行操作时使用该类。目标端点也必须支持指定的存储类。请务必遵循目标系统供应商提供的所有建议。
+
+
+.步骤
+. 为源存储桶启用复制：
++
+** 使用文本编辑器创建启用复制所需的复制配置 XML，如 S3 复制 API 中所指定。
+** 配置 XML 时：
++
+*** 请注意， StorageGRID仅支持复制配置的 V1。这意味着StorageGRID不支持使用 `Filter`元素作为规则，并遵循 V1 约定来删除对象版本。有关详细信息，请参阅有关复制配置的 Amazon 文档。
+*** 使用 S3 存储桶端点的 URN 作为目标。
+*** 可选地添加 `<StorageClass>`元素，并指定下列之一：
++
+****  `STANDARD`：默认存储类别。如果您在上传对象时未指定存储类别，则 `STANDARD`使用存储类。
+**** `STANDARD_IA`：（标准 - 不频繁访问。）使用此存储类来存储访问频率较低但仍需要快速访问的数据。
+**** `REDUCED_REDUNDANCY`：此存储类用于存储非关键、可重现的数据，其存储冗余度比 `STANDARD`存储类。
+
+
+*** 如果您指定 `Role`在配置 XML 中它将被忽略。  StorageGRID不使用此值。
++
+[listing]
+----
+<ReplicationConfiguration>
+    <Role></Role>
+    <Rule>
+        <Status>Enabled</Status>
+        <Prefix>2020</Prefix>
+        <Destination>
+           <Bucket>urn:sgws:s3:::2017-records</Bucket>
+           <StorageClass>STANDARD</StorageClass>
+         </Destination>
+     </Rule>
+</ReplicationConfiguration>
+----
+
+
+
+
+. 从仪表板中选择 *查看存储桶*，或选择 *存储（S3）* > *存储桶*。
+. 选择源存储桶的名称。
++
+出现存储桶详细信息页面。
+
+. 选择“平台服务”>“复制”。
+. 选中“启用复制”复选框。
+. 将复制配置 XML 粘贴到文本框中，然后选择*保存更改*。
++
+
+NOTE: StorageGRID管理员必须使用 Grid Manager 或 Grid Management API 为每个租户帐户启用平台服务。如果保存配置 XML 时出现错误，请联系您的StorageGRID管理员。
+
+. 验证复制配置是否正确：
++
+.. 将符合复制配置中指定的复制要求的对象添加到源存储桶。
++
+在前面显示的示例中，与前缀“2020”匹配的对象被复制。
+
+.. 确认对象已复制到目标存储桶。
++
+对于小物体，复制会很快发生。
+
+
+
+
+
+.相关信息
+link:creating-platform-services-endpoint.html["创建平台服务端点"]

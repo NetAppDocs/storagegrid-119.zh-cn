@@ -1,0 +1,59 @@
+---
+permalink: tenant/ilm-policy-tags.html 
+sidebar: sidebar 
+keywords: how to assign ilm policy tag to bucket 
+summary: 根据您的对象存储要求，选择要分配给存储桶的 ILM 策略标签。 
+---
+= 将 ILM 策略标签应用于存储桶
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+根据您的对象存储要求，选择要应用于存储桶的 ILM 策略标签。
+
+ILM 策略控制对象数据的存储位置以及是否在一定时间段后删除数据。当使用多个活动策略时，您的网格管理员会创建 ILM 策略并将其分配给 ILM 策略标签。
+
+
+NOTE: 避免频繁重新分配存储桶的策略标签。否则，可能会出现性能问题。
+
+.开始之前
+* 您已使用link:../admin/web-browser-requirements.html["支持的网络浏览器"]。
+* 您属于具有link:tenant-management-permissions.html["Root 访问权限、管理所有存储桶或查看所有存储桶权限"]。这些权限会覆盖组或存储桶策略中的权限设置。
+
+
+.步骤
+. 从仪表板中选择 *查看存储桶*，或选择 *存储（S3）* > *存储桶*。
++
+出现“存储桶”页面。根据需要，您可以按任意列对信息进行排序，也可以在列表中向前或向后翻页。
+
+. 选择要分配 ILM 策略标签的存储桶的名称。
++
+您还可以更改已分配标签的存储桶的 ILM 策略标签分配。
+
++
+
+NOTE: 显示的对象数量和已用空间值是估计值。这些估计受到摄取时间、网络连接和节点状态的影响。如果存储桶启用了版本控制，则已删除的对象版本将包含在对象计数中。
+
+. 在 Bucket 选项选项卡中，展开 ILM 策略标签折叠面板。仅当您的网格管理员启用自定义策略标签的使用时，才会出现此手风琴。
+. 阅读每个策略标签的描述以确定应将哪个标签应用于存储桶。
++
+
+CAUTION: 更改存储桶的 ILM 策略标签将触发存储桶中所有对象的 ILM 重新评估。如果新策略在有限的时间内保留对象，则较旧的对象将被删除。
+
+. 选择要分配给存储桶的标签的单选按钮。
+. 选择“保存更改”。新的 S3 bucket 标签将使用 key 设置到 bucket 上 `NTAP-SG-ILM-BUCKET-TAG`以及 ILM 策略标签名称的值。
++
+
+CAUTION: 确保您的 S3 应用程序不会意外覆盖或删除新的存储桶标签。如果在将新的 TagSet 应用于存储桶时省略此标签，则存储桶中的对象将恢复为根据默认 ILM 策略进行评估。
+
++
+
+CAUTION: 仅使用已验证 ILM 策略标签的租户管理器或租户管理器 API 来设置和修改 ILM 策略标签。请勿修改 `NTAP-SG-ILM-BUCKET-TAG`使用 S3 PutBucketTagging API 或 S3 DeleteBucketTagging API 的 ILM 策略标签。
+
++
+
+NOTE: 在使用新的 ILM 策略重新评估对象时，更改分配给存储桶的策略标签会对性能产生暂时影响。
+
+

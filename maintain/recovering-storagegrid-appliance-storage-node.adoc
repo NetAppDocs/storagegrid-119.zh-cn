@@ -1,0 +1,29 @@
+---
+permalink: maintain/recovering-storagegrid-appliance-storage-node.html 
+sidebar: sidebar 
+keywords: recover, appliance storage node failure, workflow 
+summary: 无论是从系统驱动器丢失中恢复还是仅从存储卷丢失中恢复，恢复故障的StorageGRID设备存储节点的过程都是相同的。 
+---
+= 恢复设备存储节点的警告
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+无论是从系统驱动器丢失中恢复还是仅从存储卷丢失中恢复，恢复故障的StorageGRID设备存储节点的过程都是相同的。
+
+
+CAUTION: 如果多个存储节点出现故障（或离线），请联系技术支持。不要执行以下恢复过程。可能会发生数据丢失。
+
+
+CAUTION: 如果这是存储节点故障或恢复后 15 天内第二次发生存储节点故障，请联系技术支持。在 15 天内在两个或更多存储节点上重建 Cassandra 可能会导致数据丢失。
+
+
+NOTE: 如果站点上的多个存储节点发生故障，则可能需要站点恢复过程。看link:how-site-recovery-is-performed-by-technical-support.html["技术支持如何恢复站点"] 。
+
+
+CAUTION: 如果 ILM 规则配置为仅存储一个复制副本，并且该副本存在于发生故障的存储卷上，则您将无法恢复该对象。
+
+
+NOTE: 有关硬件维护程序（例如更换控制器或重新安装SANtricity OS 的说明），请参阅 https://docs.netapp.com/us-en/storagegrid-appliances/commonhardware/index.html["存储设备的维护说明"^]。

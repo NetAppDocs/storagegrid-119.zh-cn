@@ -1,0 +1,53 @@
+---
+permalink: s3/upload-part-copy.html 
+sidebar: sidebar 
+keywords: UploadPart, UploadPartCopy, multipart uploads, uploads, 
+summary: UploadPartCopy 操作通过从现有对象作为数据源复制数据来上传对象的一部分。 
+---
+= 上传部分复制
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+UploadPartCopy 操作通过从现有对象作为数据源复制数据来上传对象的一部分。
+
+UploadPartCopy 操作是通过所有 Amazon S3 REST API 行为实现的。如有变更，恕不另行通知。
+
+此请求读取并写入指定的对象数据 `x-amz-copy-source-range`在StorageGRID系统内。
+
+支持以下请求标头：
+
+* `x-amz-copy-source-if-match`
+* `x-amz-copy-source-if-none-match`
+* `x-amz-copy-source-if-unmodified-since`
+* `x-amz-copy-source-if-modified-since`
+
+
+
+
+== 服务器端加密的请求标头
+
+如果您为 CreateMultipartUpload 请求指定了 SSE-C 加密，则还必须在每个 UploadPartCopy 请求中包含以下请求标头：
+
+* `x-amz-server-side-encryption-customer-algorithm`： 指定 `AES256`。
+* `x-amz-server-side-encryption-customer-key`：指定您在 CreateMultipartUpload 请求中提供的相同加密密钥。
+* `x-amz-server-side-encryption-customer-key-MD5`：指定您在 CreateMultipartUpload 请求中提供的相同 MD5 摘要。
+
+
+如果源对象使用客户提供的密钥（SSE-C）加密，则必须在 UploadPartCopy 请求中包含以下三个标头，以便可以解密然后复制对象：
+
+* `x-amz-copy-source​-server-side​-encryption​-customer-algorithm`： 指定 `AES256`。
+* `x-amz-copy-source​-server-side-encryption-customer-key`：指定您在创建源对象时提供的加密密钥。
+* `x-amz-copy-source​-server-side-encryption-customer-key-MD5`：指定您在创建源对象时提供的 MD5 摘要。
+
+
+
+CAUTION: 您提供的加密密钥永远不会被存储。如果丢失了加密密钥，您就会丢失相应的对象。在使用客户提供的密钥保护对象数据之前，请查看link:using-server-side-encryption.html["使用服务器端加密"]。
+
+
+
+== 版本控制
+
+分段上传包括启动上传、列出上传、上传部分、组装上传部分和完成上传的单独操作。执行 CompleteMultipartUpload 操作时会创建对象（如果适用，还会进行版本控制）。

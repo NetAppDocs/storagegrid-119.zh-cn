@@ -1,0 +1,55 @@
+---
+permalink: troubleshoot/troubleshooting-certificate-errors.html 
+sidebar: sidebar 
+keywords: how to troubleshoot certificate errors 
+summary: 如果您在尝试使用 Web 浏览器、S3 客户端或外部监控工具连接到StorageGRID时发现安全或证书问题，则应检查证书。 
+---
+= 解决证书错误
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果您在尝试使用 Web 浏览器、S3 客户端或外部监控工具连接到StorageGRID时发现安全或证书问题，则应检查证书。
+
+.关于此任务
+当您尝试使用网格管理器、网格管理 API、租户管理器或租户管理 API 连接到StorageGRID时，证书错误可能会导致问题。当您尝试连接 S3 客户端或外部监控工具时，也可能会出现证书错误。
+
+如果您使用域名而不是 IP 地址访问网格管理器或租户管理器，则在发生以下任一情况时，浏览器将显示证书错误，并且没有绕过选项：
+
+* 您的自定义管理接口证书已过期。
+* 您将从自定义管理接口证书恢复为默认服务器证书。
+
+
+以下示例显示自定义管理接口证书过期时出现的证书错误：
+
+image::../media/certificate_error.png[证书错误示例]
+
+为了确保操作不会因服务器证书失败而中断，当服务器证书即将过期时，会触发*管理接口服务器证书过期*警报。
+
+当您使用客户端证书进行外部 Prometheus 集成时，证书错误可能是由StorageGRID管理接口证书或客户端证书引起的。当客户端证书即将过期时，会触发“证书页面上配置的客户端证书过期”警报。
+
+.步骤
+如果您收到有关证书过期的警报通知，请访问证书详细信息：。选择 *配置* > *安全* > *证书*，然后link:../admin/using-storagegrid-security-certificates.html#access-security-certificates["选择适当的证书选项卡"]。
+
+. 检查证书的有效期。  + 某些 Web 浏览器和 S3 客户端不接受有效期超过 398 天的证书。
+. 如果证书已过期或即将过期，请上传或生成新证书。
++
+** 对于服务器证书，请参阅link:../admin/configuring-custom-server-certificate-for-grid-manager-tenant-manager.html#add-a-custom-management-interface-certificate["为网格管理器和租户管理器配置自定义服务器证书"]。
+** 对于客户端证书，请参阅link:../admin/configuring-administrator-client-certificates.html["配置客户端证书"]。
+
+
+. 对于服务器证书错误，请尝试以下一个或两个选项：
++
+** 确保证书的主题备用名称 (SAN) 已填充，并且 SAN 与您要连接的节点的 IP 地址或主机名匹配。
+** 如果您尝试使用域名连接到StorageGRID ：
++
+... 输入管理节点的 IP 地址而不是域名以绕过连接错误并访问网格管理器。
+... 从网格管理器中，选择 *配置* > *安全* > *证书*，然后link:../admin/using-storagegrid-security-certificates.html#access-security-certificates["选择适当的证书选项卡"]安装新的自定义证书或继续使用默认证书。
+... 在管理StorageGRID的说明中，请参阅link:../admin/configuring-custom-server-certificate-for-grid-manager-tenant-manager.html#add-a-custom-management-interface-certificate["为网格管理器和租户管理器配置自定义服务器证书"]。
+
+
+
+
+

@@ -1,0 +1,103 @@
+---
+permalink: audit/object-retrieve-transactions.html 
+sidebar: sidebar 
+keywords: object retrieve, transactions, SGET, WGET 
+summary: 您可以通过定位 S3 API 特定的审计消息来识别审计日志中的对象检索事务。 
+---
+= 对象检索事务
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以通过定位 S3 API 特定的审计消息来识别审计日志中的对象检索事务。
+
+下表并未列出检索事务期间生成的所有审计消息。仅包含跟踪检索事务所需的消息。
+
+
+
+== S3 检索审计消息
+
+[cols="1a,1a,2a,1a,1a"]
+|===
+| 代码 | 名称 | 描述 | 痕迹 | 请参见 
+
+
+ a| 
+星载卫星
+ a| 
+S3 GET
+ a| 
+请求从存储桶中检索对象。
+ a| 
+CBID、S3BK、S3KY
+ a| 
+link:sget-s3-get.html["SGET：S3 获取"]
+
+|===
+
+
+== 快速检索审计消息
+
+[cols="1a,1a,2a,1a,1a"]
+|===
+| 代码 | 名称 | 描述 | 痕迹 | 请参见 
+
+
+ a| 
+无线获取
+ a| 
+Swift GET
+ a| 
+请求从容器中检索对象。
+ a| 
+CBID、WCON、WOBJ
+ a| 
+link:wget-swift-get.html["WGET：快速获取"]
+
+|===
+
+
+== 示例：S3 对象检索
+
+当 S3 客户端从存储节点（LDR 服务）检索对象时，会生成一条审计消息并将其保存到审计日志中。
+
+请注意，下面的示例中并未列出交易期间生成的所有审计消息。仅列出与 S3 检索事务 (SGET) 相关的那些。
+
+
+
+=== SGET：S3 获取
+
+当客户端向 LDR 服务发送 GetObject 请求时，对象检索就开始了。该消息包含从中检索对象的存储桶以及用于识别对象的对象的 S3 密钥。
+
+[listing, subs="specialcharacters,quotes"]
+----
+2017-09-20T22:53:08.782605 [AUDT:[RSLT(FC32):SUCS][TIME(UI64):47807][SAIP(IPAD):"10.96.112.26"][S3AI(CSTR):"43979298178977966408"][SACC(CSTR):"s3-account-a"][S3AK(CSTR):"SGKHt7GzEcu0yXhFhT_rL5mep4nJt1w75GBh-O_FEw=="][SUSR(CSTR):"urn:sgws:identity::43979298178977966408:root"][SBAI(CSTR):"43979298178977966408"][SBAC(CSTR):"s3-account-a"]\[S3BK\(CSTR\):"bucket-anonymous"\]\[S3KY\(CSTR\):"Hello.txt"\][CBID(UI64):0x83D70C6F1F662B02][CSIZ(UI64):12][AVER(UI32):10][ATIM(UI64):1505947988782605]\[ATYP\(FC32\):SGET\][ANID(UI32):12272050][AMID(FC32):S3RQ][ATID(UI64):17742374343649889669]]
+----
+如果存储桶策略允许，客户端可以匿名检索对象，或者可以从不同租户帐户拥有的存储桶中检索对象。审计消息包含有关存储桶所有者的租户帐户的信息，以便您可以跟踪这些匿名和跨帐户请求。
+
+在下面的示例消息中，客户端发送一个 GetObject 请求，以获取存储在不属于他们的存储桶中的对象。  SBAI 和 SBAC 的值记录了存储桶所有者的租户帐户 ID 和名称，这与 S3AI 和 SACC 中记录的客户端的租户帐户 ID 和名称不同。
+
+[listing, subs="specialcharacters,quotes"]
+----
+2017-09-20T22:53:15.876415 [AUDT:[RSLT(FC32):SUCS][TIME(UI64):53244][SAIP(IPAD):"10.96.112.26"]\[S3AI\(CSTR\):"17915054115450519830"\]\[SACC\(CSTR\):"s3-account-b"\][S3AK(CSTR):"SGKHpoblWlP_kBkqSCbTi754Ls8lBUog67I2LlSiUg=="][SUSR(CSTR):"urn:sgws:identity::17915054115450519830:root"]\[SBAI\(CSTR\):"43979298178977966408"\]\[SBAC\(CSTR\):"s3-account-a"\][S3BK(CSTR):"bucket-anonymous"][S3KY(CSTR):"Hello.txt"][CBID(UI64):0x83D70C6F1F662B02][CSIZ(UI64):12][AVER(UI32):10][ATIM(UI64):1505947995876415][ATYP(FC32):SGET][ANID(UI32):12272050][AMID(FC32):S3RQ][ATID(UI64):6888780247515624902]]
+----
+
+
+== 示例：S3 选择对象
+
+当 S3 客户端对某个对象发出 S3 Select 查询时，会生成审计消息并将其保存到审计日志中。
+
+请注意，下面的示例中并未列出交易期间生成的所有审计消息。仅列出与 S3 Select 事务（SelectObjectContent）相关的内容。
+
+每个查询都会产生两条审计消息：一条执行 S3 Select 请求的授权（S3SR 字段设置为“选择”），另一条是后续标准 GET 操作，该操作在处理过程中从存储中检索数据。
+
+[listing, subs="specialcharacters,quotes"]
+----
+2021-11-08T15:35:30.750038 [AUDT:[RSLT(FC32):SUCS][CNID(UI64):1636385730715700][TIME(UI64):29173][SAIP(IPAD):"192.168.7.44"][S3AI(CSTR):"63147909414576125820"][SACC(CSTR):"Tenant1636027116"][S3AK(CSTR):"AUFD1XNVZ905F3TW7KSU"][SUSR(CSTR):"urn:sgws:identity::63147909414576125820:root"][SBAI(CSTR):"63147909414576125820"][SBAC(CSTR):"Tenant1636027116"][S3BK(CSTR):"619c0755-9e38-42e0-a614-05064f74126d"][S3KY(CSTR):"SUB-EST2020_ALL.csv"][CBID(UI64):0x0496F0408A721171][UUID(CSTR):"D64B1A4A-9F01-4EE7-B133-08842A099628"][CSIZ(UI64):0][S3SR(CSTR):"select"][AVER(UI32):10][ATIM(UI64):1636385730750038][ATYP(FC32):SPOS][ANID(UI32):12601166][AMID(FC32):S3RQ][ATID(UI64):1363009709396895985]]
+----
+[listing, subs="specialcharacters,quotes"]
+----
+2021-11-08T15:35:32.604886 [AUDT:[RSLT(FC32):SUCS][CNID(UI64):1636383069486504][TIME(UI64):430690][SAIP(IPAD):"192.168.7.44"][HTRH(CSTR):"{\"x-forwarded-for\":\"unix:\"}"][S3AI(CSTR):"63147909414576125820"][SACC(CSTR):"Tenant1636027116"][S3AK(CSTR):"AUFD1XNVZ905F3TW7KSU"][SUSR(CSTR):"urn:sgws:identity::63147909414576125820:root"][SBAI(CSTR):"63147909414576125820"][SBAC(CSTR):"Tenant1636027116"][S3BK(CSTR):"619c0755-9e38-42e0-a614-05064f74126d"][S3KY(CSTR):"SUB-EST2020_ALL.csv"][CBID(UI64):0x0496F0408A721171][UUID(CSTR):"D64B1A4A-9F01-4EE7-B133-08842A099628"][CSIZ(UI64):10185581][MTME(UI64):1636380348695262][AVER(UI32):10][ATIM(UI64):1636385732604886][ATYP(FC32):SGET][ANID(UI32):12733063][AMID(FC32):S3RQ][ATID(UI64):16562288121152341130]]
+----

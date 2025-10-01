@@ -1,0 +1,21 @@
+---
+permalink: maintain/decommissioning-multiple-storage-nodes.html 
+sidebar: sidebar 
+keywords: storagegrid, decommission nodes, storage node, multiple storage nodes 
+summary: 如果需要删除多个存储节点，则可以按顺序或并行地停用它们。 
+---
+= 停用多个存储节点
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果需要删除多个存储节点，则可以按顺序或并行地停用它们。
+
+
+CAUTION: 在包含基于软件的纯元数据节点的网格中停用存储节点时请务必小心。如果您停用所有配置为存储对象和元数据的节点，则存储对象的能力将从网格中删除。看link:../primer/what-storage-node-is.html#types-of-storage-nodes["存储节点的类型"]有关仅元数据存储节点的更多信息。
+
+* 如果您按顺序退役存储节点，则必须等待第一个存储节点完成退役后才能开始退役下一个存储节点。
+* 如果您并行退役存储节点，则存储节点将同时处理所有正在退役的存储节点的退役任务。这可能导致文件的所有永久副本都被标记为“只读”，从而暂时禁用启用此功能的网格中的删除功能。
+

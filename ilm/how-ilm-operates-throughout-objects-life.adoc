@@ -1,0 +1,32 @@
+---
+permalink: ilm/how-ilm-operates-throughout-objects-life.html 
+sidebar: sidebar 
+keywords: ilm lifecycle, object lifecycle and ILM 
+summary: 了解StorageGRID如何使用 ILM 管理对象生命周期的每个阶段可以帮助您设计更有效的策略。 
+---
+= ILM 如何在对象的整个生命周期中运作
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+了解StorageGRID如何使用 ILM 管理对象生命周期的每个阶段可以帮助您设计更有效的策略。
+
+* *摄取*：当 S3 客户端应用程序建立连接以将对象保存到StorageGRID系统时，摄取开始，当StorageGRID向客户端返回“摄取成功”消息时，摄取完成。对象数据在摄取过程中受到保护，方法是立即应用 ILM 指令（同步放置）或创建临时副本并稍后应用 ILM（双重提交），具体取决于 ILM 要求的指定方式。
+* *复制管理*：在创建 ILM 放置说明中指定的数量和类型的对象副本后， StorageGRID会管理对象位置并保护对象免遭丢失。
++
+** *ILM 扫描和评估*： StorageGRID持续扫描网格中存储的对象列表，并检查当前副本是否满足 ILM 要求。当需要不同类型、数量或位置的对象副本时， StorageGRID会根据需要创建、删除或移动副本。
+** *后台验证*： StorageGRID持续执行后台验证以检查对象数据的完整性。如果发现问题， StorageGRID会自动在符合当前 ILM 要求的位置创建新的对象副本或替换的擦除编码对象片段。看link:../troubleshoot/verifying-object-integrity.html["验证对象完整性"] 。
+
+
+* *对象删除*：当所有副本从StorageGRID系统中删除时，对象的管理结束。对象可以通过客户端的删除请求、ILM 的删除或 S3 存储桶生命周期到期导致的删除而被删除。
++
+
+NOTE: 如果已启用 S3 对象锁定的存储桶中的对象处于合法保留状态，或者已指定保留截止日期但尚未满足，则无法删除这些对象。
+
+
+
+该图总结了 ILM 在对象整个生命周期中的运作方式。
+
+image::../media/overview_of_object_lifecycle.png[对象生命周期概述]

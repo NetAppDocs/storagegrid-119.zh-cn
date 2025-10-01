@@ -1,0 +1,30 @@
+= Memberof 和 refint 覆盖
+:allow-uri-read: 
+
+
+如果您想使用 OpenLDAP 服务器进行身份联合，则必须在 OpenLDAP 服务器上配置特定设置。
+
+
+CAUTION: 对于非 ActiveDirectory 或 Azure 的身份源， StorageGRID不会自动阻止外部禁用的用户访问 S3。要阻止 S3 访问，请删除用户的所有 S3 密钥或从所有组中删除该用户。
+
+
+
+=== Memberof 和 refint 覆盖
+
+应该启用 memberof 和 refint 覆盖。有关详细信息，请参阅http://www.openldap.org/doc/admin24/index.html["OpenLDAP 文档：版本 2.4 管理员指南"^]。
+
+
+
+=== 索引
+
+您必须使用指定的索引关键字配置以下 OpenLDAP 属性：
+
+* `olcDbIndex: objectClass eq`
+* `olcDbIndex: uid eq,pres,sub`
+* `olcDbIndex: cn eq,pres,sub`
+* `olcDbIndex: entryUUID eq`
+
+
+此外，请确保帮助中提到的用户名字段已被索引，以获得最佳性能。
+
+请参阅有关反向组成员身份维护的信息http://www.openldap.org/doc/admin24/index.html["OpenLDAP 文档：版本 2.4 管理员指南"^]。

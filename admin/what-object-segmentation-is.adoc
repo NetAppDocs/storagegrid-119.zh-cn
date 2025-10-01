@@ -1,0 +1,26 @@
+---
+permalink: admin/what-object-segmentation-is.html 
+sidebar: sidebar 
+keywords: object segmentation, multipart upload 
+summary: 对象分割是将一个对象分割成一组较小的固定大小对象的过程，以优化大对象的存储和资源使用。  S3 多部分上传还会创建分段对象，每个部分都有一个对象代表。 
+---
+= 什么是对象分割？
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+对象分割是将一个对象分割成一组较小的固定大小对象的过程，以优化大对象的存储和资源使用。  S3 多部分上传还会创建分段对象，每个部分都有一个对象代表。
+
+当对象被摄取到StorageGRID系统时，LDR 服务会将对象拆分为多个段，并创建一个段容器，将所有段的标头信息列为内容。
+
+image::../media/object_segmentation_diagram.gif[对象分割工作流程]
+
+在检索到段容器时，LDR 服务会从其段组装原始对象并将该对象返回给客户端。
+
+容器和段不一定存储在同一个存储节点上。容器和段可以存储在 ILM 规则中指定的存储池内的任何存储节点上。
+
+每个段都由StorageGRID系统独立处理，并有助于统计管理对象和存储对象等属性的数量。例如，如果存储到StorageGRID系统的对象被分成两个段，则在摄取完成后，“托管对象”的值将增加 3，如下所示：
+
+`segment container + segment 1 + segment 2 = three stored objects`

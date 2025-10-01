@@ -1,0 +1,105 @@
+---
+permalink: ilm/comparing-cloud-storage-pools-to-cloudmirror-replication.html 
+sidebar: sidebar 
+keywords: cloud storage pools, cloudmirror replication 
+summary: 当您开始使用云存储池时，了解云存储池和StorageGRID CloudMirror 复制服务之间的异同可能会有所帮助。 
+---
+= 比较云存储池和 CloudMirror 复制
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+当您开始使用云存储池时，了解云存储池和StorageGRID CloudMirror 复制服务之间的异同可能会有所帮助。
+
+[cols="1a,3a,3a"]
+|===
+|  | 云存储池 | CloudMirror复制服务 
+
+
+ a| 
+主要目的是什么？
+ a| 
+充当存档目标。云存储池中的对象副本可以是该对象的唯一副本，也可以是额外的副本。也就是说，您不必在现场保留两个副本，而是可以在StorageGRID中保留一个副本，并将一个副本发送到云存储池。
+ a| 
+使租户能够自动将对象从StorageGRID （源）中的存储桶复制到外部 S3 存储桶（目标）。在独立的 S3 基础架构中创建对象的独立副本。
+
+
+
+ a| 
+如何設置？
+ a| 
+以与存储池相同的方式定义，使用网格管理器或网格管理 API。可以选择作为 ILM 规则中的放置位置。虽然存储池由一组存储节点组成，但云存储池是使用远程 S3 或 Azure 端点（IP 地址、凭据等）定义的。
+ a| 
+租户用户link:../tenant/configuring-cloudmirror-replication.html["配置 CloudMirror 复制"]通过使用租户管理器或 S3 API 定义 CloudMirror 端点（IP 地址、凭据等）。设置 CloudMirror 端点后，可以将该租户帐户拥有的任何存储桶配置为指向 CloudMirror 端点。
+
+
+
+ a| 
+谁负责设置它？
+ a| 
+通常，电网管理员
+ a| 
+通常，租户用户
+
+
+
+ a| 
+目的地是哪里？
+ a| 
+* 任何兼容的 S3 基础设施（包括 Amazon S3）
+* Azure Blob 存档层
+* 谷歌云平台（GCP）
+
+ a| 
+* 任何兼容的 S3 基础设施（包括 Amazon S3）
+* 谷歌云平台（GCP）
+
+
+
+
+ a| 
+什么原因导致物体移动到目的地？
+ a| 
+活动 ILM 策略中的一个或多个 ILM 规则。  ILM 规则定义StorageGRID将哪些对象移动到云存储池以及何时移动这些对象。
+ a| 
+将新对象提取到已配置 CloudMirror 端点的源存储桶中的行为。在使用 CloudMirror 端点配置存储桶之前，源存储桶中存在的对象不会被复制，除非它们被修改。
+
+
+
+ a| 
+如何检索对象？
+ a| 
+应用程序必须向StorageGRID发出请求来检索已移动到云存储池的对象。如果对象的唯一副本已转换为档案存储， StorageGRID将管理恢复该对象的过程，以便可以检索它。
+ a| 
+由于目标存储桶中的镜像副本是独立副本，因此应用程序可以通过向StorageGRID或 S3 目标发出请求来检索对象。例如，假设您使用 CloudMirror 复制将对象镜像到合作伙伴组织。合作伙伴可以使用自己的应用程序直接从 S3 目标读取或更新对象。不需要使用StorageGRID 。
+
+
+
+ a| 
+您可以直接从目的地读取吗？
+ a| 
+否。移动到云存储池的对象由StorageGRID管理。读取请求必须定向到StorageGRID （并且StorageGRID将负责从云存储池中检索）。
+ a| 
+是的，因为镜像副本是独立副本。
+
+
+
+ a| 
+如果从源中删除对象会发生什么情况？
+ a| 
+该对象也将从云存储池中删除。
+ a| 
+删除操作不会被复制。已删除的对象不再存在于StorageGRID桶中，但它继续存在于目标存储桶中。同样，可以删除目标存储桶中的对象，而不会影响源。
+
+
+
+ a| 
+灾难发生后（StorageGRID系统无法运行）如何访问对象？
+ a| 
+必须恢复发生故障的StorageGRID节点。在此过程中，可能会使用云存储池中的副本恢复复制对象的副本。
+ a| 
+CloudMirror 目标中的对象副本独立于StorageGRID，因此可以在恢复StorageGRID节点之前直接访问它们。
+
+|===

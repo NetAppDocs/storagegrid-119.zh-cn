@@ -1,0 +1,39 @@
+---
+permalink: audit/accessing-audit-log-file.html 
+sidebar: sidebar 
+keywords: storagegrid, audit, log, log file, access, accessing 
+summary: 审计共享包含活动的 audit.log 文件和任何压缩的审计日志文件。您可以直接从管理节点的命令行访问审计日志文件。 
+---
+= 访问审计日志文件
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+审计份额包含活跃 `audit.log`文件和任何压缩的审计日志文件。您可以直接从管理节点的命令行访问审计日志文件。
+
+.开始之前
+* 你有link:../admin/admin-group-permissions.html["特定访问权限"]。
+* 你必须拥有 `Passwords.txt`文件。
+* 您必须知道管理节点的 IP 地址。
+
+
+.步骤
+. 登录管理节点：
++
+.. 输入以下命令： `ssh admin@_primary_Admin_Node_IP_`
+.. 输入 `Passwords.txt`文件。
+.. 输入以下命令切换到root： `su -`
+.. 输入 `Passwords.txt`文件。
++
+当您以 root 身份登录时，提示符将从 `$`到 `#`。
+
+
+
+. 转到包含审计日志文件的目录：
++
+`cd /var/local/log`
+
+. 根据需要查看当前或已保存的审计日志文件。
+
