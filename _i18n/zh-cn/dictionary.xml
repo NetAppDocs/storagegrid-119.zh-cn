@@ -19571,8 +19571,6 @@
   <block id="95f6df568e18de42b0f0ca3ecef26398" category="paragraph">Active Directory/LDAP</block>
   <block id="b14ae13aff870b44f247f85fbb36072b" category="paragraph">用于连接到 Active Directory 或 LDAP 服务器以进行身份联合。</block>
   <block id="0e8433f9a404f1f3ba601c14b026d321" category="paragraph">HTTPS</block>
-  <block id="b50a9d29fec392329ac0ae4cb0110503" category="paragraph">由 Web 浏览器和管理 API 客户端用于访问网格管理器和租户管理器。</block>
-  <block id="a9bb22a4c26c5b03750cc1b430fd4f2a" category="paragraph">*注意*：如果您关闭网格管理器端口 443 或 8443，则当前连接到被阻止端口的任何用户（包括您）都将失去对网格管理器的访问权限，除非他们的 IP 地址已添加到特权地址列表中。看<block ref="c0029b37ee8e2f7f29845f5ff3b725da" category="inline-link-macro-rx"></block>配置特权IP地址。</block>
   <block id="5a5371ddb36ba9e3443150cc1f0e644c" category="paragraph">如果启用了单点登录 (SSO)，则由连接到 Active Directory 的管理节点使用。</block>
   <block id="0064bf2a1c1e8cfbe1976bf6a6fc3f4d" category="paragraph">用于发送到 AWS 或其他使用 HTTPS 的外部服务的平台服务消息。租户可以在创建端点时覆盖默认的 HTTP 端口设置 443。</block>
   <block id="25a1f82c0c27af93304e2afb69b6b393" category="paragraph">发送到使用 HTTPS 的 AWS 目标的云存储池请求。网格管理员在配置云存储池时可以覆盖默认的 HTTPS 端口设置 443。</block>
@@ -19593,7 +19591,6 @@
   <block id="195e8230b873d675a1b57413d9251c7d" category="paragraph">密钥管理互操作性协议 (KMIP) 从配置为节点加密的设备到密钥管理服务器 (KMS) 的外部流量，除非在StorageGRID设备安装程序的 KMS 配置页面上指定了不同的端口。</block>
   <block id="60c97bef031ec312b512c08565c1868e" category="paragraph">8022</block>
   <block id="0fbf50e9d57ce852b2d1566a445aafde" category="paragraph">端口 8022 上的 SSH 授予对设备和虚拟节点平台上的基本操作系统的访问权限，以提供支持和故障排除。此端口不用于基于 Linux（裸机）的节点，并且不需要在网格节点之间或正常操作期间访问。</block>
-  <block id="94d87e4f3c9ed5ffe553da8dafa1009d" category="paragraph">可选。由 Web 浏览器和管理 API 客户端用于访问网格管理器。可用于分离网格管理器和租户管理器通信。</block>
   <block id="e6ff107459d435e38b54ad4c06202c33" category="paragraph">9022</block>
   <block id="6739e5a65b4fd9164fd9c2c0f1491a36" category="paragraph">授予对预配置模式下的StorageGRID设备的访问权限，以获得支持和故障排除。网格节点之间或正常操作期间不需要访问此端口。</block>
   <block id="0a7d7a81e8e3a20e4c34748e98ef45f6" category="paragraph">9091</block>
@@ -19604,7 +19601,6 @@
   <block id="51be25b0145a0beca811de24a62b5cb4" category="paragraph">卡夫卡</block>
   <block id="0c39be51b14798b64fb5bbcbb1b7a710" category="paragraph">Kafka 集群</block>
   <block id="8f00f2220d56f902b956882222c22566" category="paragraph">用于向 Kafka 集群发送平台服务消息。租户可以在创建端点时覆盖默认的 Kafka 端口设置 9092。</block>
-  <block id="15b57c7f75b03ed333937acd0e4d1f3a" category="paragraph">可选。由 Web 浏览器和管理 API 客户端用于访问租户管理器。可用于分离网格管理器和租户管理器通信。</block>
   <block id="ad5db5924e3e97ed8a387a499efa9fa0" category="paragraph">18082</block>
   <block id="03b9eaf2e04587c1e364872ef61ddbb9" category="paragraph">S3 客户端</block>
   <block id="11f3cbd93b8d2b94defeeb997681e1bb" category="paragraph">S3 客户端流量直接到存储节点（HTTPS）。</block>
@@ -19732,12 +19728,9 @@
   <block id="a561e7ebcac8441387d4fe143fdef87f" category="paragraph">18017</block>
   <block id="d6e1524c4c10e483d44f0a06f4108de2" category="paragraph">云存储池的 Data Mover 服务内部流量。</block>
   <block id="2be1f64cae97e3767efd3c0bef7b0779" category="paragraph">18019</block>
-  <block id="82500251962f79307270a5dd450d8b52" category="paragraph">用于擦除编码的块服务内部流量。</block>
   <block id="e4f94bcb81892395a5a06c9cb8f820e4" category="paragraph">与 S3 相关的内部流量。</block>
   <block id="ba573e66923fcb7cdd3a07254634141d" category="paragraph">与 Swift 相关的内部流量。</block>
   <block id="4d8d751988a68fec6e98d0a65284f530" category="paragraph">18086</block>
-  <block id="af32210d68f61fcd4a5e6fa042e16e15" category="paragraph">所有网格节点</block>
-  <block id="c65ef3e3b2ae9b258850acf6622e9d69" category="paragraph">所有存储节点</block>
   <block id="c85ac1163071cfa93c7c99b899c15eb2" category="paragraph">与 LDR 服务相关的内部流量。</block>
   <block id="33ec1f50197cc4f74b3e8dc359ec3280" category="paragraph">18200</block>
   <block id="b46a066bb412c1f6ec91676ef56e766b" category="paragraph">有关客户端请求的附加统计信息。</block>
@@ -20448,8 +20441,6 @@
   <block id="99ad82cc99848e42086faa6240227683" category="paragraph">S3 客户端可以连接到网关节点或管理节点，以使用存储节点的负载平衡接口。或者，S3 客户端可以使用 HTTPS 直接连接到存储节点。</block>
   <block id="dd20f109ad00b817943c33b31094ba7d" category="paragraph">对象可以存储在StorageGRID中的基于软件或硬件的存储节点上，也可以存储在由外部 S3 存储桶或 Azure Blob 存储容器组成的云存储池中。</block>
   <block id="7c0ca6c6457dbf4accb8843b947a93a9" category="summary">您可以使用信息生命周期管理 (ILM) 来控制StorageGRID系统中所有对象的放置、持续时间和摄取行为。ILM 规则决定了StorageGRID如何随时间存储对象。您可以配置一个或多个 ILM 规则，然后将它们添加到 ILM 策略。</block>
-  <block id="6e00444b87f3acf759eb78dfbb1a7f8e" category="paragraph">您可以使用信息生命周期管理 (ILM) 来控制StorageGRID系统中所有对象的放置、持续时间和摄取行为。ILM 规则决定了StorageGRID如何随时间存储对象。您可以配置一个或多个 ILM 规则，然后将它们添加到 ILM 策略。</block>
-  <block id="7a8f09aa6d531dc841b678c4fb8f5ae7" category="paragraph">一个网格每次只能有一个活动策略。一个策略可以包含多个规则。</block>
   <block id="a919635d077daa2a324311314027e27f" category="paragraph">ILM 规则定义：</block>
   <block id="76e4be2ead7dd3606407492c5717d1af" category="list-text">应该存储哪些对象。规则可以应用于所有对象，或者您可以指定过滤器来确定规则适用于哪些对象。例如，规则只能应用于与某些租户帐户、特定 S3 存储桶或 Swift 容器或特定元数据值相关联的对象。</block>
   <block id="dbeb82c0871eecc06aa0118b5a5c56d0" category="list-text">存储类型和位置。对象可以存储在存储节点或云存储池中。</block>
@@ -22089,4 +22080,13 @@
   <block id="896204ae12a6286255cf7c6b1d5b7ccf" category="paragraph"><block ref="d1cff37e62374729d2c33477ffa0867b" prefix="" category="inline-code"></block></block>
   <block id="c0118e300afde038abfcf497fd10b795" category="paragraph">这<block ref="06127fb9f023a37b1ea94ff59ca12396" prefix=" " category="inline-code"></block>指示云存储池中的对象何时将返回到不可检索状态。</block>
   <block id="ff2dfb60715c6b815ad226aa0566ee76" category="section-title">云存储池中的多部分或分段对象</block>
+  <block id="e06c7d4966617ff8b915f5a326f7b29e" category="paragraph">由 Web 浏览器和管理 API 客户端用来访问网格管理器和租户管理器。</block>
+  <block id="7726f6ec30e13fbba0a7138261ac661b" category="paragraph">*注意*：如果您关闭网格管理器端口 443 或 8443，则当前连接到被阻止端口的任何用户（包括您）都将失去对网格管理器的访问权限，除非他们的 IP 地址已添加到特权地址列表中。参考<block ref="c0029b37ee8e2f7f29845f5ff3b725da" category="inline-link-macro-rx"></block>配置特权IP地址。</block>
+  <block id="89902d28d094c37e31e03d7c3b157735" category="paragraph">可选。由 Web 浏览器和管理 API 客户端用来访问网格管理器。可用于分离网格管理器和租户管理器通信。</block>
+  <block id="831940f57a19370001b598a225d4b622" category="paragraph">由 Web 浏览器和管理 API 客户端用于访问StorageGRID Appliance Installer。</block>
+  <block id="ec726f78a0cebb7cd36287e985d1c513" category="paragraph">*注意*：端口 443 重定向到StorageGRID设备安装程序的端口 8443。</block>
+  <block id="58222e55d661c08e5d39e0e9bb5fa081" category="paragraph">可选。由 Web 浏览器和管理 API 客户端用来访问租户管理器。可用于分离网格管理器和租户管理器通信。</block>
+  <block id="331bfda1737c41b85f4f85967a23b2a1" category="paragraph">提供用于全网格 IP 更改以及安装、扩展和恢复期间的主要管理节点发现的多播 DNS (mDNS) 服务。</block>
+  <block id="f0d737da786ad628dee18668fc3fb5c2" category="paragraph">用于擦除编码和复制的块服务内部流量</block>
+  <block id="babdd810c12ad518c1b6af7d6e433fc4" category="paragraph">您可以使用信息生命周期管理 (ILM) 来控制StorageGRID系统中所有对象的放置、持续时间和摄取行为。ILM 规则决定了StorageGRID如何随时间存储对象。您可以配置一个或多个 ILM 规则，然后将它们添加到 ILM 策略。一个网格可以同时具有多个活动策略。</block>
 </blocks>
