@@ -101,6 +101,14 @@ StorageGRID不会解析或解释用户定义元数据的键名或值中包含的
 * `Content-Encoding`
 * `Content-Language`
 * `Expires`
+* `If-Match`
++
+ `If-Match header` 是可以接受的，但不起作用。
+
+* `If-None-Match`
++
+ `If-None-Match header` 是可以接受的，但不起作用。
+
 * `x-amz-checksum-algorithm`
 +
 当您复制一个对象时，如果源对象具有校验和， StorageGRID不会将该校验和值复制到新对象。无论您是否尝试使用 `x-amz-checksum-algorithm`在对象请求中。

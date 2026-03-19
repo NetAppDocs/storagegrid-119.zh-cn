@@ -59,6 +59,14 @@ NOTE: 这 `ETag`返回的值不是数据的 MD5 和，而是遵循 Amazon S3 API
 
 不支持以下请求标头：
 
+* `If-Match`
++
+ `If-Match header` 是可以接受的，但不起作用。
+
+* `If-None-Match`
++
+ `If-None-Match header` 是可以接受的，但不起作用。
+
 * `x-amz-sdk-checksum-algorithm`
 * `x-amz-trailer`
 
