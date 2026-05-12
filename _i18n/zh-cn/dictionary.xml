@@ -3864,8 +3864,6 @@
   <block id="1bff5c12d45a6dd72df942176f86772d" category="paragraph">当客户端应用程序从StorageGRID系统保存或检索数据时， StorageGRID使用负载平衡器来管理提取和检索工作负载。负载平衡通过在多个存储节点之间分配工作负载来最大限度地提高速度和连接容量。</block>
   <block id="944b71402cd24845ff39c563c96ca044" category="paragraph">StorageGRID负载均衡器服务安装在所有管理节点和所有网关节点上，并提供第 7 层负载均衡。它执行客户端请求的传输层安全性 (TLS) 终止，检查请求，并与存储节点建立新的安全连接。</block>
   <block id="8d2a3eedf773a72befa932aed8d7f9ac" category="paragraph">将客户端流量转发到存储节点时，每个节点上的负载均衡器服务独立运行。通过加权过程，负载均衡器服务将更多请求路由到具有更高 CPU 可用性的存储节点。</block>
-  <block id="8093bef8d3bd5322de90d79561037395" category="inline-link">TR-4626： StorageGRID第三方和全局负载均衡器</block>
-  <block id="ce1bca08301bc9a1693bdf37b84bdb10" category="admonition">尽管StorageGRID负载均衡器服务是推荐的负载均衡机制，但您可能希望集成第三方负载均衡器。欲了解详细信息，请联系您的NetApp客户代表或参阅<block ref="30142e53c6cba368be61e7c2871033e2" category="inline-link-rx"></block>。</block>
   <block id="75d9f84a5b1a86714b17bfa534c9d736" category="section-title">我需要多少个负载平衡节点？</block>
   <block id="96cf9724e85f455faaabbfe7263c2641" category="paragraph">作为一般的最佳实践， StorageGRID系统中的每个站点都应包含两个或更多具有负载均衡器服务的节点。例如，一个站点可能包括两个网关节点或一个管理节点和一个网关节点。确保每个负载平衡节点都有足够的网络、硬件或虚拟化基础设施，无论您使用的是服务设备、裸机节点还是基于虚拟机 (VM) 的节点。</block>
   <block id="6c61fe5a02a47ca95d38321841f51067" category="section-title">什么是负载均衡器端点？</block>
@@ -22102,4 +22100,6 @@
   <block id="e254488ba3d309d41798939c9911f8c2" category="paragraph"><block ref="f8aee9049e87bcd785ed83b147f235e4" prefix=" " category="inline-code"></block> 是可以接受的，但不起作用。</block>
   <block id="e3e16bb73c0250a6a229fb457b4f957e" category="list-text">限制</block>
   <block id="cbbcf2982eaa107551967ef41b946c6f" category="list-text"><block ref="b4eaa868c5a9d3d78f9ca606a3cb09eb" prefix=" " category="inline-code"></block> 和 <block ref="bf6d5c936f034a1c80c1d489d85a9cfb" prefix=" " category="inline-code"></block> 标头可接受，但无效。</block>
+  <block id="7c37f16e9cbf7999830f6d447e5139cc" category="inline-link">将第三方负载均衡器与 StorageGRID 结合使用</block>
+  <block id="115da73ba09231ed44a359e7dc28a03b" category="admonition">虽然 StorageGRID 负载均衡器服务是推荐的负载均衡机制，但您可能需要集成第三方负载均衡器。有关信息，请联系您的 NetApp 客户代表或参阅<block ref="07dd3eb8db144aafaae9ca336914c57b" category="inline-link-rx"></block>。</block>
 </blocks>
