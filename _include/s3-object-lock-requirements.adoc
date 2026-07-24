@@ -4,6 +4,7 @@
 
 
 
+[[requirements-for-buckets-with-s3-object-lock-enabled]]
 == 启用 S3 对象锁定的存储桶的要求
 
 * 如果为StorageGRID系统启用了全局 S3 对象锁定设置，则您可以使用租户管理器、租户管理 API 或 S3 REST API 创建启用了 S3 对象锁定的存储桶。
@@ -16,6 +17,7 @@
 
 
 
+[[requirements-for-objects-in-buckets-with-s3-object-lock-enabled]]
 == 启用 S3 对象锁的存储桶中的对象要求
 
 * 为了保护对象版本，您可以为存储桶指定默认保留设置，也可以为每个对象版本指定保留设置。可以使用 S3 客户端应用程序或 S3 REST API 指定对象级保留设置。
@@ -24,6 +26,7 @@
 
 
 
+[[lifecycle-of-objects-in-buckets-with-s3-object-lock-enabled]]
 == 启用 S3 对象锁的存储桶中对象的生命周期
 
 启用 S3 对象锁后，保存在存储桶中的每个对象都会经历以下阶段：

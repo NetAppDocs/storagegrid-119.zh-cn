@@ -17,6 +17,7 @@ summary: 您可以通过定位 S3 API 特定的审计消息来识别审计日志
 
 
 
+[[s3-ingest-audit-messages]]
 == S3 提取审计消息
 
 [cols="1a,1a,2a,1a,2a"]
@@ -51,6 +52,7 @@ link:orlm-object-rules-met.html["ORLM：满足对象规则"]
 |===
 
 
+[[swift-ingest-audit-messages]]
 == Swift 提取审计消息
 
 [cols="1a,1a,2a,1a,2a"]
@@ -85,6 +87,7 @@ link:orlm-object-rules-met.html["ORLM：满足对象规则"]
 |===
 
 
+[[example-s3-object-ingest]]
 == 示例：S3 对象摄取
 
 以下一系列审计消息是 S3 客户端将对象提取到存储节点（LDR 服务）时生成并保存到审计日志的审计消息的示例。
@@ -98,6 +101,7 @@ NOTE: 以下示例中并未列出事务期间生成的所有审计消息。仅�
 
 
 
+[[sput-s3-put]]
 === 喷口：S3 放置
 
 生成 SPUT 消息以指示已发出 S3 PUT 事务以在特定存储桶中创建对象。
@@ -108,6 +112,7 @@ NOTE: 以下示例中并未列出事务期间生成的所有审计消息。仅�
 ----
 
 
+[[orlm-object-rules-met]]
 === ORLM：满足对象规则
 
 ORLM 消息表明该对象已满足 ILM 策略。该消息包括对象的 CBID 和所应用的 ILM 规则的名称。

@@ -15,6 +15,7 @@ summary: 如果在 Linux 主机上部署了任何StorageGRID节点，请在开�
 
 
 
+[[download-upgrade-linux-and-hotfix-files]]
 == 下载升级、Linux 和修补程序文件
 
 当您从网格管理器执行StorageGRID升级时，系统会提示您下载升级存档和任何所需的修补程序作为第一步。但是，如果您需要下载文件来升级 Linux 主机，则可以提前下载所有必需的文件以节省时间。
@@ -61,6 +62,7 @@ StorageGRID软件版本的格式如下：11._x.y_。  StorageGRID修补程序具
 
 
 
+[[install-archive-on-all-linux-hosts]]
 == 在所有 Linux 主机上安装存档
 
 在升级StorageGRID软件之前执行以下步骤。
@@ -83,6 +85,7 @@ StorageGRID软件版本的格式如下：11._x.y_。  StorageGRID修补程序具
 
 
 
+[[remove-installation-archives-for-previous-versions]]
 == 删除以前版本的安装档案
 
 为了释放 Linux 主机上的空间，您可以删除不再需要的以前版本的StorageGRID安装档案。

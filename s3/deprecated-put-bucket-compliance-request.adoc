@@ -28,6 +28,7 @@ PUT Bucket 合规性请求已被弃用。但是，您可以继续使用此请求
 
 
 
+[[request-example]]
 == 请求示例
 
 此示例请求修改名为 `mybucket`。在这个例子中，对象 `mybucket`从对象被纳入电网时起，将保留两年（1,051,200 分钟），而不是一年。此存储桶不存在合法保留。每个对象将在两年后自动删除。
@@ -79,6 +80,7 @@ Content-Length: 152
 |===
 
 
+[[consistency-for-compliance-settings]]
 == 合规性设置的一致性
 
 当您使用 PUT Bucket 合规性请求更新 S3 存储桶的合规性设置时， StorageGRID会尝试在整个网格中更新存储桶的元数据。默认情况下， StorageGRID使用 *强全局* 一致性来保证所有数据中心站点和所有包含存储桶元数据的存储节点对于更改的合规性设置具有读写一致性。
@@ -101,6 +103,7 @@ Consistency-Control: strong-site
 ----
 
 
+[[error-responses]]
 == 错误响应
 
 * 如果存储桶的创建不符合要求，则响应的 HTTP 状态代码为 `404 Not Found`。

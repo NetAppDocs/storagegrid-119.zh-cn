@@ -39,6 +39,7 @@ TIP: 如果在创建租户之前两个网格上都不存在此管理组，则该
 
 
 
+[[access-the-wizard]]
 == 访问向导
 
 .步骤
@@ -48,6 +49,7 @@ TIP: 如果在创建租户之前两个网格上都不存在此管理组，则该
 
 
 
+[[enter-details]]
 == 输入详细信息
 
 .步骤
@@ -94,6 +96,7 @@ TIP: 如果在创建租户之前两个网格上都不存在此管理组，则该
 
 
 
+[[admin-tenant-select-permissionsselect-permissions]]
 == [[admin-tenant-select-permissions]]选择权限
 
 .步骤
@@ -165,6 +168,7 @@ S3 对象锁
 
 
 
+[[define-root-access-and-create-tenant]]
 == 定义根访问权限并创建租户
 
 .步骤
@@ -223,12 +227,14 @@ TIP: 本地 root 用户在密码更改之前无法登录目标网格上的租户
 
 
 
+[[sign-in-to-tenant-optional]]
 == Sign in租户（可选）
 
 根据需要，您可以立即登录新租户以完成配置，也可以稍后登录租户。登录步骤取决于您是否使用默认端口（443）或受限端口登录到网格管理器。看link:controlling-access-through-firewalls.html["控制外部防火墙的访问"] 。
 
 
 
+[[sign-in-now]]
 === 立即Sign in
 
 [cols="1a,3a"]
@@ -280,6 +286,7 @@ TIP: 本地 root 用户在密码更改之前无法登录目标网格上的租户
 |===
 
 
+[[sign-in-later]]
 === 稍后Sign in
 
 [cols="1a,3a"]
@@ -323,6 +330,7 @@ TIP: 本地 root 用户在密码更改之前无法登录目标网格上的租户
 |===
 
 
+[[configure-the-tenant]]
 == 配置租户
 
 按照link:../tenant/index.html["使用租户帐户"]管理租户组和用户、S3 访问密钥、存储桶、平台服务以及帐户克隆和跨网格复制。

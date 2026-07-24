@@ -18,6 +18,7 @@ CAUTION: 以下 ILM 规则和策略仅作为示例。配置 ILM 规则的方法�
 
 
 
+[[ilm-rule-1-for-example-3-use-ec-for-image-files-greater-than-1-mb]]
 == ILM 规则 1 示例 3：对大于 1 MB 的图像文件使用 EC
 
 此示例 ILM 规则使用高级过滤来擦除所有大于 1 MB 的图像文件。
@@ -72,6 +73,7 @@ image::../media/policy_3_rule_1_ec_images_adv_filtering.png[ILM 规则 1 示例 
 
 
 
+[[ilm-rule-2-for-example-3-create-2-replicated-copies-for-all-remaining-image-files]]
 == ILM 规则 2 例如 3：为所有剩余映像文件创建 2 个副本
 
 此示例 ILM 规则使用高级过滤来指定复制较小的图像文件。由于策略中的第一条规则已经匹配了大于 1 MB 的图像文件，因此该规则适用于 1 MB 或更小的图像文件。
@@ -112,6 +114,7 @@ image::../media/policy_3_rule_1_ec_images_adv_filtering.png[ILM 规则 1 示例 
 |===
 
 
+[[ilm-policy-for-example-3-better-protection-for-image-files]]
 == ILM 策略示例 3：更好地保护图像文件
 
 此示例 ILM 策略包含三条规则：

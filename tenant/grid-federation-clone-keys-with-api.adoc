@@ -27,6 +27,7 @@ NOTE: 当您为联合用户克隆 S3 访问密钥时，该用户和 S3 访问密
 
 
 
+[[clone-your-own-access-keys]]
 == 克隆您自己的访问密钥
 
 如果您需要访问两个网格上的相同存储桶，您可以克隆自己的访问密钥。
@@ -56,6 +57,7 @@ image::../media/grid-federation-clone-access-key.png[租户管理器 API 输入�
 
 
 
+[[clone-another-users-access-keys]]
 == 克隆其他用户的访问密钥
 
 如果另一个用户需要访问两个网格上的相同存储桶，您可以克隆该用户的访问密钥。

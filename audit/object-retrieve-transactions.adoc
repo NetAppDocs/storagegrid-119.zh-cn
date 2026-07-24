@@ -17,6 +17,7 @@ summary: 您可以通过定位 S3 API 特定的审计消息来识别审计日志
 
 
 
+[[s3-retrieval-audit-messages]]
 == S3 检索审计消息
 
 [cols="1a,1a,2a,1a,1a"]
@@ -38,6 +39,7 @@ link:sget-s3-get.html["SGET：S3 获取"]
 |===
 
 
+[[swift-retrieval-audit-messages]]
 == 快速检索审计消息
 
 [cols="1a,1a,2a,1a,1a"]
@@ -59,6 +61,7 @@ link:wget-swift-get.html["WGET：快速获取"]
 |===
 
 
+[[example-s3-object-retrieval]]
 == 示例：S3 对象检索
 
 当 S3 客户端从存储节点（LDR 服务）检索对象时，会生成一条审计消息并将其保存到审计日志中。
@@ -67,6 +70,7 @@ link:wget-swift-get.html["WGET：快速获取"]
 
 
 
+[[sget-s3-get]]
 === SGET：S3 获取
 
 当客户端向 LDR 服务发送 GetObject 请求时，对象检索就开始了。该消息包含从中检索对象的存储桶以及用于识别对象的对象的 S3 密钥。
@@ -85,6 +89,7 @@ link:wget-swift-get.html["WGET：快速获取"]
 ----
 
 
+[[example-s3-select-on-an-object]]
 == 示例：S3 选择对象
 
 当 S3 客户端对某个对象发出 S3 Select 查询时，会生成审计消息并将其保存到审计日志中。

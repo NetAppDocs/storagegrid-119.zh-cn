@@ -22,6 +22,7 @@ image::../media/tenant_dashboard_with_buckets.png[仪表板 - 愿望清单]
 
 
 
+[[tenant-account-information]]
 == 租户账户信息
 
 仪表板顶部显示已配置的存储桶或容器、组和用户的数量。如果已配置，它还会显示平台服务端点的数量。选择链接来查看详细信息。
@@ -30,6 +31,7 @@ image::../media/tenant_dashboard_with_buckets.png[仪表板 - 愿望清单]
 
 
 
+[[storage-and-quota-usage]]
 == 存储和配额使用情况
 
 存储使用情况面板包含以下信息：
@@ -64,6 +66,7 @@ NOTE: 要更改租户管理器中显示的存储值的单位，请选择租户�
 
 
 
+[[quota-usage-alerts]]
 == 配额使用警报
 
 如果在网格管理器中启用了配额使用警报，则当配额较低或超出时，这些警报将显示在租户管理器中，如下所示：
@@ -77,6 +80,7 @@ NOTE: 要更改租户管理器中显示的存储值的单位，请选择租户�
 
 
 
+[[bucket-capacity-usagecapacity-limit-usage]]
 == [[bucket-capacity-usage]]容量限制使用情况
 
 如果您为存储桶设置了容量限制，租户管理器仪表板将显示按容量限制使用情况排列的顶级存储桶列表。
@@ -85,6 +89,7 @@ NOTE: 要更改租户管理器中显示的存储值的单位，请选择租户�
 
 
 
+[[endpoint-errors]]
 == 端点错误
 
 如果您已使用网格管理器配置一个或多个端点以用于平台服务，则如果过去七天内发生任何端点错误，租户管理器仪表板将显示警报。

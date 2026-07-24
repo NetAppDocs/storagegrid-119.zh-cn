@@ -26,6 +26,7 @@ summary: 您可以配置许多与审计消息相关的设置。您可以调整�
 
 
 
+[[change-audit-message-levels]]
 == 更改审计消息级别
 
 您可以为审计日志中的以下每个类别的消息设置不同的审计级别：
@@ -154,6 +155,7 @@ NOTE: 如果您不需要 S3 应用程序的客户端读取操作的详细记录�
 
 
 
+[[define-http-request-headers]]
 == 定义 HTTP 请求标头
 
 您可以选择定义要包含在客户端读写审计消息中的任何 HTTP 请求标头。这些协议标头仅适用于 S3 请求。
@@ -179,6 +181,7 @@ NOTE: 仅当 *客户端读取* 或 *客户端写入* 的审计级别不是 *关�
 
 
 
+[[use-external-syslog-serveruse-an-external-syslog-server]]
 == [[use-external-syslog-server]]使用外部 syslog 服务器
 
 您可以选择配置外部系统日志服务器，将审计日志、应用程序日志和安全事件日志保存到网格外部的位置。
@@ -191,6 +194,7 @@ TIP: 如果此过程中可用的配置选项不够灵活，无法满足您的要
 
 
 
+[[enter-syslog-information]]
 === 输入系统日志信息
 
 访问配置外部系统日志服务器向导并提供StorageGRID访问外部系统日志服务器所需的信息。
@@ -229,6 +233,7 @@ NOTE: 可靠事件日志协议 (RELP) 扩展了 syslog 协议的功能，以提�
 
 
 
+[[manage-syslog-content]]
 === 管理系统日志内容
 
 您可以选择要发送到外部系统日志服务器的信息。
@@ -542,6 +547,7 @@ local7
 
 
 
+[[send-test-messages]]
 === 发送测试消息
 
 在开始使用外部系统日志服务器之前，您应该请求网格中的所有节点向外部系统日志服务器发送测试消息。在承诺将数据发送到外部系统日志服务器之前，您应该使用这些测试消息来帮助您验证整个日志收集基础设施。
@@ -580,6 +586,7 @@ NOTE: 直到您选择包含外部系统日志服务器的目标时， StorageGRI
 
 
 
+[[select-audit-information-destinations]]
 == 选择审计信息目的地
 
 您可以指定审计日志、安全事件日志和link:../monitor/storagegrid-software-logs.html["StorageGRID软件日志"]已发送。

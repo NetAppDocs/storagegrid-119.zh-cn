@@ -22,6 +22,7 @@ CAUTION: 仅当技术支持指示您这样做时，您才应该添加或删除 D
 
 
 
+[[add-donotstart-file-for-service]]
 == 为服务添加 DoNotStart 文件
 
 您可以通过将 DoNotStart 文件添加到网格节点上该服务的目录来阻止单个服务启动。
@@ -61,6 +62,7 @@ touch /etc/sv/ldr/DoNotStart
 
 
 
+[[remove-donotstart-file-for-service]]
 == 删除服务的 DoNotStart 文件
 
 当您删除阻止服务启动的 DoNotStart 文件时，您必须启动该服务。

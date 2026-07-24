@@ -27,6 +27,7 @@ summary: 节点迁移功能允许您手动将节点从一个主机移动到另�
 
 
 
+[[vmware-live-migration-not-supported]]
 == 不支持 VMware Live Migration
 
 在 VMware VM 上执行裸机安装时，OpenStack Live Migration 和 VMware live vMotion 会导致虚拟机时钟时间跳跃，并且不支持任何类型的网格节点。虽然很少见，但不正确的时钟时间可能会导致数据丢失或配置更新。
@@ -35,6 +36,7 @@ summary: 节点迁移功能允许您手动将节点从一个主机移动到另�
 
 
 
+[[consistent-network-interface-names]]
 == 一致的网络接口名称
 
 要将节点从一个主机移动到另一个主机， StorageGRID主机服务需要确信该节点在当前位置的外部网络连接可以在新位置复制。它通过在主机中使用一致的网络接口名称来获得这种信心。
@@ -51,6 +53,7 @@ image::../media/eth0_bond.gif[本图四周的文字提供了相关说明。]
 
 
 
+[[shared-storage]]
 == 共享存储
 
 为了实现快速、低开销的节点迁移， StorageGRID节点迁移功能不会物理移动节点数据。相反，节点迁移作为一对导出和导入操作来执行，如下所示：

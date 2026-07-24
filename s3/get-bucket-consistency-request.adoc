@@ -19,6 +19,7 @@ GET Bucket 一致性请求允许您确定应用于特定存储桶的一致性。
 
 
 
+[[request-example]]
 == 请求示例
 
 [listing, subs="specialcharacters,quotes"]
@@ -30,6 +31,7 @@ Host: _host_
 ----
 
 
+[[response]]
 == 响应
 
 在响应 XML 中， `<Consistency>`将返回下列值之一：
@@ -75,6 +77,7 @@ Host: _host_
 |===
 
 
+[[response-example]]
 == 响应示例
 
 [listing]

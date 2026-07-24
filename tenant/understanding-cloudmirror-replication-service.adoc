@@ -20,18 +20,21 @@ NOTE: 如果源存储桶启用了 S3 对象锁，则不支持 CloudMirror 复制
 
 
 
+[[cloudmirror-and-ilm]]
 == CloudMirror 和 ILM
 
 CloudMirror 复制独立于网格的活动 ILM 策略运行。 CloudMirror 服务在对象存储到源存储桶时对其进行复制，并尽快将其传送到目标存储桶。当对象摄取成功时，就会触发复制对象的传递。
 
 
 
+[[cloudmirror-and-cross-grid-replication]]
 == CloudMirror 和跨网格复制
 
 CloudMirror 复制与跨网格复制功能具有重要的相似之处和区别。请参阅link:../admin/grid-federation-compare-cgr-to-cloudmirror.html["比较跨网格复制和 CloudMirror 复制"] 。
 
 
 
+[[cloudmirror-and-s3-buckets]]
 == CloudMirror 和 S3 存储桶
 
 CloudMirror 复制通常配置为使用外部 S3 存储桶作为目标。但是，您也可以配置复制以使用另一个StorageGRID部署或任何与 S3 兼容的服务。
@@ -49,6 +52,7 @@ NOTE: 如果您使用 CloudMirror 复制将对象复制到 Amazon S3 目标，�
 
 
 
+[[deletion-replication-loops-and-events]]
 == 删除、复制循环和事件
 
 删除行为:: 与Amazon S3服务的删除行为相同，跨区域复制（CRR）。删除源存储桶中的对象并不会删除目标存储桶中的复制对象。如果源存储桶和目标存储桶都已版本化，则会复制删除标记。如果目标存储桶未进行版本控制，则删除源存储桶中的对象不会将删除标记复制到目标存储桶或删除目标对象。

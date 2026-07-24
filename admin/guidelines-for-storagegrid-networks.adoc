@@ -17,6 +17,7 @@ summary: StorageGRID每个网格节点最多支持三个网络接口，允许您
 
 
 
+[[default-storagegrid-networks]]
 == 默认StorageGRID网络
 
 默认情况下， StorageGRID支持每个网格节点三个网络接口，允许您为每个单独的网格节点配置网络以满足您的安全和访问要求。
@@ -25,24 +26,28 @@ summary: StorageGRID每个网格节点最多支持三个网络接口，允许您
 
 
 
+[[grid-network]]
 === 网格网络
 
 必需。网格网络用于所有内部StorageGRID流量。它提供网格中所有节点、所有站点和子网之间的连接。
 
 
 
+[[admin-network]]
 === 管理网络
 
 可选。管理网络通常用于系统管理和维护。它还可以用于客户端协议访问。管理网络通常是私有网络，不需要在站点之间路由。
 
 
 
+[[client-network]]
 === 客户端网络
 
 可选。客户端网络是一个开放网络，通常用于提供对 S3 客户端应用程序的访问，因此网格网络可以被隔离和保护。客户端网络可以与通过本地网关可达的任何子网进行通信。
 
 
 
+[[guidelines]]
 == 实施准则
 
 * 每个StorageGRID节点都需要为其分配到的每个网络配备专用的网络接口、IP 地址、子网掩码和网关。
@@ -83,6 +88,7 @@ eth2
 
 
 
+[[optional-interfaces]]
 == 可选接口
 
 您可以选择向节点添加额外的接口。例如，您可能想要向管理节点或网关节点添加中继接口，以便可以使用link:../admin/configure-vlan-interfaces.html["VLAN 接口"]隔离属于不同应用程序或租户的流量。或者，您可能想要添加一个访问接口以在link:../admin/configure-high-availability-group.html["高可用性 (HA) 组"]。

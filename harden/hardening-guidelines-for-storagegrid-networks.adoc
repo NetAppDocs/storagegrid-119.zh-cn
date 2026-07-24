@@ -17,6 +17,7 @@ StorageGRID系统每个网格节点最多支持三个网络接口，允许您为
 
 
 
+[[guidelines-for-grid-network]]
 == 网格网络指南
 
 您必须为所有内部StorageGRID流量配置一个网格网络。所有网格节点都在网格网络上，并且它们必须能够与所有其他节点通信。
@@ -31,6 +32,7 @@ StorageGRID系统每个网格节点最多支持三个网络接口，允许您为
 
 
 
+[[guidelines-for-admin-network]]
 == 管理网络指南
 
 管理网络通常用于管理任务（使用网格管理器或 SSH 的受信任员工）以及与其他受信任服务（如 LDAP、DNS、NTP 或 KMS（或 KMIP 服务器））进行通信。但是， StorageGRID内部并不强制执行这种用法。
@@ -43,6 +45,7 @@ StorageGRID系统每个网格节点最多支持三个网络接口，允许您为
 
 
 
+[[guidelines-for-client-network]]
 == 客户网络指南
 
 客户端网络通常用于租户和与外部服务（例如 CloudMirror 复制服务或其他平台服务）进行通信。但是， StorageGRID内部并不强制执行这种用法。

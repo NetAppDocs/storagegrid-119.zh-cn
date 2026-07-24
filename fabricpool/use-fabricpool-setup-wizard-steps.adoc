@@ -24,6 +24,7 @@ NOTE: 如果要配置StorageGRID以用于任何其他 S3 客户端应用程序�
 
 
 
+[[access-the-wizard]]
 == 访问向导
 
 您可以在开始使用StorageGRID Grid Manager 时完成FabricPool设置向导，也可以在以后的任何时间访问并完成该向导。
@@ -42,6 +43,7 @@ image::../media/help_menu.png[帮助菜单]
 
 
 
+[[step-1-of-9-configure-ha-group]]
 == 步骤 1（共 9 步）：配置 HA 组
 
 高可用性 (HA) 组是每个包含StorageGRID负载均衡器服务的节点集合。  HA 组可以包含网关节点、管理节点或两者。
@@ -144,6 +146,7 @@ CIDR 表示法中的 VIP 子网地址——IPv4 地址后跟斜杠和子网长�
 
 
 
+[[step-2-of-9-configure-load-balancer-endpoint]]
 == 步骤 2（共 9 步）：配置负载均衡器端点
 
 StorageGRID使用负载均衡器来管理来自客户端应用程序（例如FabricPool）的工作负载。负载平衡可最大限度地提高多个存储节点的速度和连接容量。
@@ -347,6 +350,7 @@ FabricPool将用于连接外部负载均衡器的端口号。
 
 
 
+[[step-3-of-9-tenant-and-bucket]]
 == 第 3 步（共 9 步）：租户和存储桶
 
 租户是可以使用 S3 应用程序在StorageGRID中存储和检索对象的实体。每个租户都有自己的用户、访问密钥、存储桶、对象和一组特定的功能。您必须先创建StorageGRID租户，然后才能创建FabricPool将使用的存储桶。
@@ -427,6 +431,7 @@ NOTE: 不要选择已启用 S3 对象锁以与FabricPool一起使用的存储桶
 ====
 
 
+[[step-4-of-9-download-ontap-settings]]
 == 步骤 4（共 9 步）：下载ONTAP设置
 
 在此步骤中，您将下载一个文件，可以使用该文件将值输入ONTAP系统管理器。
@@ -457,6 +462,7 @@ CAUTION: 在复制两个访问密钥、下载ONTAP设置或两者之前，请勿
 
 
 
+[[step-5-of-9-select-a-storage-pool]]
 == 第 5 步（共 9 步）：选择存储池
 
 存储池是一组存储节点。当您选择存储池时，您可以确定StorageGRID将使用哪些节点来存储从ONTAP分层的数据。
@@ -474,6 +480,7 @@ CAUTION: 在复制两个访问密钥、下载ONTAP设置或两者之前，请勿
 
 
 
+[[step-6-of-9-review-ilm-rule-for-fabricpool]]
 == 第 6 步（共 9 步）：查看FabricPool的 ILM 规则
 
 信息生命周期管理 (ILM) 规则控制StorageGRID系统中所有对象的放置、持续时间和摄取行为。
@@ -539,6 +546,7 @@ FabricPool设置向导会自动创建供FabricPool使用的建议 ILM 规则。�
 
 
 
+[[step-7-of-9-review-and-activate-ilm-policy]]
 == 第 7 步（共 9 步）：审查并激活 ILM 策略
 
 FabricPool设置向导为FabricPool创建 ILM 规则后，它会创建一个 ILM 策略。在激活此策略之前，您必须仔细模拟并审查此策略。
@@ -578,6 +586,8 @@ CAUTION: ILM 策略中的错误可能会导致无法挽回的数据丢失。激�
 
 
 
+[[step-8-of-9-create-traffic-classification-policy]]
+[[traffic-classification]]
 == 第 8 步（共 9 步）：创建流量分类策略
 
 作为一种选择， FabricPool设置向导可以创建一个流量分类策略，您可以使用该策略来监控FabricPool工作负载。系统创建的策略使用匹配规则来识别与您创建的存储桶相关的所有网络流量。此策略仅监控流量；它不限制FabricPool或任何其他客户端的流量。
@@ -595,6 +605,7 @@ CAUTION: ILM 策略中的错误可能会导致无法挽回的数据丢失。激�
 
 
 
+[[step-9-of-9-review-summary]]
 == 第 9 步（共 9 步）：审核摘要
 
 摘要提供有关您配置的项目的详细信息，包括负载均衡器、租户和存储桶的名称、流量分类策略以及活动的 ILM 策略。
@@ -606,6 +617,7 @@ CAUTION: ILM 策略中的错误可能会导致无法挽回的数据丢失。激�
 
 
 
+[[next-steps]]
 == 后续步骤Next steps
 
 完成FabricPool向导后，执行以下附加步骤。

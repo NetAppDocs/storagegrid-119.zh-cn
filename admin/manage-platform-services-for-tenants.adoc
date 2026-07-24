@@ -17,6 +17,7 @@ summary: 平台服务包括CloudMirror复制、事件通知和搜索集成服务
 
 
 
+[[cloudmirror-replication]]
 == CloudMirror 复制
 
 StorageGRID CloudMirror 复制服务用于将特定对象从StorageGRID桶镜像到指定的外部目标。
@@ -31,6 +32,7 @@ NOTE: 如果源存储桶启用了 S3 对象锁，则不支持 CloudMirror 复制
 
 
 
+[[notifications]]
 == 通知
 
 每个存储桶事件通知用于将有关对对象执行的特定操作的通知发送到指定的外部 Kafka 集群或 Amazon Simple Notification Service。
@@ -42,6 +44,7 @@ NOTE: 虽然可以在启用了 S3 对象锁定的存储桶上配置事件通知�
 
 
 
+[[search-integration-service]]
 == 搜索集成服务
 
 搜索集成服务用于将 S3 对象元数据发送到指定的 Elasticsearch 索引，在那里可以使用外部服务搜索或分析元数据。
@@ -55,6 +58,7 @@ NOTE: 尽管可以在启用了 S3 对象锁定的存储桶上配置 Elasticsearc
 
 
 
+[[recommendations-for-using-platform-services]]
 == 使用平台服务的建议
 
 在使用平台服务之前，请注意以下建议：

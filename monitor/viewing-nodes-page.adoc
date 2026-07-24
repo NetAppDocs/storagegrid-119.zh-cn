@@ -28,6 +28,8 @@ image::../media/nodes_table.png[节点菜单]
 
 
 
+[[connection-state-icons]]
+[[connection-state]]
 == 连接状态图标
 
 如果节点与电网断开连接，则节点名称旁边会出现以下任一图标。
@@ -74,6 +76,7 @@ image:../media/icon_alarm_gray_administratively_down.png["灰色问号图标"]
 
 
 
+[[alert-icons]]
 == 警报图标
 
 如果某个节点有活动警报，则该节点名称旁边会出现以下图标之一：
@@ -86,6 +89,7 @@ image:../media/icon_alert_yellow_minor.png["图标警报黄色轻微"]*轻微*�
 
 
 
+[[view-details-for-a-system-site-or-node]]
 == 查看系统、站点或节点的详细信息
 
 要过滤节点表中显示的信息，请在*搜索*字段中输入搜索字符串。您可以按系统名称、显示名称或类型进行搜索（例如，输入 *gat* 可快速找到所有网关节点）。

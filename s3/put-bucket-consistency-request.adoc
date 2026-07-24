@@ -20,6 +20,7 @@ PUT Bucket 一致性请求允许您指定应用于对存储桶执行的操作的
 
 
 
+[[request]]
 == 要求
 
 这 `x-ntap-sg-consistency`参数必须包含以下值之一：
@@ -67,6 +68,7 @@ PUT Bucket 一致性请求允许您指定应用于对存储桶执行的操作的
 
 
 
+[[request-example]]
 == 请求示例
 
 [listing, subs="specialcharacters,quotes"]

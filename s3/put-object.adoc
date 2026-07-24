@@ -15,12 +15,14 @@ summary: 您可以使用 S3 PutObject 请求将对象添加到存储桶。
 
 
 
+[[resolve-conflicts]]
 == 解决冲突
 
 冲突的客户端请求（例如两个客户端写入同一个密钥）将根据“最新胜利”的原则解决。  “最新胜利”评估的时间取决于StorageGRID系统完成给定请求的时间，而不是 S3 客户端开始操作的时间。
 
 
 
+[[object-size]]
 == 对象大小
 
 单个 PutObject 操作的最大_建议_大小为 5 GiB（5,368,709,120 字节）。如果您有大于 5 GiB 的对象，请使用link:operations-for-multipart-uploads.html["分段上传"]反而。
@@ -32,12 +34,14 @@ NOTE: 如果您从StorageGRID 11.6 或更早版本升级，则当您尝试上传
 
 
 
+[[user-metadata-size]]
 == 用户元数据大小
 
 Amazon S3 将每个 PUT 请求标头内的用户定义元数据的大小限制为 2 KB。 StorageGRID将用户元数据限制为 24 KiB。用户定义元数据的大小是通过计算每个键和值的 UTF-8 编码的字节数之和来衡量的。
 
 
 
+[[utf-8-characters-in-user-metadata]]
 == 用户元数据中的 UTF-8 字符
 
 如果请求在用户定义元数据的键名或值中包含（未转义的）UTF-8 值，则StorageGRID行为未定义。
@@ -50,18 +54,21 @@ StorageGRID不会解析或解释用户定义元数据的键名或值中包含的
 
 
 
+[[object-tag-limits]]
 == 对象标签限制
 
 您可以在上传新对象时为其添加标签，也可以将其添加到现有对象中。 StorageGRID和 Amazon S3 都支持每个对象最多 10 个标签。与对象关联的标签必须具有唯一的标签键。标签键的长度最多为 128 个 Unicode 字符，标签值的长度最多为 256 个 Unicode 字符。键和值区分大小写。
 
 
 
+[[object-ownership]]
 == 对象所有权
 
 在StorageGRID中，所有对象都归存储桶所有者帐户所有，包括由非所有者帐户或匿名用户创建的对象。
 
 
 
+[[supported-request-headers]]
 == 支持的请求标头
 
 支持以下请求标头：
@@ -137,6 +144,7 @@ NOTE: ILM 规则不能同时使用 *用户定义的创建时间* 作为参考时
 
 
 
+[[unsupported-request-headers]]
 == 不支持的请求标头
 
 不支持以下请求标头：
@@ -160,6 +168,7 @@ NOTE: ILM 规则不能同时使用 *用户定义的创建时间* 作为参考时
 
 
 
+[[storage-class-options]]
 == 存储类别选项
 
 这 `x-amz-storage-class`支持请求标头。提交的价值 `x-amz-storage-class`影响StorageGRID在摄取期间如何保护对象数据，而不是影响StorageGRID系统中存储对象的持久副本数量（由 ILM 决定）。
@@ -198,6 +207,7 @@ NOTE: 如果您将对象提取到启用了 S3 对象锁定的存储桶中，则 
 
 
 
+[[request-headers-for-server-side-encryption]]
 == 服务器端加密的请求标头
 
 您可以使用以下请求标头来使用服务器端加密来加密对象。  SSE 和 SSE-C 选项是互斥的。
@@ -227,6 +237,7 @@ NOTE: 如果使用 SSE 或 SSE-C 加密对象，则会忽略任何存储桶级�
 
 
 
+[[versioning]]
 == 版本控制
 
 如果为存储桶启用了版本控制，则唯一的 `versionId`针对所存储对象的版本自动生成。这 `versionId`也会在响应中返回 `x-amz-version-id`响应头。
@@ -235,6 +246,7 @@ NOTE: 如果使用 SSE 或 SSE-C 加密对象，则会忽略任何存储桶级�
 
 
 
+[[signature-calculations-for-the-authorization-header]]
 == 授权标头的签名计算
 
 使用时 `Authorization`标头来验证请求， StorageGRID与 AWS 有以下不同：

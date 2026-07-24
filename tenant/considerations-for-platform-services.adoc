@@ -17,6 +17,7 @@ summary: 在实施平台服务之前，请查看使用这些服务的概述和�
 
 
 
+[[overview-of-platform-services]]
 == 平台服务概览
 
 StorageGRID平台服务可让您将事件通知以及 S3 对象和对象元数据的副本发送到外部目的地，从而帮助您实施混合云策略。
@@ -30,6 +31,7 @@ TIP: StorageGRID管理员必须使用网格管理器或网格管理 API 为每�
 
 
 
+[[how-platform-services-are-configured]]
 == 如何配置平台服务
 
 平台服务与您使用配置的外部端点进行通信link:configuring-platform-services-endpoints.html["租户经理"]或link:understanding-tenant-management-api.html["租户管理 API"]。每个端点代表一个外部目的地，例如StorageGRID S3 存储桶、Amazon Web Services 存储桶、Amazon SNS 主题或在本地、AWS 或其他地方托管的 Elasticsearch 集群。
@@ -90,6 +92,7 @@ CloudMirror 复制
 |===
 
 
+[[considerations-for-using-platform-services]]
 == 使用平台服务的注意事项
 
 [cols="1a,3a"]
@@ -150,6 +153,7 @@ Kafka 端点的身份验证使用以下身份验证类型。这些类型与用�
 |===
 
 
+[[considerations-for-using-cloudmirror-replication-service]]
 == 使用 CloudMirror 复制服务的注意事项
 
 [cols="1a,3a"]

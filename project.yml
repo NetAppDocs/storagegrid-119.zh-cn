@@ -2,6 +2,7 @@
 settings:
   name: StorageGRID software
   search: storagegrid-enable,storagegrid,storagegrid-appliances
+  downlevel: true
   internal:
     pdf_enabled: true
     termcheck_enabled: false
@@ -12,8 +13,10 @@ settings:
   versions:
   - version-number: '11.9'
     url: "/storagegrid-119"
-  - version-number: '12.0'
+  - version-number: '12.1'
     url: "/storagegrid"
+  - version-number: '12.0'
+    url: "/storagegrid-120"
   - version-number: '11.8'
     url: "/storagegrid-118"
   - version-number: '11.7'

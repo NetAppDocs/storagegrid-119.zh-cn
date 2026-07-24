@@ -15,12 +15,14 @@ summary: 如果您想使用 OpenLDAP 服务器进行身份联合，则必须在 
 
 
 
+[[memberof-and-refint-overlays]]
 == Memberof 和 refint 覆盖
 
 应该启用 memberof 和 refint 覆盖。有关更多信息，请参阅《OpenLDAP 软件管理员指南》中有关反向组成员资格维护的说明。
 
 
 
+[[indexing]]
 == 索引
 
 您必须使用指定的索引关键字配置以下 OpenLDAP 属性：

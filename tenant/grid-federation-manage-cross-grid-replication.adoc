@@ -15,6 +15,7 @@ summary: 如果您的租户帐户在创建时被分配了使用网格联合连�
 
 
 
+[[workflow-for-cross-grid-replication]]
 == 跨网格复制的工作流程
 
 工作流程图总结了配置两个网格上的存储桶之间的跨网格复制所要执行的步骤。下面将更详细地描述这些步骤。
@@ -23,6 +24,7 @@ image::../media/grid-federation-cgr-workflow.png[跨网格复制工作流程]
 
 
 
+[[configure-cross-grid-replication]]
 == 配置跨网格复制
 
 在使用跨网格复制之前，您必须登录到每个网格上相应的租户帐户并创建相同的存储桶。然后，您可以在一个或两个存储桶上启用跨网格复制。
@@ -37,6 +39,7 @@ image::../media/grid-federation-cgr-workflow.png[跨网格复制工作流程]
 
 
 
+[[create-two-identical-buckets]]
 === 创建两个相同的存储桶
 
 第一步，登录每个网格上相应的租户帐户并创建相同的存储桶。
@@ -65,6 +68,7 @@ TIP: 根据需要，每个存储桶可以使用不同的区域。
 
 
 
+[[enable-cross-grid-replication]]
 === 启用跨网格复制
 
 在将任何对象添加到任一存储桶之前，您必须执行这些步骤。
@@ -112,6 +116,7 @@ NOTE: 如果删除请求包含版本 ID，则该对象版本将从源存储桶�
 
 
 
+[[test-replication-between-grids]]
 == 测试网格之间的复制
 
 如果为存储桶启用了跨网格复制，您可能需要验证连接和跨网格复制是否正常工作，以及源存储桶和目标存储桶是否仍然满足所有要求（例如，版本控制仍然启用）。
@@ -135,6 +140,7 @@ NOTE: 如果删除请求包含版本 ID，则该对象版本将从源存储桶�
 
 
 
+[[disable-cross-grid-replication]]
 == 禁用跨网格复制
 
 如果您不再想将对象复制到另一个网格，您可以永久停止跨网格复制。

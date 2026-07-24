@@ -19,12 +19,14 @@ StorageGRID系统由一个或多个数据中心站点的多种类型的网格节
 
 
 
+[[deployment-topologies]]
 == 部署拓扑
 
 StorageGRID系统可以部署到单个数据中心站点或多个数据中心站点。
 
 
 
+[[single-site]]
 === 单个站点
 
 在单站点部署中， StorageGRID系统的基础设施和操作是集中的。
@@ -33,6 +35,7 @@ image::../media/data_center_site_single.png[单一数据中心站点]
 
 
 
+[[multiple-sites]]
 === 多个站点
 
 在具有多个站点的部署中，每个站点可以安装不同类型和数量的StorageGRID资源。例如，一个数据中心可能需要比另一个数据中心更多的存储空间。
@@ -45,12 +48,14 @@ image::../media/data_center_sites_multiple.png[多数据中心站点]
 
 
 
+[[grid-node-redundancy]]
 === 网格节点冗余
 
 在单站点或多站点部署中，您可以选择包含多个管理节点或网关节点以实现冗余。例如，您可以在单个站点或多个站点安装多个管理节点。但是，每个StorageGRID系统只能有一个主管理节点。
 
 
 
+[[system-architecture]]
 == 系统架构
 
 该图显示了网格节点在StorageGRID系统内的排列方式。

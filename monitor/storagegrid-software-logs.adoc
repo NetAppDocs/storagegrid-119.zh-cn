@@ -18,6 +18,7 @@ NOTE: 如果您想要将日志发送到外部系统日志服务器或更改审�
 
 
 
+[[general-storagegrid-logs]]
 == 常规StorageGRID日志
 
 [cols="3a,3a,2a"]
@@ -49,6 +50,7 @@ NOTE: 如果您想要将日志发送到外部系统日志服务器或更改审�
 |===
 
 
+[[cipher-related-logs]]
 == 密码相关日志
 
 [cols="3a,3a,2a"]
@@ -85,6 +87,7 @@ NOTE: 如果您想要将日志发送到外部系统日志服务器或更改审�
 |===
 
 
+[[grid-federation-logs]]
 == 电网联合日志
 
 [cols="3a,3a,2a"]
@@ -100,6 +103,7 @@ NOTE: 如果您想要将日志发送到外部系统日志服务器或更改审�
 |===
 
 
+[[nms-logs]]
 == NMS 日志
 
 [cols="3a,3a,2a"]
@@ -136,6 +140,7 @@ NOTE: 如果您想要将日志发送到外部系统日志服务器或更改审�
 |===
 
 
+[[server-manager-logs]]
 == 服务器管理器日志
 
 [cols="3a,3a,2a"]
@@ -165,6 +170,7 @@ NOTE: 如果您想要将日志发送到外部系统日志服务器或更改审�
 |===
 
 
+[[storagegrid-services-logs]]
 == StorageGRID服务日志
 
 [cols="3a,3a,2a"]

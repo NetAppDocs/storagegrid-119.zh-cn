@@ -15,12 +15,14 @@ summary: 您可以使用 S3 CopyObject 请求来创建已存储在 S3 中的对�
 
 
 
+[[resolve-conflicts]]
 == 解决冲突
 
 冲突的客户端请求（例如两个客户端写入同一个密钥）将根据“最新胜利”的原则解决。  “最新胜利”评估的时间取决于StorageGRID系统完成给定请求的时间，而不是 S3 客户端开始操作的时间。
 
 
 
+[[object-size]]
 == 对象大小
 
 单个 PutObject 操作的最大_建议_大小为 5 GiB（5,368,709,120 字节）。如果您有大于 5 GiB 的对象，请使用link:operations-for-multipart-uploads.html["分段上传"]反而。
@@ -32,6 +34,7 @@ NOTE: 如果您从StorageGRID 11.6 或更早版本升级，则当您尝试上传
 
 
 
+[[utf-8-characters-in-user-metadata]]
 == 用户元数据中的 UTF-8 字符
 
 如果请求在用户定义元数据的键名或值中包含（未转义的）UTF-8 值，则StorageGRID行为未定义。
@@ -44,6 +47,7 @@ StorageGRID不会解析或解释用户定义元数据的键名或值中包含的
 
 
 
+[[supported-request-headers]]
 == 支持的请求标头
 
 支持以下请求标头：
@@ -92,6 +96,7 @@ StorageGRID不会解析或解释用户定义元数据的键名或值中包含的
 
 
 
+[[unsupported-request-headers]]
 == 不支持的请求标头
 
 不支持以下请求标头：
@@ -118,6 +123,7 @@ StorageGRID不会解析或解释用户定义元数据的键名或值中包含的
 
 
 
+[[storage-class-options]]
 == 存储类别选项
 
 这 `x-amz-storage-class`支持请求标头，并且会影响StorageGRID在匹配的 ILM 规则使用双重提交或平衡时创建的对象副本数量link:../ilm/data-protection-options-for-ingest.html["摄取选项"]。
@@ -138,6 +144,7 @@ NOTE: 如果您将对象提取到启用了 S3 对象锁定的存储桶中，则 
 
 
 
+[[using-x-amz-copy-source-in-copyobject]]
 == 在 CopyObject 中使用 x-amz-copy-source
 
 如果源存储桶和密钥在 `x-amz-copy-source`标头与目标存储桶和键不同，源对象数据的副本将写入目标。
@@ -153,6 +160,7 @@ NOTE: 如果您将对象提取到启用了 S3 对象锁定的存储桶中，则 
 
 
 
+[[request-headers-for-server-side-encryption]]
 == 服务器端加密的请求标头
 
 如果你link:using-server-side-encryption.html["使用服务器端加密"]，您提供的请求标头取决于源对象是否加密以及您是否计划加密目标对象。
@@ -188,6 +196,7 @@ NOTE: 这 `server-side-encryption`对象的值无法更新。相反，用新的 
 
 
 
+[[versioning]]
 == 版本控制
 
 如果源存储桶已版本化，则可以使用 `x-amz-copy-source`标头来复制对象的最新版本。要复制对象的特定版本，必须使用 `versionId`子资源。如果目标存储桶有版本控制，则生成的版本将返回 `x-amz-version-id`响应头。如果目标存储桶的版本控制已暂停，则 `x-amz-version-id`返回“null”值。

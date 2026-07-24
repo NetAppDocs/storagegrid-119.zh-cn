@@ -15,6 +15,7 @@ StorageGRID提供了多种数据加密选项。您应该检查可用的方法以
 
 该表提供了StorageGRID中可用的加密方法的高级摘要。
 
+[[bucket-encryption-table]]
 [cols="1a,1a,1a"]
 |===
 | 加密选项 | 工作原理 | 适用于 
@@ -135,6 +136,7 @@ https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingClientSideEncryption.html["
 |===
 
 
+[[use-multiple-encryption-methods]]
 == 使用多种加密方法
 
 根据您的要求，您可以一次使用多种加密方法。例如：

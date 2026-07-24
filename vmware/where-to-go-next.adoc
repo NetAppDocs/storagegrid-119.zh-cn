@@ -15,6 +15,7 @@ summary: 完成安装后，执行所需的集成和配置任务。您可以根�
 
 
 
+[[required-tasks]]
 == 必需任务
 
 * 配置 VMware vSphere Hypervisor 以实现自动重启。
@@ -42,6 +43,7 @@ summary: 完成安装后，执行所需的集成和配置任务。您可以根�
 
 
 
+[[optional-tasks]]
 == 可选任务
 
 * link:../maintain/changing-ip-addresses-and-mtu-values-for-all-nodes-in-grid.html["更新网格节点 IP 地址"]如果自您计划部署并生成恢复包以来它们已经发生了变化。

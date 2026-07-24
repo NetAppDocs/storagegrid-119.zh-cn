@@ -49,6 +49,7 @@ NOTE: 如果您将对象提取到启用了 S3 对象锁定的存储桶中，则 
 
 
 
+[[supported-request-headers]]
 == 支持的请求标头
 
 支持以下请求标头：
@@ -114,6 +115,7 @@ NOTE: 有关StorageGRID如何处理 UTF-8 字符的信息，请参阅link:put-ob
 
 
 
+[[request-headers-for-server-side-encryption]]
 == 服务器端加密的请求标头
 
 您可以使用以下请求标头通过服务器端加密来加密多部分对象。  SSE 和 SSE-C 选项是互斥的。
@@ -137,6 +139,7 @@ CAUTION: 您提供的加密密钥永远不会被存储。如果丢失了加密�
 
 
 
+[[unsupported-request-headers]]
 == 不支持的请求标头
 
 不支持以下请求标头：
@@ -149,6 +152,7 @@ CAUTION: 您提供的加密密钥永远不会被存储。如果丢失了加密�
 
 
 
+[[versioning]]
 == 版本控制
 
 分段上传包括启动上传、列出上传、上传部分、组装上传部分和完成上传的单独操作。执行 CompleteMultipartUpload 操作时会创建对象（如果适用，还会进行版本控制）。

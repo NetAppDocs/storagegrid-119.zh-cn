@@ -15,6 +15,7 @@ StorageGRID系统支持所有适用的标准 S3 REST API 错误响应。此外�
 
 
 
+[[supported-s3-api-error-codes]]
 == 支持的 S3 API 错误代码
 
 [cols="1a,1a"]
@@ -289,6 +290,7 @@ ObjectLockConfigurationNotFoundError
 |===
 
 
+[[storagegrid-custom-error-codes]]
 == StorageGRID自定义错误代码
 
 [cols="2a,2a,1a"]

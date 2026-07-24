@@ -26,6 +26,7 @@ GET Bucket 合规性请求已被弃用。但是，您可以继续使用此请求
 
 
 
+[[request-example]]
 == 请求示例
 
 此示例请求允许您确定名为 `mybucket`。
@@ -39,6 +40,7 @@ Host: _host_
 ----
 
 
+[[response-example]]
 == 响应示例
 
 在响应 XML 中， `<SGCompliance>`列出存储桶有效的合规性设置。此示例响应显示了存储桶的合规性设置，其中每个对象将从对象被引入网格时开始保留一年（525,600 分钟）。目前，此存储桶不存在任何合法保留。每个对象将在一年后自动删除。
@@ -90,6 +92,7 @@ Content-Type: application/xml
 |===
 
 
+[[error-responses]]
 == 错误响应
 
 如果存储桶的创建不符合要求，则响应的 HTTP 状态代码为 `404 Not Found`，S3 错误代码为 `XNoSuchBucketCompliance`。

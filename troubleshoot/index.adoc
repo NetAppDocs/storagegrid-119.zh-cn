@@ -17,6 +17,7 @@ summary: 如果您在使用StorageGRID系统时遇到问题，请参阅本节中
 
 
 
+[[defineproblemdefine-the-problem]]
 == [[define_problem]]定义问题
 
 解决问题的第一步是明确定义问题。
@@ -78,6 +79,7 @@ StorageGRID系统正在做什么或不做什么？它的症状是什么？
 |===
 
 
+[[assess-the-risk-and-impact-on-the-system]]
 == 评估风险和对系统的影响
 
 定义问题后，评估其风险和对StorageGRID系统的影响。例如，出现严重警报并不一定意味着系统没有提供核心服务。
@@ -118,6 +120,7 @@ StorageGRID系统可以提取内容吗？
 |===
 
 
+[[collect-data]]
 == 收集数据
 
 定义问题并评估其风险和影响后，收集数据进行分析。收集最有用的数据类型取决于问题的性质。
@@ -227,6 +230,7 @@ StorageGRID系统可以提取内容吗？
 |===
 
 
+[[createtimelinecreate-a-timeline-of-recent-changes]]
 === [[create_timeline]]创建最近更改的时间线
 
 当出现问题时，您应该考虑最近发生了什么变化以及这些变化何时发生。
@@ -295,6 +299,7 @@ StorageGRID系统可以提取内容吗？
 
 
 
+[[establish-baselines]]
 === 建立基线
 
 您可以通过记录各种操作值的正常水平来为您的系统建立基线。将来，您可以将当前值与这些基线进行比较，以帮助检测和解决异常值。
@@ -397,6 +402,7 @@ ILM 扫描速率
 |===
 
 
+[[analyze-data]]
 == 分析数据
 
 使用您收集的信息来确定问题的原因和潜在的解决方案。
@@ -410,6 +416,7 @@ ILM 扫描速率
 
 
 
+[[escalation-information-checklist]]
 == 升级信息清单
 
 如果您无法自行解决问题，请联系技术支持。在联系技术支持之前，请收集下表中列出的信息以便于解决问题。

@@ -15,6 +15,7 @@ summary: 在安装StorageGRID之前，请收集并准备所需的信息和材料
 
 
 
+[[required-information]]
 == 所需信息
 
 网络规划:: 您打算将哪些网络连接到每个StorageGRID节点。  StorageGRID支持多种网络，以实现流量分离、安全性和管理便利性。
@@ -37,6 +38,7 @@ NOTE: 如果您的StorageGRID安装不使用StorageGRID设备（硬件）存储�
 
 
 
+[[required-materials]]
 == 所需材料
 
 NetApp StorageGRID许可证:: 您必须拥有有效的、经过数字签名的NetApp许可证。

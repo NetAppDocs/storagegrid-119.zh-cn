@@ -38,6 +38,7 @@ summary: 按照这些高级步骤安装 VMware StorageGRID节点。
 
 
 
+[[automate-the-installation]]
 == 自动化安装
 
 为了节省时间并提供一致性，您可以自动化网格节点的部署和配置以及StorageGRID系统的配置。

@@ -15,6 +15,7 @@ summary: 根据您的生命周期配置，对象遵循 S3 存储桶生命周期�
 
 
 
+[[example-of-bucket-lifecycle-taking-priority-over-ilm-policy]]
 == 存储桶生命周期优先于 ILM 策略的示例
 
 ILM 策略::
@@ -50,6 +51,7 @@ ILM 策略::
 
 
 
+[[example-of-bucket-lifecycle-implicitly-keeping-forever]]
 == bucket 生命周期隐式永久保存的示例
 
 ILM 策略::
@@ -85,6 +87,7 @@ ILM 策略::
 
 
 
+[[example-of-using-bucket-lifecycle-to-duplicate-ilm-and-clean-up-expired-delete-markers]]
 == 使用存储桶生命周期复制 ILM 并清理过期删除标记的示例
 
 ILM 策略::

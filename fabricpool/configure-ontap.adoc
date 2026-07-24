@@ -20,6 +20,7 @@ summary: 获取所需的StorageGRID信息后，您可以转到ONTAP将StorageGRI
 
 
 
+[[access-ontap-system-manager]]
 == 访问ONTAP系统管理器
 
 这些说明介绍了如何使用ONTAP系统管理器将StorageGRID添加为云层。您可以使用ONTAP CLI 完成相同的配置。有关说明，请访问 https://docs.netapp.com/us-en/ontap/fabricpool/index.html["FabricPool的ONTAP文档"^]。
@@ -33,6 +34,7 @@ summary: 获取所需的StorageGRID信息后，您可以转到ONTAP将StorageGRI
 
 
 
+[[enter-storagegrid-values]]
 == 输入StorageGRID值
 
 看 https://docs.netapp.com/us-en/ontap/fabricpool/index.html["FabricPool的ONTAP文档"^]了解更多信息。

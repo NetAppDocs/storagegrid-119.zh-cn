@@ -17,6 +17,7 @@ MIB 文件包含有关网格中节点的托管资源和服务的属性的定义�
 
 
 
+[[access-mib-files]]
 == 访问 MIB 文件
 
 按照以下步骤访问 MIB 文件。
@@ -59,6 +60,7 @@ TIP: 这 `snmptranslate`命令有许多选项可用于探索 MIB。此命令在�
 
 
 
+[[mib-file-contents]]
 == MIB 文件内容
 
 所有对象均位于StorageGRID OID 下。
@@ -74,6 +76,7 @@ NetApp StorageGRID实体的 MIB 模块。
 |===
 
 
+[[mib-objects]]
 == MIB对象
 
 [cols="1a,1a,2a"]
@@ -117,6 +120,7 @@ StorageGRID中的活动警报表。
 |===
 
 
+[[notification-types-traps]]
 == 通知类型（陷阱）
 
 所有通知都包含以下变量作为 varbinds：

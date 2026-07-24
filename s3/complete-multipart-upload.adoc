@@ -18,12 +18,14 @@ NOTE: StorageGRID支持按升序排列非连续值 `partNumber`请求参数与Co
 
 
 
+[[resolve-conflicts]]
 == 解决冲突
 
 冲突的客户端请求（例如两个客户端写入同一个密钥）将根据“最新胜利”的原则解决。  “最新胜利”评估的时间取决于StorageGRID系统完成给定请求的时间，而不是 S3 客户端开始操作的时间。
 
 
 
+[[supported-request-headers]]
 == 支持的请求标头
 
 支持以下请求标头：
@@ -55,6 +57,7 @@ NOTE: 这 `ETag`返回的值不是数据的 MD5 和，而是遵循 Amazon S3 API
 
 
 
+[[unsupported-request-headers]]
 == 不支持的请求标头
 
 不支持以下请求标头：
@@ -73,6 +76,7 @@ NOTE: 这 `ETag`返回的值不是数据的 MD5 和，而是遵循 Amazon S3 API
 
 
 
+[[versioning]]
 == 版本控制
 
 此操作完成分段上传。如果存储桶启用了版本控制，则在分段上传完成后会创建对象版本。
@@ -86,6 +90,7 @@ NOTE: 当为存储桶启用版本控制时，完成分段上传总是会创建�
 
 
 
+[[failed-replication-notification-or-metadata-notification]]
 == 复制、通知或元数据通知失败
 
 如果发生分段上传的存储桶配置了平台服务，则即使相关的复制或通知操作失败，分段上传也会成功。

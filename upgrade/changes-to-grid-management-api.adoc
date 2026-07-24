@@ -20,12 +20,14 @@ NOTE: 您可以继续使用StorageGRID 11.9 中已弃用的管理 API 版本；�
 
 
 
+[[review-compliance-settings-after-enabling-global-s3-object-lock]]
 == 启用全局 S3 对象锁定后检查合规性设置
 
 启用全局 S3 对象锁定设置后，检查现有租户的合规性设置。启用此设置时，每个租户的 S3 对象锁定设置取决于创建租户时的StorageGRID版本。
 
 
 
+[[legacy-mgmt-api-requests-removed]]
 == 删除了旧版 mgmt-api 请求
 
 这些遗留请求已被删除：
@@ -36,6 +38,7 @@ NOTE: 您可以继续使用StorageGRID 11.9 中已弃用的管理 API 版本；�
 
 
 
+[[changes-to-get-privatestorage-usage-api]]
 == 更改 `GET /private/storage-usage`API
 
 * 一处新房产， `usageCacheDuration` ，已添加到响应主体中。此属性指定使用情况查找缓存保持有效的持续时间（以秒为单位）。当检查租户存储配额和存储桶容量限制的使用情况时，适用此值。
@@ -45,6 +48,7 @@ NOTE: 您可以继续使用StorageGRID 11.9 中已弃用的管理 API 版本；�
 
 
 
+[[changes-to-get-cross-grid-replication-api]]
 == 更改 `GET cross-grid-replication`API
 
 */org/containers/:name/cross-grid-replication* GET API 不再需要 Root 访问权限(`rootAccess`) 权限；但是，您必须属于拥有“管理所有存储桶”权限的用户组(`manageAllContainers`）或查看所有存储桶(`viewAllContainers`） 允许。

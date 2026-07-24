@@ -66,6 +66,7 @@ StorageGRID可以使用以下两种方法之一来删除对象：
 
 
 
+[[time-required-to-delete-objects]]
 == 删除对象所需的时间
 
 StorageGRID删除对象的方式可能会影响系统的执行方式：
@@ -84,6 +85,8 @@ StorageGRID删除对象的方式可能会影响系统的执行方式：
 
 
 
+[[how-s3-versioned-objects-are-deleted]]
+[[delete-s3-versioned-objects]]
 == 如何删除 S3 版本控制对象
 
 当为 S3 存储桶启用版本控制时， StorageGRID在响应删除请求时会遵循 Amazon S3 行为，无论这些请求来自 S3 客户端、S3 存储桶生命周期的到期还是 ILM 策略的要求。

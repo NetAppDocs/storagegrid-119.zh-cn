@@ -24,6 +24,7 @@ NOTE: 对存档节点的支持已被删除。通过 S3 API 将对象从存档节
 
 
 
+[[storagegrid-benefits]]
 == StorageGRID优势
 
 StorageGRID系统的优势包括：

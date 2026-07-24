@@ -15,6 +15,7 @@ summary: 使用这些指南来了解StorageGRID架构和网络拓扑并了解网
 
 
 
+[[about-these-instructions]]
 == 关于这些说明
 
 这些指南提供了在部署和配置StorageGRID节点之前可用于创建StorageGRID网络基础架构的信息。使用这些指南有助于确保网格中的所有节点之间以及网格与外部客户端和服务之间能够进行通信。
@@ -38,6 +39,7 @@ summary: 使用这些指南来了解StorageGRID架构和网络拓扑并了解网
 
 
 
+[[before-you-begin]]
 == 开始之前
 
 配置StorageGRID系统的网络需要具有以太网交换、TCP/IP 网络、子网、网络路由和防火墙方面的丰富经验。

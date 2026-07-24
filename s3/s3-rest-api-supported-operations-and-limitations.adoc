@@ -17,6 +17,7 @@ StorageGRID系统支持虚拟托管式请求和路径式请求。
 
 
 
+[[date-handling]]
 == 日期处理
 
 S3 REST API 的StorageGRID实现仅支持有效的 HTTP 日期格式。
@@ -25,6 +26,7 @@ StorageGRID系统仅支持接受日期值的任何标头的有效 HTTP 日期格
 
 
 
+[[common-request-headers]]
 == 常见请求标头
 
 StorageGRID系统支持由以下定义的通用请求标头 https://docs.aws.amazon.com/AmazonS3/latest/API/RESTCommonRequestHeaders.html["Amazon Simple Storage Service API 参考：常见请求标头"^]，但有一个例外。
@@ -54,6 +56,7 @@ x-amz-安全令牌
 |===
 
 
+[[common-response-headers]]
 == 常见响应头
 
 StorageGRID系统支持《简单存储服务 API 参考》定义的所有常见响应标头，但有一个例外。

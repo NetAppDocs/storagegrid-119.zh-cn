@@ -17,6 +17,7 @@ PUT Bucket 元数据通知配置请求允许您为单个存储桶启用搜索集
 
 
 
+[[request]]
 == 要求
 
 请求必须在请求正文中包含元数据通知配置。每个元数据通知配置都包含一个或多个规则。每条规则指定其适用的对象以及StorageGRID应发送对象元数据的目的地。
@@ -146,6 +147,7 @@ Urn 包含在 Destination 元素中。
 |===
 
 
+[[request-examples]]
 == 请求示例
 
 此示例显示启用存储桶的搜索集成。在此示例中，所有对象的对象元数据都被发送到同一个目的地。
@@ -198,6 +200,7 @@ Host: _host_
 ----
 
 
+[[json-generated-by-the-search-integration-service]]
 == 搜索集成服务生成的 JSON
 
 当您为存储桶启用搜索集成服务时，每次添加、更新或删除对象元数据或标签时都会生成一个 JSON 文档并将其发送到目标端点。
@@ -224,6 +227,7 @@ Host: _host_
 ----
 
 
+[[object-metadata-included-in-metadata-notifications]]
 == 元数据通知中包含的对象元数据
 
 该表列出了启用搜索集成时发送到目标端点的 JSON 文档中包含的所有字段。

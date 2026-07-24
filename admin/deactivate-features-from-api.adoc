@@ -36,6 +36,7 @@ _公司 A 可以通过使用网格管理 API 中的停用功能系统来实现�
 
 
 
+[[reactivate-deactivated-features]]
 == 重新激活已停用的功能
 
 默认情况下，您可以使用网格管理 API 重新激活已停用的功能。但是，如果您想防止已停用的功能被重新激活，您可以停用 *activateFeatures* 功能本身。

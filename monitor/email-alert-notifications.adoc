@@ -161,6 +161,7 @@ NOTE: 测试警报通知时，您必须登录每个管理节点以验证连接�
 
 
 
+[[information-included-in-alert-email-notifications]]
 == 警报电子邮件通知中包含的信息
 
 配置 SMTP 电子邮件服务器后，当触发警报时，电子邮件通知将发送给指定的收件人，除非警报规则被静默抑制。看link:silencing-alert-notifications.html["静音警报通知"] 。
@@ -210,6 +211,7 @@ image::../media/alerts_email_notification.png[警报电子邮件通知]
 |===
 
 
+[[how-alerts-are-grouped]]
 == 警报如何分组
 
 为了防止在触发警报时发送过多的电子邮件通知， StorageGRID尝试将多个警报分组到同一个通知中。
@@ -278,6 +280,7 @@ StorageGRID会每 7 天继续发送一次电子邮件通知，直到警报的所
 |===
 
 
+[[troubleshoot-alert-email-notifications]]
 == 解决警报电子邮件通知问题
 
 如果触发了“电子邮件通知失败”警报或您无法收到测试警报电子邮件通知，请按照以下步骤解决问题。

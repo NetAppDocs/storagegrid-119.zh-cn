@@ -15,6 +15,7 @@ summary: 在使用站点退役程序删除站点之前，您必须查看注意�
 
 
 
+[[what-happens-when-you-decommission-a-site]]
 == 当你关闭一个网站时会发生什么
 
 当您退役某个站点时， StorageGRID会从StorageGRID系统中永久删除该站点上的所有节点以及站点本身。
@@ -27,6 +28,7 @@ summary: 在使用站点退役程序删除站点之前，您必须查看注意�
 
 
 
+[[differences-between-connected-site-and-disconnected-site-decommission-procedures]]
 == 连接站点和断开站点退役程序之间的差异
 
 您可以使用站点退役程序来删除所有节点都连接到StorageGRID 的站点（称为连接站点退役）或删除所有节点都与StorageGRID断开连接的站点（称为断开站点退役）。在开始之前，您必须了解这些过程之间的区别。
@@ -48,6 +50,7 @@ CAUTION: 在执行断开站点退役程序之前，您必须联系您的NetApp�
 
 
 
+[[general-requirements-for-removing-a-connected-or-a-disconnected-site]]
 == 删除已连接或已断开连接的站点的一般要求
 
 在删除已连接或已断开连接的站点之前，您必须注意以下要求：
@@ -74,6 +77,7 @@ NOTE: 如果您需要在已连接站点退役期间执行其他维护程序，�
 
 
 
+[[requirements-for-information-lifecycle-management-ilm]]
 == 信息生命周期管理（ILM）的要求
 
 作为删除站点的一部分，您必须更新 ILM 配置。退役站点向导将指导您完成一系列先决条件步骤，以确保以下内容：
@@ -89,6 +93,7 @@ CAUTION: 在删除站点之前，您可能需要创建新的 ILM 规则并激活
 
 
 
+[[considerations-for-the-object-data-at-a-connected-site]]
 == 连接站点的对象数据注意事项
 
 如果您正在执行已连接站点的退役，则必须决定在创建新的 ILM 规则和新的 ILM 策略时如何处理站点上的现有对象数据。您可以执行以下一项或两项操作：
@@ -113,6 +118,7 @@ CAUTION: 切勿创建单一副本 ILM 规则来适应站点的删除。任何时
 
 
 
+[[additional-requirements-for-a-connected-site-decommission]]
 == 已连接站点退役的附加要求
 
 在StorageGRID删除已连接的站点之前，您必须确保以下事项：
@@ -136,6 +142,7 @@ NOTE: 从站点移动或删除对象数据可能需要几天、几周甚至几�
 
 
 
+[[additional-requirements-for-a-disconnected-site-decommission]]
 == 已断开站点退役的附加要求
 
 在StorageGRID删除断开连接的站点之前，您必须确保以下事项：
@@ -162,6 +169,7 @@ NOTE: 如果您的 ILM 规则和策略旨在防止单个站点丢失，则对象
 
 
 
+[[considerations-for-consistency-when-you-remove-a-site]]
 == 删除网站时的一致性注意事项
 
 S3 存储桶的一致性决定了StorageGRID在告知客户端对象提取成功之前是否将对象元数据完全复制到所有节点和站点。一致性在对象的可用性和不同存储节点和站点之间的对象的一致性之间提供了平衡。

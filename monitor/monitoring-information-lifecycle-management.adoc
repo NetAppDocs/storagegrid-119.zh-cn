@@ -20,6 +20,7 @@ StorageGRID系统通过应用活动的 ILM 策略来管理对象。  ILM 策略�
 
 
 
+[[use-grid-manager-dashboard-tab]]
 == 使用网格管理器仪表板选项卡
 
 .步骤
@@ -34,6 +35,7 @@ StorageGRID系统通过应用活动的 ILM 策略来管理对象。  ILM 策略�
 
 
 
+[[use-the-nodes-page]]
 == 使用 NODES 页面
 
 .步骤

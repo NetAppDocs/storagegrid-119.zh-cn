@@ -15,18 +15,21 @@ summary: 您可以使用 S3 RestoreObject 请求来恢复存储在云存储池�
 
 
 
+[[supported-request-type]]
 == 支持的请求类型
 
 StorageGRID仅支持 RestoreObject 请求来恢复对象。它不支持 `SELECT`修复类型。选择请求返回 `XNotImplemented`。
 
 
 
+[[versioning]]
 == 版本控制
 
 （可选）指定 `versionId`恢复受版本控制的存储桶中对象的特定版本。如果你没有指定 `versionId`，该对象的最新版本被恢复
 
 
 
+[[behavior-of-restoreobject-on-cloud-storage-pool-objects]]
 == RestoreObject 在云存储池对象上的行为
 
 如果一个对象已经存储在link:../ilm/what-cloud-storage-pool-is.html["云存储池"]，根据对象的状态，RestoreObject 请求具有以下行为。看link:head-object.html["头部对象"]了解更多详情。

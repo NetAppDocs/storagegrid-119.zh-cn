@@ -22,6 +22,7 @@ NOTE: 网格管理器会随着每个版本的发布而更新，并且可能与�
 
 
 
+[[grid-manager-dashboard]]
 == 网格管理器仪表板
 
 首次登录网格管理器时，您可以使用仪表板link:../monitor/viewing-dashboard.html["监控系统活动"]一目了然。
@@ -34,6 +35,7 @@ image::../media/grid_manager_dashboard_and_menu.png[网格管理器中的仪表�
 
 
 
+[[search-field]]
 == 搜索字段
 
 标题栏中的*搜索*字段允许您快速导航到网格管理器中的特定页面。例如，您可以输入 *km* 来访问密钥管理服务器 (KMS) 页面。
@@ -42,6 +44,7 @@ image::../media/grid_manager_dashboard_and_menu.png[网格管理器中的仪表�
 
 
 
+[[help-menu]]
 == 帮助菜单
 
 帮助菜单image:../media/icon-help-menu-bar.png["菜单栏上的帮助图标"]提供以下访问权限：
@@ -54,6 +57,7 @@ image::../media/grid_manager_dashboard_and_menu.png[网格管理器中的仪表�
 
 
 
+[[alerts-menu]]
 == 警报菜单
 
 警报菜单提供了一个易于使用的界面，用于检测、评估和解决StorageGRID操作期间可能出现的问题。
@@ -69,6 +73,7 @@ image::../media/grid_manager_dashboard_and_menu.png[网格管理器中的仪表�
 
 
 
+[[nodes-page]]
 == 节点页面
 
 这link:../monitor/viewing-nodes-page.html["节点页面"]显示有关整个网格、网格中每个站点以及站点上每个节点的信息。
@@ -79,6 +84,7 @@ image::../media/nodes_page.png[节点页面主页]
 
 
 
+[[tenants-page]]
 == 租户页面
 
 这link:../admin/managing-tenants.html["租户页面"]允许您link:../tenant/index.html["创建并监控存储租户帐户"]适用于您的StorageGRID系统。您必须创建至少一个租户帐户来指定谁可以存储和检索对象以及他们可以使用哪些功能。
@@ -89,6 +95,7 @@ image::../media/tenants_page.png[租户菜单和页面]
 
 
 
+[[ilm-menu]]
 == ILM 菜单
 
 这link:using-information-lifecycle-management.html["ILM 菜单"]允许您link:../ilm/index.html["配置信息生命周期管理 (ILM) 规则和策略"]控制数据持久性和可用性。您还可以输入对象标识符来查看该对象的元数据。
@@ -106,12 +113,14 @@ image::../media/tenants_page.png[租户菜单和页面]
 
 
 
+[[configuration-menu]]
 == 配置菜单
 
 配置菜单允许您指定网络设置、安全设置、系统设置、监控选项和访问控制选项。
 
 
 
+[[network-tasks]]
 === 网络任务
 
 网络任务包括：
@@ -125,6 +134,7 @@ image::../media/tenants_page.png[租户菜单和页面]
 
 
 
+[[security-tasks]]
 === 安全任务
 
 安全任务包括：
@@ -138,6 +148,7 @@ image::../media/tenants_page.png[租户菜单和页面]
 
 
 
+[[system-tasks]]
 === 系统任务
 
 系统任务包括：
@@ -151,6 +162,7 @@ image::../media/tenants_page.png[租户菜单和页面]
 
 
 
+[[monitoring-tasks]]
 === 监控任务
 
 监控任务包括：
@@ -161,6 +173,7 @@ image::../media/tenants_page.png[租户菜单和页面]
 
 
 
+[[access-control-tasks]]
 === 访问控制任务
 
 访问控制任务包括：
@@ -174,12 +187,14 @@ image::../media/tenants_page.png[租户菜单和页面]
 
 
 
+[[maintenance-menu]]
 == 维护菜单
 
 维护菜单允许您执行维护任务、系统维护和网络维护。
 
 
 
+[[tasks]]
 === Tasks
 
 维护任务包括：
@@ -195,6 +210,7 @@ image::../media/tenants_page.png[租户菜单和页面]
 
 
 
+[[system]]
 === 系统
 
 您可以执行的系统维护任务包括：
@@ -213,6 +229,7 @@ image::../media/tenants_page.png[租户菜单和页面]
 
 
 
+[[network]]
 === 网络
 
 您可以执行的网络维护任务包括：
@@ -224,12 +241,14 @@ image::../media/tenants_page.png[租户菜单和页面]
 
 
 
+[[support-menu]]
 == 支持菜单
 
 支持菜单提供的选项可帮助技术支持分析和排除系统故障。
 
 
 
+[[tools]]
 === 工具
 
 从支持菜单的工具部分，您可以：
@@ -247,12 +266,14 @@ NOTE: *Metrics* 选项提供的工具旨在供技术支持使用。这些工具�
 
 
 
+[[alarms-legacy]]
 === 警报（遗留）
 
 有关旧警报的信息已从此版本的文档中删除。参考 https://docs.netapp.com/us-en/storagegrid-118/monitor/managing-alerts-and-alarms.html["管理警报和警报（StorageGRID 11.8 文档）"^]。
 
 
 
+[[other]]
 === 其他
 
 从“支持”菜单的“其他”部分，您可以：

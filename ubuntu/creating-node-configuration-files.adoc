@@ -15,6 +15,7 @@ summary: 节点配置文件是小型文本文件，提供StorageGRID主机服务
 
 
 
+[[location-for-node-configuration-files]]
 == 节点配置文件的位置
 
 将每个StorageGRID节点的配置文件放在 `/etc/storagegrid/nodes`节点将运行的主机上的目录。例如，如果您计划在 HostA 上运行一个管理节点、一个网关节点和一个存储节点，则必须将三个节点配置文件放在 `/etc/storagegrid/nodes`在 HostA 上。
@@ -23,6 +24,7 @@ summary: 节点配置文件是小型文本文件，提供StorageGRID主机服务
 
 
 
+[[naming-of-node-configuration-files]]
 == 节点配置文件的命名
 
 配置文件的名称很重要。格式为 `node-name.conf`， 在哪里 `node-name`是您分配给节点的名称。此名称出现在StorageGRID安装程序中，用于节点维护操作，例如节点迁移。
@@ -47,6 +49,7 @@ summary: 节点配置文件是小型文本文件，提供StorageGRID主机服务
 
 
 
+[[contents-of-a-node-configuration-file]]
 == 节点配置文件的内容
 
 配置文件包含键/值对，每行一个键和一个值。对于每个键/值对，遵循以下规则：
@@ -66,6 +69,7 @@ summary: 节点配置文件是小型文本文件，提供StorageGRID主机服务
 
 
 
+[[admin-network-keys]]
 === 管理网络密钥
 
 
@@ -318,6 +322,7 @@ DHCP、静态或禁用
 |===
 
 
+[[block-device-keys]]
 === 块设备密钥
 
 
@@ -454,6 +459,7 @@ BLOCK_DEVICE_RANGEDB_015
 |===
 
 
+[[client-network-keys]]
 === 客户端网络密钥
 
 
@@ -661,6 +667,7 @@ DHCP、静态或禁用
 |===
 
 
+[[grid-network-keys]]
 === 网格网络键
 
 
@@ -856,6 +863,7 @@ DHCP、静态或禁用
 |===
 
 
+[[installation-password-key-temporary]]
 === 安装密码密钥（临时）
 
 
@@ -885,6 +893,7 @@ DHCP、静态或禁用
 |===
 
 
+[[interfaces-key]]
 === 接口关键
 
 
@@ -912,6 +921,7 @@ DHCP、静态或禁用
 |===
 
 
+[[maximum-ram-key]]
 === 最大 RAM 键
 
 
@@ -943,6 +953,7 @@ DHCP、静态或禁用
 |===
 
 
+[[node-type-keys]]
 === 节点类型键
 
 
@@ -990,6 +1001,7 @@ DHCP、静态或禁用
 |===
 
 
+[[port-remap-keys]]
 === 端口重新映射键
 
 

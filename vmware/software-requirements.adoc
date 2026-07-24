@@ -15,6 +15,7 @@ summary: 您可以使用虚拟机来托管任何类型的StorageGRID节点。每
 
 
 
+[[vmware-vsphere-hypervisor]]
 == VMware vSphere 虚拟机管理程序
 
 您必须在准备好的物理服务器上安装 VMware vSphere Hypervisor。在安装 VMware 软件之前，必须正确配置硬件（包括固件版本和 BIOS 设置）。
@@ -29,6 +30,7 @@ link:../network/index.html["网络指南"]
 
 
 
+[[esx-host-configuration-requirements]]
 == ESX 主机配置要求
 
 
@@ -36,6 +38,7 @@ CAUTION: 您必须在每个 ESX 主机上正确配置网络时间协议 (NTP)。
 
 
 
+[[vmware-configuration-requirements]]
 == VMware 配置要求
 
 在部署StorageGRID节点之前，必须安装和配置 VMware vSphere 和 vCenter。

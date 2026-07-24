@@ -20,6 +20,7 @@ summary: 您可以监控有关所有网格联合连接的基本信息、有关�
 
 
 
+[[view-all-connections]]
 == 查看所有连接
 
 网格联合页面显示有关所有网格联合连接以及所有允许使用网格联合连接的租户帐户的基本信息。
@@ -59,6 +60,7 @@ image::../media/grid-federation-permitted-tenants-tab.png[电网联合允许的�
 
 
 
+[[view-specific-connectionview-a-specific-connection]]
 == [[view-specific-connection]]查看特定连接
 
 您可以查看特定电网联合连接的详细信息。
@@ -102,6 +104,7 @@ image::../media/grid-federation-certificates-tab.png[网格联合证书选项卡
 
 
 
+[[review-cross-grid-replication-metrics]]
 == 查看跨网格复制指标
 
 您可以使用 Grafana 中的跨网格复制仪表板查看有关网格上跨网格复制操作的 Prometheus 指标。

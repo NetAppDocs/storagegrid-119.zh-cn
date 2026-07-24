@@ -15,6 +15,7 @@ summary: 客户端需要与网格节点通信以获取和检索内容。使用�
 
 
 
+[[restricted-access-to-ports]]
 == 限制访问端口
 
 如果企业网络策略限制对任何端口的访问，您可以执行以下操作之一：
@@ -32,6 +33,7 @@ summary: 客户端需要与网格节点通信以获取和检索内容。使用�
 
 
 
+[[ports-used-for-external-communications]]
 == 用于外部通信的端口
 
 下表显示了用于进入节点的流量的端口。

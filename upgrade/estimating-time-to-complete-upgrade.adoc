@@ -121,6 +121,7 @@ summary: 根据升级可能需要的时间考虑何时升级。请注意在升�
 
 
 
+[[example-estimated-time-to-upgrade-to-storagegrid-11-9]]
 == 示例：升级到StorageGRID 11.9 的预计时间
 
 假设您的系统有 14 个网格节点，其中 8 个是 Linux 节点。

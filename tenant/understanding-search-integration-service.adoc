@@ -24,6 +24,7 @@ NOTE: 由于搜索集成服务会导致对象元数据被发送到目的地，�
 
 
 
+[[search-integration-and-s3-buckets]]
 == 搜索集成和 S3 存储桶
 
 您可以为任何版本化或未版本化的存储桶启用搜索集成服务。通过将元数据通知配置 XML 与指定要操作的对象以及对象元数据的目的地的存储桶关联起来，可以配置搜索集成。
@@ -35,6 +36,7 @@ NOTE: 对于标签和用户元数据， StorageGRID将日期和数字作为字�
 
 
 
+[[search-notifications]]
 == 搜索通知
 
 每当出现以下情况时，就会生成元数据通知并排队等待传送：
@@ -52,6 +54,7 @@ NOTE: 对于标签和用户元数据， StorageGRID将日期和数字作为字�
 
 
 
+[[search-integration-service-and-elasticsearch]]
 == 搜索集成服务和 Elasticsearch
 
 StorageGRID搜索集成服务支持 Elasticsearch 集群作为目标。与其他平台服务一样，目的地在端点中指定，该端点的 URN 用于服务的配置 XML。使用 https://imt.netapp.com/matrix/#welcome["NetApp 互操作性表工具"^]确定支持的 Elasticsearch 版本。

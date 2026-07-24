@@ -24,6 +24,7 @@ NOTE: 对 Swift 客户端应用程序的支持已被弃用，并将在未来的�
 
 
 
+[[access-the-create-group-wizard]]
 == 访问创建组向导
 
 .步骤
@@ -35,6 +36,7 @@ NOTE: 对 Swift 客户端应用程序的支持已被弃用，并将在未来的�
 
 
 
+[[choose-a-group-type]]
 == 选择群组类型
 
 您可以创建本地组或导入联合组。
@@ -55,6 +57,7 @@ NOTE: 对 Swift 客户端应用程序的支持已被弃用，并将在未来的�
 
 
 
+[[manage-group-permissions]]
 == 管理群组权限
 
 组权限控制用户可以在租户管理器和租户管理 API 中执行哪些任务。
@@ -76,6 +79,7 @@ NOTE: 如果用户属于多个组，并且任何组设置为只读，则该用�
 
 
 
+[[set-swift-group-policy]]
 == 设置 Swift 组策略
 
 Swift 用户需要管理员权限才能验证 Swift REST API 来创建容器和提取对象。
@@ -86,6 +90,7 @@ Swift 用户需要管理员权限才能验证 Swift REST API 来创建容器和�
 
 
 
+[[add-users-local-groups-only]]
 == 添加用户（仅限本地组）
 
 您可以保存组而不添加用户，也可以选择添加任何已存在的本地用户。

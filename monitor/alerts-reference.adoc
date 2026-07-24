@@ -19,6 +19,7 @@ summary: 此参考列出了网格管理器中出现的默认警报。您收到�
 
 
 
+[[appliance-alerts]]
 == 家电警报
 
 [cols="1a,2a"]
@@ -356,6 +357,7 @@ StorageGRID设备中的电源 B 偏离了建议的工作电压。
 |===
 
 
+[[audit-and-syslog-alerts]]
 == 审计和系统日志警报
 
 [cols="1a,2a"]
@@ -392,6 +394,7 @@ StorageGRID设备中的电源 B 偏离了建议的工作电压。
 |===
 
 
+[[bucket-alerts]]
 == 存储桶警报
 
 [cols="1a,2a"]
@@ -414,6 +417,7 @@ FabricPool存储桶已启用版本控制或 S3 对象锁定，但不受支持。
 |===
 
 
+[[cassandra-alerts]]
 == Cassandra 警报
 
 [cols="1a,2a"]
@@ -485,6 +489,7 @@ Cassandra 检测到表损坏。如果检测到表损坏，Cassandra 会自动重
 |===
 
 
+[[cloud-storage-pool-alerts]]
 == 云存储池警报
 
 [cols="1a,2a"]
@@ -507,6 +512,7 @@ IAM Roles Anywhere 最终实体证书即将过期。
 |===
 
 
+[[cross-grid-replication-alerts]]
 == 跨网格复制警报
 
 [cols="1a,2a"]
@@ -529,6 +535,7 @@ IAM Roles Anywhere 最终实体证书即将过期。
 |===
 
 
+[[dhcp-alerts]]
 == DHCP 警报
 
 [cols="1a,2a"]
@@ -558,6 +565,7 @@ DHCP 服务器不可用。
 |===
 
 
+[[debug-and-trace-alerts]]
 == 调试和跟踪警报
 
 [cols="1a,2a"]
@@ -580,6 +588,7 @@ DHCP 服务器不可用。
 |===
 
 
+[[email-and-autosupport-alerts]]
 == 电子邮件和AutoSupport警报
 
 [cols="1a,2a"]
@@ -623,6 +632,7 @@ SNMP 通知错误
 |===
 
 
+[[erasure-coding-ec-alerts]]
 == 擦除编码 (EC) 警报
 
 [cols="1a,2a"]
@@ -659,6 +669,7 @@ EC 数据的修复工作已停滞。
 |===
 
 
+[[expiration-of-certificates-alerts]]
 == 证书到期警报
 
 [cols="1a,2a"]
@@ -723,6 +734,7 @@ S3 和 Swift 的全球服务器证书即将过期。
 |===
 
 
+[[grid-network-alerts]]
 == 电网警报
 
 [cols="1a,2a"]
@@ -738,6 +750,7 @@ S3 和 Swift 的全球服务器证书即将过期。
 |===
 
 
+[[grid-federation-alerts]]
 == 电网联合警报
 
 [cols="1a,2a"]
@@ -760,6 +773,7 @@ S3 和 Swift 的全球服务器证书即将过期。
 |===
 
 
+[[high-usage-or-high-latency-alerts]]
 == 高使用率或高延迟警报
 
 [cols="1a,2a"]
@@ -782,6 +796,7 @@ Cassandra 元数据查询的平均时间太长。
 |===
 
 
+[[identity-federation-alerts]]
 == 身份联合警报
 
 [cols="1a,2a"]
@@ -804,6 +819,7 @@ Cassandra 元数据查询的平均时间太长。
 |===
 
 
+[[information-lifecycle-management-ilm-alerts]]
 == 信息生命周期管理 (ILM) 警报
 
 [cols="1a,2a"]
@@ -826,6 +842,7 @@ ILM 扫描速率设置为小于 100 个对象/秒。
 |===
 
 
+[[key-management-server-kms-alerts]]
 == 密钥管理服务器 (KMS) 警报
 
 [cols="1a,2a"]
@@ -904,6 +921,7 @@ KMS 服务器连接失败
 |===
 
 
+[[load-balancer-alerts]]
 == 负载均衡器警报
 
 [cols="1a,2a"]
@@ -919,6 +937,7 @@ KMS 服务器连接失败
 |===
 
 
+[[local-clock-offset-alerts]]
 == 本地时钟偏移警报
 
 [cols="1a,2a"]
@@ -934,6 +953,7 @@ KMS 服务器连接失败
 |===
 
 
+[[low-memory-or-low-space-alerts]]
 == 内存不足或空间不足警报
 
 [cols="1a,2a"]
@@ -1019,6 +1039,7 @@ tmp 目录可用空间不足
 |===
 
 
+[[node-or-node-network-alerts]]
 == 节点或节点网络警报
 
 [cols="1a,2a"]
@@ -1216,6 +1237,7 @@ TCP 连接使用情况
 |===
 
 
+[[object-alerts]]
 == 对象警报
 
 [cols="1a,2a"]
@@ -1259,6 +1281,7 @@ S3 PUT 对象大小太大
 |===
 
 
+[[platform-services-alerts]]
 == 平台服务警报
 
 [cols="1a,2a"]
@@ -1281,6 +1304,7 @@ S3 PUT 对象大小太大
 |===
 
 
+[[storage-volume-alerts]]
 == 存储量警报
 
 [cols="1a,2a"]
@@ -1324,6 +1348,7 @@ S3 PUT 对象大小太大
 |===
 
 
+[[storagegrid-services-alerts]]
 == StorageGRID服务警报
 
 [cols="1a,2a"]
@@ -1367,6 +1392,7 @@ SSH服务配置无效。现在正在使用以前的配置。
 |===
 
 
+[[tenant-alerts]]
 == 租户警报
 
 [cols="1a,2a"]

@@ -34,6 +34,7 @@ NOTE: 为了确保操作不会因服务器证书失败而中断，当该服务�
 ====
 
 
+[[add-a-custom-management-interface-certificate]]
 == 添加自定义管理接口证书
 
 要添加自定义管理接口证书，您可以提供自己的证书或使用网格管理器生成一个证书。
@@ -161,6 +162,7 @@ NOTE: 上传或生成新证书后，请等待最多一天的时间以清除所�
 
 
 
+[[restore-the-default-management-interface-certificate]]
 == 恢复默认管理接口证书
 
 您可以恢复使用网格管理器和租户管理器连接的默认管理接口证书。
@@ -177,6 +179,7 @@ NOTE: 上传或生成新证书后，请等待最多一天的时间以清除所�
 
 
 
+[[use-a-script-to-generate-a-new-self-signed-management-interface-certificate]]
 == 使用脚本生成新的自签名管理接口证书
 
 如果需要严格的主机名验证，您可以使用脚本生成管理接口证书。
@@ -238,6 +241,7 @@ NOTE: 证书有效期从 `make-certificate`正在运行。您必须确保管理�
 
 
 
+[[download-or-copy-the-management-interface-certificate]]
 == 下载或复制管理接口证书
 
 您可以保存或复制管理接口证书内容以供其他地方使用。

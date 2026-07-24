@@ -15,6 +15,7 @@ summary: 您可以使用网格管理 REST API 而不是网格管理器用户界�
 
 
 
+[[top-level-resources]]
 == 顶级资源
 
 网格管理 API 提供以下顶级资源：
@@ -26,6 +27,7 @@ summary: 您可以使用网格管理 REST API 而不是网格管理器用户界�
 
 
 
+[[issue-api-requests]]
 == 发出 API 请求
 
 网格管理API使用Swagger开源API平台。  Swagger 提供了直观的用户界面，允许开发人员和非开发人员使用 API 在StorageGRID中执行实时操作。

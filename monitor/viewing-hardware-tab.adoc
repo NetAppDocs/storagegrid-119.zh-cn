@@ -30,6 +30,7 @@ image::../media/nodes_page_memory_usage_details.png[节点页面 > 硬件 > 内�
 
 
 
+[[view-information-about-appliance-storage-nodes]]
 == 查看有关设备存储节点的信息
 
 节点页面列出了有关每个设备存储节点的服务健康状况以及所有计算、磁盘设备和网络资源的信息。您还可以看到内存、存储硬件、控制器固件版本、网络资源、网络接口、网络地址以及接收和传输数据。
@@ -496,6 +497,7 @@ image::../media/nodes_page_storage_tables.png[节点页面存储表]
 
 
 
+[[view-information-about-appliance-admin-nodes-and-gateway-nodes]]
 == 查看有关设备管理节点和网关节点的信息
 
 节点页面列出了用作管理节点或网关节点的每个服务设备的服务运行状况以及所有计算、磁盘设备和网络资源的信息。您还可以看到内存、存储硬件、网络资源、网络接口、网络地址以及接收和传输数据。

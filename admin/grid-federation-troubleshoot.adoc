@@ -15,6 +15,7 @@ summary: 您可能需要排除与网格联合连接、帐户克隆和跨网格�
 
 
 
+[[grid-federation-errorsgrid-federation-connection-alerts-and-errors]]
 == [[grid-federation-errors]]电网联合连接警报和错误
 
 您可能会收到警报或遇到电网联合连接错误。
@@ -23,6 +24,7 @@ summary: 您可能需要排除与网格联合连接、帐户克隆和跨网格�
 
 
 
+[[grid-federation-connection-failure-alert]]
 === 电网联合连接失败警报
 
 .问题描述
@@ -40,6 +42,7 @@ summary: 您可能需要排除与网格联合连接、帐户克隆和跨网格�
 
 
 
+[[expiration-of-grid-federation-certificate-alert]]
 === 电网联合证书到期警报
 
 .问题描述
@@ -53,6 +56,7 @@ summary: 您可能需要排除与网格联合连接、帐户克隆和跨网格�
 
 
 
+[[error-editing-a-grid-federation-connection]]
 === 编辑电网联合连接时出错
 
 .问题描述
@@ -69,10 +73,12 @@ summary: 您可能需要排除与网格联合连接、帐户克隆和跨网格�
 
 
 
+[[account-clone-errors]]
 == 帐户克隆错误
 
 
 
+[[cant-sign-in-to-a-cloned-tenant-account]]
 === 无法登录克隆的租户帐户
 
 .问题描述
@@ -88,6 +94,7 @@ summary: 您可能需要排除与网格联合连接、帐户克隆和跨网格�
 
 
 
+[[tenant-created-without-a-clone]]
 === 未使用克隆创建的租户
 
 .问题描述
@@ -113,10 +120,12 @@ image::../media/grid-federation-retry-account-clone.png[显示错误消息和“
 
 
 
+[[cross-grid-replication-alerts-and-errors]]
 == 跨网格复制警报和错误
 
 
 
+[[last-error-shown-for-connection-or-tenant]]
 === 连接或租户显示的最后一个错误
 
 .问题描述
@@ -157,6 +166,7 @@ TIP: 清除错误后，如果将对象提取到同样存在错误的不同存储
 
 
 
+[[cross-grid-replication-permanent-failure-alert]]
 === 跨网格复制永久故障警报
 
 .问题描述
@@ -206,6 +216,7 @@ NOTE: 警报解决后可能需要一天的时间才能清除。
 
 
 
+[[cross-grid-replication-resource-unavailable-alert]]
 === 跨网格复制资源不可用警报
 
 .问题描述

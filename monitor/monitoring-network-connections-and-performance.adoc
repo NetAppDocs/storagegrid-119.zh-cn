@@ -15,6 +15,7 @@ summary: 节点和站点之间的网络完整性和带宽以及各个网格节�
 
 
 
+[[monitor-network-connections-and-performance]]
 == 监控网络连接和性能
 
 如果您的信息生命周期管理 (ILM) 策略在站点之间复制复制对象或使用提供站点丢失保护的方案存储擦除编码对象，则网络连接和带宽尤为重要。如果站点之间的网络不可用、网络延迟过高或网络带宽不足，某些 ILM 规则可能无法将对象放置在预期的位置。这可能会导致摄取失败（当为 ILM 规则选择严格摄取选项时），或者导致摄取性能不佳和 ILM 积压。
@@ -77,6 +78,7 @@ image::../media/traffic_classification_policies_main_screen_w_examples.png[图�
 
 
 
+[[monitor-node-level-resources]]
 == 监控节点级资源
 
 监控单个网格节点以检查其资源使用水平。如果节点持续过载，则可能需要更多节点才能实现高效运行。

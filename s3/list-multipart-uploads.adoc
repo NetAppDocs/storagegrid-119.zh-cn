@@ -27,6 +27,7 @@ ListMultipartUploads 操作列出存储桶正在进行的分段上传。
 
 
 
+[[versioning]]
 == 版本控制
 
 分段上传包括启动上传、列出上传、上传部分、组装上传部分和完成上传的单独操作。执行 CompleteMultipartUpload 操作时会创建对象（如果适用，还会进行版本控制）。

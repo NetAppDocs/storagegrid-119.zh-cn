@@ -21,6 +21,7 @@ GET 存储使用情况请求会告诉您帐户使用的存储总量以及与该�
 
 
 
+[[request-example]]
 == 请求示例
 
 [listing, subs="specialcharacters,quotes"]
@@ -32,6 +33,7 @@ Host: _host_
 ----
 
 
+[[response-example]]
 == 响应示例
 
 此示例显示一个帐户，该帐户在两个存储桶中拥有四个对象和 12 个字节的数据。每个存储桶包含两个对象和六个字节的数据。
@@ -67,6 +69,7 @@ Content-Type: application/xml
 ----
 
 
+[[versioning]]
 == 版本控制
 
 存储的每个对象版本都将有助于 `ObjectCount`和 `DataBytes`响应中的值。删除标记不会添加到 `ObjectCount`全部的。

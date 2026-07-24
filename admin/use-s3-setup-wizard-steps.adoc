@@ -20,6 +20,7 @@ summary: 您可以使用 S3 设置向导将StorageGRID配置为 S3 应用程序�
 
 
 
+[[access-the-wizard]]
 == 访问向导
 
 .步骤
@@ -33,6 +34,7 @@ image::../media/help_menu.png[帮助菜单]
 
 
 
+[[step-1-of-6-configure-ha-group]]
 == 步骤 1（共 6 步）：配置 HA 组
 
 HA 组是每个包含StorageGRID负载均衡器服务的节点集合。  HA 组可以包含网关节点、管理节点或两者。
@@ -135,6 +137,7 @@ CIDR 表示法中的 VIP 子网地址——IPv4 地址后跟斜杠和子网长�
 
 
 
+[[step-2-of-6-configure-load-balancer-endpoint]]
 == 第 2 步（共 6 步）：配置负载均衡器端点
 
 StorageGRID使用负载平衡器来管理来自客户端应用程序的工作负载。负载平衡可最大限度地提高多个存储节点的速度和连接容量。
@@ -334,6 +337,7 @@ S3 应用程序将用于连接外部负载均衡器的端口号。
 ====
 
 
+[[step-3-of-6-create-tenant-and-bucket]]
 == 步骤 3（共 6 步）：创建租户和存储桶
 
 租户是可以使用 S3 应用程序在StorageGRID中存储和检索对象的实体。每个租户都有自己的用户、访问密钥、存储桶、对象和一组特定的功能。
@@ -401,6 +405,7 @@ TIP: 如果为网格启用了 S3 对象锁，则在此步骤中创建的存储�
 
 
 
+[[download-datastep-4-of-6-download-data]]
 == [[download-data]]第 4 步（共 6 步）：下载数据
 
 在下载数据步骤中，您可以下载一个或两个文件来保存刚刚配置的详细信息。
@@ -424,6 +429,7 @@ CAUTION: 在复制两个访问密钥之前，请勿关闭此页面。关闭此�
 
 
 
+[[step-5-of-6-review-ilm-rule-and-ilm-policy-for-s3]]
 == 第 5 步（共 6 步）：查看 S3 的 ILM 规则和 ILM 策略
 
 信息生命周期管理 (ILM) 规则控制StorageGRID系统中所有对象的放置、持续时间和摄取行为。 StorageGRID附带的 ILM 策略为所有对象制作了两个副本。此策略将一直有效，直到您激活至少一项新策略为止。
@@ -438,6 +444,7 @@ CAUTION: 在复制两个访问密钥之前，请勿关闭此页面。关闭此�
 
 
 
+[[step-6-of-6-review-summary]]
 == 第 6 步（共 6 步）：审核摘要
 
 .步骤

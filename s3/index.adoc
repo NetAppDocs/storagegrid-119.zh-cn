@@ -17,6 +17,7 @@ StorageGRID支持简单存储服务 (S3) API，该 API 作为一组表述性状�
 
 
 
+[[supported-versions]]
 == 支持的版本
 
 StorageGRID支持以下特定版本的 S3 和 HTTP。
@@ -47,6 +48,8 @@ https://datatracker.ietf.org/doc/html/rfc2616["IETF RFC 2616：超文本传输�
 |===
 
 
+[[updates-to-s3-rest-api-support]]
+[[updates-to-rest-api-support]]
 == 对 S3 REST API 支持的更新
 
 [cols="1a,4a"]

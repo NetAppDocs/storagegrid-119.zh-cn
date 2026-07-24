@@ -18,6 +18,7 @@ CAUTION: FabricPool不了解StorageGRID ILM 规则或策略。如果StorageGRID 
 
 
 
+[[guidelines-for-using-ilm-with-fabricpool]]
 == ILM 与FabricPool结合使用的指南
 
 当您使用FabricPool设置向导时，该向导会自动为您创建的每个 S3 存储桶创建一个新的 ILM 规则，并将该规则添加到非活动策略中。系统会提示您激活该策略。自动创建的规则遵循推荐的最佳实践：它在单个站点使用 2+1 擦除编码。

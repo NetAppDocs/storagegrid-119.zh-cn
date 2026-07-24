@@ -22,6 +22,7 @@ summary: '您可以添加、更新或删除网络时间协议 (NTP) 服务器，
 
 
 
+[[how-storagegrid-uses-ntp]]
 == StorageGRID如何使用 NTP
 
 StorageGRID系统使用网络时间协议 (NTP) 来同步网格中所有网格节点之间的时间。
@@ -32,6 +33,7 @@ StorageGRID系统使用网络时间协议 (NTP) 来同步网格中所有网格�
 
 
 
+[[ntp-server-guidelines]]
 == NTP 服务器指南
 
 请遵循以下准则来防止出现时序问题：
@@ -46,6 +48,7 @@ NOTE: 为生产级StorageGRID安装指定外部 NTP 源时，请勿在早于 Win
 
 
 
+[[configure-ntp-servers]]
 == 配置 NTP 服务器
 
 按照以下步骤添加、更新或删除 NTP 服务器。
@@ -68,6 +71,7 @@ NOTE: 如果在保存新的 NTP 服务器后所有 NTP 服务器均未通过连�
 
 
 
+[[resolve-ntp-server-issues]]
 == 解决 NTP 服务器问题
 
 如果您在安装期间最初指定的 NTP 服务器的稳定性或可用性方面遇到问题，则可以通过添加其他服务器或更新或删除现有服务器来更新StorageGRID系统使用的外部 NTP 源列表。

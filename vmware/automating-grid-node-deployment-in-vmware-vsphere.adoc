@@ -15,6 +15,7 @@ summary: 您可以使用 VMware OVF Tool 来自动部署网格节点。您还可
 
 
 
+[[automate-grid-node-deployment]]
 == 自动化网格节点部署
 
 使用 VMware OVF Tool 自动部署网格节点。
@@ -81,6 +82,7 @@ NOTE: 如果您正在部署到 vApp，虚拟机将不会第一次自动启动，
 |===
 
 
+[[define-the-configuration-file-for-your-deployment]]
 === 定义部署的配置文件
 
 您可以在配置文件中指定部署StorageGRID虚拟网格节点所需的信息，该文件由 `deploy-vsphere-ovftool.sh`Bash 脚本。您可以修改示例配置文件，这样就不必从头开始创建文件。
@@ -97,6 +99,7 @@ NOTE: 如果您正在部署到 vApp，虚拟机将不会第一次自动启动，
 
 
 
+[[configuration-file-settings]]
 === 配置文件设置
 
 这 `deploy-vsphere-ovftool.ini`配置文件包含部署虚拟网格节点所需的设置。
@@ -514,6 +517,7 @@ NOTE: 对于管理节点，INSTANCES 必须始终等于 2。
 
 
 
+[[run-the-bash-script]]
 == 运行 Bash 脚本
 
 您可以使用 `deploy-vsphere-ovftool.sh`您修改的 Bash 脚本和 deploy-vsphere-ovftool.ini 配置文件，用于自动部署 VMware vSphere 中的StorageGRID节点。
@@ -581,6 +585,7 @@ Deployment Summary
 ----
 
 
+[[automate-the-configuration-of-storagegrid]]
 == 自动配置StorageGRID
 
 部署网格节点后，您可以自动化StorageGRID系统的配置。

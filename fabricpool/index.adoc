@@ -22,6 +22,7 @@ summary: 如果您使用NetApp ONTAP软件，则可以使用NetApp FabricPool将
 
 
 
+[[quick-start-for-configuring-storagegrid-for-fabricpool]]
 == 为FabricPool配置StorageGRID 的快速入门
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["一个"]规划您的配置
@@ -69,6 +70,7 @@ https://docs.netapp.com/us-en/ontap/fabricpool/index.html["FabricPool的ONTAP文
 
 
 
+[[what-is-fabricpool]]
 == 什么是FabricPool？
 
 FabricPool是一种ONTAP混合存储解决方案，它使用高性能闪存聚合作为性能层，使用对象存储作为云层。使用支持FabricPool 的聚合可以帮助您降低存储成本，而不会影响性能、效率或保护。
@@ -79,12 +81,14 @@ FabricPool将云层（外部对象存储，例如StorageGRID）与本地层（ O
 
 
 
+[[what-is-storagegrid]]
 == 什么是StorageGRID？
 
 NetApp StorageGRID是一种将数据作为对象进行管理的存储架构，与文件或块存储等其他存储架构不同。对象保存在单个容器（例如存储桶）内，并且不会作为文件嵌套在其他目录内的目录中。虽然对象存储通常提供的性能低于文件或块存储，但它的可扩展性明显更强。  StorageGRID桶可以容纳数 PB 的数据和数十亿个对象。
 
 
 
+[[why-use-storagegrid-as-a-fabricpool-cloud-tier]]
 == 为什么使用StorageGRID作为FabricPool云层？
 
 FabricPool可以将ONTAP数据分层到多个对象存储提供商，包括StorageGRID。与可能在存储桶或容器级别设置每秒支持的最大输入/输出操作数 (IOPS) 的公共云不同， StorageGRID性能会随着系统中的节点数量而扩展。使用StorageGRID作为FabricPool云层，您可以将冷数据保存在自己的私有云中，以实现最高性能并完全控制您的数据。

@@ -24,6 +24,7 @@ summary: 高可用性（HA）组为 S3 客户端提供高可用性数据连接�
 
 
 
+[[how-do-you-create-an-ha-group]]
 == 如何创建 HA 组？
 
 . 您为一个或多个管理节点或网关节点选择一个网络接口。您可以使用网格网络（eth0）接口、客户端网络（eth2）接口、VLAN 接口或已添加到节点的访问接口。
@@ -40,6 +41,7 @@ NOTE: 如果接口具有 DHCP 分配的 IP 地址，则无法将其添加到 HA 
 
 
 
+[[what-is-the-active-interface]]
 == 活动接口是什么？
 
 在正常运行期间，HA 组的所有 VIP 地址都添加到主接口，即优先级顺序中的第一个接口。只要主接口保持可用，当客户端连接到该组的任何 VIP 地址时就会使用它。也就是说，在正常运行期间，主接口是该组的“活动”接口。
@@ -48,6 +50,7 @@ NOTE: 如果接口具有 DHCP 分配的 IP 地址，则无法将其添加到 HA 
 
 
 
+[[view-the-current-ha-group-status-of-a-node]]
 == 查看节点当前HA组状态
 
 要查看某个节点是否已分配给 HA 组并确定其当前状态，请选择 *NODES* > *_node_*。
@@ -72,6 +75,7 @@ image::../media/ha_group_primary_interface.png[HA 组主接口]
 
 
 
+[[what-happens-when-the-active-interface-fails]]
 == 当活动接口发生故障时会发生什么？
 
 当前托管 VIP 地址的接口是活动接口。如果 HA 组包含多个接口并且活动接口出现故障，则 VIP 地址将按优先级顺序移动到第一个可用的备用接口。如果该接口出现故障，VIP 地址将移动到下一个可用的备份接口，依此类推。

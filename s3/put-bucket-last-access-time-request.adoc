@@ -28,6 +28,7 @@ NOTE: 从StorageGRID版本 10.3 开始，所有新存储桶的上次访问时间
 
 
 
+[[request-examples]]
 == 请求示例
 
 此示例启用存储桶的最后访问时间。

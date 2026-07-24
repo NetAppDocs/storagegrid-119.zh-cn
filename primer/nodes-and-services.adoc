@@ -15,6 +15,7 @@ StorageGRID系统的基本构建块是网格节点。节点包含服务，服务
 
 
 
+[[types-of-grid-nodes]]
 == 网格节点的类型
 
 StorageGRID系统使用四种类型的网格节点：
@@ -43,12 +44,14 @@ StorageGRID系统使用四种类型的网格节点：
 
 
 
+[[hardware-and-software-nodes]]
 == 硬件和软件节点
 
 StorageGRID节点可以部署为StorageGRID设备节点或基于软件的节点。
 
 
 
+[[storagegrid-appliance-nodes]]
 === StorageGRID设备节点
 
 StorageGRID硬件设备专为在StorageGRID系统中使用而设计。一些设备可以用作存储节点。其他设备可用作管理节点或网关节点。您可以将设备节点与基于软件的节点结合起来，或者部署完全工程化的全设备网格，这些网格不依赖于外部虚拟机管理程序、存储或计算硬件。
@@ -61,6 +64,7 @@ StorageGRID硬件设备专为在StorageGRID系统中使用而设计。一些设�
 
 
 
+[[software-based-nodes]]
 === 基于软件的节点
 
 基于软件的网格节点可以部署为 VMware 虚拟机或 Linux 主机上的容器引擎内。
@@ -76,6 +80,7 @@ StorageGRID硬件设备专为在StorageGRID系统中使用而设计。一些设�
 
 
 
+[[storagegrid-services]]
 == StorageGRID服务
 
 以下是StorageGRID服务的完整列表。

@@ -15,6 +15,7 @@ summary: 了解您的StorageGRID系统在升级期间将受到怎样的影响。
 
 
 
+[[storagegrid-upgrades-are-non-disruptive]]
 == StorageGRID升级不会造成中断
 
 StorageGRID系统可以在整个升级过程中从客户端应用程序提取和检索数据。如果您批准升级所有相同类型的节点（例如，存储节点），则会一次关闭一个节点，因此不会出现所有网格节点或某种类型的所有网格节点都不可用的情况。
@@ -29,6 +30,7 @@ StorageGRID系统可以在整个升级过程中从客户端应用程序提取和
 
 
 
+[[client-applications-might-experience-short-term-disruptions]]
 == 客户端应用程序可能会遭遇短期中断
 
 StorageGRID系统可以在整个升级过程中从客户端应用程序提取和检索数据；但是，如果升级需要重新启动这些节点上的服务，则客户端与各个网关节点或存储节点的连接可能会暂时中断。升级过程完成后，连接将恢复，并且各个节点上的服务将恢复。
@@ -40,6 +42,7 @@ NOTE: 您可以使用多个网关和高可用性 (HA) 组在升级过程中提�
 
 
 
+[[appliance-firmware-is-upgraded]]
 == 设备固件已升级
 
 在StorageGRID 11.9 升级期间：
@@ -52,6 +55,7 @@ NOTE: 您可以使用多个网关和高可用性 (HA) 组在升级过程中提�
 
 
 
+[[ilm-policies-are-handled-differently-according-to-their-status]]
 == ILM 策略根据其状态进行不同的处理
 
 * 升级后，有效策略将保持不变。
@@ -61,6 +65,7 @@ NOTE: 您可以使用多个网关和高可用性 (HA) 组在升级过程中提�
 
 
 
+[[alerts-might-be-triggered]]
 == 可能会触发警报
 
 当服务启动和停止时，以及当StorageGRID系统作为混合版本环境运行时（一些网格节点运行早期版本，而其他网格节点已升级到更高版本），可能会触发警报。升级完成后可能会触发其他警报。
@@ -73,12 +78,14 @@ NOTE: 您可以使用多个网关和高可用性 (HA) 组在升级过程中提�
 
 
 
+[[many-snmp-notifications-are-generated]]
 == 生成许多 SNMP 通知
 
 请注意，升级期间停止并重新启动网格节点时可能会生成大量 SNMP 通知。为避免过多的通知，请在开始升级之前清除*启用 SNMP 代理通知*复选框（*配置* > *监控* > *SNMP 代理*）以禁用 SNMP 通知。然后，升级完成后重新启用通知。
 
 
 
+[[configuration-changes-are-restricted]]
 == 配置更改受到限制
 
 
@@ -106,6 +113,7 @@ NOTE: 如果您需要在升级期间恢复节点，请联系技术支持。
 
 
 
+[[you-cant-view-bucket-details-or-manage-buckets-from-the-tenant-manager]]
 == 您无法从租户管理器查看存储桶详细信息或管理存储桶
 
 在升级到StorageGRID 11.9 期间（即系统作为混合版本环境运行时），您无法使用租户管理器查看存储桶详细信息或管理存储桶。租户管理器中的“存储桶”页面上出现以下错误之一：

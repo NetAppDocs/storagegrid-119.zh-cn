@@ -69,6 +69,7 @@ S3 客户端访问link:../admin/manage-s3-select-for-tenant-accounts.html["S3 �
 |===
 
 
+[[limitations-of-using-ha-groups-with-grid-manager-or-tenant-manager]]
 == 使用 HA 组与 Grid Manager 或 Tenant Manager 的限制
 
 如果网格管理器或租户管理器服务出现故障，则不会触发 HA 组故障转移。

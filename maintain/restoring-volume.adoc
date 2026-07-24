@@ -82,6 +82,7 @@ NOTE: 卷恢复取决于存储对象副本的资源的可用性。卷恢复的�
 
 
 
+[[enable-auto-restore-modeenable-automatic-restore-mode]]
 == [[enable-auto-restore-mode]]启用自动恢复模式
 
 启用自动还原模式后，当卷准备好还原时，卷还原将自动开始。
@@ -108,6 +109,7 @@ NOTE: 卷恢复取决于存储对象副本的资源的可用性。卷恢复的�
 
 
 
+[[manually-restoremanually-restore-failed-volume-or-node]]
 == [[manually-restore]]手动恢复失败的卷或节点
 
 按照以下步骤恢复故障的卷或节点。
@@ -137,6 +139,7 @@ NOTE: 卷恢复取决于存储对象副本的资源的可用性。卷恢复的�
 
 
 
+[[view-restoration-progressview-restoration-progress]]
 == [[view-restoration-progress]]查看恢复进度
 
 *恢复进度*选项卡显示卷恢复过程的状态以及正在恢复的节点的卷的信息。
@@ -166,6 +169,7 @@ NOTE: 复制数据的恢复取决于存储复制副本的资源的可用性。�
 
 
 
+[[view-restoration-historyview-restoration-history]]
 == [[view-restoration-history]]查看恢复历史记录
 
 *恢复历史*选项卡显示有关所有已成功完成的卷恢复的信息。

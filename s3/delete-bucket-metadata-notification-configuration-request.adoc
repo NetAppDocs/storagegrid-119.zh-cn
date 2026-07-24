@@ -17,6 +17,7 @@ DELETE Bucket 元数据通知配置请求允许您通过删除配置 XML 来禁�
 
 
 
+[[request-example]]
 == 请求示例
 
 此示例显示禁用存储桶的搜索集成服务。

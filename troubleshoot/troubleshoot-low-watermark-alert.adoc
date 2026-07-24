@@ -23,6 +23,7 @@ summary: 如果您对存储卷水印使用自定义值，则可能需要解决�
 
 
 
+[[understand-the-alert]]
 == 了解警报
 
 如果您对存储卷水印使用自定义值，则可能会针对一个或多个存储节点触发*低只读水印覆盖*警报。
@@ -66,6 +67,7 @@ summary: 如果您对存储卷水印使用自定义值，则可能需要解决�
 
 
 
+[[resolve-the-alert]]
 == 解决警报
 
 如果触发了一个或多个*低只读水印覆盖*警报，请按照以下步骤操作。如果您当前使用自定义水印设置，并且即使没有触发警报也想开始使用优化设置，您也可以使用这些说明。
@@ -81,6 +83,7 @@ summary: 如果您对存储卷水印使用自定义值，则可能需要解决�
 
 
 
+[[assess-object-data-usage-for-entire-grid]]
 === 评估整个电网的对象数据使用情况
 
 .步骤
@@ -100,6 +103,7 @@ image::../media/nodes_page_object_data_used_with_alert.png[节点页面显示用
 
 
 
+[[view-optimized-watermarksview-optimized-storage-watermarks]]
 === [[view-optimized-watermarks]]查看优化的存储水印
 
 StorageGRID使用两个 Prometheus 指标来显示它为存储卷软只读水印计算的优化值。您可以查看网格中每个存储节点的最小和最大优化值。
@@ -126,6 +130,7 @@ StorageGRID使用两个 Prometheus 指标来显示它为存储卷软只读水印
 
 
 
+[[determine-optimized-watermarksdetermine-if-you-can-use-optimized-watermarks]]
 === [[determine-optimized-watermarks]]确定是否可以使用优化水印
 
 .步骤
@@ -150,6 +155,7 @@ NOTE: 相同的自定义水印值适用于每个存储节点上的每个存储�
 
 
 
+[[use-optimized-watermarksuse-optimized-watermarks]]
 === [[use-optimized-watermarks]]使用优化水印
 
 .步骤

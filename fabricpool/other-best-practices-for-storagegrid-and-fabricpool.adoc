@@ -15,6 +15,7 @@ summary: 配置StorageGRID系统以用于FabricPool时，您可能需要更改�
 
 
 
+[[audit-message-and-log-destinations]]
 == 审计消息和日志目的地
 
 FabricPool工作负载通常具有较高的读取操作率，这会生成大量审计消息。
@@ -25,24 +26,28 @@ FabricPool工作负载通常具有较高的读取操作率，这会生成大量�
 
 
 
+[[object-encryption]]
 == 对象加密
 
 配置StorageGRID时，您可以选择启用link:../admin/changing-network-options-object-encryption.html["存储对象加密的全局选项"]如果其他StorageGRID客户端需要数据加密。从FabricPool分层到StorageGRID 的数据已经加密，因此不需要启用StorageGRID设置。客户端加密密钥归ONTAP拥有。
 
 
 
+[[object-compression]]
 == 对象压缩
 
 配置StorageGRID时，请勿启用link:../admin/configuring-stored-object-compression.html["压缩存储对象的全局选项"]。从FabricPool分层到StorageGRID 的数据已经被压缩。使用StorageGRID选项不会进一步减小对象的大小。
 
 
 
+[[bucket-consistency]]
 == 桶一致性
 
 对于FabricPool存储桶，建议的存储桶一致性为 *Read-after-new-write*，这是新存储桶的默认一致性。不要编辑FabricPool存储桶以使用 *Available* 或 *Strong-site*。
 
 
 
+[[fabricpool-tiering]]
 == FabricPool分层
 
 如果StorageGRID节点使用从NetApp ONTAP系统分配的存储，请确认该卷未启用FabricPool分层策略。例如，如果StorageGRID节点在 VMware 主机上运行，​​请确保支持StorageGRID节点数据存储的卷未启用FabricPool分层策略。禁用与StorageGRID节点一起使用的卷的FabricPool分层可简化故障排除和存储操作。

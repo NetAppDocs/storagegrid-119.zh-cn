@@ -15,6 +15,7 @@ summary: 使用身份联合可以更快地设置租户组和用户，并允许�
 
 
 
+[[configure-identity-federation-for-tenant-manager]]
 == 为租户管理器配置身份联合
 
 如果您希望在另一个系统（例如 Active Directory、Azure Active Directory (Azure AD)、OpenLDAP 或 Oracle Directory Server）中管理租户组和用户，则可以为租户管理器配置身份联合。
@@ -38,6 +39,7 @@ image::../media/tenant_shares_identity_federation.png[租户共享身份联盟]
 
 
 
+[[enter-configuration]]
 === 输入配置
 
 配置身份联合时，您需要提供StorageGRID连接到 LDAP 服务所需的值。
@@ -141,6 +143,7 @@ NOTE: 如果您的 Active Directory 服务器强制执行 LDAP 签名，则不�
 
 
 
+[[test-the-connection-and-save-the-configuration]]
 === 测试连接并保存配置
 
 输入所有值后，必须先测试连接，然后才能保存配置。如果您提供了 LDAP 服务器的连接设置和绑定用户名格式， StorageGRID会验证该设置。
@@ -169,6 +172,7 @@ image::../media/identity_federation_test_connection.png[身份联合提示验证
 
 
 
+[[force-synchronization-with-identity-source]]
 == 强制与身份源同步
 
 StorageGRID系统定期从身份源同步联合组和用户。如果您想尽快启用或限制用户权限，您可以强制启动同步。
@@ -187,6 +191,7 @@ NOTE: 如果从身份源同步联合组和用户时出现问题，则会触发*�
 
 
 
+[[disable-identity-federation]]
 == 禁用身份联合
 
 您可以暂时或永久禁用群组和用户的身份联合。当身份联合被禁用时， StorageGRID和身份源之间就没有通信。但是，您配置的任何设置都会保留，以便您将来可以轻松地重新启用身份联合。
@@ -207,6 +212,7 @@ NOTE: 如果从身份源同步联合组和用户时出现问题，则会触发*�
 
 
 
+[[guidelines-for-configuring-openldap-server]]
 == OpenLDAP 服务器配置指南
 
 如果您想使用 OpenLDAP 服务器进行身份联合，则必须在 OpenLDAP 服务器上配置特定设置。
@@ -216,12 +222,14 @@ CAUTION: 对于非 ActiveDirectory 或 Azure 的身份源， StorageGRID不会�
 
 
 
+[[memberof-and-refint-overlays]]
 === Memberof 和 refint 覆盖
 
 应该启用 memberof 和 refint 覆盖。有关详细信息，请参阅http://www.openldap.org/doc/admin24/index.html["OpenLDAP 文档：版本 2.4 管理员指南"^]。
 
 
 
+[[indexing]]
 === 索引
 
 您必须使用指定的索引关键字配置以下 OpenLDAP 属性：

@@ -17,6 +17,7 @@ summary: 根据您为使StorageGRID节点在替换主机上运行而采取的具
 
 
 
+[[corrective-actions-and-next-steps]]
 == 纠正措施和后续步骤
 
 在节点更换期间，您可能需要采取以下纠正措施之一：

@@ -15,6 +15,7 @@ StorageGRID系统的对象元数据容量控制该系统上可存储的最大对
 
 
 
+[[what-is-object-metadata]]
 == 什么是对象元数据？
 
 对象元数据是描述对象的任何信息。  StorageGRID使用对象元数据来跟踪网格中所有对象的位置并管理每个对象的生命周期。
@@ -32,6 +33,7 @@ StorageGRID系统的对象元数据容量控制该系统上可存储的最大对
 
 
 
+[[how-is-object-metadata-stored]]
 == 对象元数据如何存储？
 
 StorageGRID在 Cassandra 数据库中维护对象元数据，该数据库独立于对象数据进行存储。为了提供冗余并保护对象元数据免于丢失， StorageGRID在每个站点存储系统中所有对象的元数据的三个副本。
@@ -42,6 +44,7 @@ image::../media/metadata_space_across_sites.png[跨站点的元数据空间]
 
 
 
+[[where-is-object-metadata-stored]]
 == 对象元数据存储在哪里？
 
 该图表示单个存储节点的存储量。
@@ -54,6 +57,7 @@ image::../media/metadata_space_storage_node.png[元数据空间存储节点]
 
 
 
+[[metadata-reserved-space-setting]]
 == 元数据保留空间设置
 
 _元数据保留空间_是系统范围的设置，表示每个存储节点的卷 0 上为元数据保留的空间量。如表所示，此设置的默认值基于：
@@ -111,6 +115,7 @@ _元数据保留空间_是系统范围的设置，表示每个存储节点的卷
 |===
 
 
+[[view-metadata-reserved-space-setting]]
 === 查看元数据保留空间设置
 
 按照以下步骤查看StorageGRID系统的元数据保留空间设置。
@@ -126,6 +131,7 @@ _元数据保留空间_是系统范围的设置，表示每个存储节点的卷
 
 
 
+[[actual-reserved-space-for-metadata]]
 == 元数据实际保留空间
 
 与系统范围的元数据保留空间设置相反，对象元数据的_实际保留空间_是针对每个存储节点确定的。对于任何给定的存储节点，元数据的实际保留空间取决于节点的卷 0 的大小和系统范围的元数据保留空间设置。
@@ -156,6 +162,7 @@ _元数据保留空间_是系统范围的设置，表示每个存储节点的卷
 |===
 
 
+[[view-actual-reserved-space-for-metadata]]
 === 查看元数据实际预留空间
 
 按照以下步骤查看特定存储节点上元数据的实际保留空间。
@@ -173,6 +180,7 @@ image::../media/storage_used_object_metadata_actual_reserved.png[已用存储 - 
 
 
 
+[[example-for-actual-reserved-metadata-space]]
 == 实际保留元数据空间的示例
 
 假设您使用 11.7 或更高版本安装新的StorageGRID系统。对于此示例，假设每个存储节点都有超过 128 GB 的 RAM，并且存储节点 1 (SN1) 的卷 0 为 6 TB。基于这些价值观：
@@ -183,6 +191,7 @@ image::../media/storage_used_object_metadata_actual_reserved.png[已用存储 - 
 
 
 
+[[allowed-metadata-space]]
 == 允许的元数据空间
 
 每个存储节点为元数据实际保留的空间细分为可用于对象元数据的空间（_允许的元数据空间_）和基本数据库操作（例如压缩和修复）以及未来硬件和软件升级所需的空间。允许的元数据空间决定了整体对象容量。
@@ -191,6 +200,7 @@ image::../media/metadata_allowed_space_volume_0.png[元数据允许空间卷 0]
 
 下表显示了StorageGRID如何根据节点的内存量和元数据的实际保留空间来计算不同存储节点的*允许的元数据空间*。
 
+[[table-allowed-space-for-metadata]]
 [cols="1a,1a,2a,2a"]
 |===
 
@@ -232,6 +242,7 @@ image::../media/metadata_allowed_space_volume_0.png[元数据允许空间卷 0]
 |===
 
 
+[[view-allowed-metadata-space]]
 === 查看允许的元数据空间
 
 按照以下步骤查看存储节点允许的元数据空间。
@@ -254,6 +265,7 @@ image::../media/storage_used_object_metadata_allowed.png[已用存储 - 对象�
 
 
 
+[[example-for-allowed-metadata-space]]
 == 允许的元数据空间示例
 
 假设您使用版本 11.6 安装StorageGRID系统。对于此示例，假设每个存储节点都有超过 128 GB 的 RAM，并且存储节点 1 (SN1) 的卷 0 为 6 TB。基于这些价值观：
@@ -265,6 +277,7 @@ image::../media/storage_used_object_metadata_allowed.png[已用存储 - 对象�
 
 
 
+[[how-storage-nodes-of-different-sizes-affect-object-capacity]]
 == 不同大小的存储节点如何影响对象容量
 
 如上所述， StorageGRID在每个站点的存储节点上均匀分布对象元数据。因此，如果站点包含不同大小的存储节点，则站点上最小的节点决定了站点的元数据容量。

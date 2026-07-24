@@ -15,6 +15,7 @@ summary: 您必须了解虚拟机托管的StorageGRID节点的存储和性能要
 
 
 
+[[performance-requirements]]
 == 性能要求
 
 操作系统卷和第一个存储卷的性能会显著影响系统的整体性能。确保这些在延迟、每秒输入/输出操作（IOPS）和吞吐量方面提供足够的磁盘性能。
@@ -23,6 +24,7 @@ summary: 您必须了解虚拟机托管的StorageGRID节点的存储和性能要
 
 
 
+[[requirements-for-virtual-machines-that-use-netapp-ontap-storage]]
 == 使用NetApp ONTAP存储的虚拟机的要求
 
 如果您将StorageGRID节点部署为虚拟机，并且存储从NetApp ONTAP系统分配，则您已确认该卷未启用FabricPool分层策略。例如，如果StorageGRID节点在 VMware 主机上作为虚拟机运行，请确保支持该节点数据存储的卷未启用FabricPool分层策略。禁用与StorageGRID节点一起使用的卷的FabricPool分层可简化故障排除和存储操作。
@@ -32,12 +34,14 @@ NOTE: 切勿使用FabricPool将与StorageGRID相关的任何数据分层回Stora
 
 
 
+[[number-of-virtual-machines-required]]
 == 所需虚拟机数量
 
 每个StorageGRID站点至少需要三个存储节点。
 
 
 
+[[storage-requirements-by-node-type]]
 == 按节点类型划分的存储要求
 
 在生产环境中， StorageGRID节点的虚拟机必须满足不同的要求，具体取决于节点的类型。
@@ -102,6 +106,7 @@ NOTE: 根据配置的审计级别、用户输入的大小（例如 S3 对象密�
 
 
 
+[[storage-requirements-for-storage-nodes]]
 == 存储节点的存储要求
 
 基于软件的存储节点可以有 1 到 16 个存储卷；建议使用 3 个或更多存储卷。每个存储卷应为 4 TB 或更大。

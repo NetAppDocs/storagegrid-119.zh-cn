@@ -15,6 +15,7 @@ summary: 摄取或保存操作包括客户端和StorageGRID系统之间定义的
 
 
 
+[[data-flow]]
 == 数据流
 
 当客户端将对象导入StorageGRID系统时，存储节点上的 LDR 服务会处理请求并将元数据和数据存储到磁盘。

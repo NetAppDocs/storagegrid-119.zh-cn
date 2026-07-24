@@ -15,6 +15,7 @@ StorageGRID系统支持一组有限的密码套件，用于与用于身份联合
 
 
 
+[[supported-versions-of-tls]]
 == 支持的 TLS 版本
 
 StorageGRID支持 TLS 1.2 和 TLS 1.3，用于连接用于身份联合和云存储池的外部系统。

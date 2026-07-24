@@ -17,6 +17,7 @@ summary: 帐户克隆是网格联合连接中StorageGRID系统之间的租户帐
 
 
 
+[[workflow-for-account-clone]]
 == 帐户克隆工作流程
 
 工作流程图显示了网格管理员和允许的租户将执行的设置帐户克隆的步骤。这些步骤在link:grid-federation-create-connection.html["电网联合连接已配置"]。
@@ -25,12 +26,14 @@ image::../media/grid-federation-account-clone-workflow.png[帐户克隆的工作
 
 
 
+[[grid-admin-workflow]]
 == 网格管理工作流程
 
 网格管理员执行的步骤取决于StorageGRID系统是否link:grid-federation-overview.html["电网联合连接"]使用单点登录（SSO）或身份联合。
 
 
 
+[[account-clone-ssoconfigure-sso-for-account-clone-optional]]
 === [[account-clone-sso]]配置帐户克隆的 SSO（可选）
 
 如果网格联合连接中的任一StorageGRID系统使用 SSO，则两个网格都必须使用 SSO。在创建网格联合的租户帐户之前，租户的源网格和目标网格的网格管理员必须执行以下步骤。
@@ -50,6 +53,7 @@ NOTE: 如果在创建租户之前两个网格上都不存在此管理组，则�
 
 
 
+[[account-clone-identity-federationconfigure-grid-level-identity-federation-for-account-clone-optional]]
 === [[account-clone-identity-federation]]为帐户克隆配置网格级别身份联合（可选）
 
 如果任一StorageGRID系统使用不带 SSO 的身份联合，则两个网格都必须使用身份联合。在创建网格联合的租户帐户之前，租户的源网格和目标网格的网格管理员必须执行以下步骤。
@@ -66,6 +70,7 @@ NOTE: 如果您将 Root 访问权限分配给两个网格上均不存在的联�
 
 
 
+[[create-permitted-s3-tenant-account]]
 === 创建允许的 S3 租户帐户
 
 在选择性地配置 SSO 或身份联合后，网格管理员执行以下步骤来确定哪些租户可以将存储桶对象复制到其他StorageGRID系统。
@@ -98,6 +103,7 @@ NOTE: 如果您将 Root 访问权限分配给两个网格上均不存在的联�
 
 
 
+[[permitted-tenant-account-workflow]]
 == 允许的租户帐户工作流程
 
 将具有 *使用网格联合连接* 权限的租户复制到目标网格后，允许的租户帐户可以执行以下步骤来克隆租户组、用户和 S3 访问密钥。

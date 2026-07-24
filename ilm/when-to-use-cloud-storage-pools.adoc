@@ -15,6 +15,7 @@ summary: 使用云存储池，您可以将数据备份或分层到外部位置�
 
 
 
+[[back-up-storagegrid-data-to-external-location]]
 == 将StorageGRID数据备份到外部位置
 
 您可以使用云存储池将StorageGRID对象备份到外部位置。
@@ -32,6 +33,7 @@ summary: 使用云存储池，您可以将数据备份或分层到外部位置�
 
 
 
+[[tier-data-from-storagegrid-to-external-location]]
 == 将数据从StorageGRID分层到外部位置
 
 您可以使用云存储池存储StorageGRID系统之外的对象。例如，假设您有大量需要保留的对象，但您预计很少访问这些对象。您可以使用云存储池将对象分层到成本较低的存储并释放StorageGRID中的空间。
@@ -45,6 +47,7 @@ summary: 使用云存储池，您可以将数据备份或分层到外部位置�
 
 
 
+[[maintain-multiple-cloud-endpoints]]
 == 维护多个云端点
 
 如果您想要将对象数据分层或备份到多个云，则可以配置多个云存储池端点。 ILM 规则中的过滤器允许您指定每个云存储池中存储的对象。例如，您可能希望将某些租户或存储桶中的对象存储在 Amazon S3 Glacier 中，并将其他租户或存储桶中的对象存储在 Azure Blob 存储中。或者，您可能希望在 Amazon S3 Glacier 和 Azure Blob 存储之间移动数据。

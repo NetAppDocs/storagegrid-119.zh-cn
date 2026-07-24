@@ -17,6 +17,7 @@ summary: 如果您正在执行扩展以添加存储节点，并且使用 ILM 规
 
 
 
+[[what-is-ec-rebalancing]]
 == 什么是 EC 再平衡？
 
 EC 重新平衡是存储节点扩展后可能需要的StorageGRID程序。该过程作为主管理节点的命令行脚本运行。当您运行 EC 重新平衡程序时， StorageGRID会在站点的现有存储节点和新添加的存储节点之间重新分配擦除编码片段。
@@ -52,6 +53,7 @@ image::../media/used_space_with_larger_node.png[扩展前已用空间]
 
 
 
+[[when-to-rebalance-erasure-coded-data]]
 == 何时重新平衡纠删码数据
 
 请考虑以下情形：
@@ -66,6 +68,7 @@ image::../media/used_space_before_expansion.png[扩展前已用空间]
 
 
 
+[[rebalance-is-not-required-if-you-add-enough-nodes]]
 === 如果添加足够的节点，则不需要重新平衡
 
 为了了解何时不需要 EC 重新平衡，假设您添加了三个（或更多）新的存储节点。在这种情况下，您不需要执行 EC 重新平衡。原始存储节点将保持满载状态，但新对象现在将使用三个新节点进行 2+1 擦除编码——两个数据片段和一个奇偶校验片段可以分别存储在不同的节点上。
@@ -77,6 +80,7 @@ CAUTION: 虽然在这种情况下您可以运行 EC 重新平衡程序，但移�
 
 
 
+[[rebalance-is-required-if-you-cant-add-enough-nodes]]
 === 如果无法添加足够的节点，则需要重新平衡
 
 为了了解何时需要 EC 重新平衡，假设您只能添加两个存储节点，而不是三个。由于 2+1 方案需要至少三个存储节点才有可用空间，因此空节点不能用于新的擦除编码数据。
@@ -89,6 +93,7 @@ image::../media/used_space_after_ec_rebalance.png[EC 重新平衡后的已用空
 
 
 
+[[recommendations-for-ec-rebalancing]]
 == EC 再平衡建议
 
 如果以下所有陈述都成立，NetApp需要重新平衡 EC：
@@ -103,6 +108,7 @@ image::../media/used_space_after_ec_rebalance.png[EC 重新平衡后的已用空
 
 
 
+[[how-ec-rebalance-procedure-interacts-with-other-maintenance-tasks]]
 == EC 重新平衡过程如何与其他维护任务交互
 
 您不能在运行 EC 重新平衡程序的同时执行某些维护程序。
@@ -180,6 +186,7 @@ EC数据修复工作
 |===
 
 
+[[how-ec-rebalance-procedure-interacts-with-ilm]]
 == EC 重新平衡程序如何与 ILM 交互
 
 在 EC 重新平衡过程运行时，避免进行可能改变现有擦除编码对象位置的 ILM 更改。例如，不要开始使用具有不同擦除编码配置文件的 ILM 规则。如果您需要进行此类 ILM 更改，则应终止 EC 重新平衡程序。

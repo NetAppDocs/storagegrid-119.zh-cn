@@ -22,6 +22,7 @@ summary: 您可以通过导入联合组或创建本地组来管理 S3 用户组�
 
 
 
+[[access-the-create-group-wizard]]
 == 访问创建组向导
 
 第一步，访问创建组向导。
@@ -37,6 +38,7 @@ image::../media/grid-federation-tenant-group-banner.png[租户源网格的“组
 
 
 
+[[choose-a-group-type]]
 == 选择群组类型
 
 您可以创建本地组或导入联合组。
@@ -61,6 +63,7 @@ NOTE: 如果您的租户帐户具有*使用网格联合连接*权限，则当目
 
 
 
+[[manage-group-permissions]]
 == 管理群组权限
 
 组权限控制用户可以在租户管理器和租户管理 API 中执行哪些任务。
@@ -85,6 +88,7 @@ NOTE: 如果用户属于多个组，并且任何组设置为只读，则该用�
 
 
 
+[[set-s3-group-policy]]
 == 设置 S3 组策略
 
 组策略决定用户将拥有哪些 S3 访问权限。
@@ -142,6 +146,7 @@ NOTE: 如果用户属于多个组，并且任何组设置为只读，则该用�
 
 
 
+[[add-users-local-groups-only]]
 == 添加用户（仅限本地组）
 
 您可以保存组而不添加用户，也可以选择添加任何已存在的本地用户。

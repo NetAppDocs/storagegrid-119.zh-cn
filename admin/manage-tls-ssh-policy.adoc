@@ -25,6 +25,7 @@ NOTE: 某些StorageGRID服务尚未更新以使用这些策略中的密码。
 
 
 
+[[select-a-security-policy]]
 == 选择安全策略
 
 .步骤
@@ -87,6 +88,7 @@ FIPS 严格
 
 
 
+[[create-a-custom-security-policy]]
 == 创建自定义安全策略
 
 如果您需要应用自己的密码，您可以创建自定义策略。
@@ -108,6 +110,8 @@ image::../media/securitysettings-custom-security-policy-copy.png[复制现有策
 
 
 
+[[temporarily-revert-to-the-default-security-policy]]
+[[temporarily-revert-to-default-security-policy]]
 == 暂时恢复默认安全策略
 
 如果您配置了自定义安全策略，并且配置的 TLS 策略与link:global-certificate-types.html["配置服务器证书"]。

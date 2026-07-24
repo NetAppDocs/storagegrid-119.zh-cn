@@ -15,6 +15,7 @@ summary: '启用单点登录 (SSO) 后，用户只有在其凭据使用贵组织
 
 
 
+[[how-single-sign-on-works]]
 == 单点登录的工作原理
 
 StorageGRID系统支持使用安全断言标记语言 2.0 (SAML 2.0) 标准的单点登录 (SSO)。
@@ -23,6 +24,7 @@ StorageGRID系统支持使用安全断言标记语言 2.0 (SAML 2.0) 标准的�
 
 
 
+[[sign-in-when-sso-is-enabled]]
 === 启用 SSO 后Sign in
 
 当启用 SSO 并且您登录到StorageGRID时，您将被重定向到您组织的 SSO 页面以验证您的凭据。
@@ -82,6 +84,7 @@ NOTE: 如果服务帐户无法访问，您仍然可以登录，只要您是属�
 
 
 
+[[sign-out-when-sso-is-enabled]]
 === 启用 SSO 后退出
 
 当为StorageGRID启用 SSO 时，您注销时发生的情况取决于您登录的内容以及您从哪里注销。

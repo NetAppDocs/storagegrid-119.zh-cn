@@ -19,6 +19,7 @@ summary: 如果创建或编辑租户以使用网格联合连接，则该租户�
 
 
 
+[[tenant-workflow-for-account-clone]]
 == 帐户克隆的租户工作流程
 
 如果您的租户帐户具有 *使用网格联合连接* 权限，请查看工作流程图以了解克隆组、用户和 S3 访问密钥将执行的步骤。
@@ -57,12 +58,14 @@ Sign in源网格（最初创建租户的网格）上的租户帐户。
 
 
 
+[[how-are-groups-users-and-s3-access-keys-cloned]]
 == 如何克隆组、用户和 S3 访问密钥？
 
 查看本节以了解如何在租户源网格和租户目标网格之间克隆组、用户和 S3 访问密钥。
 
 
 
+[[local-groups-created-on-source-grid-are-cloned]]
 === 克隆在源网格上创建的本地组
 
 创建租户帐户并将其复制到目标网格后， StorageGRID会自动将您添加到租户源网格的任何本地组克隆到租户的目标网格。
@@ -76,6 +79,7 @@ NOTE: 将组克隆到目标网格时，不会包括在源网格上创建本地�
 
 
 
+[[local-users-created-on-source-grid-are-cloned]]
 === 克隆在源网格上创建的本地用户
 
 当您在源网格上创建新的本地用户时， StorageGRID会自动将该用户克隆到目标网格。原始用户及其克隆用户具有相同的全名、用户名和*拒绝访问*设置。两个用户也属于同一组。有关说明，请参阅link:managing-local-users.html["管理本地用户"]。
@@ -86,6 +90,7 @@ image::../media/grid-federation-local-user-clone.png[该图显示了本地用户
 
 
 
+[[federated-groups-created-on-source-grid-are-cloned]]
 === 克隆在源网格上创建的联合组
 
 假设使用帐户克隆的要求link:../admin/grid-federation-what-is-account-clone.html#account-clone-sso["单点登录"]和link:../admin/grid-federation-what-is-account-clone.html#account-clone-identity-federation["身份联合"]已满足，您为源网格上的租户创建（导入）的联合组将自动克隆到目标网格上的租户。
@@ -98,6 +103,7 @@ image::../media/grid-federation-federated-group-clone.png[该图显示了联邦�
 
 
 
+[[s3-access-keys-can-be-manually-cloned]]
 === S3 访问密钥可以手动克隆
 
 StorageGRID不会自动克隆 S3 访问密钥，因为每个网格上都有不同的密钥可以提高安全性。
@@ -115,6 +121,7 @@ NOTE: 当您为联合用户克隆 S3 访问密钥时，用户和 S3 访问密钥
 
 
 
+[[groups-and-users-added-to-destination-grid-arent-cloned]]
 === 添加到目标网格的组和用户未被克隆
 
 克隆仅从租户的源网格发生到租户的目标网格。如果您在租户的目标网格上创建或导入组和用户， StorageGRID将不会将这些项目克隆回租户的源网格。
@@ -123,6 +130,7 @@ image::../media/grid-federation-account-not-cloned.png[该图显示目标网格�
 
 
 
+[[edited-or-deleted-groups-users-and-access-keys-arent-cloned]]
 === 已编辑或删除的组、用户和访问密钥不会被克隆
 
 仅当您创建新的组和用户时才会发生克隆。

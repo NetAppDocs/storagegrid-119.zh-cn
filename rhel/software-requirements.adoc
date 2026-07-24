@@ -24,6 +24,7 @@ NOTE: 不再支持将 Docker 作为纯软件部署的容器引擎。Docker 将�
 
 
 
+[[python-versions-tested]]
 == 测试的 Python 版本
 
 * 3.5.2-2
@@ -41,6 +42,7 @@ NOTE: 不再支持将 Docker 作为纯软件部署的容器引擎。Docker 将�
 
 
 
+[[podman-versions-tested]]
 == 测试的 Podman 版本
 
 * 3.2.3-0
@@ -54,6 +56,7 @@ NOTE: 不再支持将 Docker 作为纯软件部署的容器引擎。Docker 将�
 
 
 
+[[docker-versions-tested]]
 == 测试的 Docker 版本
 
 

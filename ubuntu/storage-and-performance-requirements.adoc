@@ -24,6 +24,7 @@ StorageGRID节点需要三种逻辑类别的存储：
 
 
 
+[[performance-requirements]]
 == 性能要求
 
 用于容器池、系统数据和对象元数据的卷的性能会显著影响系统的整体性能。您应该对这些卷使用性能层（10K SAS 或 SSD）存储，以确保在延迟、每秒输入/输出操作数 (IOPS) 和吞吐量方面具有足够的磁盘性能。您可以使用容量层（NL-SAS/SATA）存储来持久存储对象数据。
@@ -32,6 +33,7 @@ StorageGRID节点需要三种逻辑类别的存储：
 
 
 
+[[requirements-for-hosts-that-use-netapp-ontap-storage]]
 == 使用NetApp ONTAP存储的主机的要求
 
 如果StorageGRID节点使用从NetApp ONTAP系统分配的存储，请确认该卷未启用FabricPool分层策略。禁用与StorageGRID节点一起使用的卷的FabricPool分层可简化故障排除和存储操作。
@@ -41,6 +43,7 @@ NOTE: 切勿使用FabricPool将与StorageGRID相关的任何数据分层回Stora
 
 
 
+[[number-of-hosts-required]]
 == 所需主机数量
 
 每个StorageGRID站点至少需要三个存储节点。
@@ -52,6 +55,7 @@ NOTE: 在生产部署中，不要在单个物理或虚拟主机上运行多个�
 
 
 
+[[number-of-storage-volumes-for-each-host]]
 == 每个主机的存储卷数量
 
 下表显示了每个主机所需的存储卷 (LUN) 数量以及每个 LUN 所需的最小大小（取决于将在该主机上部署哪些节点）。
@@ -140,6 +144,7 @@ NOTE: 根据配置的审计级别、用户输入的大小（例如 S3 对象密�
 
 
 
+[[minimum-storage-space-for-a-host]]
 == 主机的最小存储空间
 
 下表显示了每种类型的节点所需的最小存储空间。您可以使用此表来确定必须为每个存储类别中的主机提供的最小存储量，具体取决于将在该主机上部署哪些节点。
@@ -186,6 +191,7 @@ _不适用_
 |===
 
 
+[[example-calculating-the-storage-requirements-for-a-host]]
 == 示例：计算主机的存储需求
 
 假设您计划在同一主机上部署三个节点：一个存储节点、一个管理节点和一个网关节点。您应该向主机提供至少九个存储卷。您将需要至少 300 GB 的性能层存储用于节点容器，670 GB 的性能层存储用于系统数据和事务日志，以及 12 TB 的容量层存储用于对象数据。
@@ -287,6 +293,8 @@ Docker 存储池
 |===
 
 
+[[storage-requirements-for-storage-nodes]]
+[[storage_req_SN]]
 == 存储节点的存储要求
 
 基于软件的存储节点可以有 1 到 48 个存储卷；建议使用 3 个或更多存储卷。每个存储卷应为 4 TB 或更大。

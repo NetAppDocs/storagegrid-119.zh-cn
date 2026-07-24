@@ -15,12 +15,14 @@ summary: 您可以使用网格联合来克隆租户并在两个StorageGRID系统
 
 
 
+[[what-is-a-grid-federation-connection]]
 == 什么是电网联合连接？
 
 网格联合连接是两个StorageGRID系统中的管理节点和网关节点之间的双向、可信和安全的连接。
 
 
 
+[[workflow-for-grid-federation]]
 == 网格联合的工作流程
 
 工作流程图总结了在两个网格之间配置网格联合连接的步骤。
@@ -29,6 +31,7 @@ image::../media/grid-federation-workflow.png[电网联合连接工作流程]
 
 
 
+[[considerations-and-requirements-for-grid-federation-connections]]
 == 电网联合连接的注意事项和要求
 
 * 用于网格联合的网格必须运行相同的StorageGRID版本，或者它们之间主要版本差异不超过一个。
@@ -42,6 +45,7 @@ image::../media/grid-federation-workflow.png[电网联合连接工作流程]
 
 
 
+[[networking-and-ip-address-requirements]]
 === 网络和 IP 地址要求
 
 * 网格联合连接可以发生在网格网络、管理网络或客户端网络上。
@@ -53,6 +57,7 @@ image::../media/grid-federation-workflow.png[电网联合连接工作流程]
 
 
 
+[[use-fqdns-to-load-balance-the-connection]]
 === 使用 FQDN 对连接进行负载平衡
 
 对于生产环境，使用完全限定域名 (FQDN) 来标识连接中的每个网格。然后，创建适当的 DNS 条目，如下所示：
@@ -69,6 +74,7 @@ image::../media/grid-federation-workflow.png[电网联合连接工作流程]
 
 
 
+[[port-requirements]]
 === 端口要求
 
 创建电网联合连接时，您可以指定 23000 到 23999 之间的任何未使用的端口号。此连接中的两个电网将使用相同的端口。
@@ -77,6 +83,7 @@ image::../media/grid-federation-workflow.png[电网联合连接工作流程]
 
 
 
+[[certificate-requirements]]
 === 证书要求
 
 配置网格联合连接时， StorageGRID会自动生成四个 SSL 证书：

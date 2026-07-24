@@ -19,6 +19,7 @@ summary: 创建一个或多个 ILM 策略以满足您的服务质量要求。
 
 
 
+[[create-an-ilm-policy]]
 == 创建 ILM 策略
 
 .关于此任务
@@ -174,6 +175,8 @@ NOTE: 您必须确认 ILM 规则的顺序正确。当策略被激活时，新的
 
 
 
+[[simulate-a-policy]]
+[[simulate-ilm-policy]]
 == 模拟策略
 
 在激活策略并将其应用于生产数据之前，先在测试对象上模拟该策略。
@@ -203,6 +206,8 @@ link:simulating-ilm-policy-examples.html["ILM 策略模拟示例"]
 
 
 
+[[activate-a-policy]]
+[[activate-ilm-policy]]
 == 激活策略
 
 当您激活单个新的 ILM 策略时，现有对象和新摄取的对象都由该策略管理。当您激活多个策略时，分配给存储桶的 ILM 策略标签决定了要管理的对象。

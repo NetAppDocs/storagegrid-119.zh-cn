@@ -58,6 +58,7 @@ Received call to deprecated v2 API at POST "/api/v2/authorize"
 
 
 
+[[determine-which-api-versions-are-supported-in-the-current-release]]
 == 确定当前版本支持哪些 API 版本
 
 使用 `GET /versions`API 请求返回支持的 API 主要版本列表。此请求位于 Swagger API 文档的 *config* 部分。
@@ -78,6 +79,7 @@ GET https://{{IP-Address}}/api/versions
 ----
 
 
+[[specify-an-api-version-for-a-request]]
 == 为请求指定 API 版本
 
 您可以使用路径参数指定 API 版本(`/api/v4`）或标题(`Api-Version: 4`）。如果您提供这两个值，则标头值将覆盖路径值。

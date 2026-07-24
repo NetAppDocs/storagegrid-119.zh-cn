@@ -15,6 +15,7 @@ summary: 如果您的StorageGRID系统启用了全局 S3 对象锁定设置，�
 
 
 
+[[how-to-enable-s3-object-lock-for-a-bucket]]
 == 如何为存储桶启用 S3 对象锁定
 
 如果您的StorageGRID系统启用了全局 S3 对象锁定设置，则可以在创建每个存储桶时选择启用 S3 对象锁定。
@@ -31,12 +32,14 @@ S3 对象锁需要存储桶版本控制，该功能在创建存储桶时自动�
 
 
 
+[[default-retention-settings-for-a-bucket]]
 == 存储桶的默认保留设置
 
 当为存储桶启用 S3 对象锁定时，您可以选择为存储桶启用默认保留，并指定默认保留模式和默认保留期。
 
 
 
+[[default-retention-mode]]
 === 默认保留模式
 
 * 在合规模式下：
@@ -57,12 +60,14 @@ S3 对象锁需要存储桶版本控制，该功能在创建存储桶时自动�
 
 
 
+[[default-retention-period]]
 === 默认保留期
 
 每个存储桶可以具有以年或天为单位指定的默认保留期。
 
 
 
+[[how-to-set-default-retention-for-a-bucket]]
 == 如何设置存储桶的默认保留
 
 要设置存储桶的默认保留，请使用以下任一方法：
@@ -73,6 +78,7 @@ S3 对象锁需要存储桶版本控制，该功能在创建存储桶时自动�
 
 
 
+[[putobjectlockconfiguration]]
 === PutObjectLock配置
 
 PutObjectLockConfiguration 请求允许您设置和修改已启用 S3 对象锁的存储桶的默认保留模式和默认保留期。您还可以删除之前配置的默认保留设置。
@@ -115,6 +121,7 @@ Authorization: _authorization-string_
 ----
 
 
+[[how-to-determine-the-default-retention-for-a-bucket]]
 == 如何确定存储桶的默认保留时间
 
 要确定存储桶是否启用了 S3 对象锁定并查看默认保留模式和保留期，请使用以下任一方法：
@@ -125,6 +132,7 @@ Authorization: _authorization-string_
 
 
 
+[[getobjectlockconfiguration]]
 === 获取对象锁配置
 
 GetObjectLockConfiguration 请求允许您确定是否为存储桶启用了 S3 对象锁，如果启用，则查看是否为存储桶配置了默认保留模式和保留期。
@@ -173,6 +181,7 @@ Server: AmazonS3
 ----
 
 
+[[how-to-specify-retention-settings-for-an-object]]
 == 如何指定对象的保留设置
 
 启用了 S3 对象锁的存储桶可以包含具有和不具有 S3 对象锁保留设置的对象的组合。
@@ -227,6 +236,7 @@ NOTE: 如果您指定 `x-amz-object-lock-mode`，您还必须指定 `x-amz-objec
 
 
 
+[[how-to-update-retention-settings-for-an-object]]
 == 如何更新对象的保留设置
 
 如果需要更新现有对象版本的合法保留或保留设置，您可以执行以下对象子资源操作：
@@ -246,6 +256,7 @@ NOTE: 如果您指定 `x-amz-object-lock-mode`，您还必须指定 `x-amz-objec
 
 
 
+[[how-to-use-governance-mode]]
 == 如何使用治理模式
 
 拥有 `s3:BypassGovernanceRetention`权限可以绕过使用治理模式的对象的活动保留设置。任何 DELETE 或 PutObjectRetention 操作都必须包括 `x-amz-bypass-governance-retention:true`请求标头。这些用户可以执行以下附加操作：

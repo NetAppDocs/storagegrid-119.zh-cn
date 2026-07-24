@@ -17,6 +17,7 @@ summary: 擦除编码方案控制为每个对象创建多少个数据片段和�
 
 
 
+[[data-protection]]
 == 数据保护
 
 StorageGRID系统使用 Reed-Solomon 擦除编码算法。该算法将对象切成 `k`数据碎片和计算 `m`奇偶校验碎片。
@@ -31,6 +32,7 @@ StorageGRID系统使用 Reed-Solomon 擦除编码算法。该算法将对象切�
 
 
 
+[[storage-overhead]]
 == 存储开销
 
 擦除编码方案的存储开销是通过将奇偶校验片段的数量除以(`m`）数据片段的数量(`k`）。您可以使用存储开销来计算每个擦除编码对象需要多少磁盘空间：
@@ -48,6 +50,7 @@ StorageGRID系统使用 Reed-Solomon 擦除编码算法。该算法将对象切�
 
 
 
+[[guidelines-for-storage-pools]]
 == 存储池指南
 
 当选择用于创建擦除编码副本的规则的存储池时，请遵循以下存储池准则：
@@ -75,6 +78,7 @@ NOTE: 可以在安装期间配置存储节点以仅包含对象元数据而不�
 
 
 
+[[erasure-coding-schemes-for-storage-pools-containing-three-or-more-sites]]
 == 包含三个或更多站点的存储池的擦除编码方案
 
 下表描述了StorageGRID当前支持的包含三个或更多站点的存储池的擦除编码方案。所有这些方案都提供站点丢失保护。一个站点可能会丢失，但对象仍然可以访问。
@@ -238,6 +242,7 @@ NOTE: 如果您不确定使用哪种方案，请选择 4+2 或 6+3，或者联�
 
 
 
+[[erasure-coding-schemes-for-one-site-storage-pools]]
 == 单站点存储池的擦除编码方案
 
 只要站点具有足够的存储节点，单站点存储池就支持为三个或更多站点定义的所有擦除编码方案。

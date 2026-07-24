@@ -15,6 +15,7 @@ summary: /etc/network/interfaces 文件包括三个部分，分别定义物理�
 
 
 
+[[physical-interfaces]]
 == 物理接口
 
 请注意，链路另一端的交换机也必须将这四个端口视为单个 LACP 中继或端口通道，并且必须传递至少三个带有标签的引用 VLAN。
@@ -48,6 +49,7 @@ iface ens256 inet manual
 ----
 
 
+[[bond-interface]]
 == Bond 接口
 
 [listing]
@@ -61,6 +63,7 @@ iface bond0 inet manual
 ----
 
 
+[[vlan-interfaces]]
 == VLAN 接口
 
 [listing]

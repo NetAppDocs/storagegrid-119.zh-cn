@@ -29,6 +29,7 @@ link:how-objects-are-deleted.html["如何删除对象"]
 
 
 
+[[ilm-rule-1-for-example-4-save-three-copies-for-10-years]]
 == ILM 规则 1 例如 4：保存三份副本，保存 10 年
 
 此示例 ILM 规则将每个对象的副本存储在三个站点 10 年。
@@ -69,6 +70,7 @@ link:how-objects-are-deleted.html["如何删除对象"]
 |===
 
 
+[[ilm-rule-2-for-example-4-save-two-copies-of-noncurrent-versions-for-2-years]]
 == ILM 规则 2 例如 4：保存两个非当前版本的副本，保存 2 年
 
 此示例 ILM 规则将存储 S3 版本对象的非当前版本的两个副本，存储期限为 2 年。
@@ -117,6 +119,7 @@ image::../media/ilm-rule-apply-only-to-older-object-verions.png[仅将 ILM 规�
 |===
 
 
+[[ilm-policy-for-example-4-s3-versioned-objects]]
 == ILM 策略示例 4：S3 版本化对象
 
 如果您想要以不同于当前版本的方式管理对象的旧版本，则使用“非当前时间”作为参考时间的规则必须出现在 ILM 策略中，并且出现在适用于当前对象版本的规则之前。

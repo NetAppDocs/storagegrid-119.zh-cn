@@ -27,6 +27,7 @@ StorageGRID在每个存储节点的卷 0 上为对象元数据保留空间。每
 
 
 
+[[guidelines-for-increasing-metadata-capacity]]
 == 增加元数据容量的指南
 
 在添加存储节点以增加元数据容量之前，请查看以下准则和限制：
@@ -62,6 +63,7 @@ StorageGRID在每个存储节点的卷 0 上为对象元数据保留空间。每
 
 
 
+[[how-metadata-is-redistributed-when-you-add-storage-nodes]]
 == 添加存储节点时如何重新分配元数据
 
 当您在扩展中添加存储节点时， StorageGRID会将现有对象元数据重新分配到每个站点的新节点，从而增加网格的整体元数据容量。无需用户操作。

@@ -18,6 +18,7 @@ NOTE: 您的网格管理员必须授予您使用 S3 对象锁的特定功能的�
 
 
 
+[[what-is-s3-object-lock]]
 == 什么是 S3 对象锁？
 
 StorageGRID S3 对象锁功能是一种对象保护解决方案，相当于 Amazon Simple Storage Service (Amazon S3) 中的 S3 对象锁。
@@ -34,6 +35,7 @@ StorageGRID S3 对象锁功能是一种对象保护解决方案，相当于 Amaz
 
 
 
+[[retention-modes]]
 === 保留模式
 
 StorageGRID S3 对象锁定功能支持两种保留模式，以对对象应用不同级别的保护。这些模式相当于 Amazon S3 保留模式。
@@ -56,6 +58,7 @@ StorageGRID S3 对象锁定功能支持两种保留模式，以对对象应用�
 
 
 
+[[retention-settings-for-object-versions]]
 === 对象版本的保留设置
 
 如果创建存储桶时启用了 S3 对象锁定，则用户可以使用 S3 客户端应用程序选择性地为添加到存储桶的每个对象指定以下保留设置：
@@ -74,6 +77,7 @@ NOTE: 如果某个对象处于合法保留之下，则无论其保留模式如�
 
 
 
+[[default-retention-setting-for-buckets]]
 === 存储桶的默认保留设置
 
 如果创建存储桶时启用了 S3 对象锁定，用户可以选择为存储桶指定以下默认设置：
@@ -88,6 +92,7 @@ NOTE: 如果某个对象处于合法保留之下，则无论其保留模式如�
 
 
 
+[[s3-object-lock-tasks]]
 == S3 对象锁定任务
 
 以下针对网格管理员和租户用户的列表包含使用 S3 对象锁定功能的高级任务。
@@ -127,6 +132,7 @@ NOTE: 如果某个对象处于合法保留之下，则无论其保留模式如�
 
 
 
+[[requirements-for-buckets-with-s3-object-lock-enabled]]
 == 启用 S3 对象锁定的存储桶的要求
 
 * 如果为StorageGRID系统启用了全局 S3 对象锁定设置，则您可以使用租户管理器、租户管理 API 或 S3 REST API 创建启用了 S3 对象锁定的存储桶。
@@ -139,6 +145,7 @@ NOTE: 如果某个对象处于合法保留之下，则无论其保留模式如�
 
 
 
+[[requirements-for-objects-in-buckets-with-s3-object-lock-enabled]]
 == 启用 S3 对象锁的存储桶中的对象要求
 
 * 为了保护对象版本，您可以为存储桶指定默认保留设置，也可以为每个对象版本指定保留设置。可以使用 S3 客户端应用程序或 S3 REST API 指定对象级保留设置。
@@ -147,6 +154,7 @@ NOTE: 如果某个对象处于合法保留之下，则无论其保留模式如�
 
 
 
+[[lifecycle-of-objects-in-buckets-with-s3-object-lock-enabled]]
 == 启用 S3 对象锁的存储桶中对象的生命周期
 
 启用 S3 对象锁后，保存在存储桶中的每个对象都会经历以下阶段：
@@ -176,6 +184,7 @@ StorageGRID会存储每个受保护对象的多个副本，并保留指定的期
 
 
 
+[[can-i-still-manage-legacy-compliant-buckets]]
 == 我还能管理旧版合规存储桶吗？
 
 S3 对象锁定功能取代了以前StorageGRID版本中提供的合规性功能。如果您使用以前版本的StorageGRID创建了兼容存储桶，则可以继续管理这些存储桶的设置；但是，您无法再创建新的兼容存储桶。有关说明，请参阅https://kb.netapp.com/Advice_and_Troubleshooting/Hybrid_Cloud_Infrastructure/StorageGRID/How_to_manage_legacy_Compliant_buckets_in_StorageGRID_11.5["NetApp知识库：如何在StorageGRID 11.5 中管理旧版兼容存储桶"^]。

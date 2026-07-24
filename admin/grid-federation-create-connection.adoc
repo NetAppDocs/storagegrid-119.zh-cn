@@ -26,6 +26,7 @@ image::../media/grid-federation-create-connection.png[在两个网格上创建�
 
 
 
+[[add-connection]]
 == 添加连接
 
 在两个StorageGRID系统之一上执行这些步骤。
@@ -113,6 +114,7 @@ CAUTION: 该文件包含机密信息（伪装成 `***`) 和其他敏感信息，
 
 
 
+[[complete-connection]]
 == 完成连接
 
 在您要连接的StorageGRID系统（另一个网格）上执行这些步骤。

@@ -27,6 +27,7 @@ NOTE: 如果未启用StorageGRID AutoSupport ，网格管理器仪表板上会�
 
 
 
+[[what-is-active-iq]]
 == 什么是Active IQ？
 
 Active IQ是一个基于云的数字顾问，它利用 NetApp 安装基础的预测分析和社区智慧。其持续的风险评估、预测警报、规范指导和自动化操作可帮助您预防问题的发生，从而改善系统健康状况并提高系统可用性。
@@ -37,6 +38,7 @@ https://docs.netapp.com/us-en/active-iq/index.html["Active IQDigital Advisor文�
 
 
 
+[[information-included-in-autosupport-package]]
 == AutoSupport包中包含的信息
 
 AutoSupport包包含以下文件和详细信息。

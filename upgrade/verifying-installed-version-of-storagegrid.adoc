@@ -42,6 +42,7 @@ CAUTION: NetApp强烈建议您在升级到下一个版本之前为每个StorageG
 
 
 
+[[example-upgrade-pathexample-upgrade-to-storagegrid-11-9-from-version-11-6]]
 == [[example-upgrade-path]]示例：从版本 11.6 升级到StorageGRID 11.9
 
 以下示例显示了从StorageGRID版本 11.6 升级到版本 11.8 以准备升级到StorageGRID 11.9 的步骤。

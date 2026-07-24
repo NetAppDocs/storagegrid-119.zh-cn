@@ -15,6 +15,7 @@ summary: 在实施用于StorageGRID 的S3 REST API 时，您应该遵循这些�
 
 
 
+[[recommendations-for-heads-to-non-existent-objects]]
 == 对不存在对象的 HEAD 建议
 
 如果您的应用程序定期检查某个对象是否存在于您认为该对象实际上不存在的路径中，则应使用“可用”link:consistency-controls.html["一致性"] 。例如，如果您的应用程序在 PUT 之前 HEAD 某个位置，则您应该使用“可用”一致性。
@@ -25,6 +26,7 @@ summary: 在实施用于StorageGRID 的S3 REST API 时，您应该遵循这些�
 
 
 
+[[recommendations-for-object-keys]]
 == 对象键的建议
 
 根据存储桶首次创建的时间，遵循以下对象键名称建议。
@@ -51,6 +53,7 @@ TIP: 一个例外是 S3 工作负载，它会在短时间后连续删除所有�
 
 
 
+[[recommendations-for-range-reads]]
 == “范围读取”的建议
 
 如果link:../admin/configuring-stored-object-compression.html["压缩存储对象的全局选项"]启用后，S3 客户端应用程序应避免执行指定返回字节范围的 GetObject 操作。这些“范围读取”操作效率低下，因为StorageGRID必须有效地解压缩对象才能访问请求的字节。从非常大的对象中请求一小段字节的 GetObject 操作效率特别低；例如，从 50 GB 的压缩对象中读取 10 MB 范围的字节效率很低。

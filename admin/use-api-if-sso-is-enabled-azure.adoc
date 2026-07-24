@@ -15,6 +15,7 @@ summary: '如果您已配置并启用单点登录 (SSO)，并且使用 Azure 作
 
 
 
+[[sign-in-to-the-api-if-azure-single-sign-on-is-enabled]]
 == 如果启用了 Azure 单一登录，Sign inAPI
 
 如果您使用 Azure 作为 SSO 身份提供者，则这些说明适用

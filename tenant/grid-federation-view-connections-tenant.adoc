@@ -55,6 +55,7 @@ summary: 如果您的租户帐户具有使用网格联合连接权限，您可�
 
 
 
+[[clear-last-errorclear-the-last-error]]
 == [[clear-last-error]]清除最后一个错误
 
 由于以下原因之一，错误可能会出现在“*上次错误*”列中：

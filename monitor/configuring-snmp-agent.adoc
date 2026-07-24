@@ -25,6 +25,7 @@ StorageGRID SNMP 代理支持 SNMPv1、SNMPv2c 和 SNMPv3。您可以为一个�
 
 
 
+[[specify-basic-configuration]]
 == 指定基本配置
 
 第一步，启用StorageGRID SMNP 代理并提供基本信息。
@@ -79,6 +80,7 @@ StorageGRID SNMP 代理支持 SNMPv1、SNMPv2c 和 SNMPv3。您可以为一个�
 
 
 
+[[enter-community-strings]]
 == 输入社区字符串
 
 如果您使用 SNMPv1 或 SNMPv2c，请完成社区字符串部分。
@@ -102,6 +104,7 @@ TIP: 为了确保StorageGRID系统的安全，请不要使用“public”作为�
 
 
 
+[[selecttrapdestinationcreate-trap-destinations]]
 == [[select_trap_destination]]创建陷阱目的地
 
 使用“其他配置”部分中的“陷阱目标”选项卡来定义StorageGRID陷阱或通知通知的一个或多个目标。当您启用 SNMP 代理并选择 *保存* 时， StorageGRID会在触发警报时向每个定义的目的地发送通知。还会为支持的 MIB-II 实体（例如，ifDown 和 coldStart）发送标准通知。
@@ -277,6 +280,7 @@ USM 用户
 
 
 
+[[create-agent-addresses]]
 == 创建代理地址
 
 或者，使用其他配置部分中的代理地址选项卡指定一个或多个“监听地址”。这些是 SNMP 代理可以接收查询的StorageGRID地址。
@@ -344,6 +348,7 @@ SNMP 代理的默认 UDP 端口是 161，但您可以输入任何未使用的端
 
 
 
+[[create-usm-userscreate-usm-users]]
 == [[create-usm-users]]创建 USM 用户
 
 如果您使用的是 SNMPv3，请使用其他配置部分中的 USM 用户选项卡来定义有权查询 MIB 或接收陷阱和通知的 USM 用户。

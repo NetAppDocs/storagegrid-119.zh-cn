@@ -22,6 +22,8 @@ summary: 要将发生故障的网格节点恢复到新的 Linux 主机，请执�
 
 
 
+[[restore-and-validate-grid-nodes]]
+[[restore-validate-grid-nodes]]
 == 恢复并验证网格节点
 
 您必须恢复任何故障网格节点的网格配置文件，然后验证网格配置文件并解决任何错误。
@@ -105,6 +107,7 @@ NOTE: 如果您使用任何新的块设备（ StorageGRID节点以前未使用�
 
 
 
+[[fix-missing-network-interface-errors]]
 === 修复缺少网络接口错误
 
 如果主机网络配置不正确或名称拼写错误，则StorageGRID检查 `/etc/storagegrid/nodes/_node-name_.conf`文件。
@@ -127,6 +130,8 @@ ERROR: <node-name>: GRID_NETWORK_TARGET = <host-interface-name>
 
 
 
+[[fix-missing-block-device-errors]]
+[[fix-block-errors]]
 === 修复缺少块设备错误
 
 系统检查每个恢复的节点是否映射到有效的块设备特殊文件或块设备特殊文件的有效软链接。如果StorageGRID在 `/etc/storagegrid/nodes/_node-name_.conf`文件时，会显示缺少块设备的错误。
@@ -169,6 +174,7 @@ NOTE: 如果您必须为任何以以下开头的配置文件变量提供新的�
 ====
 
 
+[[start-storagegrid-host-service]]
 == 启动StorageGRID主机服务
 
 要启动StorageGRID节点，并确保它们在主机重启后重新启动，您必须启用并启动StorageGRID主机服务。
@@ -203,6 +209,8 @@ sudo systemctl reload-or-restart storagegrid
 
 
 
+[[recover-nodes-that-fail-to-start-normally]]
+[[recover-nodes-fail-start]]
 == 恢复无法正常启动的节点
 
 如果StorageGRID节点无法正常重新加入网格并且未显示为可恢复，则它可能已损坏。您可以强制节点进入恢复模式。

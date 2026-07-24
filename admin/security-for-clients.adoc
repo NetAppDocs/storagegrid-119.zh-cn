@@ -15,6 +15,7 @@ StorageGRID租户帐户使用 S3 客户端应用程序将对象数据保存到St
 
 
 
+[[summary]]
 == 摘要
 
 以下列表总结了如何实现 S3 REST API 的安全性：
@@ -27,6 +28,7 @@ StorageGRID租户帐户使用 S3 客户端应用程序将对象数据保存到St
 
 
 
+[[how-storagegrid-provides-security-for-client-applications]]
 == StorageGRID如何为客户端应用程序提供安全性
 
 S3 客户端应用程序可以连接到网关节点或管理节点上的负载均衡器服务，或者直接连接到存储节点。
@@ -52,6 +54,7 @@ HTTP 提供不太安全、未加密的通信，但可以选择link:changing-netw
 
 
 
+[[security-certificates-and-client-applications]]
 === 安全证书和客户端应用程序
 
 在所有情况下，客户端应用程序都可以使用网格管理员上传的自定义服务器证书或StorageGRID系统生成的证书建立 TLS 连接：
@@ -67,12 +70,14 @@ HTTP 提供不太安全、未加密的通信，但可以选择link:changing-netw
 
 
 
+[[supported-hashing-and-encryption-algorithms-for-tls-libraries]]
 == TLS 库支持的哈希和加密算法
 
 StorageGRID系统支持一组客户端应用程序在建立 TLS 会话时可以使用的密码套件。要配置密码，请转到 *配置* > *安全* > *安全设置* 并选择 *TLS 和 SSH 策略*。
 
 
 
+[[supported-versions-of-tls]]
 === 支持的 TLS 版本
 
 StorageGRID支持 TLS 1.2 和 TLS 1.3。

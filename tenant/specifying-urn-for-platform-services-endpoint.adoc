@@ -17,6 +17,7 @@ StorageGRID会在您创建平台服务端点时对其进行验证。在创建平
 
 
 
+[[urn-elements]]
 == URN 元素
 
 平台服务端点的 URN 必须以 `arn:aws`或者 `urn:mysite`，如下所示：
@@ -88,6 +89,7 @@ CloudMirror 复制
 |===
 
 
+[[urns-for-services-hosted-on-aws-and-gcp]]
 == AWS 和 GCP 上托管的服务的 URN
 
 对于 AWS 和 GCP 实体，完整的 URN 是有效的 AWS ARN。例如：
@@ -118,6 +120,7 @@ NOTE: 对于 AWS 搜索集成终端节点， `domain-name`必须包含文字字�
 
 
 
+[[urns-for-locally-hosted-services]]
 == 本地托管服务的 URN
 
 当使用本地托管服务而不是云服务时，您可以以任何方式指定 URN，以创建有效且唯一的 URN，只要 URN 在第三个和最后一个位置包含所需的元素。您可以将可选指示的元素留空，也可以以任何有助于识别资源并使 URN 唯一的方式来指定它们。例如：

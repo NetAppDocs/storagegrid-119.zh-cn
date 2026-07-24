@@ -19,6 +19,7 @@ summary: '如果要使用简单网络管理协议 (SNMP) 监控StorageGRID ，�
 
 
 
+[[capabilities]]
 == 功能
 
 每个StorageGRID节点都运行一个提供 MIB 的 SNMP 代理或守护程序。  StorageGRID MIB 包含警报的表和通知定义。 MIB 还包含每个节点的平台和型号等系统描述信息。每个StorageGRID节点还支持 MIB-II 对象的子集。
@@ -54,6 +55,7 @@ SNMPv2c 和 SNMPv3 支持通知。
 
 
 
+[[snmp-version-support]]
 == SNMP版本支持
 
 该表提供了每个 SNMP 版本所支持内容的高级摘要。
@@ -112,6 +114,7 @@ SNMPv2c 和 SNMPv3 支持通知。
 |===
 
 
+[[limitations]]
 == 限制
 
 * StorageGRID支持只读 MIB 访问。不支持读写访问。

@@ -32,6 +32,7 @@ NOTE: 如果使用 SSE 或 SSE-C 加密对象，则会忽略任何存储桶级�
 
 
 
+[[use-sse]]
 == 使用 SSE
 
 要使用StorageGRID管理的唯一密钥加密对象，请使用以下请求标头：
@@ -47,6 +48,7 @@ NOTE: 如果使用 SSE 或 SSE-C 加密对象，则会忽略任何存储桶级�
 
 
 
+[[use-sse-c]]
 == 使用 SSE-C
 
 要使用您管理的唯一密钥加密对象，请使用三个请求标头：
@@ -89,6 +91,7 @@ NOTE: 如果使用 SSE 或 SSE-C 加密对象，则会忽略任何存储桶级�
 
 
 
+[[considerations-for-using-server-side-encryption-with-customer-provided-keys-sse-c]]
 == 使用客户提供的密钥进行服务器端加密 (SSE-C) 的注意事项
 
 在使用 SSE-C 之前，请注意以下事项：

@@ -39,12 +39,15 @@ NOTE: 对端点证书的更改最多可能需要 15 分钟才能应用到所有�
 
 
 
+[[create-a-load-balancer-endpoint]]
+[[create-lb-endpoint]]
 == 创建负载均衡器端点
 
 每个 S3 客户端负载均衡器端点指定一个端口、一个客户端类型（S3）和一个网络协议（HTTP 或 HTTPS）。管理接口负载均衡器端点指定端口、接口类型和不受信任的客户端网络。
 
 
 
+[[access-the-wizard]]
 === 访问向导
 
 .步骤
@@ -56,6 +59,7 @@ NOTE: 对端点证书的更改最多可能需要 15 分钟才能应用到所有�
 
 
 
+[[enter-endpoint-details]]
 === 输入端点详细信息
 
 .步骤
@@ -157,6 +161,7 @@ NOTE: 对端点证书的更改最多可能需要 15 分钟才能应用到所有�
 
 
 
+[[select-a-binding-mode]]
 === 选择绑定模式
 
 .步骤
@@ -224,6 +229,7 @@ HA 组的虚拟 IP
 
 
 
+[[control-tenant-access]]
 === 控制租户访问
 
 
@@ -264,6 +270,7 @@ NOTE: 管理接口端点仅当端点具有<<enter-endpoint-details,租户管理�
 
 
 
+[[attach-certificate]]
 === 附上证书
 
 .步骤
@@ -390,6 +397,7 @@ IP
 
 
 
+[[after-you-finish]]
 === 完成后
 
 .步骤
@@ -416,6 +424,7 @@ IP
 
 
 
+[[view-and-edit-load-balancer-endpoints]]
 == 查看和编辑负载均衡器端点
 
 您可以查看现有负载均衡器端点的详细信息，包括安全端点的证书元数据。您可以更改端点的某些设置。
@@ -526,6 +535,7 @@ _无_
 
 
 
+[[remove-load-balancer-endpoints]]
 == 删除负载均衡器端点
 
 您可以使用“操作”菜单删除一个或多个端点，也可以从详细信息页面中删除单个端点。

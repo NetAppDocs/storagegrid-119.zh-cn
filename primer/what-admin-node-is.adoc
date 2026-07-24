@@ -15,6 +15,7 @@ summary: 管理节点提供系统配置、监控和日志记录等管理服务�
 
 
 
+[[differences-between-primary-and-non-primary-admin-nodes]]
 == 主管理节点和非主管理节点之间的差异
 
 当您登录到网格管理器或租户管理器时，您正在连接到管理节点。您可以连接到任何管理节点，每个管理节点都会显示StorageGRID系统的类似视图。但是，主管理节点比非主管理节点提供更多功能。例如，大多数维护程序必须从主管理节点执行。
@@ -135,6 +136,7 @@ summary: 管理节点提供系统配置、监控和日志记录等管理服务�
 |===
 
 
+[[preferred-senderpreferred-sender-admin-node]]
 == [[preferred-sender]]首选发件人管理节点
 
 如果您的StorageGRID部署包含多个管理节点，则主管理节点是警报通知、 AutoSupport包以及 SNMP 陷阱和通知的首选发送者。
@@ -153,6 +155,7 @@ NOTE: 当您测试AutoSupport包时，所有管理节点都会发送测试。测
 
 
 
+[[primary-services-for-admin-nodes]]
 == 管理节点的主要服务
 
 下表显示了管理节点的主要服务；但是，此表并未列出所有节点服务。

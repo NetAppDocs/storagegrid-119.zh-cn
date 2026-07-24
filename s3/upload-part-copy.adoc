@@ -27,6 +27,7 @@ UploadPartCopy 操作是通过所有 Amazon S3 REST API 行为实现的。如有
 
 
 
+[[request-headers-for-server-side-encryption]]
 == 服务器端加密的请求标头
 
 如果您为 CreateMultipartUpload 请求指定了 SSE-C 加密，则还必须在每个 UploadPartCopy 请求中包含以下请求标头：
@@ -48,6 +49,7 @@ CAUTION: 您提供的加密密钥永远不会被存储。如果丢失了加密�
 
 
 
+[[versioning]]
 == 版本控制
 
 分段上传包括启动上传、列出上传、上传部分、组装上传部分和完成上传的单独操作。执行 CompleteMultipartUpload 操作时会创建对象（如果适用，还会进行版本控制）。

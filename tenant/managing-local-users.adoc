@@ -24,6 +24,7 @@ NOTE: 如果您的StorageGRID系统启用了单点登录 (SSO)，本地用户将
 
 
 
+[[create-usercreate-a-local-user]]
 == [[create-user]]创建本地用户
 
 您可以创建本地用户并将其分配给一个或多个本地组以控制他们的访问权限。
@@ -34,6 +35,7 @@ NOTE: 如果您的StorageGRID系统启用了单点登录 (SSO)，本地用户将
 
 
 
+[[access-the-create-user-wizard]]
 === 访问创建用户向导
 
 .步骤
@@ -49,6 +51,7 @@ image::../media/grid-federation-tenant-user-banner.png[如果这是租户源网�
 
 
 
+[[enter-credentials]]
 === 输入凭证
 
 .步骤
@@ -95,6 +98,7 @@ image::../media/grid-federation-tenant-user-banner.png[如果这是租户源网�
 
 
 
+[[assign-to-groups]]
 === 分配给组
 
 .步骤
@@ -114,6 +118,7 @@ image::../media/grid-federation-tenant-user-banner.png[如果这是租户源网�
 
 
 
+[[view-or-edit-local-user]]
 == 查看或编辑本地用户
 
 .步骤
@@ -174,6 +179,7 @@ image::../media/grid-federation-tenant-user-banner.png[如果这是租户源网�
 
 
 
+[[duplicate-local-user]]
 == 重复的本地用户
 
 您可以复制本地用户以更快地创建新用户。
@@ -191,6 +197,7 @@ NOTE: 如果您的租户帐户具有*使用网格联合连接*权限，并且您
 
 
 
+[[clone-usersretry-user-clone]]
 == [[clone-users]]重试用户克隆
 
 要重试失败的克隆：
@@ -204,6 +211,7 @@ NOTE: 如果您的租户帐户具有*使用网格联合连接*权限，并且您
 
 
 
+[[delete-one-or-more-local-users]]
 == 删除一个或多个本地用户
 
 您可以永久删除一个或多个不再需要访问StorageGRID租户帐户的本地用户。

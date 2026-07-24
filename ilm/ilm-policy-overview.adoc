@@ -18,6 +18,7 @@ CAUTION: 错误配置的 ILM 策略可能会导致无法恢复的数据丢失。
 
 
 
+[[default-ilm-policy]]
 == 默认 ILM 策略
 
 安装StorageGRID并添加站点时，会自动创建默认 ILM 策略，如下所示：
@@ -30,12 +31,14 @@ CAUTION: 错误配置的 ILM 策略可能会导致无法恢复的数据丢失。
 
 
 
+[[one-or-many-active-ilm-policies]]
 == 一个或多个有效的 ILM 策略？
 
 您一次可以拥有一个或多个活动的 ILM 策略。
 
 
 
+[[one-policy]]
 === 一项政策
 
 如果您的网格将使用具有少量特定于租户和特定于存储桶的规则的简单数据保护方案，请使用单个活动的 ILM 策略。  ILM 规则可以包含过滤器来管理不同的存储桶或租户。
@@ -46,6 +49,7 @@ image::../media/ilm-policies-single.png[单一 ILM 策略图]
 
 
 
+[[multiple-policies]]
 === 多项政策
 
 为了向租户提供不同的服务质量选项，您可以同时拥有多个有效策略。每个策略可以管理特定的租户、S3 存储桶和对象。当您针对特定租户或对象集应用或更改一个策略时，应用于其他租户和对象的策略不会受到影响。
@@ -63,6 +67,7 @@ image::../media/ilm-policies-tags-conceptual.png[多个 ILM 策略图]
 
 
 
+[[how-does-an-ilm-policy-evaluate-objects]]
 == ILM 策略如何评估对象？
 
 主动 ILM 策略控制对象的位置、持续时间和数据保护。
@@ -76,6 +81,7 @@ image::../media/ilm-policies-tags-conceptual.png[多个 ILM 策略图]
 
 
 
+[[example-ilm-policy]]
 == ILM 策略示例
 
 例如，ILM 策略可能包含三个 ILM 规则，指定以下内容：
@@ -105,6 +111,7 @@ image::../media/ilm_policy_and_rules.png[ILM 政策和规则]
 
 
 
+[[what-are-active-and-inactive-policies]]
 == 什么是有效政策和非有效政策？
 
 每个StorageGRID系统必须至少有一个活动的 ILM 策略。如果您想要拥有多个有效的 ILM 策略，您可以创建 ILM 策略标签并为每个标签分配一个策略。然后，租户将标签应用到 S3 存储桶。默认策略适用于未分配策略标签的存储桶中的所有对象。
@@ -119,6 +126,7 @@ StorageGRID系统跟踪已激活或停用的策略的历史记录。
 
 
 
+[[considerations-for-creating-an-ilm-policy]]
 == 创建 ILM 策略的注意事项
 
 * 在测试系统中仅使用系统提供的策略，即基线 2 份策略。对于StorageGRID 11.6 及更早版本，此策略中的 Make 2 Copies 规则使用包含所有站点的所有存储节点存储池。如果您的StorageGRID系统有多个站点，则对象的两个副本可能会放置在同一个站点上。

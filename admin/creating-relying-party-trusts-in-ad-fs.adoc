@@ -31,6 +31,7 @@ NOTE: 您必须为StorageGRID系统中的每个管理节点创建一个依赖方
 
 
 
+[[create-a-relying-party-trust-using-windows-powershell]]
 == 使用 Windows PowerShell 创建信赖方信任
 
 您可以使用 Windows PowerShell 快速创建一个或多个信赖方信任。
@@ -93,6 +94,7 @@ NOTE: 您必须为StorageGRID系统中的每个管理节点创建一个依赖方
 
 
 
+[[create-a-relying-party-trust-by-importing-federation-metadata]]
 == 通过导入联合元数据创建信赖方信任
 
 您可以通过访问每个管理节点的 SAML 元数据来导入每个依赖方信任的值。
@@ -144,6 +146,7 @@ NOTE: 输入显示名称时，请使用管理节点的依赖方标识符，与�
 
 
 
+[[create-a-relying-party-trust-manually]]
 == 手动创建信赖方信任
 
 如果您选择不导入依赖部分信托的数据，您可以手动输入值。

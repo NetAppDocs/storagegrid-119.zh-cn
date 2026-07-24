@@ -99,6 +99,7 @@ NOTE: 如果您的 Active Directory 服务器强制执行 LDAP 签名，则不�
 
 
 
+[[test-the-connection-and-save-the-configuration]]
 === 测试连接并保存配置
 
 输入所有值后，必须先测试连接，然后才能保存配置。如果您提供了 LDAP 服务器的连接设置和绑定用户名格式， StorageGRID会验证该设置。

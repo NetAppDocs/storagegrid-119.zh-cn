@@ -15,6 +15,7 @@ summary: 在退役存储节点之前，请考虑是否可以克隆该节点。�
 
 
 
+[[when-to-clone-a-node-instead-of-decommissioning-it]]
 == 何时克隆节点而不是停用它
 
 如果您想用更新或更大的设备替换旧设备存储节点，请考虑克隆设备节点，而不是在扩展中添加新设备，然后停用旧设备。
@@ -33,6 +34,7 @@ summary: 在退役存储节点之前，请考虑是否可以克隆该节点。�
 
 
 
+[[considerations-for-connected-storage-nodes]]
 == 连接存储节点的注意事项
 
 查看有关停用已连接存储节点的注意事项。
@@ -57,6 +59,8 @@ NOTE: 仅当达到 ILM 评估或擦除编码数据退役阶段时才会启用 *�
 
 
 
+[[considerations-for-disconnected-storage-nodes]]
+[[considerations-disconnected-storage-nodes]]
 == 断开连接的存储节点的注意事项
 
 查看有关停用已断开连接的存储节点的注意事项。

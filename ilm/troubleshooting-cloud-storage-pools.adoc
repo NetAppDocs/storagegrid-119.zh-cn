@@ -15,6 +15,7 @@ summary: 使用这些故障排除步骤来帮助解决您在创建、编辑或�
 
 
 
+[[determine-if-an-error-has-occurred]]
 == 确定是否发生错误
 
 StorageGRID通过读取已知对象对每个云存储池执行简单的健康检查 `x-ntap-sgws-cloud-pool-uuid`确保云存储池可以访问并正常运行。当StorageGRID在端点上遇到错误时，它会每分钟从每个存储节点执行一次健康检查。当错误解决后，健康检查停止。如果健康检查检测到问题，则会在存储池页面上的云存储池表的最后一个错误列中显示一条消息。
@@ -25,6 +26,7 @@ StorageGRID通过读取已知对象对每个云存储池执行简单的健康检
 
 
 
+[[check-if-an-error-has-been-resolved]]
 == 检查错误是否已解决
 
 解决所有潜在问题后，您可以确定错误是否已解决。从云存储池页面，选择端点，然后选择*清除错误*。确认消息表明StorageGRID已清除云存储池的错误。
@@ -33,6 +35,7 @@ StorageGRID通过读取已知对象对每个云存储池执行简单的健康检
 
 
 
+[[error-health-check-failed-error-from-endpoint]]
 == 错误：健康检查失败。端点错误
 
 当您开始将此存储桶用作云存储池后，为 Amazon S3 存储桶启用具有默认保留的 S3 对象锁定时，可能会遇到此错误。当 PUT 操作没有包含有效负载校验和值的 HTTP 标头时，就会发生此错误，例如 `Content-MD5`。对于启用了 S3 对象锁的存储桶中的 PUT 操作，AWS 需要此标头值。
@@ -41,6 +44,7 @@ StorageGRID通过读取已知对象对每个云存储池执行简单的健康检
 
 
 
+[[error-this-cloud-storage-pool-contains-unexpected-content]]
 == 错误：此云存储池包含意外内容
 
 当您尝试创建、编辑或删除云存储池时，可能会遇到此错误。如果存储桶或容器包含 `x-ntap-sgws-cloud-pool-uuid`标记文件，但该文件没有具有预期 UUID 的元数据字段。
@@ -60,6 +64,7 @@ StorageGRID通过读取已知对象对每个云存储池执行简单的健康检
 
 
 
+[[error-could-not-create-or-update-cloud-storage-pool-error-from-endpoint]]
 == 错误：无法创建或更新云存储池。端点错误
 
 您可能会在以下情况下遇到此错误：
@@ -85,6 +90,7 @@ StorageGRID通过读取已知对象对每个云存储池执行简单的健康检
 
 
 
+[[error-failed-to-parse-ca-certificate]]
 == 错误：无法解析 CA 证书
 
 当您尝试创建或编辑云存储池时，可能会遇到此错误。如果StorageGRID无法解析您在配置云存储池时输入的证书，则会发生错误。
@@ -93,6 +99,7 @@ StorageGRID通过读取已知对象对每个云存储池执行简单的健康检
 
 
 
+[[error-a-cloud-storage-pool-with-this-id-was-not-found]]
 == 错误：未找到具有此 ID 的云存储池
 
 当您尝试编辑或删除云存储池时，可能会遇到此错误。如果端点返回 404 响应，则会发生此错误，这可能意味着以下任一情况：
@@ -110,6 +117,7 @@ StorageGRID通过读取已知对象对每个云存储池执行简单的健康检
 
 
 
+[[error-could-not-check-the-content-of-the-cloud-storage-pool-error-from-endpoint]]
 == 错误：无法检查云存储池的内容。端点错误
 
 当您尝试删除云存储池时，可能会遇到此错误。此错误表明某种连接或配置问题阻止StorageGRID读取云存储池存储桶的内容。
@@ -118,6 +126,7 @@ StorageGRID通过读取已知对象对每个云存储池执行简单的健康检
 
 
 
+[[error-objects-have-already-been-placed-in-this-bucket]]
 == 错误：对象已放入此存储桶
 
 当您尝试删除云存储池时，可能会遇到此错误。如果云存储池包含由 ILM 移动到该池的数据、在您配置云存储池之前存储桶中的数据或在创建云存储池之后由其他来源放入存储桶中的数据，则您无法删除该云存储池。
@@ -134,6 +143,7 @@ NOTE: 切勿手动删除 ILM 可能放置于云存储池中的对象。如果您
 
 
 
+[[error-proxy-encountered-an-external-error-while-trying-to-reach-the-cloud-storage-pool]]
 == 错误：代理在尝试访问云存储池时遇到外部错误
 
 如果您在存储节点和用于云存储池的外部 S3 端点之间配置了非透明存储代理，则可能会遇到此错误。如果外部代理服务器无法访问云存储池端点，就会发生此错误。例如，DNS 服务器可能无法解析主机名，或者可能存在外部网络问题。
@@ -146,6 +156,7 @@ NOTE: 切勿手动删除 ILM 可能放置于云存储池中的对象。如果您
 
 
 
+[[error-x-509-certificate-is-out-of-validity-period]]
 == 错误：X.509 证书超出有效期
 
 当您尝试删除云存储池时，可能会遇到此错误。当身份验证需要 X.509 证书以确保验证正确的外部云存储池，并且在删除云存储池配置之前外部池为空时，会发生此错误。

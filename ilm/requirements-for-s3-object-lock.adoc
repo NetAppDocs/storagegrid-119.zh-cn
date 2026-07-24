@@ -15,6 +15,7 @@ summary: 您必须查看启用全局 S3 对象锁定设置的要求、创建合�
 
 
 
+[[requirements-for-using-the-global-s3-object-lock-setting]]
 == 使用全局 S3 对象锁定设置的要求
 
 * 您必须先使用网格管理器或网格管理 API 启用全局 S3 对象锁定设置，然后任何 S3 租户才能创建启用了 S3 对象锁定的存储桶。
@@ -26,6 +27,7 @@ summary: 您必须查看启用全局 S3 对象锁定设置的要求、创建合�
 
 
 
+[[requirements-for-compliant-ilm-rules]]
 == 符合 ILM 规则的要求
 
 如果要启用全局 S3 对象锁定设置，则必须确保所有活动 ILM 策略中的默认规则都符合要求。合规规则满足启用了 S3 对象锁定的存储桶以及启用了旧版合规性的任何现有存储桶的要求：
@@ -39,6 +41,7 @@ summary: 您必须查看启用全局 S3 对象锁定设置的要求、创建合�
 
 
 
+[[requirements-for-ilm-policies]]
 == ILM 策略的要求
 
 启用全局 S3 对象锁定设置后，活动和非活动的 ILM 策略可以同时包含合规和不合规规则。
@@ -52,6 +55,7 @@ link:example-7-compliant-ilm-policy-for-s3-object-lock.html["S3 对象锁定的�
 
 
 
+[[requirements-for-buckets-with-s3-object-lock-enabled]]
 == 启用 S3 对象锁定的存储桶的要求
 
 * 如果为StorageGRID系统启用了全局 S3 对象锁定设置，则您可以使用租户管理器、租户管理 API 或 S3 REST API 创建启用了 S3 对象锁定的存储桶。
@@ -64,6 +68,7 @@ link:example-7-compliant-ilm-policy-for-s3-object-lock.html["S3 对象锁定的�
 
 
 
+[[requirements-for-objects-in-buckets-with-s3-object-lock-enabled]]
 == 启用 S3 对象锁的存储桶中的对象要求
 
 * 为了保护对象版本，您可以为存储桶指定默认保留设置，也可以为每个对象版本指定保留设置。可以使用 S3 客户端应用程序或 S3 REST API 指定对象级保留设置。
@@ -72,6 +77,7 @@ link:example-7-compliant-ilm-policy-for-s3-object-lock.html["S3 对象锁定的�
 
 
 
+[[lifecycle-of-objects-in-buckets-with-s3-object-lock-enabled]]
 == 启用 S3 对象锁的存储桶中对象的生命周期
 
 启用 S3 对象锁后，保存在存储桶中的每个对象都会经历以下阶段：

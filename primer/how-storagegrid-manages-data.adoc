@@ -21,12 +21,14 @@ image::../media/object_conceptual_drawing.png[对象]
 
 
 
+[[what-is-object-data]]
 == 什么是对象数据？
 
 对象数据可以是任何东西；例如，照片、电影或医疗记录。
 
 
 
+[[what-is-object-metadata]]
 == 什么是对象元数据？
 
 对象元数据是描述对象的任何信息。  StorageGRID使用对象元数据来跟踪网格中所有对象的位置并管理每个对象的生命周期。
@@ -44,12 +46,14 @@ image::../media/object_conceptual_drawing.png[对象]
 
 
 
+[[how-is-object-data-protected]]
 == 对象数据如何受到保护？
 
 StorageGRID系统为您提供了两种保护对象数据免于丢失的机制：复制和擦除编码。
 
 
 
+[[replication]]
 === 复制
 
 当StorageGRID将对象与配置为创建复制副本的信息生命周期管理 (ILM) 规则匹配时，系统会创建对象数据的精确副本并将其存储在存储节点或云存储池上。 ILM 规则规定了副本的数量、副本的存储位置以及系统保留副本的时间。例如，如果由于存储节点丢失而导致副本丢失，则只要该对象的副本存在于StorageGRID系统中的其他地方，该对象仍然可用。
@@ -60,6 +64,7 @@ image::../media/ilm_replication_make_2_copies.png[制定 2 份副本规则]
 
 
 
+[[erasure-coding]]
 === 纠删编码
 
 当StorageGRID将对象与配置为创建擦除编码副本的 ILM 规则匹配时，它会将对象数据切分成数据片段，计算额外的奇偶校验片段，并将每个片段存储在不同的存储节点上。当访问一个对象时，它会使用存储的片段重新组装。如果数据或奇偶校验片段损坏或丢失，则擦除编码算法可以使用剩余数据和奇偶校验片段的子集重新创建该片段。  ILM 规则和擦除编码配置文件决定了所使用的擦除编码方案。

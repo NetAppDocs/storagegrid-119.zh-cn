@@ -26,6 +26,7 @@ summary: 如果在安装StorageGRID系统时出现任何问题，您可以访问
 
 
 
+[[virtual-machine-resource-reservation-requires-adjustment]]
 == 虚拟机资源预留需要调整
 
 OVF 文件包括资源预留，旨在确保每个网格节点都有足够的 RAM 和 CPU 来高效运行。如果您通过在 VMware 上部署这些 OVF 文件来创建虚拟机，并且预定义数量的资源不可用，则虚拟机将无法启动。
@@ -49,6 +50,7 @@ OVF 文件包括资源预留，旨在确保每个网格节点都有足够的 RAM
 
 
 
+[[temporary-installation-password-was-disabled]]
 == 临时安装密码已禁用
 
 部署 VMware 节点时，您可以选择指定临时安装密码。在新节点加入网格之前，您必须拥有此密码才能访问 VM 控制台或使用 SSH。

@@ -22,6 +22,7 @@ summary: 如何配置 HTTP 连接会影响StorageGRID系统的性能。配置会
 
 
 
+[[benefits-of-keeping-idle-http-connections-open]]
 == 保持空闲 HTTP 连接开放的好处
 
 即使客户端应用程序处于空闲状态，您也应该保持 HTTP 连接打开，以允许客户端应用程序通过打开的连接执行后续事务。根据系统测量和集成经验，您应该保持空闲 HTTP 连接最多开放 10 分钟。  StorageGRID可能会自动关闭保持打开状态并空闲超过 10 分钟的 HTTP 连接。
@@ -40,6 +41,7 @@ summary: 如何配置 HTTP 连接会影响StorageGRID系统的性能。配置会
 
 
 
+[[benefits-of-active-http-connections]]
 == 主动 HTTP 连接的好处
 
 对于直接连接到存储节点，您应该将活动 HTTP 连接的持续时间限制为最多 10 分钟，即使 HTTP 连接持续执行事务。
@@ -63,6 +65,7 @@ summary: 如何配置 HTTP 连接会影响StorageGRID系统的性能。配置会
 
 
 
+[[benefits-of-concurrent-http-connections]]
 == 并发 HTTP 连接的好处
 
 您应该保持与StorageGRID系统的多个 TCP/IP 连接处于打开状态以允许并行，从而提高性能。最佳并行连接数取决于多种因素。
@@ -92,6 +95,7 @@ StorageGRID系统通常支持多个客户端应用程序。在确定客户端应
 
 
 
+[[separation-of-http-connection-pools-for-read-and-write-operations]]
 == 分离用于读取和写入操作的 HTTP 连接池
 
 您可以使用单独的 HTTP 连接池进行读取和写入操作，并控制每个操作使用的池量。单独的 HTTP 连接池使您能够更好地控制事务和平衡负载。

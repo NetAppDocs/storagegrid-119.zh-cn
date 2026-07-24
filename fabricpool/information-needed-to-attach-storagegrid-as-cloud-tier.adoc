@@ -15,6 +15,7 @@ summary: 在将StorageGRID附加为FabricPool的云层之前，您必须在Stora
 
 
 
+[[what-values-do-i-need]]
 == 我需要什么价值观？
 
 下表显示了您必须在StorageGRID中配置的值以及ONTAP和 DNS 服务器如何使用这些值。
@@ -79,6 +80,7 @@ ONTAP系统管理器 > 添加云层
 |===
 
 
+[[how-do-i-get-these-values]]
 == 我如何获得这些值？
 
 根据您的要求，您可以执行以下操作之一来获取所需的信息：

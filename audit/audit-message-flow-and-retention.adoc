@@ -15,6 +15,7 @@ summary: 所有StorageGRID服务在正常系统运行期间都会生成审计消
 
 
 
+[[audit-message-flow]]
 == 审计消息流
 
 审计消息由管理节点和具有管理域控制器 (ADC) 服务的存储节点处理。
@@ -29,6 +30,7 @@ image::../media/audit_message_flow.gif[总结通过中继的审计消息流的�
 
 
 
+[[audit-message-retention]]
 === 审计消息保留
 
 StorageGRID使用复制和删除过程来确保在将审计消息写入审计日志之前不会丢失任何审计消息。
@@ -59,6 +61,7 @@ NOTE: 如果没有可用的存储节点提供 ADC 服务，存储节点会将审
 
 
 
+[[large-audit-queue-alert-and-audit-messages-queued-amqs-alarm]]
 === 大型审计队列警报和审计消息队列 (AMQS) 警报
 
 为了帮助您监控审计消息队列随时间的大小，当存储节点队列或管理节点队列中的消息数量达到特定阈值时，将触发*大型审计队列*警报和旧式 AMQS 警报。
@@ -69,6 +72,7 @@ NOTE: 如果没有可用的存储节点提供 ADC 服务，存储节点会将审
 
 
 
+[[duplicate-messages]]
 === 重复消息
 
 如果发生网络或节点故障， StorageGRID系统会采取保守的方法。因此，审计日志中可能存在重复的消息。

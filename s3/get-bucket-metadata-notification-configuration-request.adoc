@@ -17,6 +17,7 @@ GET Bucket 元数据通知配置请求允许您检索用于配置各个存储桶
 
 
 
+[[request-example]]
 == 请求示例
 
 此请求检索名为 `bucket`。
@@ -30,6 +31,7 @@ Host: _host_
 ----
 
 
+[[response]]
 == 响应
 
 响应主体包含存储桶的元数据通知配置。元数据通知配置让您确定如何配置存储桶以进行搜索集成。也就是说，它允许您确定哪些对象被索引，以及它们的对象元数据被发送到哪些端点。
@@ -153,6 +155,7 @@ Urn 包含在 Destination 元素中。
 |===
 
 
+[[response-example]]
 == 响应示例
 
 XML 包含在 `<MetadataNotificationConfiguration></MetadataNotificationConfiguration>`标签显示了如何为存储桶配置与搜索集成端点的集成。在此示例中，对象元数据被发送到名为 `current`并输入命名 `2017`托管在名为 `records`。

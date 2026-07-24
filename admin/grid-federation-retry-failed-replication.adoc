@@ -17,6 +17,7 @@ summary: 解决跨网格复制永久失败警报后，您应该确定是否有�
 
 
 
+[[determine-if-any-objects-failed-to-be-replicated]]
 == 确定是否有任何对象复制失败
 
 要确定是否有任何对象或删除标记尚未复制到另一个网格，您可以搜索审计日志link:../audit/cgrr-cross-grid-replication-request.html["CGRR（跨网格复制请求）"]消息。当StorageGRID无法将对象、多部分对象或删除标记复制到目标存储桶时，此消息将添加到日志中。
@@ -116,6 +117,7 @@ CGRR Cross-Grid Replication Request tenant:50736445269627437748 connection:44789
 
 
 
+[[retry-failed-replications]]
 == 重试失败的复制
 
 生成未复制到目标存储桶的对象和删除标记列表并解决底层问题后，您可以通过以下两种方式之一重试复制：
@@ -150,6 +152,7 @@ NOTE: 待处理意味着跨网格复制请求已添加到内部队列等待处�
 
 
 
+[[monitor-replication-retries]]
 == 监视复制重试
 
 您应该监视复制重试操作以确保它们完成。

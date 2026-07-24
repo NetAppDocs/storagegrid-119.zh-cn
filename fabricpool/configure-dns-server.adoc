@@ -17,6 +17,7 @@ summary: 配置高可用性组、负载均衡器端点和 S3 域名后，必须�
 
 
 
+[[dns-entries-for-storagegrid-server-name]]
 == StorageGRID服务器名称的 DNS 条目
 
 添加 DNS 条目以将StorageGRID服务器名称（完全限定域名）与您将使用的每个StorageGRID IP 地址关联。您在 DNS 中输入的 IP 地址取决于您是否使用负载平衡节点的 HA 组：
@@ -28,6 +29,7 @@ summary: 配置高可用性组、负载均衡器端点和 S3 域名后，必须�
 
 
 
+[[dns-entries-for-virtual-hosted-style-requests]]
 == 虚拟托管式请求的 DNS 条目
 
 如果你已经定义link:../admin/configuring-s3-api-endpoint-domain-names.html["S3 端点域名"]并且您将使用虚拟托管式请求，为所有必需的 S3 端点域名添加 DNS 条目，包括任何通配符名称。

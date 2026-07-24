@@ -15,6 +15,7 @@ summary: 您可以执行多项任务来帮助确定与StorageGRID网络、硬件
 
 
 
+[[422-unprocessable-entity-errors]]
 == “422：无法处理的实体”错误
 
 错误 422：无法处理的实体可能由于多种原因而发生。检查错误消息以确定导致问题的原因。
@@ -77,6 +78,7 @@ TLS handshake failed
 |===
 
 
+[[troubleshootmtualertgrid-network-mtu-mismatch-alert]]
 == [[troubleshoot_MTU_alert]]网格网络 MTU 不匹配警报
 
 当网格网络接口 (eth0) 的最大传输单元 (MTU) 设置在网格中的节点之间存在显著差异时，会触发 *网格网络 MTU 不匹配* 警报。
@@ -152,6 +154,7 @@ MTU 设置的差异可能表明部分（但不是全部）eth0 网络配置了�
 
 
 
+[[node-network-reception-frame-error-alert]]
 == 节点网络接收帧错误报警
 
 *节点网络接收帧错误*警报可能是由StorageGRID和网络硬件之间的连接问题引起的。解决根本问题后，此警报将自行消失。
@@ -238,6 +241,7 @@ NOTE: 您可能会注意到，在电气噪声较高的环境中，错误率较�
 
 
 
+[[time-synchronization-errors]]
 == 时间同步错误
 
 您可能会看到网格中的时间同步问题。
@@ -249,12 +253,14 @@ NOTE: 什么时候link:../maintain/configuring-ntp-servers.html["指定外部 NT
 
 
 
+[[linux-network-connectivity-issues]]
 == Linux：网络连接问题
 
 您可能会看到 Linux 主机上托管的StorageGRID节点的网络连接问题。
 
 
 
+[[mac-address-cloning]]
 === MAC地址克隆
 
 在某些情况下，可以通过使用 MAC 地址克隆来解决网络问题。如果您使用虚拟主机，请在节点配置文件中将每个网络的 MAC 地址克隆键的值设置为“true”。此设置会导致StorageGRID容器的 MAC 地址使用主机的 MAC 地址。要创建节点配置文件，请参阅link:../rhel/creating-node-configuration-files.html["Red Hat Enterprise Linux"]或者link:../ubuntu/creating-node-configuration-files.html["Ubuntu 或 Debian"]。
@@ -266,6 +272,7 @@ NOTE: 创建单独的虚拟网络接口供 Linux 主机操作系统使用。如�
 
 
 
+[[promiscuous-mode]]
 === 混杂模式
 
 如果您不想使用 MAC 地址克隆，而是允许所有接口接收和传输除虚拟机管理程序分配的 MAC 地址之外的 MAC 地址的数据，请确保虚拟交换机和端口组级别的安全属性设置为混杂模式、MAC 地址更改和伪造传输的 *接受*。虚拟交换机上设置的值可能会被端口组级别的值覆盖，因此请确保两个地方的设置相同。
@@ -274,6 +281,7 @@ NOTE: 创建单独的虚拟网络接口供 Linux 主机操作系统使用。如�
 
 
 
+[[linux-node-status-is-orphaned]]
 == Linux：节点状态为“孤立”
 
 处于孤立状态的 Linux 节点通常表示控制节点容器的 StorageGrid 服务或StorageGRID节点守护程序意外死亡。
@@ -320,6 +328,7 @@ storagegrid node start DC1-S1-172-16-1-172
 
 
 
+[[linux-troubleshoot-ipv6-support]]
 == Linux：排除 IPv6 支持故障
 
 如果您在 Linux 主机上安装了StorageGRID节点，并且注意到 IPv6 地址未按预期分配给节点容器，则可能需要在内核中启用 IPv6 支持。

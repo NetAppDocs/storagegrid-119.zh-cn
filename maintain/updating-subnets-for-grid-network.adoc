@@ -45,6 +45,7 @@ StorageGRID维护用于在网格网络 (eth0) 上网格节点之间进行通信�
 ====
 
 
+[[add-a-subnet]]
 == 添加子网
 
 .步骤
@@ -70,6 +71,7 @@ CAUTION: 恢复包文件必须是安全的，因为它包含可用于从StorageG
 
 
 
+[[edit-a-subnet]]
 == 编辑子网
 
 .步骤
@@ -87,6 +89,7 @@ CAUTION: 恢复包文件必须是安全的，因为它包含可用于从StorageG
 
 
 
+[[delete-a-subnet]]
 == 删除子网
 
 .步骤

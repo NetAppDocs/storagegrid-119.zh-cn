@@ -21,6 +21,7 @@ image::../media/grid_topology_tree.gif[网格拓扑树的各部分]
 
 
 
+[[storagegrid-attributes]]
 == StorageGRID属性
 
 属性报告StorageGRID系统的许多功能的值和状态。每个网格节点、每个站点以及整个网格都有属性值。
@@ -34,6 +35,7 @@ StorageGRID属性在网格管理器中的几个地方使用：
 
 
 
+[[attribute-values]]
 === 属性值
 
 属性是尽力报告的，并且大致正确。在某些情况下，属性更新可能会丢失，例如服务崩溃或网格节点故障和重建。

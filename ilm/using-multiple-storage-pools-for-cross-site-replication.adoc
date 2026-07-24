@@ -24,6 +24,7 @@ CAUTION: 在配置StorageGRID部署以进行站点丢失保护时，还必须考
 
 
 
+[[replication-example]]
 == 复制示例
 
 默认情况下，在StorageGRID安装期间为每个站点创建一个存储池。拥有仅由一个站点组成的存储池使您能够配置使用复制进行站点丢失保护的 ILM 规则。在此示例中：
@@ -48,6 +49,7 @@ image::../media/ilm_replication_make_2_copies_2_pools_2_sites.png[在 2 个站�
 
 
 
+[[erasure-coding-example]]
 == 擦除编码示例
 
 每个存储池由多个站点组成的存储池使您能够配置使用擦除编码进行站点丢失保护的 ILM 规则。在此示例中：

@@ -28,6 +28,7 @@ NOTE: 您必须为StorageGRID系统中的每个管理节点创建一个企业应
 
 
 
+[[access-azure-ad]]
 == 访问 Azure AD
 
 .步骤
@@ -38,6 +39,7 @@ NOTE: 您必须为StorageGRID系统中的每个管理节点创建一个企业应
 
 
 
+[[create-enterprise-applications-and-save-storagegrid-sso-configuration]]
 == 创建企业应用程序并保存StorageGRID SSO 配置
 
 要在StorageGRID中保存 Azure 的 SSO 配置，您必须使用 Azure 为每个管理节点创建一个企业应用程序。您将从 Azure 复制联合元数据 URL，并将其粘贴到StorageGRID单点登录页面上相应的 *联合元数据 URL* 字段中。
@@ -61,6 +63,7 @@ NOTE: 您必须为StorageGRID系统中的每个管理节点创建一个企业应
 
 
 
+[[download-saml-metadata-for-every-admin-node]]
 == 下载每个管理节点的 SAML 元数据
 
 保存 SSO 配置后，您可以为StorageGRID系统中的每个管理节点下载一个 SAML 元数据文件。
@@ -78,6 +81,7 @@ NOTE: 您必须为StorageGRID系统中的每个管理节点创建一个企业应
 
 
 
+[[upload-saml-metadata-to-each-enterprise-application]]
 == 将 SAML 元数据上传到每个企业应用程序
 
 为每个StorageGRID管理节点下载 SAML 元数据文件后，在 Azure AD 中执行以下步骤：

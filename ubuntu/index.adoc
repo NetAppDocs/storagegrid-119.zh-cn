@@ -38,6 +38,7 @@ summary: 按照这些高级步骤安装 Ubuntu 或 Debian StorageGRID节点。
 
 
 
+[[automate-the-installation]]
 == 自动化安装
 
 为了节省时间并提供一致性，您可以自动安装StorageGRID主机服务和配置网格节点。

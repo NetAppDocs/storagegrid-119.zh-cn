@@ -29,6 +29,7 @@ summary: 您可以配置高可用性（HA）组来提供对管理节点或网关
 
 
 
+[[create-a-high-availability-group]]
 == 创建高可用性组
 
 创建高可用性组时，您可以选择一个或多个接口并按优先级顺序组织它们。然后，为该组分配一个或多个 VIP 地址。
@@ -37,6 +38,7 @@ summary: 您可以配置高可用性（HA）组来提供对管理节点或网关
 
 
 
+[[access-the-wizard]]
 === 访问向导
 
 .步骤
@@ -46,6 +48,7 @@ summary: 您可以配置高可用性（HA）组来提供对管理节点或网关
 
 
 
+[[enter-details-for-the-ha-group]]
 === 输入 HA 组的详细信息
 
 .步骤
@@ -56,6 +59,7 @@ summary: 您可以配置高可用性（HA）组来提供对管理节点或网关
 
 
 
+[[add-interfaces-to-the-ha-group]]
 === 将接口添加到 HA 组
 
 .步骤
@@ -90,6 +94,7 @@ image::../media/vlan_parent_interface_tooltip.png[VLAN 接口工具提示]
 
 
 
+[[determine-the-priority-order]]
 === 确定优先顺序
 
 如果 HA 组包含多个接口，您可以确定哪个是主接口，哪些是备份（故障转移）接口。如果主接口出现故障，VIP 地址将移至可用的最高优先级接口。如果该接口出现故障，VIP 地址将移至下一个可用的最高优先级接口，依此类推。
@@ -111,6 +116,7 @@ TIP: 如果 HA 组提供对网格管理器的访问权限，则必须选择主�
 
 
 
+[[enter-ip-addresses]]
 === 输入 IP 地址
 
 .步骤
@@ -141,12 +147,14 @@ HA 组已创建，您现在可以使用配置的虚拟 IP 地址。
 
 
 
+[[next-steps]]
 === 后续步骤Next steps
 
 如果您将使用此 HA 组进行负载平衡，请创建负载平衡器端点以确定端口和网络协议并附加任何所需的证书。看link:configuring-load-balancer-endpoints.html["配置负载均衡器端点"] 。
 
 
 
+[[edit-a-high-availability-group]]
 == 编辑高可用性组
 
 您可以编辑高可用性 (HA) 组以更改其名称和描述、添加或删除接口、更改优先级顺序或添加或更新虚拟 IP 地址。
@@ -189,6 +197,7 @@ NOTE: 如果 HA 组提供对网格管理器的访问权限，则必须选择主�
 
 
 
+[[remove-a-high-availability-group]]
 == 删除高可用性组
 
 您可以一次删除一个或多个高可用性 (HA) 组。

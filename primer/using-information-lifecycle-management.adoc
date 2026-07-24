@@ -28,6 +28,7 @@ ILM 规则定义：
 
 
 
+[[example-ilm-rule]]
 == ILM 规则示例
 
 例如，ILM 规则可以指定以下内容：
@@ -43,6 +44,7 @@ ILM 规则定义：
 
 
 
+[[how-an-ilm-policy-evaluates-objects]]
 == ILM 策略如何评估对象
 
 StorageGRID系统的活动 ILM 策略控制所有对象的放置、持续时间和摄取行为。
@@ -56,6 +58,7 @@ StorageGRID系统的活动 ILM 策略控制所有对象的放置、持续时间�
 
 
 
+[[example-ilm-policy]]
 == ILM 策略示例
 
 例如，ILM 策略可能包含三个 ILM 规则，指定以下内容：

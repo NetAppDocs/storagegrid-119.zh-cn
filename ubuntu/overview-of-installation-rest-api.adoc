@@ -22,6 +22,7 @@ CAUTION: 您使用 API 文档网页执行的任何 API 操作都是实时操作�
 
 
 
+[[storagegrid-installation-api]]
 == StorageGRID安装 API
 
 仅当您最初配置StorageGRID系统并且需要执行主管理节点恢复时， StorageGRID安装 API 才可用。可以通过 HTTPS 从网格管理器访问安装 API。

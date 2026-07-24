@@ -36,6 +36,7 @@ summary: 您可以将一个或多个StorageGRID节点从一个 Linux 主机迁�
 ====
 
 
+[[export-node-from-source-host]]
 == 从源主机导出节点
 
 第一步，关闭网格节点并将其从源 Linux 主机导出。
@@ -96,6 +97,7 @@ want to import it again.
 
 
 
+[[import-node-on-target-host]]
 == 在目标主机上导入节点
 
 从源主机导出节点后，在目标主机上导入并验证该节点。验证确认该节点可以访问与源主机上相同的块存储和网络接口设备。
@@ -143,6 +145,7 @@ Checking for duplication of unique values... PASSED
 
 
 
+[[start-migrated-node]]
 == 启动迁移节点
 
 验证迁移的节点后，通过在_目标主机_上运行命令来启动该节点。

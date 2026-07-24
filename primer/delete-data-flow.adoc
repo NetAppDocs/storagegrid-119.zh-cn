@@ -15,6 +15,7 @@ summary: 当客户端或租户执行删除操作或对象的生命周期到期�
 
 
 
+[[deletion-hierarchy]]
 == 删除层次结构
 
 StorageGRID提供了几种控制何时保留或删除对象的方法。对象可以根据客户端请求或自动删除。  StorageGRID始终优先处理任何 S3 对象锁定设置，而不是客户端删除请求，而客户端删除请求又优先于 S3 存储桶生命周期和 ILM 放置指令。
@@ -41,6 +42,7 @@ NOTE: 配置 S3 存储桶生命周期后，生命周期到期操作将覆盖与�
 
 
 
+[[data-flow-for-client-deletes]]
 == 客户端删除的数据流
 
 image::../media/delete_data_flow.png[客户端删除数据流]
@@ -52,6 +54,7 @@ image::../media/delete_data_flow.png[客户端删除数据流]
 
 
 
+[[data-flow-for-ilm-deletes]]
 == ILM 删除的数据流
 
 image::../media/automatic_deletion_data_flow.png[自动删除数据流]

@@ -17,6 +17,7 @@ summary: 了解在摄取时保护数据的三个选项（平衡、严格或双�
 
 
 
+[[advantages-of-the-balanced-and-strict-options]]
 == 平衡和严格选项的优势
 
 与在摄取期间创建临时副本的双重提交相比，两个同步放置选项可以提供以下优势：
@@ -29,6 +30,7 @@ summary: 了解在摄取时保护数据的三个选项（平衡、严格或双�
 
 
 
+[[disadvantages-of-the-balanced-and-strict-options]]
 == 平衡和严格选项的缺点
 
 与双重提交相比，平衡和严格选项有一些缺点：
@@ -46,6 +48,7 @@ summary: 了解在摄取时保护数据的三个选项（平衡、严格或双�
 
 
 
+[[limitations-on-object-placements-with-the-balanced-and-strict-options]]
 == 使用“平衡”和“严格”选项放置对象的限制
 
 平衡或严格选项不能用于具有以下任何放置指令的 ILM 规则：
@@ -58,6 +61,7 @@ summary: 了解在摄取时保护数据的三个选项（平衡、严格或双�
 
 
 
+[[how-ilm-rules-and-consistency-interact-to-affect-data-protection]]
 == ILM 规则和一致性如何相互作用以影响数据保护
 
 您的 ILM 规则和一致性选择都会影响对象的保护方式。这些设置可以相互作用。
@@ -78,6 +82,7 @@ NOTE: 在选择一致性值之前，link:../s3/consistency-controls.html["阅读
 
 
 
+[[example-of-how-consistency-and-ilm-rules-can-interact]]
 == 一致性和 ILM 规则如何交互的示例
 
 假设您有一个双站点网格，具有以下 ILM 规则和以下一致性：

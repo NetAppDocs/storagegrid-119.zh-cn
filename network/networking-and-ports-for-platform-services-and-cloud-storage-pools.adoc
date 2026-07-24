@@ -15,6 +15,7 @@ summary: 如果您计划使用StorageGRID平台服务或云存储池，则必须
 
 
 
+[[networking-for-platform-services]]
 == 平台服务网络
 
 正如所述link:../admin/manage-platform-services-for-tenants.html["管理租户的平台服务"]和link:../tenant/considerations-for-platform-services.html["管理平台服务"]，平台服务包括提供搜索集成、事件通知和CloudMirror复制的外部服务。
@@ -27,12 +28,14 @@ summary: 如果您计划使用StorageGRID平台服务或云存储池，则必须
 
 
 
+[[networking-for-cloud-storage-pools]]
 == 云存储池网络
 
 云存储池还需要从存储节点访问所使用的外部服务提供的端点，例如 Amazon S3 Glacier 或 Microsoft Azure Blob 存储。有关信息，请参阅link:../ilm/what-cloud-storage-pool-is.html["什么是云存储池"]。
 
 
 
+[[ports-for-platform-services-and-cloud-storage-pools]]
 == 平台服务和云存储池的端口
 
 默认情况下，平台服务和云存储池通信使用以下端口：
@@ -47,6 +50,7 @@ summary: 如果您计划使用StorageGRID平台服务或云存储池，则必须
 
 
 
+[[vlans-and-platform-services-and-cloud-storage-pools]]
 == VLAN、平台服务和云存储池
 
 您不能将 VLAN 网络用于平台服务或云存储池。目标端点必须可通过网格、管理或客户端网络访问。

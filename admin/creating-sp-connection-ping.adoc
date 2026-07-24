@@ -28,12 +28,14 @@ summary: '您使用 PingFederate 为系统中的每个管理节点创建服务�
 
 
 
+[[complete-prerequisites-in-pingfederate]]
 == 完成 PingFederate 中的先决条件
 
 在创建将用于StorageGRID 的SP连接之前，您必须完成 PingFederate 中的先决条件任务。配置SP连接时，您将使用这些先决条件中的信息。
 
 
 
+[[create-data-storedata-store]]
 === 创建数据存储[[data-store]]
 
 如果您还没有，请创建一个数据存储以将 PingFederate 连接到 AD FS LDAP 服务器。使用您使用过的值link:../admin/using-identity-federation.html["配置身份联合"]在StorageGRID中。
@@ -45,6 +47,7 @@ summary: '您使用 PingFederate 为系统中的每个管理节点创建服务�
 
 
 
+[[create-password-credential-validatorpassword-validator]]
 === 创建密码凭证验证器[[password-validator]]
 
 如果您还没有，请创建一个密码凭证验证器。
@@ -58,6 +61,7 @@ summary: '您使用 PingFederate 为系统中的每个管理节点创建服务�
 
 
 
+[[create-idp-adapter-instanceadapter-instance]]
 === 创建 IdP 适配器实例[[adapter-instance]]
 
 如果您还没有，请创建一个 IdP 适配器实例。
@@ -74,6 +78,7 @@ summary: '您使用 PingFederate 为系统中的每个管理节点创建服务�
 
 
 
+[[create-or-import-signing-certificatesigning-certificate]]
 === 创建或导入签名证书[[signing-certificate]]
 
 如果您还没有，请创建或导入签名证书。
@@ -85,6 +90,7 @@ summary: '您使用 PingFederate 为系统中的每个管理节点创建服务�
 
 
 
+[[create-an-sp-connection-in-pingfederate]]
 == 在 PingFederate 中创建SP连接
 
 在 PingFederate 中创建SP连接时，您会导入从StorageGRID为管理节点下载的 SAML 元数据。元数据文件包含您需要的许多特定值。
@@ -94,6 +100,7 @@ TIP: 您必须为StorageGRID系统中的每个管理节点创建一个SP连接�
 
 
 
+[[choose-sp-connection-type]]
 === 选择SP连接类型
 
 .步骤
@@ -105,6 +112,7 @@ TIP: 您必须为StorageGRID系统中的每个管理节点创建一个SP连接�
 
 
 
+[[import-sp-metadata]]
 === 导入SP元数据
 
 .步骤
@@ -119,6 +127,7 @@ TIP: 您必须为StorageGRID系统中的每个管理节点创建一个SP连接�
 
 
 
+[[configure-idp-browser-sso]]
 === 配置 IdP 浏览器 SSO
 
 .步骤
@@ -137,6 +146,7 @@ TIP: 您必须为StorageGRID系统中的每个管理节点创建一个SP连接�
 
 
 
+[[map-adapter-instance]]
 === 地图适配器实例
 
 .步骤
@@ -163,6 +173,7 @@ TIP: 您必须为StorageGRID系统中的每个管理节点创建一个SP连接�
 
 
 
+[[configure-protocol-settings]]
 === 配置协议设置
 
 .步骤
@@ -178,6 +189,7 @@ TIP: 您必须为StorageGRID系统中的每个管理节点创建一个SP连接�
 
 
 
+[[configure-credentials]]
 === 配置凭据
 
 .步骤
@@ -195,6 +207,7 @@ TIP: 您必须为StorageGRID系统中的每个管理节点创建一个SP连接�
 
 
 
+[[create-additional-sp-connections]]
 === 创建其他SP连接
 
 您可以复制第一个SP连接来为网格中的每个管理节点创建所需的SP连接。您为每个副本上传新的元数据。

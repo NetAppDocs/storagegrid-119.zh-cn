@@ -25,6 +25,7 @@ CAUTION: 以下 ILM 规则和策略仅作为示例。配置 ILM 规则的方法�
 
 
 
+[[ilm-rule-1-for-example-5-strict-ingest-to-guarantee-paris-data-center]]
 == ILM 规则 1 例如 5：严格摄取以保证巴黎数据中心
 
 此示例 ILM 规则使用严格摄取行为来保证位于巴黎的租户保存到区域设置为 eu-west-3 区域（巴黎）的 S3 存储桶中的对象永远不会存储在美国数据中心。
@@ -88,6 +89,7 @@ image::../media/ilm_rule_1_example_5_strict_ingest.png[ILM 规则 1 示例 5 严
 
 
 
+[[ilm-rule-2-for-example-5-balanced-ingest-for-other-objects]]
 == ILM 规则 2 例如 5：平衡摄取其他对象
 
 此示例 ILM 规则使用平衡摄取行为，为第一条规则未匹配的任何对象提供最佳 ILM 效率。与此规则匹配的所有对象的两个副本都将存储 - 一个在美国数据中心，一个在巴黎数据中心。如果规则不能立即满足，则临时副本将存储在任何可用位置。
@@ -149,6 +151,7 @@ _未指定_
 |===
 
 
+[[ilm-policy-for-example-5-combining-ingest-behaviors]]
 == ILM 策略示例 5：组合摄取行为
 
 示例 ILM 策略包括两个具有不同摄取行为的规则。

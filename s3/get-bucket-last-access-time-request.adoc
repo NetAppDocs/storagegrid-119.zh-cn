@@ -17,6 +17,7 @@ GET Bucket 最后访问时间请求允许您确定是否为各个存储桶启用
 
 
 
+[[request-example]]
 == 请求示例
 
 [listing, subs="specialcharacters,quotes"]
@@ -28,6 +29,7 @@ Host: _host_
 ----
 
 
+[[response-example]]
 == 响应示例
 
 此示例显示已为存储桶启用上次访问时间更新。

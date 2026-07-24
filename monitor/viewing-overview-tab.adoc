@@ -17,6 +17,7 @@ summary: 概述选项卡提供有关每个节点的基本信息。它还显示�
 
 
 
+[[node-information]]
 == 节点信息
 
 概述选项卡的节点信息部分列出了有关该节点的基本信息。
@@ -53,6 +54,7 @@ NOTE: 在托管关闭操作期间，节点可能会显示为“未知”。在�
 
 
 
+[[alerts]]
 == 警报
 
 概览选项卡的警报部分列出了所有link:monitoring-system-health.html#view-current-and-resolved-alerts["当前影响此节点且尚未被消除的警报"]。选择警报名称以查看其他详细信息和建议的操作。

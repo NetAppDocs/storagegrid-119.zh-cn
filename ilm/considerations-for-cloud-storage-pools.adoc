@@ -15,6 +15,7 @@ summary: 如果您计划使用云存储池将对象移出StorageGRID系统，则
 
 
 
+[[general-considerations]]
 == 一般注意事项
 
 * 一般来说，云存档存储（例如 Amazon S3 Glacier 或 Azure Blob 存储）是存储对象数据的廉价场所。然而，从云档案存储中检索数据的成本相对较高。为了实现最低的总体成本，您必须考虑何时以及多久访问一次云存储池中的对象。仅对于您不经常访问的内容，建议使用云存储池。
@@ -32,6 +33,7 @@ summary: 如果您计划使用云存储池将对象移出StorageGRID系统，则
 
 
 
+[[considerations-for-the-ports-used-for-cloud-storage-pools]]
 == 云存储池所用端口的注意事项
 
 为了确保 ILM 规则可以将对象移入和移出指定的云存储池，您必须配置包含系统存储节点的网络。必须确保以下端口可以与云存储池通信。
@@ -48,6 +50,7 @@ summary: 如果您计划使用云存储池将对象移出StorageGRID系统，则
 
 
 
+[[considerations-for-costs]]
 == 成本考虑
 
 使用云存储池访问云中的存储需要与云建立网络连接。您必须根据预计使用云存储池在StorageGRID和云之间移动的数据量，考虑用于访​​问云的网络基础设施的成本并对其进行适当的配置。
@@ -65,6 +68,7 @@ NOTE: 当对象从云存储池移回StorageGRID时， StorageGRID会针对每个
 
 
 
+[[s3-permissions-required-for-the-cloud-storage-pool-bucket]]
 == S3：云存储池存储桶所需的权限
 
 用于云存储池的外部 S3 存储桶的策略必须授予StorageGRID权限，以将对象移动到存储桶、获取对象的状态、在需要时从 Glacier 存储中恢复对象等等。理想情况下， StorageGRID应该对存储桶具有完全控制访问权限(`s3:*`）；但是，如果这不可能，则存储桶策略必须向StorageGRID授予以下 S3 权限：
@@ -81,6 +85,7 @@ NOTE: 当对象从云存储池移回StorageGRID时， StorageGRID会针对每个
 
 
 
+[[s3-considerations-for-the-external-buckets-lifecycle]]
 == S3：外部存储桶生命周期的注意事项
 
 StorageGRID和云存储池中指定的外部 S3 存储桶之间的对象移动由StorageGRID中的 ILM 规则和活动 ILM 策略控制。相比之下，对象从云存储池中指定的外部 S3 存储桶到 Amazon S3 Glacier 或 S3 Glacier Deep Archive（或实现 Glacier 存储类的存储解决方案）的转换由该存储桶的生命周期配置控制。
@@ -114,12 +119,14 @@ CAUTION: 配置外部存储桶的生命周期时，切勿使用*Expiration*操�
 
 
 
+[[azure-considerations-for-access-tier]]
 == Azure：访问层的注意事项
 
 配置 Azure 存储帐户时，可以将默认访问层设置为“热”或“冷”。创建用于云存储池的存储帐户时，应使用热层作为默认层。尽管StorageGRID在将对象移动到云存储池时立即将层设置为存档，但使用默认设置“热”可确保您不会因在 30 天最低期限之前从冷层中删除的对象而被收取提前删除费用。
 
 
 
+[[azure-lifecycle-management-not-supported]]
 == Azure：不支持生命周期管理
 
 不要对与云存储池一起使用的容器使用 Azure Blob 存储生命周期管理。生命周期操作可能会干扰云存储池操作。

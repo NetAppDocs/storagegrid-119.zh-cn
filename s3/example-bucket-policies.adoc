@@ -26,6 +26,7 @@ summary: 使用本节中的示例为存储桶构建StorageGRID访问策略。
 
 
 
+[[example-allow-everyone-read-only-access-to-a-bucket]]
 == 示例：允许每个人对存储桶进行只读访问
 
 在这个例子中，允许所有人（包括匿名用户）列出存储桶中的对象，并对存储桶中的所有对象执行 GetObject 操作。所有其他操作都将被拒绝。请注意，此策略可能不是特别有用，因为除了帐户根之外没有人有权限写入存储桶。
@@ -46,6 +47,7 @@ summary: 使用本节中的示例为存储桶构建StorageGRID访问策略。
 ----
 
 
+[[example-allow-everyone-in-one-account-full-access-and-everyone-in-another-account-read-only-access-to-a-bucket]]
 == 示例：允许一个帐户中的每个人对存储桶进行完全访问，并允许另一个帐户中的每个人对存储桶进行只读访问
 
 在此示例中，一个指定帐户中的每个人都被允许完全访问存储桶，而另一个指定帐户中的每个人只被允许列出存储桶并对存储桶中以 开头的对象执行 GetObject 操作 `shared/`对象键前缀。
@@ -94,6 +96,7 @@ NOTE: 在StorageGRID中，非所有者帐户（包括匿名帐户）创建的对
 ----
 
 
+[[example-allow-everyone-read-only-access-to-a-bucket-and-full-access-by-specified-group]]
 == 示例：允许每个人对存储桶进行只读访问，并允许指定组进行完全访问
 
 在这个例子中，包括匿名用户在内的每个人都可以列出存储桶并对存储桶中的所有对象执行 GetObject 操作，而只有属于该组的用户 `Marketing`指定帐户中的用户可以获得完全访问权限。
@@ -127,6 +130,7 @@ NOTE: 在StorageGRID中，非所有者帐户（包括匿名帐户）创建的对
 ----
 
 
+[[example-allow-everyone-read-and-write-access-to-a-bucket-if-client-in-ip-range]]
 == 示例：如果客户端在 IP 范围内，则允许每个人对存储桶进行读写访问
 
 在此示例中，允许所有人（包括匿名用户）列出存储桶并对存储桶中的所有对象执行任何对象操作，前提是请求来自指定的 IP 范围（54.240.143.0 到 54.240.143.255，54.240.143.188 除外）。所有其他操作都将被拒绝，并且所有超出 IP 范围的请求都将被拒绝。
@@ -151,6 +155,7 @@ NOTE: 在StorageGRID中，非所有者帐户（包括匿名帐户）创建的对
 ----
 
 
+[[example-allow-full-access-to-a-bucket-exclusively-by-a-specified-federated-user]]
 == 示例：允许指定联合用户独占访问存储桶的完全权限
 
 在此示例中，联合用户 Alex 被允许完全访问 `examplebucket`bucket 及其对象。所有其他用户（包括“root”）均被明确拒绝所有操作。但请注意，“root”永远不会被拒绝 Put/Get/DeleteBucketPolicy 的权限。
@@ -190,6 +195,7 @@ NOTE: 在StorageGRID中，非所有者帐户（包括匿名帐户）创建的对
 ----
 
 
+[[example-putoverwriteobject-permission]]
 == 示例：PutOverwriteObject 权限
 
 在这个例子中， `Deny` PutOverwriteObject 和 DeleteObject 的效果确保没有人可以覆盖或删除对象的数据、用户定义的元数据和 S3 对象标记。

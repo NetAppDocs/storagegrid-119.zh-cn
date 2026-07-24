@@ -17,6 +17,7 @@ summary: 配置和使用存储池，通过在多个站点之间分发数据来�
 
 
 
+[[guidelines-for-all-storage-pools]]
 == 所有存储池的指南
 
 * 使存储池配置尽可能简单。不要创建超过需要的存储池。
@@ -27,6 +28,7 @@ summary: 配置和使用存储池，通过在多个站点之间分发数据来�
 
 
 
+[[guidelines-for-storage-pools-used-for-replicated-copies]]
 == 用于复制副本的存储池指南
 
 * 对于站点丢失保护，使用link:what-replication-is.html["replication"]，在link:create-ilm-rule-define-placements.html["每个 ILM 规则的放置说明"]。
@@ -43,6 +45,7 @@ summary: 配置和使用存储池，通过在多个站点之间分发数据来�
 
 
 
+[[guidelines-for-storage-pools-used-for-erasure-coded-copies]]
 == 用于擦除编码副本的存储池指南
 
 * 对于站点丢失保护，使用link:what-erasure-coding-is.html["擦除编码"]，创建至少由三个站点组成的存储池。如果存储池仅包含两个站点，则不能使用该存储池进行擦除编码。对于具有两个站点的存储池，没有可用的擦除编码方案。

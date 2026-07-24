@@ -17,6 +17,7 @@ summary: 您可以通过定位 S3 API 特定的审计消息来识别审计日志
 
 
 
+[[s3-delete-audit-messages]]
 == S3 删除审计消息
 
 [cols="1a,1a,2a,1a,2a"]
@@ -38,6 +39,7 @@ link:sdel-s3-delete.html["SDEL：S3 删除"]
 |===
 
 
+[[swift-delete-audit-messages]]
 == Swift 删除审核消息
 
 [cols="1a,1a,2a,1a,2a"]
@@ -59,6 +61,7 @@ link:wdel-swift-delete.html["WDEL：快速删除"]
 |===
 
 
+[[example-s3-object-deletion]]
 == 示例：S3 对象删除
 
 当 S3 客户端从存储节点（LDR 服务）删除对象时，会生成一条审计消息并保存到审计日志中。
@@ -68,6 +71,7 @@ NOTE: 以下示例中并未列出删除事务期间生成的所有审计消息�
 
 
 
+[[sdel-s3-delete]]
 === SDEL：S3 删除
 
 当客户端向 LDR 服务发送 DeleteObject 请求时，对象删除就开始了。该消息包含要从中删除对象的存储桶以及用于标识对象的对象的 S3 Key。

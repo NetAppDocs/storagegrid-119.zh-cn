@@ -17,6 +17,7 @@ summary: 使用这些说明将StorageGRID系统升级到新版本。
 
 
 
+[[before-you-begin]]
 == 开始之前
 
 查看这些主题以了解StorageGRID 11.9 中的新功能和增强功能，确定是否有任何功能已被弃用或删除，并了解StorageGRID API 的变化。

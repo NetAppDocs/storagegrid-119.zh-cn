@@ -15,6 +15,7 @@ summary: 您必须了解应用修补程序时StorageGRID系统将受到怎样的
 
 
 
+[[storagegrid-hotfixes-are-non-disruptive]]
 == StorageGRID修补程序不会造成中断
 
 StorageGRID系统可以在整个修补程序过程中从客户端应用程序提取和检索数据。如果您批准对同一类型的所有节点（例如，存储节点）进行热修复，则会一次关闭一个节点，因此不会出现所有网格节点或某种类型的所有网格节点都不可用的情况。
@@ -29,6 +30,7 @@ StorageGRID系统可以在整个修补程序过程中从客户端应用程序提
 
 
 
+[[client-applications-might-experience-short-term-disruptions]]
 == 客户端应用程序可能会遭遇短期中断
 
 StorageGRID系统可以在整个修补程序过程中从客户端应用程序提取和检索数据；但是，如果修补程序需要重新启动这些节点上的服务，则客户端与各个网关节点或存储节点的连接可能会暂时中断。修复过程完成后，连接将恢复，并且各个节点上的服务将恢复。
@@ -40,12 +42,14 @@ NOTE: 您可以使用多个网关和高可用性 (HA) 组在修补程序过程�
 
 
 
+[[alerts-and-snmp-notifications-might-be-triggered]]
 == 可能会触发警报和 SNMP 通知
 
 当服务重新启动时以及当StorageGRID系统作为混合版本环境运行时（一些网格节点运行早期版本，而其他网格节点已升级到更高版本），可能会触发警报和 SNMP 通知。一般来说，这些警报和通知将在修补程序完成时清除。
 
 
 
+[[configuration-changes-are-restricted]]
 == 配置更改受到限制
 
 将修补程序应用于StorageGRID时：

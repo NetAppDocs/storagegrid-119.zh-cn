@@ -20,6 +20,7 @@ summary: 所有 S3 客户端活动都与StorageGRID租户帐户相关联。您�
 
 
 
+[[view-all-tenants]]
 == 查看所有租户
 
 租户页面显示所有当前租户帐户的基本信息。
@@ -60,6 +61,7 @@ image::../media/tenant_accounts_example_csv.png[租户帐户示例 .csv]
 
 
 
+[[view-a-specific-tenant]]
 == 查看特定租户
 
 您可以查看特定租户的详细信息。
@@ -124,6 +126,7 @@ image::../media/tenant_bucket_details_csv.png[租户存储桶详细信息 CSV �
 
 
 
+[[view-network-traffic]]
 == 查看网络流量
 
 如果某个租户有流量分类策略，请检查该租户的网络流量。
@@ -142,6 +145,7 @@ image::../media/tenant_bucket_details_csv.png[租户存储桶详细信息 CSV �
 
 
 
+[[use-the-audit-log]]
 == 使用审核日志
 
 或者，您可以使用审计日志来更细致地监控租户的活动。
@@ -160,6 +164,7 @@ image::../media/tenant_bucket_details_csv.png[租户存储桶详细信息 CSV �
 
 
 
+[[use-prometheus-metrics]]
 == 使用 Prometheus 指标
 
 或者，使用 Prometheus 指标来报告租户活动。

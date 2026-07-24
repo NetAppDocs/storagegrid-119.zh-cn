@@ -23,6 +23,7 @@ StorageGRID使用两种类型的安全证书：
 
 StorageGRID充当某些连接（例如负载均衡器端点）的服务器，或充当其他连接（例如 CloudMirror 复制服务）的客户端。
 
+[[gridca_details]]
 *默认网格 CA 证书*
 
 StorageGRID包括一个内置证书颁发机构 (CA)，它在系统安装期间生成内部 Grid CA 证书。默认情况下，使用 Grid CA 证书来保护内部StorageGRID流量。外部证书颁发机构 (CA) 可以颁发完全符合您组织的信息安全策略的自定义证书。虽然您可以在非生产环境中使用 Grid CA 证书，但生产环境的最佳做法是使用由外部证书颁发机构签名的自定义证书。也支持没有证书的不安全连接，但不推荐。
@@ -39,6 +40,7 @@ NOTE: StorageGRID还包括所有网格上相同的操作系统 CA 证书。在�
 
 
 
+[[access-security-certificates]]
 == 访问安全证书
 
 您可以在单个位置访问有关所有StorageGRID证书的信息，以及每个证书的配置工作流程的链接。
@@ -193,12 +195,15 @@ NOTE: 仅当您拥有link:admin-group-permissions.html["适当的许可"]。
 
 
 
+[[security-certificate-details]]
 == 安全证书详细信息
 
 下面描述了每种类型的安全证书，并附有实施说明的链接。
 
 
 
+[[management-interface-certificate]]
+[[adminclientcert_details]]
 === 管理接口证书
 
 [cols="1a,1a,1a,1a"]
@@ -222,6 +227,7 @@ link:configuring-custom-server-certificate-for-grid-manager-tenant-manager.html[
 |===
 
 
+[[s3-api-certificate]]
 === S3 API 证书
 
 [cols="1a,1a,1a,1a"]
@@ -241,12 +247,14 @@ link:configuring-custom-server-certificate-for-storage-node.html["配置 S3 API 
 |===
 
 
+[[grid-ca-certificate]]
 === 网格CA证书
 
 查看<<gridca_details,默认网格 CA 证书描述>>。
 
 
 
+[[administrator-client-certificate]]
 === 管理员客户端证书
 
 [cols="1a,1a,1a,1a"]
@@ -270,6 +278,7 @@ link:configuring-administrator-client-certificates.html["配置客户端证书"]
 |===
 
 
+[[load-balancer-endpoint-certificate]]
 === 负载均衡器端点证书
 
 [cols="1a,1a,1a,1a"]
@@ -295,6 +304,7 @@ link:configuring-administrator-client-certificates.html["配置客户端证书"]
 |===
 
 
+[[cloud-storage-pool-endpoint-certificate]]
 === 云存储池端点证书
 
 [cols="1a,1a,1a,1a"]
@@ -314,6 +324,7 @@ link:../ilm/creating-cloud-storage-pool.html["创建云存储池"]
 |===
 
 
+[[email-alert-notification-certificate]]
 === 电子邮件警报通知证书
 
 [cols="1a,1a,1a,1a"]
@@ -337,6 +348,7 @@ link:../monitor/email-alert-notifications.html["设置警报的电子邮件通�
 |===
 
 
+[[external-syslog-server-certificate]]
 === 外部系统日志服务器证书
 
 [cols="1a,1a,1a,1a"]
@@ -358,6 +370,7 @@ link:../monitor/configure-audit-messages.html#use-external-syslog-server["使用
 |===
 
 
+[[grid-federation-certificategrid-federation-connection-certificate]]
 === [[grid-federation-certificate]]电网联合连接证书
 
 [cols="1a,1a,1a,1a"]
@@ -379,6 +392,7 @@ link:../monitor/configure-audit-messages.html#use-external-syslog-server["使用
 |===
 
 
+[[identity-federation-certificate]]
 === 身份联合证书
 
 [cols="1a,1a,1a,1a"]
@@ -398,6 +412,7 @@ link:using-identity-federation.html["使用身份联合"]
 |===
 
 
+[[key-management-server-kms-certificate]]
 === 密钥管理服务器 (KMS) 证书
 
 [cols="1a,1a,1a,1a"]
@@ -417,6 +432,7 @@ link:kms-adding.html["添加密钥管理服务器（KMS）"]
 |===
 
 
+[[platform-services-endpoint-certificate]]
 === 平台服务端点证书
 
 [cols="1a,1a,1a,1a"]
@@ -438,6 +454,7 @@ link:../tenant/editing-platform-services-endpoint.html["编辑平台服务端点
 |===
 
 
+[[single-sign-on-sso-certificate]]
 === 单点登录 (SSO) 证书
 
 [cols="1a,1a,1a,1a"]
@@ -457,10 +474,12 @@ link:configuring-sso.html["配置单点登录"]
 |===
 
 
+[[certificate-examples]]
 == 证书示例
 
 
 
+[[example-1-load-balancer-service]]
 === 示例 1：负载均衡器服务
 
 在此示例中， StorageGRID充当服务器。
@@ -475,6 +494,7 @@ link:configuring-sso.html["配置单点登录"]
 
 
 
+[[example-2-external-key-management-server-kms]]
 === 示例 2：外部密钥管理服务器 (KMS)
 
 在此示例中， StorageGRID充当客户端。

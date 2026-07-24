@@ -27,6 +27,7 @@ summary: 您可以使用租户管理 REST API 而不是租户管理器用户界�
 
 
 
+[[api-operations]]
 == API 操作
 
 租户管理 API 将可用的 API 操作组织到以下部分：
@@ -59,6 +60,7 @@ NOTE: 如果为StorageGRID系统启用了单点登录 (SSO)，则必须执行不
 
 
 
+[[operation-details]]
 == 操作细节
 
 展开每个 API 操作时，您可以看到其 HTTP 操作、端点 URL、任何必需或可选参数的列表、请求正文的示例（需要时）以及可能的响应。
@@ -67,6 +69,7 @@ image::../media/tenant_api_swagger_example.gif[Swagger API 中 GET 组操作的�
 
 
 
+[[issue-api-requests]]
 == 发出 API 请求
 
 

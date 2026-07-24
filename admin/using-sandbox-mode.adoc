@@ -55,6 +55,7 @@ Azure
 
 
 
+[[access-sandbox-mode]]
 == 访问沙盒模式
 
 .步骤
@@ -77,6 +78,7 @@ NOTE: 如果未出现 SSO 状态选项，请确认您已将身份提供者配置
 
 
 
+[[enter-identity-provider-details]]
 == 输入身份提供者详细信息
 
 .步骤
@@ -223,6 +225,7 @@ image::../media/save_button_green_checkmark.gif[带有绿色复选标记的“�
 
 
 
+[[configure-relying-party-trusts-enterprise-applications-or-sp-connections]]
 == 配置信赖方信任、企业应用程序或SP连接
 
 保存配置后，会出现沙盒模式确认通知。此通知确认沙盒模式现已启用并提供概述说明。
@@ -285,6 +288,7 @@ StorageGRID可以根据需要保持沙盒模式。但是，当在单点登录页
 ====
 
 
+[[test-sso-connections]]
 == 测试 SSO 连接
 
 在强制整个StorageGRID系统使用单点登录之前，您应该确认每个管理节点的单点登录和单点注销都正确配置。
@@ -366,6 +370,7 @@ image::../media/sso_sandbox_mode_sign_in_success.gif[SSO认证和注销测试成
 ====
 
 
+[[enable-single-sign-on]]
 == 启用单点登录
 
 当您确认可以使用 SSO 登录到每个管理节点后，您可以为整个StorageGRID系统启用 SSO。

@@ -17,6 +17,7 @@ summary: 例如，如果您要移动数据中心，则可能需要关闭整个St
 
 
 
+[[stop-services-and-shut-down-grid-nodes]]
 == 停止服务并关闭网格节点
 
 在关闭StorageGRID系统之前，您必须停止每个网格节点上运行的所有服务，然后关闭所有 VMware 虚拟机、容器引擎和StorageGRID设备。
@@ -145,6 +146,7 @@ StorageGRID网格现已关闭。
 
 
 
+[[start-up-grid-nodes]]
 == 启动网格节点
 
 

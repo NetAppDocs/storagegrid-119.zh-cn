@@ -15,6 +15,7 @@ summary: 您可以使用 S3 设置向导将StorageGRID配置为 S3 应用程序�
 
 
 
+[[when-to-use-the-s3-setup-wizard]]
 == 何时使用 S3 设置向导
 
 S3 设置向导将指导您完成配置StorageGRID以与 S3 应用程序一起使用的每个步骤。作为完成向导的一部分，您可以下载可用于将值输入到 S3 应用程序中的文件。使用向导可以更快地配置您的系统并确保您的设置符合StorageGRID最佳实践。
@@ -23,6 +24,7 @@ S3 设置向导将指导您完成配置StorageGRID以与 S3 应用程序一起�
 
 
 
+[[before-using-the-wizard]]
 == 使用向导之前
 
 在使用该向导之前，请确认您已完成这些先决条件。

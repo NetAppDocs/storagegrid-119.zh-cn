@@ -20,6 +20,7 @@ NOTE: 您可以继续将租户管理 API 的弃用版本与StorageGRID 11.9 一�
 
 
 
+[[new-api-for-bucket-capacity-limit]]
 == 新增 bucket 容量限制 API
 
 您可以使用 `/org/containers/{bucketName}/quota-object-bytes`使用 GET/PUT 操作的 API 来获取和设置存储桶的存储容量限制。

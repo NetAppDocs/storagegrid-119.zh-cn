@@ -44,6 +44,7 @@ image::../media/events_report.gif[活动页面]
 
 
 
+[[create-custom-syslog-events]]
 == 创建自定义系统日志事件
 
 自定义事件允许您跟踪记录到 syslog 服务器的所有内核、守护进程、错误和关键级别用户事件。自定义事件可用于监控系统日志消息（以及网络安全事件和硬件故障）的发生。
@@ -83,6 +84,7 @@ image::../media/custom_events_count.png[SSM > 事件 > 概览页面]
 
 
 
+[[reset-the-count-of-custom-events-to-zero]]
 == 将自定义事件的数量重置为零
 
 如果您只想重置自定义事件的计数器，则必须使用支持菜单中的网格拓扑页面。

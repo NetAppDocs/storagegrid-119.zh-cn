@@ -15,6 +15,7 @@ ILM 策略模拟的示例为您构建和修改环境模拟提供了指导。
 
 
 
+[[example-1-verify-rules-when-simulating-an-ilm-policy]]
 == 示例 1：模拟 ILM 策略时验证规则
 
 本示例介绍如何在模拟策略时验证规则。
@@ -39,6 +40,7 @@ image::../media/simulate_policy_screen.png[模拟政策结果]
 
 
 
+[[example-2-reorder-rules-when-simulating-an-ilm-policy]]
 == 示例 2：模拟 ILM 策略时重新排序规则
 
 此示例展示了如何在模拟策略时重新排序规则以更改结果。
@@ -81,6 +83,7 @@ image::../media/simulate_reorder_rules_correct_result.png[示例 2：模拟 ILM 
 
 
 
+[[example-3-correct-a-rule-when-simulating-an-ilm-policy]]
 == 示例 3：模拟 ILM 策略时更正规则
 
 此示例显示如何模拟策略、更正策略中的规则并继续模拟。

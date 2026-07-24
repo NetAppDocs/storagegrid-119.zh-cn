@@ -15,6 +15,7 @@ StorageGRID节点可以部署在 VMware 虚拟机上、Linux 主机上的容器�
 
 
 
+[[control-remote-ipmi-access-to-bmc]]
 == 控制远程 IPMI 对BMC的访问
 
 您可以为所有包含BMC 的设备启用或禁用远程 IPMI 访问。远程 IPMI 接口允许任何拥有BMC帐户和密码的人对您的StorageGRID设备进行低级硬件访问。如果您不需要远程 IPMI 访问BMC，请禁用此选项。
@@ -29,6 +30,7 @@ StorageGRID节点可以部署在 VMware 虚拟机上、Linux 主机上的容器�
 
 
 
+[[firewall-configuration]]
 == 防火墙配置
 
 作为系统强化过程的一部分，您必须检查外部防火墙配置并进行修改，以便仅接受来自严格需要的 IP 地址和端口的流量。
@@ -48,24 +50,28 @@ StorageGRID在每个节点上都包含一个内部防火墙，通过使您能够
 
 
 
+[[disable-unused-services]]
 == 禁用未使用的服务
 
 对于所有StorageGRID节点，您应该禁用或阻止对未使用的服务的访问。例如，如果您不打算使用 DHCP，请使用网格管理器关闭端口 68。选择*配置* > *防火墙控制* > *管理外部访问*。然后将端口 68 的状态切换从 *打开* 更改为 *关闭*。
 
 
 
+[[virtualization-containers-and-shared-hardware]]
 == 虚拟化、容器和共享硬件
 
 对于所有StorageGRID节点，避免在与不受信任的软件相同的物理硬件上运行StorageGRID 。如果StorageGRID和恶意软件都存在于同一个物理硬件上，请不要假设虚拟机管理程序保护将阻止恶意软件访问受StorageGRID保护的数据。例如，Meltdown 和 Spectre 攻击利用现代处理器中的关键漏洞，并允许程序窃取同一台计算机内存中的数据。
 
 
 
+[[protect-nodes-during-installation]]
 == 在安装期间保护节点
 
 安装节点时，不允许不受信任的用户通过网络访问StorageGRID节点。节点只有在加入电网后才会完全安全。
 
 
 
+[[guidelines-for-admin-nodes]]
 == 管理节点指南
 
 管理节点提供系统配置、监控和日志记录等管理服务。当您登录到网格管理器或租户管理器时，您正在连接到管理节点。
@@ -85,6 +91,7 @@ StorageGRID在每个节点上都包含一个内部防火墙，通过使您能够
 
 
 
+[[guidelines-for-storage-nodes]]
 == 存储节点指南
 
 存储节点管理和存储对象数据和元数据。遵循这些准则来保护StorageGRID系统中的存储节点。
@@ -98,6 +105,7 @@ StorageGRID在每个节点上都包含一个内部防火墙，通过使您能够
 
 
 
+[[guidelines-for-gateway-nodes]]
 == 网关节点指南
 
 网关节点提供可选的负载平衡接口，客户端应用程序可以使用它来连接到StorageGRID。请遵循以下准则来保护StorageGRID系统中的任何网关节点：
@@ -109,6 +117,7 @@ StorageGRID在每个节点上都包含一个内部防火墙，通过使您能够
 
 
 
+[[guidelines-for-hardware-appliance-nodes]]
 == 硬件设备节点指南
 
 StorageGRID硬件设备专为在StorageGRID系统中使用而设计。一些设备可以用作存储节点。其他设备可用作管理节点或网关节点。您可以将设备节点与基于软件的节点结合起来，或者部署完全工程化的全设备网格。

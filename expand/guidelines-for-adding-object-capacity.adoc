@@ -15,6 +15,7 @@ summary: '您可以通过向现有存储节点添加存储卷或向现有站点�
 
 
 
+[[guidelines-for-adding-storage-volumes]]
 == 添加存储卷的指南
 
 在将存储卷添加到现有存储节点之前，请查看以下准则和限制：
@@ -38,6 +39,7 @@ summary: '您可以通过向现有存储节点添加存储卷或向现有站点�
 
 
 
+[[guidelines-for-adding-storage-nodes]]
 == 添加存储节点的指南
 
 在将存储节点添加到现有站点之前，请查看以下准则和限制：
@@ -52,6 +54,7 @@ summary: '您可以通过向现有存储节点添加存储卷或向现有站点�
 
 
 
+[[guidelines-for-adc-service-on-storage-nodes]]
 == 存储节点上的 ADC 服务指南
 
 配置扩展时，您必须选择是否在每个新存储节点上包含管理域控制器 (ADC) 服务。ADC 服务跟踪电网服务的位置和可用性。

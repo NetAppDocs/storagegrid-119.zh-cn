@@ -25,6 +25,7 @@ summary: '如果您希望其他域中的 Web 应用程序可以访问 S3 存储�
 
 
 
+[[enable-cors-for-a-bucket]]
 == 为存储桶启用 CORS
 
 .步骤
@@ -70,6 +71,7 @@ summary: '如果您希望其他域中的 Web 应用程序可以访问 S3 存储�
 
 
 
+[[modify-cors-setting]]
 == 修改 CORS 设置
 
 .步骤
@@ -79,6 +81,7 @@ summary: '如果您希望其他域中的 Web 应用程序可以访问 S3 存储�
 
 
 
+[[disable-cors-setting]]
 == 禁用 CORS 设置
 
 .步骤

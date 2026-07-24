@@ -19,6 +19,7 @@ summary: 如果您的 ILM 策略包含制作擦除编码副本的规则，则必
 
 
 
+[[general-recommendation-for-adding-storage-capacity-for-erasure-coded-objects]]
 == 增加擦除编码对象存储容量的一般建议
 
 如果要避免详细计算，可以在现有存储节点达到 70% 容量时为每个站点添加两个存储节点。

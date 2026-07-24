@@ -15,6 +15,7 @@ summary: 您可能需要使用StorageGRID S3 REST API 来管理使用旧版合�
 
 
 
+[[compliance-feature-deprecated]]
 == 合规性功能已弃用
 
 以前版本的StorageGRID中提供的StorageGRID合规性功能已被弃用，并已被 S3 对象锁取代。

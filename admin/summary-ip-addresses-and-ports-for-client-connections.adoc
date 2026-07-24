@@ -71,6 +71,7 @@ LDR
 |===
 
 
+[[example-urls]]
 == 示例 URL
 
 要将客户端应用程序连接到网关节点 HA 组的负载均衡器端点，请使用如下所示结构的 URL：
@@ -83,6 +84,7 @@ LDR
 
 
 
+[[where-to-find-ip-addresses]]
 == 在哪里查找 IP 地址
 
 . Sign inlink:../admin/web-browser-requirements.html["支持的网络浏览器"]。

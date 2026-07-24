@@ -15,6 +15,7 @@ summary: 您应该替换安装期间创建的默认证书，并为 TLS 和 SSH �
 
 
 
+[[hardening-guidelines-for-certificates]]
 == 证书强化指南
 
 您应该用自己的自定义证书替换安装期间创建的默认证书。
@@ -44,6 +45,7 @@ NOTE: StorageGRID单独管理用于负载均衡器端点的证书。要配置负
 
 
 
+[[hardening-guidelines-for-tls-and-ssh-policy]]
 == TLS 和 SSH 策略强化指南
 
 您可以选择安全策略来确定使用哪些协议和密码与客户端应用程序建立安全的 TLS 连接以及与内部StorageGRID服务建立安全的 SSH 连接。

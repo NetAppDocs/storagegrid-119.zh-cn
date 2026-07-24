@@ -20,12 +20,14 @@ summary: 一致性值可用于指定存储桶设置更改的可用性，以及�
 
 
 
+[[bucket-consistency-guidelines]]
 == 桶一致性指南
 
 存储桶一致性用于确定影响该 S3 存储桶内对象的客户端应用程序的一致性。一般来说，您应该对存储桶使用“Read-after-new-write”一致性。
 
 
 
+[[change-bucket-consistencychange-bucket-consistency]]
 == [[change-bucket-consistency]]更改存储桶一致性
 
 如果“Read-after-new-write”一致性不符合客户端应用程序的要求，您可以通过设置存储桶一致性或使用 `Consistency-Control`标头。这 `Consistency-Control`标头覆盖了存储桶一致性。
@@ -54,6 +56,7 @@ NOTE: 当您更改存储桶的一致性时，只有在更改后提取的对象�
 
 
 
+[[what-happens-when-you-change-bucket-settings]]
 == 更改存储桶设置时会发生什么情况
 
 存储桶具有多个设置，这些设置会影响存储桶及其内的对象的行为。

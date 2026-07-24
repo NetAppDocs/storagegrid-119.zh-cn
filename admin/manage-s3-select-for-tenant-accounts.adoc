@@ -17,22 +17,26 @@ S3 Select 提供了一种有效的方法来搜索大量数据，而无需部署�
 
 
 
+[[what-is-s3-select]]
 == 什么是 S3 Select？
 
 S3 Select 允许 S3 客户端使用 SelectObjectContent 请求来过滤和检索对象所需的数据。  S3 Select 的StorageGRID实现包括 S3 Select 命令和功能的子集。
 
 
 
+[[considerations-and-requirements-for-using-s3-select]]
 == 使用 S3 Select 的注意事项和要求
 
 
 
+[[grid-administration-requirements]]
 === 电网管理要求
 
 网格管理员必须授予租户 S3 Select 能力。选择“允许 S3 选择”link:creating-tenant-account.html["创建租户"]或者link:editing-tenant-account.html["编辑租户"]。
 
 
 
+[[object-format-requirements]]
 === 对象格式要求
 
 您要查询的对象必须采用以下格式之一：
@@ -51,6 +55,7 @@ S3 Select 允许 S3 客户端使用 SelectObjectContent 请求来过滤和检索
 
 
 
+[[endpoint-requirements]]
 === 端点要求
 
 SelectObjectContent 请求必须发送到link:configuring-load-balancer-endpoints.html["StorageGRID负载均衡器端点"]。
@@ -64,6 +69,7 @@ SelectObjectContent 请求必须发送到link:configuring-load-balancer-endpoint
 
 
 
+[[general-considerations]]
 === 一般注意事项
 
 查询不能直接发送到存储节点。

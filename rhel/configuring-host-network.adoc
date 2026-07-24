@@ -39,6 +39,7 @@ link:creating-node-configuration-files.html["创建节点配置文件"]
 
 
 
+[[considerations-and-recommendations-for-mac-address-cloning]]
 == MAC 地址克隆的注意事项和建议
 
 .[[mac_address_cloning_rhel]]
@@ -46,6 +47,7 @@ MAC 地址克隆会导致容器使用主机的 MAC 地址，而主机使用您�
 
 
 
+[[enabling-mac-cloning]]
 === 启用 MAC 克隆
 
 在某些环境中，可以通过 MAC 地址克隆增强安全性，因为它使您能够为管理网络、网格网络和客户端网络使用专用虚拟 NIC。让容器使用主机上专用 NIC 的 MAC 地址可以避免使用混杂模式网络配置。
@@ -72,6 +74,7 @@ NOTE: 如果在虚拟主机上启用 MAC 克隆而没有在虚拟机管理程序
 
 
 
+[[mac-cloning-use-cases]]
 === MAC 克隆用例
 
 MAC 克隆有两种用例需要考虑：
@@ -87,6 +90,7 @@ NOTE: 如果您不想使用 MAC 地址克隆，而是允许所有接口接收和
 
 
 
+[[mac-cloning-example]]
 === MAC 克隆示例
 
 启用 MAC 克隆的示例，其中主机的 MAC 地址为 11:22:33:44:55:66，接口为 ens256，节点配置文件中包含以下键：
@@ -100,6 +104,7 @@ NOTE: 如果您不想使用 MAC 地址克隆，而是允许所有接口接收和
 
 
 
+[[example-1-1-to-1-mapping-to-physical-or-virtual-nics]]
 == 示例 1：一对一映射到物理或虚拟 NIC
 
 示例 1 描述了一个简单的物理接口映射，它几乎不需要或根本不需要主机端配置。
@@ -114,6 +119,7 @@ Linux 操作系统创建 `ensXYZ`在安装或启动期间或热添加接口时�
 
 
 
+[[example-2-lacp-bond-carrying-vlans]]
 == 示例 2：承载 VLAN 的 LACP 绑定
 
 .关于此任务

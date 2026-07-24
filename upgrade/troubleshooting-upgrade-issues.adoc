@@ -15,36 +15,42 @@ summary: 如果升级时出现问题，您也许能够自己解决问题。如�
 
 
 
+[[upgrade-does-not-complete]]
 == 升级未完成
 
 以下部分介绍如何从升级部分失败的情况中恢复。
 
 
 
+[[upgrade-precheck-errors]]
 === 升级预检查错误
 
 为了检测和解决问题，您可以在开始实际升级之前手动运行升级预检查。大多数预检错误都提供了有关如何解决问题的信息。
 
 
 
+[[provisioning-failures]]
 === 预配失败
 
 如果自动配置过程失败，请联系技术支持。
 
 
 
+[[grid-node-crashes-or-fails-to-start]]
 === 网格节点崩溃或无法启动
 
 如果网格节点在升级过程中崩溃或升级完成后无法成功启动，请联系技术支持调查并纠正任何潜在问题。
 
 
 
+[[ingest-or-data-retrieval-is-interrupted]]
 === 提取或数据检索中断
 
 如果在未升级网格节点时数据提取或检索意外中断，请联系技术支持。
 
 
 
+[[database-upgrade-errors]]
 === 数据库升级错误
 
 如果数据库升级失败并出现错误，请重试升级。如果再次失败，请联系技术支持。
@@ -54,12 +60,14 @@ link:checking-systems-condition-before-upgrading-software.html["升级软件前�
 
 
 
+[[user-interface-issues]]
 == 用户界面问题
 
 升级期间或升级后，您可能会遇到网格管理器或租户管理器的问题。
 
 
 
+[[grid-manager-displays-multiple-error-messages-during-upgrade]]
 === 网格管理器在升级过程中显示多条错误消息
 
 如果在主管理节点升级时刷新浏览器或导航到另一个网格管理器页面，您可能会看到多个“503：服务不可用”和“连接服务器时出现问题”消息。您可以放心地忽略这些消息——节点升级后它们将不再出现。
@@ -68,6 +76,7 @@ link:checking-systems-condition-before-upgrading-software.html["升级软件前�
 
 
 
+[[web-interface-does-not-respond-as-expected]]
 === Web 界面未按预期响应
 
 StorageGRID软件升级后，网格管理器或租户管理器可能无法按预期响应。
@@ -87,6 +96,7 @@ NOTE: 浏览器支持通常会随着每个StorageGRID版本的发布而发生变
 
 
 
+[[docker-image-availability-check-error-messages]]
 == “Docker 镜像可用性检查”错误消息
 
 尝试启动升级过程时，您可能会收到一条错误消息，指出“Docker 映像可用性检查验证套件识别出以下问题。”必须先解决所有问题，然后才能完成升级。

@@ -19,12 +19,14 @@ summary: 参考此常用 Prometheus 指标列表，以更好地理解默认警�
 
 
 
+[[what-are-prometheus-metrics]]
 == Prometheus 指标是什么？
 
 Prometheus 指标是时间序列测量。管理节点上的 Prometheus 服务从所有节点上的服务收集这些指标。指标存储在每个管理节点上，直到为 Prometheus 数据保留的空间已满。当 `/var/local/mysql_ibdata/`卷达到容量时，将首先删除最旧的指标。
 
 
 
+[[where-are-prometheus-metrics-used]]
 == Prometheus 指标在哪里使用？
 
 Prometheus 收集的指标在网格管理器的几个地方使用：
@@ -48,6 +50,7 @@ NOTE: 指标页面中的某些功能和菜单项有意设置为不起作用，�
 
 
 
+[[list-of-most-common-metrics]]
 == 最常见指标列表
 
 以下列表包含最常用的 Prometheus 指标。
@@ -147,6 +150,7 @@ storagegrid_tenant_usage_quota_bytes:: 租户对象可用的最大逻辑空间�
 
 
 
+[[get-a-list-of-all-metrics]]
 == 获取所有指标的列表
 
 [[obtain-all-metrics]]要获取完整的指标列表，请使用网格管理 API。

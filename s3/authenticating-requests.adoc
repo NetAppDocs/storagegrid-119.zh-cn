@@ -21,12 +21,14 @@ StorageGRID系统支持两种身份验证方法：HTTP `Authorization`标题并�
 
 
 
+[[use-the-http-authorization-header]]
 == 使用 HTTP 授权标头
 
 HTTP `Authorization`除存储桶策略允许的匿名请求外，所有 S3 API 操作都使用标头。这 `Authorization`标头包含验证请求所需的所有签名信息。
 
 
 
+[[use-query-parameters]]
 == 使用查询参数
 
 您可以使用查询参数向 URL 添加身份验证信息。这被称为预签名 URL，可用于授予对特定资源的临时访问权限。具有预签名 URL 的用户不需要知道秘密访问密钥即可访问资源，这使您能够提供对资源的第三方受限访问。

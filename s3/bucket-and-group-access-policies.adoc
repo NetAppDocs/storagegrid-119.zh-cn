@@ -15,6 +15,7 @@ StorageGRID使用 Amazon Web Services (AWS) 策略语言允许 S3 租户控制�
 
 
 
+[[access-policy-overview]]
 == 访问策略概述
 
 StorageGRID支持两种访问策略。
@@ -136,6 +137,7 @@ s3:*Object
 
 
 
+[[consistency-for-policies]]
 == 政策一致性
 
 默认情况下，您对组策略所做的任何更新最终都是一致的。当组策略变得一致时，由于策略缓存，更改可能需要额外 15 分钟才能生效。默认情况下，您对存储桶策略所做的任何更新都是高度一致的。
@@ -149,6 +151,7 @@ NOTE: 如果您将一致性设置为不同的值以解决临时情况，请确�
 
 
 
+[[use-arn-in-policy-statements]]
 == 在策略声明中使用 ARN
 
 在策略声明中，ARN 用于 Principal 和 Resource 元素。
@@ -186,6 +189,7 @@ PutBucketPolicy 操作的 HTTP 请求主体必须使用 charset=UTF-8 进行编�
 
 
 
+[[specify-resources-in-a-policy]]
 == 在策略中指定资源
 
 在策略语句中，您可以使用 Resource 元素来指定允许或拒绝权限的存储桶或对象。
@@ -208,6 +212,7 @@ PutBucketPolicy 操作的 HTTP 请求主体必须使用 charset=UTF-8 进行编�
 
 
 
+[[specify-principals-in-a-policy]]
 == 在策略中指定主体
 
 使用 Principal 元素来标识策略声明允许/拒绝访问资源的用户、组或租户帐户。
@@ -265,6 +270,7 @@ arn:aws:iam::27233906934684427525:user-uuid/de305d54-75b4-431b-adb2-eb6b9e546013
 
 
 
+[[specify-permissions-in-a-policy]]
 == 在策略中指定权限
 
 在策略中，Action 元素用于允许/拒绝对资源的权限。您可以在策略中指定一组权限，这些权限由元素“Action”表示，或者由“NotAction”表示排除。每个元素都映射到特定的 S3 REST API 操作。
@@ -279,6 +285,7 @@ NOTE: 当使用 put 覆盖现有值时，将执行删除。
 
 
 
+[[permissions-that-apply-to-buckets]]
 === 适用于存储桶的权限
 
 [cols="2a,2a,1a"]
@@ -617,6 +624,7 @@ PutBucket复制
 |===
 
 
+[[permissions-that-apply-to-objects]]
 === 适用于对象的权限
 
 [cols="2a,2a,1a"]
@@ -818,6 +826,7 @@ s3：恢复对象
 |===
 
 
+[[use-putoverwriteobject-permission]]
 == 使用 PutOverwriteObject 权限
 
 s3:PutOverwriteObject 权限是自定义StorageGRID权限，适用于创建或更新对象的操作。此权限的设置决定客户端是否可以覆盖对象的数据、用户定义的元数据或 S3 对象标记。
@@ -845,6 +854,7 @@ NOTE: 如果当前 S3 策略允许覆盖，并且 PutOverwriteObject 权限设�
 
 
 
+[[specify-conditions-in-a-policy]]
 == 在策略中指定条件
 
 条件定义了政策何时生效。条件由运算符和键值对组成。
@@ -870,6 +880,7 @@ Condition: {
 ----
 
 
+[[supported-condition-operators]]
 === 支持的条件运算符
 
 条件运算符分类如下：
@@ -999,6 +1010,7 @@ IP地址
 |===
 
 
+[[supported-condition-keys]]
 === 支持的条件键
 
 [cols="1a,1a,2a"]
@@ -1129,6 +1141,7 @@ s3：PutObjectVersionTagging
 |===
 
 
+[[specify-variables-in-a-policy]]
 == 在策略中指定变量
 
 您可以使用策略中的变量来填充可用的策略信息。您可以在 `Resource`元素和字符串比较中的 `Condition`元素。
@@ -1205,6 +1218,7 @@ s3：PutObjectVersionTagging
 |===
 
 
+[[create-policies-requiring-special-handling]]
 == 创建需要特殊处理的政策
 
 有时，策略授予的权限可能会对安全性造成危险，或者对持续操作造成危险，例如锁定帐户的根用户。  StorageGRID S3 REST API 实施在策略验证期间的限制比 Amazon 少，但在策略评估期间同样严格。
@@ -1325,6 +1339,7 @@ s3：PutObjectVersionTagging
 |===
 
 
+[[write-once-read-many-worm-protection]]
 == 一次写入多次读取 (WORM) 保护
 
 您可以创建一次写入多次读取 (WORM) 存储桶来保护数据、用户定义的对象元数据和 S3 对象标记。您可以配置 WORM 存储桶以允许创建新对象并防止覆盖或删除现有内容。使用此处描述的方法之一。

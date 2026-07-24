@@ -22,6 +22,7 @@ image::../media/grid_manager_dashboard.png[网格管理器仪表板]
 
 
 
+[[view-the-dashboard]]
 == 查看仪表板
 
 仪表板由包含有关StorageGRID系统的特定信息的选项卡组成。每个选项卡包含卡片上显示的信息类别。
@@ -73,6 +74,7 @@ ILM
 
 
 
+[[manage-dashboards]]
 == 管理仪表板
 
 如果您有 Root 权限（请参阅link:../admin/admin-group-permissions.html["管理员组权限"])，您可以对仪表板执行以下管理任务：
@@ -95,6 +97,7 @@ image::../media/dashboard_manage.png[管理仪表板]
 
 
 
+[[configure-dashboards]]
 == 配置仪表板
 
 要通过克隆活动仪表板来创建新仪表板，请选择*操作* > *克隆活动仪表板*。

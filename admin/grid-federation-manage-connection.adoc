@@ -20,6 +20,7 @@ summary: 管理StorageGRID系统之间的网格联合连接包括编辑连接详
 
 
 
+[[editgridfedconnectionedit-a-grid-federation-connection]]
 == [[edit_grid_fed_connection]]编辑电网联合连接
 
 您可以通过登录到连接中任一网格上的主管理节点来编辑网格联合连接。对第一个网格进行更改后，您必须下载一个新的验证文件并将其上传到另一个网格。
@@ -29,6 +30,7 @@ NOTE: 在编辑连接时，帐户克隆或跨网格复制请求将继续使用�
 
 
 
+[[start-editing-the-connection]]
 === 开始编辑连接
 
 .步骤
@@ -85,6 +87,7 @@ NOTE: 如果您开始编辑连接时连接状态不是*已连接*，则它将不
 
 
 
+[[finish-editing-the-connection]]
 === 完成编辑连接
 
 通过在另一个网格上上传验证文件来完成连接编辑。
@@ -107,6 +110,7 @@ NOTE: 如果您开始编辑连接时连接状态不是*已连接*，则它将不
 
 
 
+[[testgridfedconnectiontest-a-grid-federation-connection]]
 == [[test_grid_fed_connection]]测试电网联合连接
 
 .步骤
@@ -177,6 +181,7 @@ NOTE: 如果您开始编辑连接时连接状态不是*已连接*，则它将不
 
 
 
+[[rotategridfedcertificatesrotate-connection-certificates]]
 == [[rotate_grid_fed_certificates]]轮换连接证书
 
 每个网格联合连接使用四个自动生成的 SSL 证书来保护连接。当每个网格的两个证书接近到期日期时，*网格联合证书到期*警报会提醒您轮换证书。
@@ -201,6 +206,7 @@ CAUTION: 如果连接两端的证书过期，连接将停止工作，并且复�
 
 
 
+[[removegridfedconnectionremove-a-grid-federation-connection]]
 == [[remove_grid_fed_connection]]删除电网联合连接
 
 您可以从连接中的任一网格中删除网格联合连接。如图所示，您必须在两个网格上执行先决条件步骤，以确认任一网格上都没有任何租户使用该连接。
@@ -215,6 +221,7 @@ image::../media/grid-federation-remove-connection.png[删除电网联合连接�
 
 
 
+[[disable-replication-for-all-tenant-buckets]]
 === 禁用所有租户存储桶的复制
 
 .步骤
@@ -231,6 +238,7 @@ TIP: 如果任何租户存储桶启用了跨网格复制，则您无法删除*�
 
 
 
+[[remove-permission-for-each-tenant]]
 === 删除每个租户的权限
 
 在所有租户存储桶的跨网格复制都被禁用后，从两个网格上的所有租户中删除“使用网格联合权限”。
@@ -244,6 +252,7 @@ TIP: 如果任何租户存储桶启用了跨网格复制，则您无法删除*�
 
 
 
+[[remove-connection]]
 === 删除连接
 
 .步骤
@@ -263,6 +272,7 @@ TIP: 如果任何租户存储桶启用了跨网格复制，则您无法删除*�
 
 
 
+[[force-removegridfedconnectionremove-a-grid-federation-connection-by-force]]
 == [[force-remove_grid_fed_connection]]强制删除电网联合连接
 
 如果有必要，您可以强制删除没有*已连接*状态的连接。

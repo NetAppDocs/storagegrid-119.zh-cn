@@ -30,6 +30,7 @@ NOTE: 为了确保操作不会因服务器证书失败而中断，当根服务�
 
 
 
+[[add-a-custom-s3-api-certificate]]
 == 添加自定义 S3 API 证书
 
 .步骤
@@ -159,6 +160,7 @@ NOTE: 上传或生成新证书后，请等待最多一天的时间以清除所�
 
 
 
+[[restore-the-default-s3-api-certificate]]
 == 恢复默认的 S3 API 证书
 
 您可以恢复使用默认 S3 API 证书来将 S3 客户端连接到存储节点。但是，您不能将默认的 S3 API 证书用于负载均衡器端点。
@@ -179,6 +181,7 @@ NOTE: 上传或生成新证书后，请等待最多一天的时间以清除所�
 
 
 
+[[download-or-copy-the-s3-api-certificate]]
 == 下载或复制 S3 API 证书
 
 您可以保存或复制 S3 API 证书内容以供在其他地方使用。
